@@ -5,6 +5,11 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
 	/// <summary>
+	/// Riferimento alla classe 'GameController'.
+	/// </summary>
+	public GameController Instance; 
+
+	/// <summary>
 	/// Riferimento alla classe 'GridController'.
 	/// </summary>
 	public GridController GridC;
@@ -13,6 +18,11 @@ public class GameController : MonoBehaviour {
 	/// Riferimento alla classe 'SpawnController'.
 	/// </summary>
 	public SpawnController SpawnC;
+
+	/// <summary>
+	/// Riferimento alla classe 'Deck'.
+	/// </summary>
+	public Deck Deck;
 
 	/// <summary>
 	/// Energia in dotazione al player 1.
@@ -40,11 +50,17 @@ public class GameController : MonoBehaviour {
 		EnergyPlayer2 = 7;
 		EnergyToSpend = 0;
 
+		// Riferimento al GameController.
+		Instance = this;
+
 		// Riferimento al GridController.
 		GridC = FindObjectOfType <GridController> ();
 
 		// Riferimento allo SpawnController.
 		SpawnC = FindObjectOfType <SpawnController> ();
+
+		// Riferimento al Deck.
+		Deck = FindObjectOfType <Deck> ();
 	}
 
 	void Update () {
@@ -52,7 +68,7 @@ public class GameController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			if (EnergyToSpend < 4) {
 				EnergyToSpend++;
-				print (EnergyToSpend);
+				//print (EnergyToSpend);
 			}
 		}
 
@@ -60,7 +76,7 @@ public class GameController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			if (EnergyToSpend > 0) {
 				EnergyToSpend--;
-				print (EnergyToSpend);
+				//print (EnergyToSpend);
 			}
 		}
 	}
