@@ -74,7 +74,7 @@ public class Deck : MonoBehaviour {
 		}
 	}
 
-	public void RemoveCard (int _listIndex) {
+	public void RemoveCardFromDeck (int _listIndex) {
 		cards.Remove (cards [_listIndex]);
 	}
 }

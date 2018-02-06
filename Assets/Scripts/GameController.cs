@@ -25,6 +25,11 @@ public class GameController : MonoBehaviour {
 	public Deck Deck;
 
 	/// <summary>
+	/// Riferimento alla classe 'Hand'.
+	/// </summary>
+	public Hand Hand;
+
+	/// <summary>
 	/// Energia in dotazione al player 1.
 	/// </summary>
 	public int EnergyPlayer1;
@@ -74,7 +79,14 @@ public class GameController : MonoBehaviour {
 
 		// Riferimento al Deck.
 		Deck = FindObjectOfType <Deck> ();
+
+		// Riferimento a Hand.
+		Hand = FindObjectOfType <Hand> ();
 	}
+
+	#region Vecchie meccaniche
+
+	/*
 
 	void Update () {
 		// Aumento di energia da spendere.
@@ -93,6 +105,10 @@ public class GameController : MonoBehaviour {
 			}
 		}
 	}
+
+	*/
+
+	#endregion
 }
 
 public enum PlayerTurn

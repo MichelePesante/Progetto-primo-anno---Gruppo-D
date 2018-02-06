@@ -44,6 +44,11 @@ public class SpawnController : MonoBehaviour {
 	/// </summary>
 	public List<PawnData> pawns = new List<PawnData> ();
 
+	/// <summary>
+	/// Indice delle carte in mano.
+	/// </summary>
+	private int cardSelector;
+
 	void Start () {
 		// Riferimento al GameController.
 		gc = FindObjectOfType <GameController> ();
@@ -51,6 +56,7 @@ public class SpawnController : MonoBehaviour {
 		// Inizializzazione variabili.
 		xCoordinate = 0;
 		yCoordinate = 0;
+		cardSelector = 1;
 	}
 
 	void Update () {
@@ -90,29 +96,70 @@ public class SpawnController : MonoBehaviour {
 		}
 
 		// Turno del player 1.
-		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-			// Spawn della pedina base.
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
-					PawnSpawn (BasePawn, xCoordinate, yCoordinate);
-					pawns.Add (new PawnData ("Pedina base", gc.EnergyToSpend, true, Color.red));
-					print (gc.EnergyToSpend);
-					gc.EnergyPlayer1 -= gc.EnergyToSpend;
-					gc.EnergyToSpend = 0;
+		// if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+		// Spawn della pedina base.
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
+				if (gc.Hand.cardsInHand > 0) {
+					if (gc.Hand.cards[cardSelector].Value == 1 || gc.Hand.cards[cardSelector].Value == 2) {
+						PawnSpawn (BasePawn, xCoordinate, yCoordinate);
+						pawns.Add (new PawnData ("Pedina base", gc.Hand.cards[cardSelector].Value, true, Color.red));
+					}
+					if (gc.Hand.cards[cardSelector].Value == 3 || gc.Hand.cards[cardSelector].Value == 4) {
+						PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
+						pawns.Add (new PawnData ("Pedina avanzata", gc.Hand.cards[cardSelector].Value, true, Color.red));
+					}
+					gc.Hand.RemoveCardFromHand(cardSelector);
+					cardSelector = 0;
+					//print (gc.EnergyToSpend);
 				}
 			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			if (cardSelector < gc.Hand.cardsInHand - 1) {
+				cardSelector++;
+				print (cardSelector + 1);
+			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			if (cardSelector > 0) {
+				cardSelector--;
+				print (cardSelector + 1);
+			}
+		}
+			
+		#region Vecchie meccaniche
+
+			/* Meccanica di energia
+
+			gc.EnergyPlayer1 -= gc.EnergyToSpend;
+				gc.EnergyToSpend = 0;
+
+			*/
+
+			/* Vecchia meccanica di spawn di pedine diverse	
 
 			// Spawn della pedina avanzata.
 			if (Input.GetKeyDown (KeyCode.L)) {
 				if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
 					PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
 					pawns.Add (new PawnData ("Pedina avanzata", gc.EnergyToSpend, true, Color.red));
-					print (gc.EnergyToSpend);
-					gc.EnergyPlayer1 -= gc.EnergyToSpend;
-					gc.EnergyToSpend = 0;
+					//print (gc.EnergyToSpend);
 				}
 			}
-		}
+
+			*/
+			
+			/* Meccanica di energia
+
+			gc.EnergyPlayer1 -= gc.EnergyToSpend;
+				gc.EnergyToSpend = 0;
+
+			*/
+
+		/*
 
 		// Turno del player 2.
 		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
@@ -121,7 +168,7 @@ public class SpawnController : MonoBehaviour {
 				if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
 					PawnSpawn (BasePawn, xCoordinate, yCoordinate);
 					pawns.Add (new PawnData ("Pedina base", gc.EnergyToSpend, true, Color.blue));
-					print (gc.EnergyToSpend);
+					//print (gc.EnergyToSpend);
 					gc.EnergyPlayer2 -= gc.EnergyToSpend;
 					gc.EnergyToSpend = 0;
 				}
@@ -132,19 +179,24 @@ public class SpawnController : MonoBehaviour {
 				if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
 					PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
 					pawns.Add (new PawnData ("Pedina avanzata", gc.EnergyToSpend, true, Color.blue));
-					print (gc.EnergyToSpend);
+					//print (gc.EnergyToSpend);
 					gc.EnergyPlayer2 -= gc.EnergyToSpend;
 					gc.EnergyToSpend = 0;
 				}
 			}
 		}
 
+		*/
+
+		#endregion
+
 		#endregion
 	}
 
 	/// <summary>
-	/// Spawn della pedina.
+	/// Spawn della pedina che disabilita la casella selezionata.
 	/// </summary>
+	/// <param name="_pawnType">Pedina da spawnare.</param>
 	/// <param name="_x">Coordinata x.</param>
 	/// <param name="_y">Coordinata Y.</param>
 	private void PawnSpawn (GameObject _pawnType, int _x, int _y) {

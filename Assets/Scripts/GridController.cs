@@ -36,8 +36,8 @@ public class GridController : MonoBehaviour {
 
 	void Awake () {
 		// Inizializzazione variabili.
-		xSize = 4;
-		ySize = 4;
+		xSize = 3;
+		ySize = 3;
 		offset = 1.2f;
 		// Set della variabile 'offsettedSize' con la x del prefab.
 		offsettedSize = Tile.transform.localScale.x + offset;
