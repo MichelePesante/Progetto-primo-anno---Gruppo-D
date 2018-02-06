@@ -45,7 +45,9 @@ public class Hand : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			Draw (cardsInHand);
+		}
 	}
 
 	/// <summary>
@@ -57,10 +59,9 @@ public class Hand : MonoBehaviour {
 		if (_cardsInHand < maxHandLimit) {
 			for (int i = _cardsInHand; i < maxHandLimit; i++) {
 				cards.Add (new Card (gc.Deck.cards[cardPosition].Name, gc.Deck.cards[cardPosition].Value));
-				gc.Deck.RemoveCardFromDeck (i);
-				Debug.LogFormat ("Ho pescato la carta {0} che vale {1}", cards[i].Name, cards[i].Value);
-				cardPosition++;
+				gc.Deck.RemoveCardFromDeck (cardPosition);
 				cardsInHand = i + 1;
+				Debug.LogFormat ("Ho pescato la carta {0} che vale {1}", cards[i].Name, cards[i].Value);
 			}
 		}
 	}
