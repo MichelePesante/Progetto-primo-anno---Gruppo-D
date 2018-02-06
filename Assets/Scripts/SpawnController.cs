@@ -119,14 +119,14 @@ public class SpawnController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.RightArrow)) {
 			if (cardSelector < gc.Hand.cardsInHand - 1) {
 				cardSelector++;
-				print (cardSelector + 1);
+				print ("Carta numero: " + (cardSelector + 1));
 			}
 		}
 
 		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 			if (cardSelector > 0) {
 				cardSelector--;
-				print (cardSelector + 1);
+				print ("Carta numero: " + (cardSelector + 1));
 			}
 		}
 			
@@ -213,7 +213,7 @@ public class SpawnController : MonoBehaviour {
 	/// </summary>
 	private void SpawnMovement () {
 		if (gc.GridC.positionCheck (xCoordinate, yCoordinate)) {
-			transform.position = gc.GridC.GetWorldPosition (xCoordinate, yCoordinate);
+			transform.position = gc.GridC.GetWorldPosition (xCoordinate, yCoordinate) + Vector3.up * 0.2f;
 		} 
 		else {
 			xCoordinate = lastXCoordinate;
