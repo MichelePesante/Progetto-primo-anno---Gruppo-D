@@ -7,7 +7,7 @@ public class Deck : MonoBehaviour {
 	/// <summary>
 	/// Lista di tutte le carte.
 	/// </summary>
-	[SerializeField] private List<Card> cards;
+	[SerializeField] public List<Card> cards;
 
 	void Start () {
 		// Creazione dell'istanza della lista.
@@ -43,6 +43,8 @@ public class Deck : MonoBehaviour {
 		}
 
 		Shuffle ();
+
+		CustomLogger.Log ("Il mazzo ha {0} carte", cards.Count);
 	}
 
 	void Update () {
@@ -70,5 +72,9 @@ public class Deck : MonoBehaviour {
 				cards [randomCard] = temporaryCard;
 			}
 		}
+	}
+
+	public void RemoveCard (int _listIndex) {
+		cards.Remove (cards [_listIndex]);
 	}
 }

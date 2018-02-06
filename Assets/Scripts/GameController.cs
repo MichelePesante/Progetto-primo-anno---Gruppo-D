@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 	/// <summary>
 	/// Riferimento alla classe 'GameController'.
 	/// </summary>
-	public GameController Instance; 
+	public static GameController Instance; 
 
 	/// <summary>
 	/// Riferimento alla classe 'GridController'.
@@ -43,6 +43,19 @@ public class GameController : MonoBehaviour {
 	/// Specificazione di chi è il turno.
 	/// </summary>
 	public PlayerTurn CurrentPlayerTurn;
+
+	void Awake () {
+		// Se non esiste un'istanza di questo script.
+		if (Instance == null) {
+			// Crea l'istanza.
+			Instance = this;
+		} 
+		// Alrimenti.
+		else {
+			// Distruggi l'oggetto.
+			Destroy (gameObject);
+		}
+	}
 
 	void Start () {
 		// Inizializzazione variabili.
