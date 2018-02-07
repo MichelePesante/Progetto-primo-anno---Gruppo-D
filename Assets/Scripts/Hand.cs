@@ -49,7 +49,7 @@ public class Hand : MonoBehaviour {
 	private void Draw (int _cardsInHand) {
 		int cardPosition = 0;
 		if (_cardsInHand < maxHandLimit) {
-			for (int i = _cardsInHand; i < maxHandLimit; i++) {
+			for (int i = _cardsInHand; i < maxHandLimit && DeckToDrawFrom.cards.Count > 0; i++) {
 				cards.Add (new Card (DeckToDrawFrom.cards[cardPosition].Name, DeckToDrawFrom.cards[cardPosition].Value));
 				DeckToDrawFrom.RemoveCardFromDeck (cardPosition);
 				cardsInHand = i + 1;

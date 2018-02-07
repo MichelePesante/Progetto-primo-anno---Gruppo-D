@@ -64,8 +64,8 @@ public class SpawnController : MonoBehaviour {
 		gc = FindObjectOfType <GameController> ();
 
 		// Inizializzazione variabili.
-		xCoordinate = 0;
-		yCoordinate = 0;
+		xCoordinate = -1;
+		yCoordinate = -1;
 		cardSelector = 0;
 	}
 
@@ -115,6 +115,7 @@ public class SpawnController : MonoBehaviour {
 						foreach (PawnData pawn in pawns) {
 							if (pawn.Team == Color.red) {
 								PawnUpgrade (HandPlayer1.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer1);
+								print (cardSelector);
 							}
 						}
 					}
@@ -129,9 +130,9 @@ public class SpawnController : MonoBehaviour {
 							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer1.cards[cardSelector].Value, true, Color.red));
 						}
 						HandPlayer1.RemoveCardFromHand(cardSelector);
-						cardSelector = 0;
 						//print (gc.EnergyToSpend);
 					}
+					cardSelector = 0;
 				}
 			}
 
@@ -174,9 +175,9 @@ public class SpawnController : MonoBehaviour {
 							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
 						}
 						HandPlayer2.RemoveCardFromHand(cardSelector);
-						cardSelector = 0;
 						//print (gc.EnergyToSpend);
 					}
+					cardSelector = 0;
 				}
 			}
 

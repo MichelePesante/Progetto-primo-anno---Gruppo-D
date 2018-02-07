@@ -43,8 +43,8 @@ public class GridController : MonoBehaviour {
 		offsettedSize = Tile.transform.localScale.x + offset;
 
 		// Creazione griglia.
-		for (int x = 0; x < xSize; x++) {
-			for (int y = 0; y < ySize; y++) {
+		for (int x = -1; x < xSize - 1; x++) {
+			for (int y = -1; y < ySize - 1; y++) {
 				Instantiate (Tile, new Vector3(offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
 			}
 		}
@@ -52,8 +52,8 @@ public class GridController : MonoBehaviour {
 		
 	void Start () {
 		// Inizializzazione di ogni cella.
-		for (int x = 0; x < xSize; x++) {
-			for (int y = 0; y < ySize; y++) {
+		for (int x = -1; x < xSize - 1; x++) {
+			for (int y = -1; y < ySize - 1; y++) {
 				cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), true));
 			}
 		}
@@ -101,9 +101,9 @@ public class GridController : MonoBehaviour {
 	/// <param name="_x">Posizione x.</param>
 	/// <param name="_y">Posizione y.</param>
 	public bool positionCheck (int _x, int _y) {
-		if (_x < 0 || _y < 0)
+		if (_x < -1 || _y < -1)
 			return false;
-		if (_x > xSize - 1|| _y > ySize - 1)
+		if (_x > xSize - 2|| _y > ySize - 2)
 			return false;
 		return true;
 	}
