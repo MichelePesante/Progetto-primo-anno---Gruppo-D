@@ -20,16 +20,6 @@ public class GameController : MonoBehaviour {
 	public SpawnController SpawnC;
 
 	/// <summary>
-	/// Riferimento alla classe 'Deck'.
-	/// </summary>
-	public Deck Deck;
-
-	/// <summary>
-	/// Riferimento alla classe 'Hand'.
-	/// </summary>
-	public Hand Hand;
-
-	/// <summary>
 	/// Energia in dotazione al player 1.
 	/// </summary>
 	public int EnergyPlayer1;
@@ -67,6 +57,7 @@ public class GameController : MonoBehaviour {
 		EnergyPlayer1 = 7;
 		EnergyPlayer2 = 7;
 		EnergyToSpend = 0;
+		CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
 
 		// Riferimento al GameController.
 		Instance = this;
@@ -76,12 +67,6 @@ public class GameController : MonoBehaviour {
 
 		// Riferimento allo SpawnController.
 		SpawnC = FindObjectOfType <SpawnController> ();
-
-		// Riferimento al Deck.
-		Deck = FindObjectOfType <Deck> ();
-
-		// Riferimento a Hand.
-		Hand = FindObjectOfType <Hand> ();
 	}
 
 	#region Vecchie meccaniche

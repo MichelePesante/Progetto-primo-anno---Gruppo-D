@@ -77,7 +77,7 @@ public class GridController : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Verifica se su una cella è già possibile posizionare una pedina.
+	/// Verifica se su una cella è possibile posizionare una pedina.
 	/// </summary>
 	/// <returns><c>true</c> se possibile piazzare una pedina, <c>false</c>in caso contrario.</returns>
 	/// /// <param name="_x">Posizione x.</param>
@@ -86,7 +86,10 @@ public class GridController : MonoBehaviour {
 		foreach (CellData cell in cells) {
 			if (cell.X == _x && cell.Y == _y && cell.Placeable == true) {
 				return true;
-			} 
+			}
+			if (cell.X == _x && cell.Y == _y && cell.Placeable == false) {
+				return false;
+			}
 		}
 		return false;
 	}

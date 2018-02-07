@@ -5,6 +5,16 @@ using UnityEngine;
 public class PawnData {
 
 	/// <summary>
+	/// Coordinata x.
+	/// </summary>
+	public int X;
+
+	/// <summary>
+	/// Coordinata y.
+	/// </summary>
+	public int Y;
+
+	/// <summary>
 	/// Nome che identifica la pedina.
 	/// </summary>
 	public string Name;
@@ -27,11 +37,15 @@ public class PawnData {
 	/// <summary>
 	/// Inizializza una nuova istanza con il nome, la forza, lo stato di vita e il player a cui appartiene.
 	/// </summary>
+	/// <param name="_x">Coordinata x.</param>
+	/// <param name="_y">Coordinata y.</param>
 	/// <param name="_name">Nome.</param>
 	/// <param name="_strength">Forza.</param>
 	/// <param name="_isAlive">Se <c>true</c> è viva.</param>
 	/// <param name="_team">Player a cui appartiene.</param>
-	public PawnData (string _name, int _strength, bool _isAlive, Color _team) {
+	public PawnData (int _x, int _y, string _name, int _strength, bool _isAlive, Color _team) {
+		X = _x;
+		Y = _y;
 		Name = _name;
 		Strength = _strength;
 		IsAlive = _isAlive;

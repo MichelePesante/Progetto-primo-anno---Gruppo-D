@@ -10,6 +10,16 @@ public class SpawnController : MonoBehaviour {
 	private GameController gc;
 
 	/// <summary>
+	/// Mano del player 1.
+	/// </summary>
+	public Hand HandPlayer1;
+
+	/// <summary>
+	/// Mano del player 2.
+	/// </summary>
+	public Hand HandPlayer2;
+
+	/// <summary>
 	/// Pedina base.
 	/// </summary>
 	public GameObject BasePawn;
@@ -56,7 +66,7 @@ public class SpawnController : MonoBehaviour {
 		// Inizializzazione variabili.
 		xCoordinate = 0;
 		yCoordinate = 0;
-		cardSelector = 1;
+		cardSelector = 0;
 	}
 
 	void Update () {
@@ -96,37 +106,92 @@ public class SpawnController : MonoBehaviour {
 		}
 
 		// Turno del player 1.
-		// if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
 		// Spawn della pedina base.
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
-				if (gc.Hand.cardsInHand > 0) {
-					if (gc.Hand.cards[cardSelector].Value == 1 || gc.Hand.cards[cardSelector].Value == 2) {
-						PawnSpawn (BasePawn, xCoordinate, yCoordinate);
-						pawns.Add (new PawnData ("Pedina base", gc.Hand.cards[cardSelector].Value, true, Color.red));
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				if (HandPlayer1.cardsInHand > 0) {
+
+					if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == false) {
+						foreach (PawnData pawn in pawns) {
+							if (pawn.Team == Color.red) {
+								PawnUpgrade (HandPlayer1.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer1);
+							}
+						}
 					}
-					if (gc.Hand.cards[cardSelector].Value == 3 || gc.Hand.cards[cardSelector].Value == 4) {
-						PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
-						pawns.Add (new PawnData ("Pedina avanzata", gc.Hand.cards[cardSelector].Value, true, Color.red));
+
+					if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
+						if (HandPlayer1.cards[cardSelector].Value == 1 || HandPlayer1.cards[cardSelector].Value == 2) {
+							PawnSpawn (BasePawn, xCoordinate, yCoordinate);
+							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer1.cards[cardSelector].Value, true, Color.red));
+						}
+						if (HandPlayer1.cards[cardSelector].Value == 3 || HandPlayer1.cards[cardSelector].Value == 4) {
+							PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
+							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer1.cards[cardSelector].Value, true, Color.red));
+						}
+						HandPlayer1.RemoveCardFromHand(cardSelector);
+						cardSelector = 0;
+						//print (gc.EnergyToSpend);
 					}
-					gc.Hand.RemoveCardFromHand(cardSelector);
-					cardSelector = 0;
-					//print (gc.EnergyToSpend);
+				}
+			}
+
+			if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				if (cardSelector < HandPlayer1.cardsInHand - 1) {
+					cardSelector++;
+					print ("Carta numero: " + (cardSelector + 1));
+				}
+			}
+
+			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				if (cardSelector > 0) {
+					cardSelector--;
+					print ("Carta numero: " + (cardSelector + 1));
 				}
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			if (cardSelector < gc.Hand.cardsInHand - 1) {
-				cardSelector++;
-				print ("Carta numero: " + (cardSelector + 1));
-			}
-		}
+		// Turno del player 2.
+		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+			// Spawn della pedina base.
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				if (HandPlayer2.cardsInHand > 0) {
 
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			if (cardSelector > 0) {
-				cardSelector--;
-				print ("Carta numero: " + (cardSelector + 1));
+					if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == false) {
+						foreach (PawnData pawn in pawns) {
+							if (pawn.Team == Color.blue) {
+								PawnUpgrade (HandPlayer2.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer2);
+							}
+						}
+					}
+
+					if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
+						if (HandPlayer2.cards[cardSelector].Value == 1 || HandPlayer2.cards[cardSelector].Value == 2) {
+							PawnSpawn (BasePawn, xCoordinate, yCoordinate);
+							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
+						}
+						if (HandPlayer2.cards[cardSelector].Value == 3 || HandPlayer2.cards[cardSelector].Value == 4) {
+							PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
+							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
+						}
+						HandPlayer2.RemoveCardFromHand(cardSelector);
+						cardSelector = 0;
+						//print (gc.EnergyToSpend);
+					}
+				}
+			}
+
+			if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				if (cardSelector < HandPlayer2.cardsInHand - 1) {
+					cardSelector++;
+					print ("Carta numero: " + (cardSelector + 1));
+				}
+			}
+
+			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				if (cardSelector > 0) {
+					cardSelector--;
+					print ("Carta numero: " + (cardSelector + 1));
+				}
 			}
 		}
 			
@@ -204,6 +269,26 @@ public class SpawnController : MonoBehaviour {
 		foreach (CellData cell in gc.GridC.cells) {
 			if (cell.X == _x && cell.Y == _y) {
 				cell.Placeable = false;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Potenziamento della forza pedina.
+	/// </summary>
+	/// <param name="_strengthToAdd">Forza da aggiungere.</param>
+	/// <param name="_x">Posizione x.</param>
+	/// <param name="_y">Posizione y.</param>
+	/// <param name="_handToRemoveFrom">Mano dalla quale rimuovere la carta.</param>
+	private void PawnUpgrade (int _strengthToAdd, int _x, int _y, Hand _handToRemoveFrom) {
+		foreach (CellData cell in gc.GridC.cells) {
+			if (cell.X == _x && cell.Y == _y) {
+				foreach (PawnData pawn in pawns) {
+					if (pawn.X == _x && pawn.Y == _y) {
+						_handToRemoveFrom.RemoveCardFromHand (cardSelector);
+						pawn.Strength += _strengthToAdd;
+					}
+				}
 			}
 		}
 	}

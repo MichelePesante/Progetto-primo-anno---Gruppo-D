@@ -10,6 +10,11 @@ public class Hand : MonoBehaviour {
 	[SerializeField] public List<Card> cards;
 
 	/// <summary>
+	/// Deck dal quale bisogna pescare le carte.
+	/// </summary>
+	[SerializeField] public Deck DeckToDrawFrom;
+
+	/// <summary>
 	/// Numero massimo di carte che si possono tenere in mano.
 	/// </summary>
 	private int maxHandLimit;
@@ -19,21 +24,8 @@ public class Hand : MonoBehaviour {
 	/// </summary>
 	public int cardsInHand;
 
-	/// <summary>
-	/// Carte da pescare.
-	/// </summary>
-	private Deck cardsToDraw;
-
-	/// <summary>
-	/// Riferimento alla classe 'GameController'.
-	/// </summary>
-	private GameController gc;
-
 	// Use this for initialization
 	void Start () {
-		// Riferimento al GameController.
-		gc = GameController.Instance;
-
 		// Inizializzazione delle variabili.
 		cards = new List<Card> ();
 		cardsInHand = 0;
@@ -58,8 +50,8 @@ public class Hand : MonoBehaviour {
 		int cardPosition = 0;
 		if (_cardsInHand < maxHandLimit) {
 			for (int i = _cardsInHand; i < maxHandLimit; i++) {
-				cards.Add (new Card (gc.Deck.cards[cardPosition].Name, gc.Deck.cards[cardPosition].Value));
-				gc.Deck.RemoveCardFromDeck (cardPosition);
+				cards.Add (new Card (DeckToDrawFrom.cards[cardPosition].Name, DeckToDrawFrom.cards[cardPosition].Value));
+				DeckToDrawFrom.RemoveCardFromDeck (cardPosition);
 				cardsInHand = i + 1;
 				Debug.LogFormat ("Ho pescato la carta {0} che vale {1}", cards[i].Name, cards[i].Value);
 			}
