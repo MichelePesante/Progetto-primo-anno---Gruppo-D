@@ -55,9 +55,22 @@ public class GameController : MonoBehaviour {
 
 	#region Vecchie meccaniche
 
-	/*
+
 
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.DownArrow)) {
+			CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
+			print ("Turno del giocatore 1");
+		}
+
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			CurrentPlayerTurn = PlayerTurn.TurnPlayer2;
+			print ("Turno del giocatore 2");
+		}
+
+		/*
+		 
 		// Aumento di energia da spendere.
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			if (EnergyToSpend < 4) {
@@ -73,9 +86,9 @@ public class GameController : MonoBehaviour {
 				//print (EnergyToSpend);
 			}
 		}
-	}
 
-	*/
+		*/
+	}
 
 	#endregion
 }

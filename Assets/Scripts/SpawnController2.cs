@@ -78,40 +78,41 @@ public class SpawnController2 : MonoBehaviour {
 
 		#region Input
 
-		// Movimento in avanti.
-		if (Input.GetKeyDown (KeyCode.W)) {
-			lastXCoordinate = xCoordinate;
-			lastYCoordinate = yCoordinate;
-			yCoordinate++;
-			SpawnMovement ();
-		}
-
-		// Movimento indietro.
-		if (Input.GetKeyDown (KeyCode.S)) {
-			lastXCoordinate = xCoordinate;
-			lastYCoordinate = yCoordinate;
-			yCoordinate--;
-			SpawnMovement ();
-		}
-
-		// Movimento a destra.
-		if (Input.GetKeyDown (KeyCode.D)) {
-			lastXCoordinate = xCoordinate;
-			lastYCoordinate = yCoordinate;
-			xCoordinate++;
-			SpawnMovement ();
-		}
-
-		// Movimento a sinistra.
-		if (Input.GetKeyDown (KeyCode.A)) {
-			lastXCoordinate = xCoordinate;
-			lastYCoordinate = yCoordinate;
-			xCoordinate--;
-			SpawnMovement ();
-		}
-
 		// Turno del player 2.
 		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+
+			// Movimento in avanti.
+			if (Input.GetKeyDown (KeyCode.W)) {
+				lastXCoordinate = xCoordinate;
+				lastYCoordinate = yCoordinate;
+				yCoordinate++;
+				SpawnMovement ();
+			}
+
+			// Movimento indietro.
+			if (Input.GetKeyDown (KeyCode.S)) {
+				lastXCoordinate = xCoordinate;
+				lastYCoordinate = yCoordinate;
+				yCoordinate--;
+				SpawnMovement ();
+			}
+
+			// Movimento a destra.
+			if (Input.GetKeyDown (KeyCode.D)) {
+				lastXCoordinate = xCoordinate;
+				lastYCoordinate = yCoordinate;
+				xCoordinate++;
+				SpawnMovement ();
+			}
+
+			// Movimento a sinistra.
+			if (Input.GetKeyDown (KeyCode.A)) {
+				lastXCoordinate = xCoordinate;
+				lastYCoordinate = yCoordinate;
+				xCoordinate--;
+				SpawnMovement ();
+			}
+			
 			// Spawn della pedina base.
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				if (HandPlayer2.cardsInHand > 0) {
@@ -119,6 +120,7 @@ public class SpawnController2 : MonoBehaviour {
 					if (GridC2.cellCheck (xCoordinate, yCoordinate) == false) {
 						foreach (PawnData pawn in pawns) {
 							if (pawn.Team == Color.blue) {
+								Debug.LogFormat ("Ho usato la carta {0} che vale {1} per potenziare una pedina", HandPlayer2.cards[cardSelector].Name, HandPlayer2.cards[cardSelector].Value);
 								PawnUpgrade (HandPlayer2.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer2);
 							}
 						}
@@ -153,7 +155,18 @@ public class SpawnController2 : MonoBehaviour {
 					print ("Carta numero: " + (cardSelector + 1));
 				}
 			}
+
+			if (Input.GetKeyDown(KeyCode.Tab)) {
+				if (GridC2.cellCheck (xCoordinate, yCoordinate) == false) {
+					foreach (PawnData pawn in pawns) {
+						if (pawn.Team == Color.blue) {
+							Debug.LogFormat ("Questa pedina attualmente ha valore {0}", pawn.Strength);
+						}
+					}
+				}
+			}
 		}
+
 		#endregion
 	}
 
