@@ -10,16 +10,6 @@ public class GameController : MonoBehaviour {
 	public static GameController Instance; 
 
 	/// <summary>
-	/// Riferimento alla classe 'GridController'.
-	/// </summary>
-	public GridController GridC;
-
-	/// <summary>
-	/// Riferimento alla classe 'SpawnController'.
-	/// </summary>
-	public SpawnController SpawnC;
-
-	/// <summary>
 	/// Energia in dotazione al player 1.
 	/// </summary>
 	public int EnergyPlayer1;
@@ -61,12 +51,6 @@ public class GameController : MonoBehaviour {
 
 		// Riferimento al GameController.
 		Instance = this;
-
-		// Riferimento al GridController.
-		GridC = FindObjectOfType <GridController> ();
-
-		// Riferimento allo SpawnController.
-		SpawnC = FindObjectOfType <SpawnController> ();
 	}
 
 	#region Vecchie meccaniche

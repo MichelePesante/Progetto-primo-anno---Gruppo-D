@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnController : MonoBehaviour {
+public class SpawnController2 : MonoBehaviour {
+
+	/// <summary>
+	/// Riferimento alla classe 'GridController'.
+	/// </summary>
+	public GridController2 GridC2;
 
 	/// <summary>
 	/// Riferimento alla classe 'GameController'.
 	/// </summary>
 	private GameController gc;
-
-	/// <summary>
-	/// Riferimento alla classe 'GridController'.
-	/// </summary>
-	public GridController GridC;
 
 	/// <summary>
 	/// Mano del player 1.
@@ -70,7 +70,7 @@ public class SpawnController : MonoBehaviour {
 
 		// Inizializzazione variabili.
 		xCoordinate = -1;
-		yCoordinate = -1;
+		yCoordinate = 3;
 		cardSelector = 0;
 	}
 
@@ -110,31 +110,30 @@ public class SpawnController : MonoBehaviour {
 			SpawnMovement ();
 		}
 
-		// Turno del player 1.
-		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-		// Spawn della pedina base.
+		// Turno del player 2.
+		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+			// Spawn della pedina base.
 			if (Input.GetKeyDown (KeyCode.Space)) {
-				if (HandPlayer1.cardsInHand > 0) {
+				if (HandPlayer2.cardsInHand > 0) {
 
-					if (GridC.cellCheck (xCoordinate, yCoordinate) == false) {
+					if (GridC2.cellCheck (xCoordinate, yCoordinate) == false) {
 						foreach (PawnData pawn in pawns) {
-							if (pawn.Team == Color.red) {
-								PawnUpgrade (HandPlayer1.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer1);
-								print (cardSelector);
+							if (pawn.Team == Color.blue) {
+								PawnUpgrade (HandPlayer2.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer2);
 							}
 						}
 					}
 
-					if (GridC.cellCheck (xCoordinate, yCoordinate) == true) {
-						if (HandPlayer1.cards[cardSelector].Value == 1 || HandPlayer1.cards[cardSelector].Value == 2) {
+					if (GridC2.cellCheck (xCoordinate, yCoordinate) == true) {
+						if (HandPlayer2.cards[cardSelector].Value == 1 || HandPlayer2.cards[cardSelector].Value == 2) {
 							PawnSpawn (BasePawn, xCoordinate, yCoordinate);
-							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer1.cards[cardSelector].Value, true, Color.red));
+							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
 						}
-						if (HandPlayer1.cards[cardSelector].Value == 3 || HandPlayer1.cards[cardSelector].Value == 4) {
+						if (HandPlayer2.cards[cardSelector].Value == 3 || HandPlayer2.cards[cardSelector].Value == 4) {
 							PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
-							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer1.cards[cardSelector].Value, true, Color.red));
+							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
 						}
-						HandPlayer1.RemoveCardFromHand(cardSelector);
+						HandPlayer2.RemoveCardFromHand(cardSelector);
 						//print (gc.EnergyToSpend);
 					}
 					cardSelector = 0;
@@ -142,7 +141,7 @@ public class SpawnController : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.RightArrow)) {
-				if (cardSelector < HandPlayer1.cardsInHand - 1) {
+				if (cardSelector < HandPlayer2.cardsInHand - 1) {
 					cardSelector++;
 					print ("Carta numero: " + (cardSelector + 1));
 				}
@@ -155,67 +154,6 @@ public class SpawnController : MonoBehaviour {
 				}
 			}
 		}
-			
-		#region Vecchie meccaniche
-
-			/* Meccanica di energia
-
-			gc.EnergyPlayer1 -= gc.EnergyToSpend;
-				gc.EnergyToSpend = 0;
-
-			*/
-
-			/* Vecchia meccanica di spawn di pedine diverse	
-
-			// Spawn della pedina avanzata.
-			if (Input.GetKeyDown (KeyCode.L)) {
-				if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
-					PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
-					pawns.Add (new PawnData ("Pedina avanzata", gc.EnergyToSpend, true, Color.red));
-					//print (gc.EnergyToSpend);
-				}
-			}
-
-			*/
-			
-			/* Meccanica di energia
-
-			gc.EnergyPlayer1 -= gc.EnergyToSpend;
-				gc.EnergyToSpend = 0;
-
-			*/
-
-		/*
-
-		// Turno del player 2.
-		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
-			// Spawn della pedina base.
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
-					PawnSpawn (BasePawn, xCoordinate, yCoordinate);
-					pawns.Add (new PawnData ("Pedina base", gc.EnergyToSpend, true, Color.blue));
-					//print (gc.EnergyToSpend);
-					gc.EnergyPlayer2 -= gc.EnergyToSpend;
-					gc.EnergyToSpend = 0;
-				}
-			}
-
-			// Spawn della pedina avanzata.
-			if (Input.GetKeyDown (KeyCode.L)) {
-				if (gc.GridC.cellCheck (xCoordinate, yCoordinate) == true) {
-					PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
-					pawns.Add (new PawnData ("Pedina avanzata", gc.EnergyToSpend, true, Color.blue));
-					//print (gc.EnergyToSpend);
-					gc.EnergyPlayer2 -= gc.EnergyToSpend;
-					gc.EnergyToSpend = 0;
-				}
-			}
-		}
-
-		*/
-
-		#endregion
-
 		#endregion
 	}
 
@@ -226,8 +164,8 @@ public class SpawnController : MonoBehaviour {
 	/// <param name="_x">Coordinata x.</param>
 	/// <param name="_y">Coordinata Y.</param>
 	private void PawnSpawn (GameObject _pawnType, int _x, int _y) {
-		Instantiate (_pawnType, new Vector3 (transform.position.x, GridC.Tile.transform.localScale.y, transform.position.z), transform.rotation);
-		foreach (CellData cell in GridC.cells) {
+		Instantiate (_pawnType, new Vector3 (transform.position.x, GridC2.Tile.transform.localScale.y, transform.position.z), transform.rotation);
+		foreach (CellData cell in GridC2.cells) {
 			if (cell.X == _x && cell.Y == _y) {
 				cell.Placeable = false;
 			}
@@ -242,7 +180,7 @@ public class SpawnController : MonoBehaviour {
 	/// <param name="_y">Posizione y.</param>
 	/// <param name="_handToRemoveFrom">Mano dalla quale rimuovere la carta.</param>
 	private void PawnUpgrade (int _strengthToAdd, int _x, int _y, Hand _handToRemoveFrom) {
-		foreach (CellData cell in GridC.cells) {
+		foreach (CellData cell in GridC2.cells) {
 			if (cell.X == _x && cell.Y == _y) {
 				foreach (PawnData pawn in pawns) {
 					if (pawn.X == _x && pawn.Y == _y) {
@@ -258,8 +196,8 @@ public class SpawnController : MonoBehaviour {
 	/// Movimento dello SpawnController.
 	/// </summary>
 	private void SpawnMovement () {
-		if (GridC.positionCheck (xCoordinate, yCoordinate)) {
-			transform.position = GridC.GetWorldPosition (xCoordinate, yCoordinate) + Vector3.up * 0.2f;
+		if (GridC2.positionCheck (xCoordinate, yCoordinate)) {
+			transform.position = GridC2.GetWorldPosition (xCoordinate, yCoordinate) + Vector3.up * 0.2f;
 		} 
 		else {
 			xCoordinate = lastXCoordinate;
