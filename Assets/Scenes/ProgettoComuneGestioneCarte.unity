@@ -405,7 +405,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 572679007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 856123d121ba3be44aa8e31b2dd47089, type: 3}
+  m_Script: {fileID: 11500000, guid: d8762474be75a3e4fa999e2bf80e115f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cards: []
@@ -582,7 +582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridC2: {fileID: 1779128820}
-  HandPlayer1: {fileID: 1683435564}
   HandPlayer2: {fileID: 572679008}
   BasePawn: {fileID: 1554460695144738, guid: de441d06665a4244387cec666c3dda4e, type: 2}
   AdvancedPawn: {fileID: 1421388866332954, guid: 890ba1773ae12a64689971f7c2df1f6b,
@@ -1041,7 +1040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridC: {fileID: 1305036668}
   HandPlayer1: {fileID: 1683435564}
-  HandPlayer2: {fileID: 572679008}
   BasePawn: {fileID: 1554460695144738, guid: de441d06665a4244387cec666c3dda4e, type: 2}
   AdvancedPawn: {fileID: 1421388866332954, guid: 890ba1773ae12a64689971f7c2df1f6b,
     type: 2}
@@ -1179,8 +1177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4009ebe4416147961d2b1e41600a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridC: {fileID: 1305036668}
-  SpawnC: {fileID: 0}
   EnergyPlayer1: 0
   EnergyPlayer2: 0
   EnergyToSpend: 0
@@ -1508,7 +1504,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1779128819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

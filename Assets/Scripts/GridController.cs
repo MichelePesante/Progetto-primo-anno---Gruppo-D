@@ -45,7 +45,10 @@ public class GridController : MonoBehaviour {
 		// Creazione griglia.
 		for (int x = -1; x < xSize - 1; x++) {
 			for (int y = -1; y < ySize - 1; y++) {
-				Instantiate (Tile, new Vector3(offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
+				GameObject thisTile = Instantiate (Tile, new Vector3(offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
+				if (x == 0 && y == 0) {
+					thisTile.SetActive (false);
+				}
 			}
 		}
 	}
@@ -103,7 +106,9 @@ public class GridController : MonoBehaviour {
 	public bool positionCheck (int _x, int _y) {
 		if (_x < -1 || _y < -1)
 			return false;
-		if (_x > xSize - 2|| _y > ySize - 2)
+		if (_x > xSize - 2 || _y > ySize - 2)
+			return false;
+		if (_x == 0 && _y == 0)
 			return false;
 		return true;
 	}

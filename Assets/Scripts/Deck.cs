@@ -9,7 +9,7 @@ public class Deck : MonoBehaviour {
 	/// </summary>
 	[SerializeField] public List<Card> cards;
 
-	void Start () {
+	void Awake () {
 		// Creazione dell'istanza della lista.
 		cards = new List<Card> ();
 
@@ -41,10 +41,10 @@ public class Deck : MonoBehaviour {
 			cards [i].Name = "Delta";
 			cards [i].Value = 4;
 		}
+	}
 
+	void Start () {
 		Shuffle ();
-
-		CustomLogger.Log ("Il mazzo ha {0} carte", cards.Count);
 	}
 
 	void Update () {

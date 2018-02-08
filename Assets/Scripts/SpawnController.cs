@@ -20,11 +20,6 @@ public class SpawnController : MonoBehaviour {
 	public Hand HandPlayer1;
 
 	/// <summary>
-	/// Mano del player 2.
-	/// </summary>
-	public Hand HandPlayer2;
-
-	/// <summary>
 	/// Pedina base.
 	/// </summary>
 	public GameObject BasePawn;
@@ -113,16 +108,17 @@ public class SpawnController : MonoBehaviour {
 				SpawnMovement ();
 			}
 
-
 			// Spawn della pedina base.
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				if (HandPlayer1.cardsInHand > 0) {
 
 					if (GridC.cellCheck (xCoordinate, yCoordinate) == false) {
 						foreach (PawnData pawn in pawns) {
-							if (pawn.Team == Color.red) {
-								Debug.LogFormat ("Ho usato la carta {0} che vale {1} per potenziare una pedina", HandPlayer1.cards[cardSelector].Name, HandPlayer1.cards[cardSelector].Value);
-								PawnUpgrade (HandPlayer1.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer1);
+							if (pawn.X == xCoordinate && pawn.Y == yCoordinate) {
+								if (pawn.Team == Color.red) {
+									Debug.LogFormat ("Ho usato la carta {0} che vale {1} per potenziare una pedina", HandPlayer1.cards[cardSelector].Name, HandPlayer1.cards[cardSelector].Value);
+									PawnUpgrade (HandPlayer1.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer1);
+								}
 							}
 						}
 					}
@@ -131,15 +127,20 @@ public class SpawnController : MonoBehaviour {
 						if (HandPlayer1.cards[cardSelector].Value == 1 || HandPlayer1.cards[cardSelector].Value == 2) {
 							PawnSpawn (BasePawn, xCoordinate, yCoordinate);
 							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer1.cards[cardSelector].Value, true, Color.red));
+							Debug.LogFormat ("Ho posizionato la pedina {0} che vale {1}", HandPlayer1.cards[cardSelector].Name, HandPlayer1.cards[cardSelector].Value);
 						}
 						if (HandPlayer1.cards[cardSelector].Value == 3 || HandPlayer1.cards[cardSelector].Value == 4) {
 							PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
 							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer1.cards[cardSelector].Value, true, Color.red));
+							Debug.LogFormat ("Ho posizionato la pedina {0} che vale {1}", HandPlayer1.cards[cardSelector].Name, HandPlayer1.cards[cardSelector].Value);
 						}
 						HandPlayer1.RemoveCardFromHand(cardSelector);
 						//print (gc.EnergyToSpend);
 					}
 					cardSelector = 0;
+				}
+				else {
+					print ("Non ho carte da giocare");
 				}
 			}
 

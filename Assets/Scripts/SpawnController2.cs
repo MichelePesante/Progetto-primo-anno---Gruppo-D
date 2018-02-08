@@ -15,14 +15,9 @@ public class SpawnController2 : MonoBehaviour {
 	private GameController gc;
 
 	/// <summary>
-	/// Mano del player 1.
-	/// </summary>
-	public Hand HandPlayer1;
-
-	/// <summary>
 	/// Mano del player 2.
 	/// </summary>
-	public Hand HandPlayer2;
+	public Hand2 HandPlayer2;
 
 	/// <summary>
 	/// Pedina base.
@@ -119,9 +114,11 @@ public class SpawnController2 : MonoBehaviour {
 
 					if (GridC2.cellCheck (xCoordinate, yCoordinate) == false) {
 						foreach (PawnData pawn in pawns) {
-							if (pawn.Team == Color.blue) {
-								Debug.LogFormat ("Ho usato la carta {0} che vale {1} per potenziare una pedina", HandPlayer2.cards[cardSelector].Name, HandPlayer2.cards[cardSelector].Value);
-								PawnUpgrade (HandPlayer2.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer2);
+							if (pawn.X == xCoordinate && pawn.Y == yCoordinate) {
+								if (pawn.Team == Color.blue) {
+									Debug.LogFormat ("Ho usato la carta {0} che vale {1} per potenziare una pedina", HandPlayer2.cards[cardSelector].Name, HandPlayer2.cards[cardSelector].Value);
+									PawnUpgrade (HandPlayer2.cards[cardSelector].Value, xCoordinate, yCoordinate, HandPlayer2);
+								}
 							}
 						}
 					}
@@ -130,15 +127,20 @@ public class SpawnController2 : MonoBehaviour {
 						if (HandPlayer2.cards[cardSelector].Value == 1 || HandPlayer2.cards[cardSelector].Value == 2) {
 							PawnSpawn (BasePawn, xCoordinate, yCoordinate);
 							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
+							Debug.LogFormat ("Ho posizionato la pedina {0} che vale {1}", HandPlayer2.cards[cardSelector].Name, HandPlayer2.cards[cardSelector].Value);
 						}
 						if (HandPlayer2.cards[cardSelector].Value == 3 || HandPlayer2.cards[cardSelector].Value == 4) {
 							PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
 							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
+							Debug.LogFormat ("Ho posizionato la pedina {0} che vale {1}", HandPlayer2.cards[cardSelector].Name, HandPlayer2.cards[cardSelector].Value);
 						}
 						HandPlayer2.RemoveCardFromHand(cardSelector);
 						//print (gc.EnergyToSpend);
 					}
 					cardSelector = 0;
+				}
+				else {
+					print ("Non ho carte da giocare");
 				}
 			}
 
@@ -192,7 +194,7 @@ public class SpawnController2 : MonoBehaviour {
 	/// <param name="_x">Posizione x.</param>
 	/// <param name="_y">Posizione y.</param>
 	/// <param name="_handToRemoveFrom">Mano dalla quale rimuovere la carta.</param>
-	private void PawnUpgrade (int _strengthToAdd, int _x, int _y, Hand _handToRemoveFrom) {
+	private void PawnUpgrade (int _strengthToAdd, int _x, int _y, Hand2 _handToRemoveFrom) {
 		foreach (CellData cell in GridC2.cells) {
 			if (cell.X == _x && cell.Y == _y) {
 				foreach (PawnData pawn in pawns) {

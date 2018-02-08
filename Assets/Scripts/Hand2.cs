@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand : MonoBehaviour {
+public class Hand2 : MonoBehaviour {
 
 	/// <summary>
 	/// Lista di carte.
@@ -34,10 +34,10 @@ public class Hand : MonoBehaviour {
 		// Funzione di pesca.
 		Draw (cardsInHand);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
 			if (Input.GetKeyDown (KeyCode.Q)) {
 				Draw (cardsInHand);
 			}
@@ -52,12 +52,12 @@ public class Hand : MonoBehaviour {
 		int cardPosition = 0;
 		if (_cardsInHand < maxHandLimit) {
 			for (int i = _cardsInHand; i < maxHandLimit && DeckToDrawFrom.cards.Count > 0; i++) {
-				cards.Add (new Card (DeckToDrawFrom.cards [cardPosition].Name, DeckToDrawFrom.cards [cardPosition].Value));
+				cards.Add (new Card (DeckToDrawFrom.cards[cardPosition].Name, DeckToDrawFrom.cards[cardPosition].Value));
 				DeckToDrawFrom.RemoveCardFromDeck (cardPosition);
 				cardsInHand = i + 1;
-				Debug.LogFormat ("Sono il giocatore 1 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
+				Debug.LogFormat ("Sono il giocatore 2 e ho pescato la carta {0} che vale {1}", cards[i].Name, cards[i].Value);
 			}
-		} 
+		}
 	}
 
 	/// <summary>
