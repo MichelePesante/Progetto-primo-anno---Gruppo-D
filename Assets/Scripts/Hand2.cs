@@ -38,7 +38,7 @@ public class Hand2 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
-			if (Input.GetKeyDown (KeyCode.Q)) {
+			if (Input.GetKeyDown (KeyCode.R)) {
 				Draw (cardsInHand);
 			}
 		}
@@ -57,6 +57,9 @@ public class Hand2 : MonoBehaviour {
 				cardsInHand = i + 1;
 				Debug.LogFormat ("Sono il giocatore 2 e ho pescato la carta {0} che vale {1}", cards[i].Name, cards[i].Value);
 			}
+		}
+		if (DeckToDrawFrom.cards.Count == 0) {
+			print ("Non ho carte da pescare");
 		}
 	}
 

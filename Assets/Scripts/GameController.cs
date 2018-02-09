@@ -7,7 +7,19 @@ public class GameController : MonoBehaviour {
 	/// <summary>
 	/// Riferimento alla classe 'GameController'.
 	/// </summary>
-	public static GameController Instance; 
+	public static GameController Instance;
+
+	public SpawnController SpawnC;
+
+	public SpawnController2 SpawnC2;
+
+	public GridController GridC;
+
+	public GridController2 GridC2;
+
+	public int scorep1;
+
+	public int scorep2;
 
 	/// <summary>
 	/// Energia in dotazione al player 1.
@@ -47,15 +59,13 @@ public class GameController : MonoBehaviour {
 		EnergyPlayer1 = 7;
 		EnergyPlayer2 = 7;
 		EnergyToSpend = 0;
+		scorep1 = 0;
+		scorep2 = 0;
 		CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
 
 		// Riferimento al GameController.
 		Instance = this;
 	}
-
-	#region Vecchie meccaniche
-
-
 
 	void Update () {
 
@@ -68,6 +78,12 @@ public class GameController : MonoBehaviour {
 			CurrentPlayerTurn = PlayerTurn.TurnPlayer2;
 			print ("Turno del giocatore 2");
 		}
+
+		if (Input.GetKeyDown (KeyCode.K)) {
+			Battle ();
+		}
+
+		#region Vecchie meccaniche
 
 		/*
 		 
@@ -88,9 +104,74 @@ public class GameController : MonoBehaviour {
 		}
 
 		*/
+
+		#endregion
 	}
 
-	#endregion
+	private void Battle () {
+		int battleResult1 = 0;
+		int battleResult2 = 0;
+		int battleResult3 = 0;
+
+		int ForzaPedina1p1 = 0;
+		int ForzaPedina2p1 = 0;
+		int ForzaPedina3p1 = 0;
+		int ForzaPedina1p2 = 0;
+		int ForzaPedina2p2 = 0;
+		int ForzaPedina3p2 = 0;
+
+		foreach (PawnData pawn in SpawnC.pawns) {
+			if (pawn.X == -1 && pawn.Y == 1) {
+				ForzaPedina1p1 = pawn.Strength;
+				print ("Forza pedina 1 player 1:   " + ForzaPedina1p1);
+			}
+			if (pawn.X == 0 && pawn.Y == 1) {
+				ForzaPedina2p1 = pawn.Strength;
+				print ("Forza pedina 2 player 1:   " + ForzaPedina2p1);
+			}
+			if (pawn.X == 1 && pawn.Y == 1) {
+				ForzaPedina3p1 = pawn.Strength;
+				print ("Forza pedina 3 player 1:   " + ForzaPedina3p1);
+			}
+		}
+
+		foreach (PawnData pawn in SpawnC2.pawns) {
+			if (pawn.X == -1 && pawn.Y == 3) {
+				ForzaPedina1p2 = pawn.Strength;
+				print ("Forza pedina 1 player 2:   " + ForzaPedina1p2);
+			}
+			if (pawn.X == 0 && pawn.Y == 3) {
+				ForzaPedina2p2 = pawn.Strength;
+				print ("Forza pedina 2 player 2:   " + ForzaPedina2p2);
+			}
+			if (pawn.X == 1 && pawn.Y == 3) {
+				ForzaPedina3p2 = pawn.Strength;
+				print ("Forza pedina 3 player 2:   " + ForzaPedina3p2);
+			}
+		}
+
+		battleResult1 = ForzaPedina1p1 - ForzaPedina1p2;
+		if (battleResult1 > 0) {
+			scorep1 += 1;
+		}
+		if (battleResult1 < 0) {
+			scorep2 += 1;
+		}
+		battleResult2 = ForzaPedina2p1 - ForzaPedina2p2;
+		if (battleResult2 > 0) {
+			scorep1 += 1;
+		}
+		if (battleResult2 < 0) {
+			scorep2 += 1;
+		}
+		battleResult3 = ForzaPedina3p1 - ForzaPedina3p2;
+		if (battleResult3 > 0) {
+			scorep1 += 1;
+		}
+		if (battleResult3 < 0) {
+			scorep2 += 1;
+		}
+	}
 }
 
 public enum PlayerTurn

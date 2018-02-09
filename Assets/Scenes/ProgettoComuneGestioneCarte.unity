@@ -587,6 +587,8 @@ MonoBehaviour:
   AdvancedPawn: {fileID: 1421388866332954, guid: 890ba1773ae12a64689971f7c2df1f6b,
     type: 2}
   pawns: []
+  Tile: {fileID: 0}
+  Pawn: {fileID: 0}
 --- !u!23 &709811005
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -928,6 +930,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tile: {fileID: 1906283400272794, guid: 81467e0bf6963b0488a5aacaea26c6f5, type: 2}
+  thisTile: {fileID: 0}
+  Grid2: {fileID: 1779128820}
   cells: []
 --- !u!4 &1305036669
 Transform:
@@ -1044,6 +1048,8 @@ MonoBehaviour:
   AdvancedPawn: {fileID: 1421388866332954, guid: 890ba1773ae12a64689971f7c2df1f6b,
     type: 2}
   pawns: []
+  Tile: {fileID: 0}
+  Pawn: {fileID: 0}
 --- !u!1 &1400178803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1183,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4009ebe4416147961d2b1e41600a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnC: {fileID: 1361463473}
+  SpawnC2: {fileID: 709811004}
+  GridC: {fileID: 1305036668}
+  GridC2: {fileID: 1779128820}
+  scorep1: 0
+  scorep2: 0
   EnergyPlayer1: 0
   EnergyPlayer2: 0
   EnergyToSpend: 0
@@ -1496,6 +1508,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tile: {fileID: 1906283400272794, guid: 81467e0bf6963b0488a5aacaea26c6f5, type: 2}
+  thisTile: {fileID: 0}
+  Grid: {fileID: 1305036668}
   cells: []
 --- !u!4 &1779128821
 Transform:
@@ -1504,7 +1518,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1779128819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9}
+  m_LocalPosition: {x: 0, y: 0, z: 8.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -30,6 +30,13 @@ public class GridController2 : MonoBehaviour {
 	public GameObject Tile;
 
 	/// <summary>
+	/// Tassello singolo.
+	/// </summary>
+	public GameObject thisTile;
+
+	public GridController Grid;
+
+	/// <summary>
 	/// Lista di tutte le celle.
 	/// </summary>
 	public List<CellData> cells = new List<CellData>();
@@ -45,7 +52,8 @@ public class GridController2 : MonoBehaviour {
 		// Creazione griglia.
 		for (int x = -1; x < xSize - 1; x++) {
 			for (int y = 3; y < ySize + 3; y++) {
-				GameObject thisTile = Instantiate (Tile, new Vector3(offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
+				thisTile = Instantiate (Tile, new Vector3(offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
+				cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), true, thisTile));
 				if (x == 0 && y == 4) {
 					thisTile.SetActive (false);
 				}
@@ -54,10 +62,25 @@ public class GridController2 : MonoBehaviour {
 	}
 
 	void Start () {
-		// Inizializzazione di ogni cella.
-		for (int x = -1; x < xSize - 1; x++) {
-			for (int y = 3; y < ySize + 3; y++) {
-				cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), true));
+		
+	}
+
+	void Update () {
+		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+			if (Input.GetKeyDown (KeyCode.I)) {
+				transform.Rotate (0f, -90f, 0f);
+			}
+			if (Input.GetKeyDown (KeyCode.P)) {
+				transform.Rotate (0f, 90f, 0f);
+			}
+
+			if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+				if (Input.GetKeyDown (KeyCode.Q)) {
+					Grid.gameObject.transform.Rotate (0f, -90f, 0f);
+				}
+				if (Input.GetKeyDown (KeyCode.E)) {
+					Grid.gameObject.transform.Rotate (0f, 90f, 0f);
+				}
 			}
 		}
 	}
@@ -113,5 +136,13 @@ public class GridController2 : MonoBehaviour {
 		return true;
 	}
 
+	public GameObject GetTile (int _x, int _y) {
+		foreach (CellData cell in cells) {
+			if (cell.X == _x && cell.Y == _y) {
+				thisTile = cell.Tile;
+			}
+		}
+		return thisTile;
+	}
 	#endregion
 }

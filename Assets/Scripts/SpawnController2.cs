@@ -59,6 +59,10 @@ public class SpawnController2 : MonoBehaviour {
 	/// </summary>
 	private int cardSelector;
 
+	public GameObject Tile;
+
+	public GameObject Pawn;
+
 	void Start () {
 		// Riferimento al GameController.
 		gc = FindObjectOfType <GameController> ();
@@ -124,18 +128,20 @@ public class SpawnController2 : MonoBehaviour {
 					}
 
 					if (GridC2.cellCheck (xCoordinate, yCoordinate) == true) {
+						Tile = GridC2.GetTile(xCoordinate, yCoordinate);
 						if (HandPlayer2.cards[cardSelector].Value == 1 || HandPlayer2.cards[cardSelector].Value == 2) {
-							PawnSpawn (BasePawn, xCoordinate, yCoordinate);
-							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
+							Pawn = PawnSpawn (BasePawn, xCoordinate, yCoordinate);
+							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", HandPlayer2.cards[cardSelector].Value, true, Color.blue, GridC2.GetWorldPosition(xCoordinate, yCoordinate)));
 							Debug.LogFormat ("Ho posizionato la pedina {0} che vale {1}", HandPlayer2.cards[cardSelector].Name, HandPlayer2.cards[cardSelector].Value);
 						}
 						if (HandPlayer2.cards[cardSelector].Value == 3 || HandPlayer2.cards[cardSelector].Value == 4) {
-							PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
-							pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer2.cards[cardSelector].Value, true, Color.blue));
+							Pawn = PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate);
+									pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", HandPlayer2.cards[cardSelector].Value, true, Color.blue, GridC2.GetWorldPosition(xCoordinate, yCoordinate)));
 							Debug.LogFormat ("Ho posizionato la pedina {0} che vale {1}", HandPlayer2.cards[cardSelector].Name, HandPlayer2.cards[cardSelector].Value);
 						}
 						HandPlayer2.RemoveCardFromHand(cardSelector);
 						//print (gc.EnergyToSpend);
+						SetParentPosition(Tile, Pawn);
 					}
 					cardSelector = 0;
 				}
@@ -178,13 +184,14 @@ public class SpawnController2 : MonoBehaviour {
 	/// <param name="_pawnType">Pedina da spawnare.</param>
 	/// <param name="_x">Coordinata x.</param>
 	/// <param name="_y">Coordinata Y.</param>
-	private void PawnSpawn (GameObject _pawnType, int _x, int _y) {
-		Instantiate (_pawnType, new Vector3 (transform.position.x, GridC2.Tile.transform.localScale.y, transform.position.z), transform.rotation);
+	private GameObject PawnSpawn (GameObject _pawnType, int _x, int _y) {
+		GameObject thisPawn = Instantiate (_pawnType, new Vector3 (transform.position.x, GridC2.Tile.transform.localScale.y, transform.position.z), transform.rotation);
 		foreach (CellData cell in GridC2.cells) {
 			if (cell.X == _x && cell.Y == _y) {
 				cell.Placeable = false;
 			}
 		}
+		return thisPawn;
 	}
 
 	/// <summary>
@@ -218,5 +225,9 @@ public class SpawnController2 : MonoBehaviour {
 			xCoordinate = lastXCoordinate;
 			yCoordinate = lastYCoordinate;
 		}
+	}
+
+	private void SetParentPosition (GameObject _newParent, GameObject _child) {
+		_child.transform.parent = _newParent.transform;
 	}
 }
