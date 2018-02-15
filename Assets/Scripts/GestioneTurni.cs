@@ -39,8 +39,11 @@ public class GestioneTurni : MonoBehaviour
     }
 
     //enumeratore delle microfasi del gioco da inserire nelle varie macrofasi
-    public enum MicroState
+    public enum Micro
     {
+        //fase di pescaggio delle carte a inizio turno
+        Draw,
+
         //fase di posizionamento delle carte a inizio turno
         Position,
 
@@ -53,8 +56,6 @@ public class GestioneTurni : MonoBehaviour
         //fase di rinforzamento della propria plancia
         Reinforce,
 
-        //fase di pescaggio delle carte a fine turno
-        Draw,
     }
 
     public State CurrentState
@@ -65,7 +66,7 @@ public class GestioneTurni : MonoBehaviour
         }
         set
         {
-            if (CkeckStateChange(value) == true)
+            if (CheckStateChange(value) == true)
             {
                 OnStateEnd(_currentstate);
                 _currentstate = value;
@@ -77,7 +78,7 @@ public class GestioneTurni : MonoBehaviour
     private State _currentstate;
 
 
-    bool CkeckStateChange(State newState)
+    bool CheckStateChange(State newState)
     {
         switch (newState)
         {
@@ -225,7 +226,7 @@ public class GestioneTurni : MonoBehaviour
         }
     }
 
-
+    //funzione per l'update dei turni tramite pulsante
     void TurnUpdate()
     {
         if (CurrentState == State.Preparation && TurnCount < MaxPreparationTurns)
@@ -240,6 +241,7 @@ public class GestioneTurni : MonoBehaviour
         else
         {
             CurrentState = State.Strategy;
+
         }
 
         if (CurrentState == State.Strategy && TurnCount < MaxGameTurns)
