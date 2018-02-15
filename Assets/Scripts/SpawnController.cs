@@ -246,11 +246,6 @@ public class SpawnController : MonoBehaviour {
 	/// <param name="_y">Coordinata Y.</param>
 	private GameObject PawnSpawn (GameObject _pawnType, int _x, int _y) {
 		GameObject thisPawn = Instantiate (_pawnType, new Vector3 (transform.position.x, GridC.Tile.transform.localScale.y, transform.position.z), transform.rotation);
-		foreach (CellData cell in GridC.cells) {
-			if (cell.X == _x && cell.Y == _y) {
-				cell.Placeable = false;
-			}
-		}
 		return thisPawn;
 	}
 
@@ -290,4 +285,22 @@ public class SpawnController : MonoBehaviour {
 	private void SetParentPosition (GameObject _newParent, GameObject _child) {
 		_child.transform.parent = _newParent.transform;
 	}
+
+    #region API
+
+    /// <summary>
+    /// Restituisce true se è possibile piazzare una pedina.
+    /// </summary>
+    /// <param name="_x"></param>
+    /// <param name="_y"></param>
+    /// <returns></returns>
+    public bool PawnCheck(int _x, int _y) {
+        foreach (PawnData pawn in pawns) {
+            if (pawn.X == _x && pawn.Y == _y)
+                return false;
+        }
+        return true;
+    }
+
+    #endregion
 }

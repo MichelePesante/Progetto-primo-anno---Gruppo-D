@@ -66,23 +66,7 @@ public class GridController : MonoBehaviour {
 	}
 
 	void Update () {
-		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-			if (Input.GetKeyDown (KeyCode.Q)) {
-				transform.Rotate (0f, -90f, 0f);
-			}
-			if (Input.GetKeyDown (KeyCode.E)) {
-				transform.Rotate (0f, 90f, 0f);
-			}
-		}
 
-		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-			if (Input.GetKeyDown (KeyCode.I)) {
-				Grid2.gameObject.transform.Rotate (0f, -90f, 0f);
-			}
-			if (Input.GetKeyDown (KeyCode.P)) {
-				Grid2.gameObject.transform.Rotate (0f, 90f, 0f);
-			}
-		}
 	}
 
 	#region API
@@ -144,5 +128,39 @@ public class GridController : MonoBehaviour {
 		}
 		return thisTile;
 	}
+
+
+    public int[] RotatePosition(bool _isRight, int _x, int _y) {
+        int x;
+        int y;
+        x = _y;
+        y = _x;
+        int[] returnArray = new int[2];
+        if (_isRight) {
+
+        } else {
+            if (_x <= 0 && _y <= 0) {
+                x *= -1;
+                y *= 1;
+            } else
+                if (_x <= 0 && _y >= 0) {
+                x *= 1;
+                y *= -1;
+            } else
+                if (_x >= 0 && _y >= 0) {
+                x *= -1;
+                y *= 1;
+            } else {
+                if (_x >= 0 && _y <= 0) {
+                    x *= 1;
+                    y *= -1;
+                }
+            }
+        }
+        returnArray[0] = x;
+        returnArray[1] = y;
+        return returnArray;
+    }
+
 	#endregion
 }

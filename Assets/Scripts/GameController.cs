@@ -83,9 +83,9 @@ public class GameController : MonoBehaviour {
 			Battle ();
 		}
 
-		#region Vecchie meccaniche
+        #region Vecchie meccaniche
 
-		/*
+        /*
 		 
 		// Aumento di energia da spendere.
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
@@ -105,8 +105,37 @@ public class GameController : MonoBehaviour {
 
 		*/
 
-		#endregion
-	}
+        #endregion
+
+        #region rotazione
+
+        if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                GridC.gameObject.transform.Rotate(0f, -90f, 0f);
+                foreach (var pawn in SpawnC.pawns) {
+                    int[] newPos = GridC.RotatePosition(false, pawn.X, pawn.Y);
+                    int x = newPos[0];
+                    int y = newPos[1];
+                    pawn.X = x;
+                    pawn.Y = y;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.E)) {
+                GridC.gameObject.transform.Rotate(0f, 90f, 0f);
+            }
+        }
+
+        if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+            if (Input.GetKeyDown(KeyCode.I)) {
+                GridC2.gameObject.transform.Rotate(0f, -90f, 0f);
+            }
+            if (Input.GetKeyDown(KeyCode.P)) {
+                GridC2.gameObject.transform.Rotate(0f, 90f, 0f);
+            }
+        }
+
+        #endregion
+    }
 
 	private void Battle () {
 		int battleResult1 = 0;

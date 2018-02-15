@@ -186,11 +186,6 @@ public class SpawnController2 : MonoBehaviour {
 	/// <param name="_y">Coordinata Y.</param>
 	private GameObject PawnSpawn (GameObject _pawnType, int _x, int _y) {
 		GameObject thisPawn = Instantiate (_pawnType, new Vector3 (transform.position.x, GridC2.Tile.transform.localScale.y, transform.position.z), transform.rotation);
-		foreach (CellData cell in GridC2.cells) {
-			if (cell.X == _x && cell.Y == _y) {
-				cell.Placeable = false;
-			}
-		}
 		return thisPawn;
 	}
 

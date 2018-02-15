@@ -17,12 +17,16 @@ public class CellData {
 	/// <summary>
 	/// Se true allora è possibile posizionare una pedina.
 	/// </summary>
-	public bool Placeable;
+    public bool Placeable {
+        get {
+            return GameController.Instance.SpawnC.PawnCheck(X, Y);
+        }
+    }
 
-	/// <summary>
-	/// Posizione nel mondo della cella.
-	/// </summary>
-	public Vector3 WorldPosition;
+    /// <summary>
+    /// Posizione nel mondo della cella.
+    /// </summary>
+    public Vector3 WorldPosition;
 
 	/// <summary>
 	/// Tassello.
@@ -40,7 +44,6 @@ public class CellData {
 		X = _x;
 		Y = _y;
 		WorldPosition = _worldPosition;
-		Placeable = _placeable;
 		Tile = _tile;
 	}
 }
