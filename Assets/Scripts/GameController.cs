@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -9,13 +10,25 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	public static GameController Instance;
 
-	public SpawnController SpawnC;
+	/// <summary>
+	/// Riferimento a tutte le classi 'SpawnController'.
+	/// </summary>
+	public SpawnController[] SpawnC;
 
-	public SpawnController2 SpawnC2;
+	/// <summary>
+	/// Riferimento a tutte le classi 'GridController'.
+	/// </summary>
+	public GridController[] GridC;
 
-	public GridController GridC;
+	/// <summary>
+	/// Riferimento alle classi 'Deck'.
+	/// </summary>
+	public Deck[] Deck;
 
-	public GridController2 GridC2;
+	/// <summary>
+	/// Riferimento a tutte le classi 'Hand'.
+	/// </summary>
+	public Hand[] Hand;
 
 	public int scorep1;
 
@@ -52,6 +65,18 @@ public class GameController : MonoBehaviour {
 			// Distruggi l'oggetto.
 			Destroy (gameObject);
 		}
+
+		// Riferimento a tutti gli SpawnController.
+		SpawnC = FindObjectsOfType<SpawnController> ();
+
+		// Riferimento a tutti i GridController.
+		GridC = FindObjectsOfType<GridController> ();
+
+		// Riferimento a tutti gli Hand.
+		Hand = FindObjectsOfType<Hand> ();
+
+		// Riferimento a tutti i Deck.
+		Deck = FindObjectsOfType<Deck> ();
 	}
 
 	void Start () {
@@ -62,9 +87,6 @@ public class GameController : MonoBehaviour {
 		scorep1 = 0;
 		scorep2 = 0;
 		CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
-
-		// Riferimento al GameController.
-		Instance = this;
 	}
 
 	void Update () {
@@ -81,11 +103,16 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.K)) {
 			Battle ();
+			Debug.LogFormat ("Score del giocatore 1:  {0}     ---     Score del giocatore 2:  {1}", scorep1, scorep2);
 		}
 
-        #region Vecchie meccaniche
+		if (Input.GetKeyDown (KeyCode.H)  || scorep1 >= 5 || scorep2 >= 5) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		}
 
-        /*
+		#region Vecchie meccaniche
+
+		/*
 		 
 		// Aumento di energia da spendere.
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
@@ -105,37 +132,8 @@ public class GameController : MonoBehaviour {
 
 		*/
 
-        #endregion
-
-        #region rotazione
-
-        if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                GridC.gameObject.transform.Rotate(0f, -90f, 0f);
-                foreach (var pawn in SpawnC.pawns) {
-                    int[] newPos = GridC.RotatePosition(false, pawn.X, pawn.Y);
-                    int x = newPos[0];
-                    int y = newPos[1];
-                    pawn.X = x;
-                    pawn.Y = y;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.E)) {
-                GridC.gameObject.transform.Rotate(0f, 90f, 0f);
-            }
-        }
-
-        if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-            if (Input.GetKeyDown(KeyCode.I)) {
-                GridC2.gameObject.transform.Rotate(0f, -90f, 0f);
-            }
-            if (Input.GetKeyDown(KeyCode.P)) {
-                GridC2.gameObject.transform.Rotate(0f, 90f, 0f);
-            }
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 
 	private void Battle () {
 		int battleResult1 = 0;
@@ -149,7 +147,7 @@ public class GameController : MonoBehaviour {
 		int ForzaPedina2p2 = 0;
 		int ForzaPedina3p2 = 0;
 
-		foreach (PawnData pawn in SpawnC.pawns) {
+		foreach (PawnData pawn in SpawnC[0].pawns) {
 			if (pawn.X == -1 && pawn.Y == 1) {
 				ForzaPedina1p1 = pawn.Strength;
 				print ("Forza pedina 1 player 1:   " + ForzaPedina1p1);
@@ -164,7 +162,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
-		foreach (PawnData pawn in SpawnC2.pawns) {
+		foreach (PawnData pawn in SpawnC[1].pawns) {
 			if (pawn.X == -1 && pawn.Y == 3) {
 				ForzaPedina1p2 = pawn.Strength;
 				print ("Forza pedina 1 player 2:   " + ForzaPedina1p2);

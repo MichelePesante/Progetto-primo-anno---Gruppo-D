@@ -41,10 +41,12 @@ public class Deck : MonoBehaviour {
 			cards [i].Name = "Delta";
 			cards [i].Value = 4;
 		}
+
+		Shuffle ();
 	}
 
 	void Start () {
-		Shuffle ();
+		
 	}
 
 	void Update () {
@@ -74,6 +76,10 @@ public class Deck : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Rimuove una carta dal mazzo.
+	/// </summary>
+	/// <param name="_listIndex">Indice della carta che si vuole rimuovere.</param>
 	public void RemoveCardFromDeck (int _listIndex) {
 		cards.Remove (cards [_listIndex]);
 	}

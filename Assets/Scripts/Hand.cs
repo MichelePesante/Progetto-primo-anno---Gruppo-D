@@ -27,19 +27,41 @@ public class Hand : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// Inizializzazione delle variabili.
-		cards = new List<Card> ();
 		cardsInHand = 0;
 		maxHandLimit = 4;
 
-		// Funzione di pesca.
-		Draw (cardsInHand);
+		if (this == GameController.Instance.Hand[0]) {
+			// Inizializzazione delle variabili.
+			cards = new List<Card> ();
+
+			// Funzione di pesca.
+			Draw (cardsInHand);
+		}
+
+		if (this == GameController.Instance.Hand[1]) {
+			// Inizializzazione delle variabili.
+			cards = new List<Card> ();
+
+			// Funzione di pesca.
+			Draw (cardsInHand);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-			if (Input.GetKeyDown (KeyCode.R)) {
-				Draw (cardsInHand);
+		if (this == GameController.Instance.Hand [0]) {
+			if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+				if (Input.GetKeyDown (KeyCode.R)) {
+					Draw (cardsInHand);
+				}
+			}
+		}
+
+		if (this == GameController.Instance.Hand [1]) {
+			if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+				if (Input.GetKeyDown (KeyCode.R)) {
+					Draw (cardsInHand);
+				}
 			}
 		}
 	}
@@ -55,7 +77,12 @@ public class Hand : MonoBehaviour {
 				cards.Add (new Card (DeckToDrawFrom.cards [cardPosition].Name, DeckToDrawFrom.cards [cardPosition].Value));
 				DeckToDrawFrom.RemoveCardFromDeck (cardPosition);
 				cardsInHand = i + 1;
-				Debug.LogFormat ("Sono il giocatore 1 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
+				if (this == GameController.Instance.Hand [0]) {
+					Debug.LogFormat ("Sono il giocatore 1 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
+				}
+				if (this == GameController.Instance.Hand [1]) {
+					Debug.LogFormat ("Sono il giocatore 2 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
+				}
 			}
 		}
 		if (DeckToDrawFrom.cards.Count == 0) {
