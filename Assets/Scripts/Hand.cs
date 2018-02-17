@@ -78,15 +78,15 @@ public class Hand : MonoBehaviour {
 				DeckToDrawFrom.RemoveCardFromDeck (cardPosition);
 				cardsInHand = i + 1;
 				if (this == GameController.Instance.Hand [0]) {
-					Debug.LogFormat ("Sono il giocatore 1 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
+					CustomLogger.Log ("Sono il giocatore 1 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
 				}
 				if (this == GameController.Instance.Hand [1]) {
-					Debug.LogFormat ("Sono il giocatore 2 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
+					CustomLogger.Log ("Sono il giocatore 2 e ho pescato la carta {0} che vale {1}", cards [i].Name, cards [i].Value);
 				}
 			}
 		}
 		if (DeckToDrawFrom.cards.Count == 0) {
-			print ("Non ho carte da pescare");
+			CustomLogger.Log ("Non ho carte da pescare");
 		}
 	}
 

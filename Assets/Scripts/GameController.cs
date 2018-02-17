@@ -30,8 +30,14 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	public Hand[] Hand;
 
+	/// <summary>
+	/// Score giocatore 1.
+	/// </summary>
 	public int scorep1;
 
+	/// <summary>
+	/// Score giocatore 2.
+	/// </summary>
 	public int scorep2;
 
 	/// <summary>
@@ -93,17 +99,17 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
-			print ("Turno del giocatore 1");
+			CustomLogger.Log ("Turno del giocatore 1");
 		}
 
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			CurrentPlayerTurn = PlayerTurn.TurnPlayer2;
-			print ("Turno del giocatore 2");
+			CustomLogger.Log ("Turno del giocatore 2");
 		}
 
 		if (Input.GetKeyDown (KeyCode.K)) {
 			Battle ();
-			Debug.LogFormat ("Score del giocatore 1:  {0}     ---     Score del giocatore 2:  {1}", scorep1, scorep2);
+			CustomLogger.Log ("Score del giocatore 1:  {0}     ---     Score del giocatore 2:  {1}", scorep1, scorep2);
 		}
 
 		if (Input.GetKeyDown (KeyCode.H)  || scorep1 >= 5 || scorep2 >= 5) {
@@ -140,6 +146,8 @@ public class GameController : MonoBehaviour {
 		int battleResult2 = 0;
 		int battleResult3 = 0;
 
+		int finalScore = 0;
+
 		int ForzaPedina1p1 = 0;
 		int ForzaPedina2p1 = 0;
 		int ForzaPedina3p1 = 0;
@@ -150,30 +158,30 @@ public class GameController : MonoBehaviour {
 		foreach (PawnData pawn in SpawnC[0].pawns) {
 			if (pawn.X == -1 && pawn.Y == 1) {
 				ForzaPedina1p1 = pawn.Strength;
-				print ("Forza pedina 1 player 1:   " + ForzaPedina1p1);
+				CustomLogger.Log ("Forza pedina 1 player 1:   " + ForzaPedina1p1);
 			}
 			if (pawn.X == 0 && pawn.Y == 1) {
 				ForzaPedina2p1 = pawn.Strength;
-				print ("Forza pedina 2 player 1:   " + ForzaPedina2p1);
+				CustomLogger.Log ("Forza pedina 2 player 1:   " + ForzaPedina2p1);
 			}
 			if (pawn.X == 1 && pawn.Y == 1) {
 				ForzaPedina3p1 = pawn.Strength;
-				print ("Forza pedina 3 player 1:   " + ForzaPedina3p1);
+				CustomLogger.Log ("Forza pedina 3 player 1:   " + ForzaPedina3p1);
 			}
 		}
 
 		foreach (PawnData pawn in SpawnC[1].pawns) {
 			if (pawn.X == -1 && pawn.Y == 3) {
 				ForzaPedina1p2 = pawn.Strength;
-				print ("Forza pedina 1 player 2:   " + ForzaPedina1p2);
+				CustomLogger.Log ("Forza pedina 1 player 2:   " + ForzaPedina1p2);
 			}
 			if (pawn.X == 0 && pawn.Y == 3) {
 				ForzaPedina2p2 = pawn.Strength;
-				print ("Forza pedina 2 player 2:   " + ForzaPedina2p2);
+				CustomLogger.Log ("Forza pedina 2 player 2:   " + ForzaPedina2p2);
 			}
 			if (pawn.X == 1 && pawn.Y == 3) {
 				ForzaPedina3p2 = pawn.Strength;
-				print ("Forza pedina 3 player 2:   " + ForzaPedina3p2);
+				CustomLogger.Log ("Forza pedina 3 player 2:   " + ForzaPedina3p2);
 			}
 		}
 
@@ -197,6 +205,14 @@ public class GameController : MonoBehaviour {
 		}
 		if (battleResult3 < 0) {
 			scorep2 += 1;
+		}
+		if (scorep1 > scorep2) {
+			finalScore = scorep1 - scorep2;
+			scorep1 += finalScore;
+		}
+		if (scorep1 < scorep2) {
+			finalScore = scorep2 - scorep1;
+			scorep2 += finalScore;
 		}
 	}
 }
