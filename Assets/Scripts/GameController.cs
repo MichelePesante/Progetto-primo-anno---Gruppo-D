@@ -146,6 +146,8 @@ public class GameController : MonoBehaviour {
 		int battleResult2 = 0;
 		int battleResult3 = 0;
 
+		int scoretemp1 = 0;
+		int scoretemp2 = 0;
 		int finalScore = 0;
 
 		int ForzaPedina1p1 = 0;
@@ -187,31 +189,31 @@ public class GameController : MonoBehaviour {
 
 		battleResult1 = ForzaPedina1p1 - ForzaPedina1p2;
 		if (battleResult1 > 0) {
-			scorep1 += 1;
+			scoretemp1 += 1;
 		}
 		if (battleResult1 < 0) {
-			scorep2 += 1;
+			scoretemp2 += 1;
 		}
 		battleResult2 = ForzaPedina2p1 - ForzaPedina2p2;
 		if (battleResult2 > 0) {
-			scorep1 += 1;
+			scoretemp1 += 1;
 		}
 		if (battleResult2 < 0) {
-			scorep2 += 1;
+			scoretemp2 += 1;
 		}
 		battleResult3 = ForzaPedina3p1 - ForzaPedina3p2;
 		if (battleResult3 > 0) {
-			scorep1 += 1;
+			scoretemp1 += 1;
 		}
 		if (battleResult3 < 0) {
-			scorep2 += 1;
+			scoretemp2 += 1;
 		}
-		if (scorep1 > scorep2) {
-			finalScore = scorep1 - scorep2;
+		if (scoretemp1 > scoretemp2) {
+			finalScore = scoretemp1 - scoretemp2;
 			scorep1 += finalScore;
 		}
-		if (scorep1 < scorep2) {
-			finalScore = scorep2 - scorep1;
+		if (scoretemp1 < scoretemp2) {
+			finalScore = scoretemp2 - scoretemp1;
 			scorep2 += finalScore;
 		}
 	}
