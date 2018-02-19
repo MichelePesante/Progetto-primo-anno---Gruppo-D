@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour {
 
     public TextMeshProUGUI MacroFase;
 
+    public TextMeshProUGUI MicroFase;
+
     public TextMeshProUGUI TurnCountText;
 
     public TextMeshProUGUI P1ScoreText;
@@ -30,6 +32,10 @@ public class UIManager : MonoBehaviour {
         MacroFase.text = _faseName;
     }
 
+    public void ShowMicro(string _microName)
+    {
+        MicroFase.text = _microName;
+    }
 
     public void ShowTurn(string _turnCount)
     {

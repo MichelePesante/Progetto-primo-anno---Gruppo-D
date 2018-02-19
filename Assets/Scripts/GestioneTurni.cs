@@ -7,7 +7,7 @@ using TMPro;
 
 public class GestioneTurni : MonoBehaviour
 {
-    public int TurnCount;
+    public int TurnCount = 1;
 
     public int P1Score;
 
@@ -21,6 +21,8 @@ public class GestioneTurni : MonoBehaviour
 
     //punteggio massimo raggiungibile per la fine del gioco
     public int MaxScore = 5;
+
+    public int MaxTurnPoints = 3;
 
     //enumeratore con le macrofasi del gioco
     public enum State
@@ -41,11 +43,6 @@ public class GestioneTurni : MonoBehaviour
     //enumeratore delle microfasi del gioco da inserire nelle varie macrofasi
     public enum Micro
     {
-        //fase di pescaggio delle carte a inizio turno
-        Draw,
-
-        //fase di posizionamento delle carte a inizio turno
-        Position,
 
         //fase di rotazione delle plance prima del collide
         Rotate,
@@ -53,9 +50,11 @@ public class GestioneTurni : MonoBehaviour
         //fase di scontro tra le plance con il calcolo del punteggio
         Collide,
 
-        //fase di rinforzamento della propria plancia
-        Reinforce,
-
+        //fase di pescaggio delle carte a inizio turno
+        Draw,
+         
+        //fase di posizionamento e rinforzo delle pedine
+        Position,
     }
 
     public State CurrentState
@@ -78,6 +77,28 @@ public class GestioneTurni : MonoBehaviour
     private State _currentstate;
 
 
+
+    public Micro CurrentMicro
+    {
+        get
+        {
+            return _currentmicro;
+        }
+        set
+        {
+            if (CheckMicroChange(value)== true)
+            {
+                OnMicroEnd(_currentmicro);
+                _currentmicro = value;
+                OnMicroStart(_currentmicro);
+            }
+        }
+    }
+    private Micro _currentmicro;
+
+
+
+    //verifica il corretto passaggio tra le macrofasi
     bool CheckStateChange(State newState)
     {
         switch (newState)
@@ -105,6 +126,34 @@ public class GestioneTurni : MonoBehaviour
 
 
     }
+
+    bool CheckMicroChange(Micro newMicro)
+    {
+        switch (newMicro)
+        {
+            case Micro.Rotate:
+            case Micro.Collide:
+                if (CurrentMicro != Micro.Rotate)
+                    return false;
+                return true;
+                break;
+            case Micro.Draw:
+                if (CurrentMicro != Micro.Collide)
+                    return false;
+                return true;
+                break;
+            case Micro.Position:
+                if (CurrentMicro != Micro.Draw)
+                    return false;
+                return true;
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+
+
 
     private void Start()
     {
@@ -138,16 +187,27 @@ public class GestioneTurni : MonoBehaviour
         switch (newState)   
         {
             case State.Startup:
+
                 Debug.Log("Inizia il gioco!");
                 break;
             case State.Preparation:
+
                 Debug.Log("Prepariamo le carte!");
+
+                CurrentMicro = Micro.Draw;
+
                 break;
             case State.Strategy:
+
                 Debug.Log("E' ora di usare la strategia!");
+
+                CurrentMicro = Micro.Rotate;
+
                 break;
             case State.End:
+
                 Debug.Log("Abbiamo un vincitore!");
+
                 break;
             default:
                 break;
@@ -165,20 +225,25 @@ public class GestioneTurni : MonoBehaviour
             case State.Startup:
                 break;
             case State.Preparation:
+               
 
                 TurnUpdate();
+
+                OnMicroUpdate();
 
                 break;
             case State.Strategy:
 
                 TurnUpdate();
 
-                ScoreUpdate();
-                
+                OnMicroUpdate();
+
+
                 if(P1Score == MaxScore || P2Score == MaxScore)
                 {
                     CurrentState = State.End;
                 }
+
 
                 break;
             case State.End:
@@ -190,6 +255,7 @@ public class GestioneTurni : MonoBehaviour
         UIManager.Instance.ShowTurn(TurnCount.ToString());
         UIManager.Instance.ShowP1Score(P1Score.ToString());
         UIManager.Instance.ShowP2Score(P2Score.ToString());
+       
     }
 
     void OnStateEnd(State oldState)
@@ -209,17 +275,83 @@ public class GestioneTurni : MonoBehaviour
         }
     }
 
+    void OnMicroStart(Micro newMicro)
+    {
+        switch (newMicro)
+        {
+            case Micro.Rotate:
+                Debug.Log("Rotate Fase");
+                break;
+            case Micro.Collide:
+                Debug.Log("Collision Fase");
+                break;
+            case Micro.Draw:
+                Debug.Log("Draw Fase");
+                break;
+            case Micro.Position:
+                Debug.Log("Position Fase");
+                break;
+            default:
+                break;
+        }
+       
+    }
+
+    void OnMicroUpdate()
+    {
+        switch (CurrentMicro)
+        {
+          
+            case Micro.Rotate:
+                break;
+            case Micro.Collide:
+                ScoreUpdate();
+                break;
+            case Micro.Draw:
+                break;
+            case Micro.Position:
+                break;
+            default:
+                break;
+        }
+        UIManager.Instance.ShowMicro(CurrentMicro.ToString());
+    }
+
+
+    void OnMicroEnd(Micro oldMicro)
+    {
+        switch (oldMicro)
+        {
+           
+            case Micro.Rotate:
+                break;
+            case Micro.Collide:
+                break;
+            case Micro.Draw:
+                break;
+            case Micro.Position:
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+
+
+
     //funzione per eseguire l'update del punteggio tramite pulsante
     void ScoreUpdate()
     {
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && P1Score < MaxScore)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && P1Score < MaxScore && P1Score < MaxTurnPoints)
         {            
             P1Score = P1Score + 1;
             TurnCount = TurnCount + 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && P2Score < MaxScore)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && P2Score < MaxScore && P2Score < MaxTurnPoints)
         {            
             P2Score = P2Score + 1;
             TurnCount = TurnCount + 1;
@@ -231,30 +363,60 @@ public class GestioneTurni : MonoBehaviour
     {
         if (CurrentState == State.Preparation && TurnCount < MaxPreparationTurns)
         {
+
             if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                CurrentMicro = Micro.Position;
+            }
+
+            else if(CurrentMicro == Micro.Position && Input.GetKeyDown(KeyCode.Alpha1))
             {
                 TurnCount = TurnCount + 1;
             }
 
-            
-        }
-        else
-        {
-            CurrentState = State.Strategy;
+            else
+            {
+                CurrentState = State.Strategy;
+            }
 
         }
+
 
         if (CurrentState == State.Strategy && TurnCount < MaxGameTurns)
         {
+
             if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CurrentMicro = Micro.Collide;
+            }
+
+            else if (CurrentMicro == Micro.Collide && Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CurrentMicro = Micro.Draw;
+            }
+
+            else if (CurrentMicro == Micro.Draw && Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CurrentMicro = Micro.Position;
+            }
+
+            else if (CurrentMicro == Micro.Position && Input.GetKeyDown(KeyCode.Alpha2))
             {
                 TurnCount = TurnCount + 1;
             }
-        }
-        else
-        {
-            CurrentState = State.End;
-        }
 
+            else
+            {
+                CurrentState = State.End;
+            }
+
+
+
+
+
+
+
+
+        }
     }
 }
