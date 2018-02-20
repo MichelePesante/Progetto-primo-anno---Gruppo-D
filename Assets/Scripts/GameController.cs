@@ -83,6 +83,8 @@ public class GameController : MonoBehaviour {
 
 		// Riferimento a tutti i Deck.
 		Deck = FindObjectsOfType<Deck> ();
+
+		StartPhase.OnGameStart ();
 	}
 
 	void Start () {
@@ -92,7 +94,6 @@ public class GameController : MonoBehaviour {
 		EnergyToSpend = 0;
 		scorep1 = 0;
 		scorep2 = 0;
-		CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
 	}
 
 	void Update () {
@@ -221,5 +222,6 @@ public class GameController : MonoBehaviour {
 
 public enum PlayerTurn
 {
-	TurnPlayer1, TurnPlayer2
+	TurnPlayer1, 
+	TurnPlayer2
 }

@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}
+  pawn: {fileID: 1554460695144738, guid: de441d06665a4244387cec666c3dda4e, type: 2}
 --- !u!114 &114328673755536320
 MonoBehaviour:
   m_ObjectHideFlags: 1

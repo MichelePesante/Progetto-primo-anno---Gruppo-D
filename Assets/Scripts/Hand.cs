@@ -33,18 +33,14 @@ public class Hand : MonoBehaviour {
 		if (this == GameController.Instance.Hand[0]) {
 			// Inizializzazione delle variabili.
 			cards = new List<Card> ();
-
-			// Funzione di pesca.
-			Draw (cardsInHand);
 		}
 
 		if (this == GameController.Instance.Hand[1]) {
 			// Inizializzazione delle variabili.
 			cards = new List<Card> ();
-
-			// Funzione di pesca.
-			Draw (cardsInHand);
 		}
+
+		SetupPhase.DrawPhase ();
 	}
 	
 	// Update is called once per frame
@@ -70,7 +66,7 @@ public class Hand : MonoBehaviour {
 	/// Funzione di pesca delle carte.
 	/// </summary>
 	/// <param name="_cardsInHand">Numero di carte che si hanno già in mano.</param>
-	private void Draw (int _cardsInHand) {
+	public void Draw (int _cardsInHand) {
 		int cardPosition = 0;
 		if (_cardsInHand < maxHandLimit) {
 			for (int i = _cardsInHand; i < maxHandLimit && DeckToDrawFrom.cards.Count > 0; i++) {
