@@ -22,6 +22,7 @@ public class GestioneTurni : MonoBehaviour
     //punteggio massimo raggiungibile per la fine del gioco
     public int MaxScore = 5;
 
+    //numero massimo di punti ottenibili in un turno
     public int MaxTurnPoints = 3;
 
     //enumeratore con le macrofasi del gioco
@@ -361,25 +362,23 @@ public class GestioneTurni : MonoBehaviour
     //funzione per l'update dei turni tramite pulsante
     void TurnUpdate()
     {
-        if (CurrentState == State.Preparation && TurnCount < MaxPreparationTurns)
+        if (CurrentState == State.Preparation)
         {
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                CurrentMicro = Micro.Position;
-            }
-
-            else if(CurrentMicro == Micro.Position && Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                TurnCount = TurnCount + 1;
-            }
-
-            else
-            {
-                CurrentState = State.Strategy;
-            }
-
+            CurrentMicro = Micro.Position;
         }
+
+        else if (CurrentMicro == Micro.Position && Input.GetKeyDown(KeyCode.Alpha1) && TurnCount < MaxPreparationTurns)
+        {
+            TurnCount = TurnCount + 1;
+            
+        }
+
+        else
+        {
+            CurrentState = State.Strategy;
+        }
+
+        
 
 
         if (CurrentState == State.Strategy && TurnCount < MaxGameTurns)

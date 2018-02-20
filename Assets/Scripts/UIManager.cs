@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour {
 
     public TextMeshProUGUI P2ScoreText;
 
+    public TextMeshProUGUI P1Wins;
+
+    public TextMeshProUGUI P2Wins;
+
     public static UIManager Instance;
 
 
