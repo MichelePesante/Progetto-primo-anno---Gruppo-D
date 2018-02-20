@@ -6,8 +6,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour {
 
-    public TextMeshProUGUI MacroFase;
-
     public TextMeshProUGUI MicroFase;
 
     public TextMeshProUGUI TurnCountText;
@@ -16,8 +14,24 @@ public class UIManager : MonoBehaviour {
 
     public TextMeshProUGUI P2ScoreText;
 
+    public TextMeshProUGUI P1Wins;
+
+    public TextMeshProUGUI P2Wins;
+
     public static UIManager Instance;
 
+    public int TurnCount = 1;
+
+    private void Start()
+    {
+        TurnCountText.text = "Turno: " + TurnCount;
+    }
+
+    private void Update()
+    {
+        ShowMicro();
+        ShowTurn();
+    }
 
     private void Awake()
     {
@@ -27,19 +41,37 @@ public class UIManager : MonoBehaviour {
             GameObject.Destroy(gameObject);
     }
 
-    public void ShowFase(string _faseName)
+    public void ShowMicro()
     {
-        MacroFase.text = _faseName;
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            MicroFase.text = "Posiziona le tue carte!";
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            MicroFase.text = "Scegli come ruotare le plance!";
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            MicroFase.text = "La prima linea combatte!";
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            MicroFase.text = "Rinforza la tua formazione!";
+        }
     }
 
-    public void ShowMicro(string _microName)
+    public void ShowTurn()
     {
-        MicroFase.text = _microName;
-    }
-
-    public void ShowTurn(string _turnCount)
-    {
-        TurnCountText.text = "Turno: " + _turnCount;
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            TurnCount = TurnCount + 1;
+            TurnCountText.text = "Turno: " + TurnCount;
+        }
+       
     }
 
 
