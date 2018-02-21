@@ -39,6 +39,8 @@ public class GridController : MonoBehaviour {
 	/// </summary>
 	public List<CellData> cells = new List<CellData>();
 
+	public List<PawnData> pawns = new List<PawnData>();
+
 	void Awake () {
 		
 	}
@@ -60,6 +62,7 @@ public class GridController : MonoBehaviour {
 				for (int y = -1; y < yPoint; y++) {
 					thisTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
 					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), thisTile));
+					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
 					if (x == 0 && y == 0) {
 						thisTile.SetActive (false);
 					}
@@ -76,6 +79,7 @@ public class GridController : MonoBehaviour {
 				for (int y = 3; y < yPoint; y++) {
 					thisTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
 					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), thisTile));
+					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
 					if (x == 0 && y == 4) {
 						thisTile.SetActive (false);
 					}

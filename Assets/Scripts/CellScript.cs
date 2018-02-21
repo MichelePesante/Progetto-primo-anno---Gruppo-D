@@ -6,10 +6,6 @@ public class CellScript : MonoBehaviour {
 
 	public bool placeable;
 
-	public int xCoordinate;
-
-	public int yCoordinate;
-
 	private Material StartMaterial;
 
 	public Material SelectedObject;
@@ -22,15 +18,13 @@ public class CellScript : MonoBehaviour {
 
 	private GameController gc;
 
-	private int cardSelector;
-
-	private int clickCounter;
+	private static int clickCounter;
 
 	void Start () {
 		gc = GameController.Instance;
 		StartMaterial = this.gameObject.GetComponent<MeshRenderer> ().material;
 		placeable = true;
-		cardSelector = 0;
+		clickCounter = 0;
 	}
 
 	void OnMouseEnter () {
@@ -42,29 +36,36 @@ public class CellScript : MonoBehaviour {
 	}
 
 	void OnMouseDown () {
-		if (this.placeable == true) {
-			PawnPositioning (gc.Hand [0], gc.GridC [0], Color.red);
+		if (this.placeable == true && clickCounter < gc.GridC[0].pawns.Count) {
+			PawnPositioning (gc.Hand [0]);
+			clickCounter++;
 		}
-
-		clickCounter++;
 	}
 
 	public void PawnPositioning (Hand _ownHand) {
 		if (_ownHand.cardsInHand > 0) {
-			if (_ownHand.cards [cardSelector].Value == 1 || _ownHand.cards [cardSelector].Value == 2) {
+			if (_ownHand.cards [gc.cardSelector].Value == 1 || _ownHand.cards [gc.cardSelector].Value == 2) {
 				SinglePawn = PawnSpawn (basePawn);
+				PawnChange ("Pedina base", gc.GridC [0], gc.Hand [0], Color.red);
 				this.placeable = false;
 			}
 
-			if (_ownHand.cards [cardSelector].Value == 3 || _ownHand.cards [cardSelector].Value == 4) {
+			if (_ownHand.cards [gc.cardSelector].Value == 3 || _ownHand.cards [gc.cardSelector].Value == 4) {
 				SinglePawn = PawnSpawn (advancedPawn);
+				PawnChange ("Pedina avanzata", gc.GridC [0], gc.Hand [0], Color.red);
 				this.placeable = false;
 			}
 
-			_ownHand.RemoveCardFromHand (cardSelector);
+			_ownHand.RemoveCardFromHand (gc.cardSelector);
+			SetParentPosition (this.gameObject, SinglePawn);
 		}
+	}
 
-		SetParentPosition (this.gameObject, SinglePawn);
+	public void PawnChange (string _ownName, GridController _ownGrid, Hand _ownHand, Color _ownColor) {
+		_ownGrid.pawns[clickCounter].Strength = _ownHand.cards [gc.cardSelector].Value;
+		_ownGrid.pawns[clickCounter].Name = _ownName;
+		_ownGrid.pawns[clickCounter].IsAlive = true;
+		_ownGrid.pawns[clickCounter].Team = _ownColor;
 	}
 
 	public GameObject PawnSpawn (GameObject _pawnType) {

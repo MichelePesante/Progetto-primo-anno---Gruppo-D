@@ -60,6 +60,8 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	public PlayerTurn CurrentPlayerTurn;
 
+	public int cardSelector;
+
 	void Awake () {
 		// Se non esiste un'istanza di questo script.
 		if (Instance == null) {
@@ -92,6 +94,7 @@ public class GameController : MonoBehaviour {
 		EnergyToSpend = 0;
 		scorep1 = 0;
 		scorep2 = 0;
+		cardSelector = 0;
 	}
 
 	void Update () {
@@ -104,6 +107,14 @@ public class GameController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			CurrentPlayerTurn = PlayerTurn.TurnPlayer2;
 			CustomLogger.Log ("Turno del giocatore 2");
+		}
+
+		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && cardSelector > 0) {
+			cardSelector--;
+		}
+
+		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < 3) {
+			cardSelector++;
 		}
 
 		if (Input.GetKeyDown (KeyCode.K)) {
