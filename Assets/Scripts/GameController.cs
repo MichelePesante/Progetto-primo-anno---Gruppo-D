@@ -83,8 +83,6 @@ public class GameController : MonoBehaviour {
 
 		// Riferimento a tutti i Deck.
 		Deck = FindObjectsOfType<Deck> ();
-
-		StartPhase.OnGameStart ();
 	}
 
 	void Start () {

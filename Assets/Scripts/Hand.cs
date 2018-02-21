@@ -33,14 +33,16 @@ public class Hand : MonoBehaviour {
 		if (this == GameController.Instance.Hand[0]) {
 			// Inizializzazione delle variabili.
 			cards = new List<Card> ();
+
+			Draw (cardsInHand);
 		}
 
 		if (this == GameController.Instance.Hand[1]) {
 			// Inizializzazione delle variabili.
 			cards = new List<Card> ();
-		}
 
-		SetupPhase.DrawPhase ();
+			Draw (cardsInHand);
+		}
 	}
 	
 	// Update is called once per frame

@@ -112,7 +112,7 @@ public class SpawnController : MonoBehaviour {
 						}
 
 						if (PawnCheck (xCoordinate, yCoordinate) == true) {
-							SetupPhase.PositioningPhase();
+							PawnPositioning (GameController.Instance.GridC[0], GameController.Instance.Hand[0], Color.red);
 						}
 
 					}
@@ -189,11 +189,11 @@ public class SpawnController : MonoBehaviour {
 					if (GameController.Instance.Hand[1].cardsInHand > 0) {
 
 						if (PawnCheck (xCoordinate, yCoordinate) == false) {
-							PawnUpgrade (GameController.Instance.Hand[0].cards[cardSelector].Value, xCoordinate, yCoordinate, GameController.Instance.Hand[0], GameController.Instance.GridC[0], Color.blue);
+							PawnUpgrade (GameController.Instance.Hand[1].cards[cardSelector].Value, xCoordinate, yCoordinate, GameController.Instance.Hand[1], GameController.Instance.GridC[1], Color.blue);
 						}
 
 						if (PawnCheck (xCoordinate, yCoordinate) == true) {
-							SetupPhase.PositioningPhase();
+							PawnPositioning (GameController.Instance.GridC[1], GameController.Instance.Hand[1], Color.blue);
 						}
 					}
 					else {
@@ -295,14 +295,14 @@ public class SpawnController : MonoBehaviour {
 		Tile = _ownGrid.GetTile (xCoordinate, yCoordinate);
 			
 		if (_ownHand.cards [cardSelector].Value == 1 || _ownHand.cards [cardSelector].Value == 2) {
-			Pawn = PawnSpawn (BasePawn, xCoordinate, yCoordinate, _ownGrid);
-			pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", _ownHand.cards [cardSelector].Value, true, _ownColor, _ownGrid.GetWorldPosition (xCoordinate, yCoordinate)));
+			Pawn = PawnSpawn (BasePawn, _ownGrid);
+			pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", _ownHand.cards [cardSelector].Value, true, _ownColor));
 			CustomLogger.Log ("Ho posizionato la pedina {0} che vale {1}", _ownHand.cards [cardSelector].Name, _ownHand.cards [cardSelector].Value);
 		}
 			
 		if (_ownHand.cards [cardSelector].Value == 3 || _ownHand.cards [cardSelector].Value == 4) {
-			Pawn = PawnSpawn (AdvancedPawn, xCoordinate, yCoordinate, _ownGrid);
-			pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", _ownHand.cards [cardSelector].Value, true, _ownColor, _ownGrid.GetWorldPosition (xCoordinate, yCoordinate)));
+			Pawn = PawnSpawn (AdvancedPawn, _ownGrid);
+			pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina avanzata", _ownHand.cards [cardSelector].Value, true, _ownColor));
 			CustomLogger.Log ("Ho posizionato la pedina {0} che vale {1}", _ownHand.cards [cardSelector].Name, _ownHand.cards [cardSelector].Value);
 		}
 
@@ -320,7 +320,7 @@ public class SpawnController : MonoBehaviour {
 	/// <param name="_pawnType">Pedina da spawnare.</param>
 	/// <param name="_x">Coordinata x.</param>
 	/// <param name="_y">Coordinata Y.</param>
-	private GameObject PawnSpawn (GameObject _pawnType, int _x, int _y, GridController _gridSelect) {
+	private GameObject PawnSpawn (GameObject _pawnType, GridController _gridSelect) {
 		GameObject thisPawn = Instantiate (_pawnType, new Vector3 (transform.position.x, _gridSelect.Tile.transform.localScale.y, transform.position.z), transform.rotation);
 		return thisPawn;
 	}
@@ -336,7 +336,7 @@ public class SpawnController : MonoBehaviour {
 
 		foreach (PawnData pawn in pawns) {
 			if (pawn.X == _x && pawn.Y == _y && pawn.Team == _ownColor) {
-				CustomLogger.Log ("Ho usato la carta {0} che vale {1} per potenziare una pedina", GameController.Instance.Hand[0].cards[cardSelector].Name, GameController.Instance.Hand[0].cards[cardSelector].Value);
+				CustomLogger.Log ("Ho usato la carta {0} che vale {1} per potenziare una pedina", _handToRemoveFrom.cards[cardSelector].Name, _handToRemoveFrom.cards[cardSelector].Value);
 				_handToRemoveFrom.RemoveCardFromHand (cardSelector);
 				pawn.Strength += _strengthToAdd;
 			}

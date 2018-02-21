@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 95564485031524342}
   - component: {fileID: 114710729912572386}
   - component: {fileID: 135794480720587814}
-  - component: {fileID: 114187337108135188}
   m_Layer: 0
   m_Name: AdvancedPawn
   m_TagString: Untagged
@@ -103,18 +102,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114187337108135188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1421388866332954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d214a04c1fb2c24b8a3d65a44d4001e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}
 --- !u!114 &114710729912572386
 MonoBehaviour:
   m_ObjectHideFlags: 1

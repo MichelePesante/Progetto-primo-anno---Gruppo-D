@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 95905828795150776}
   - component: {fileID: 114490452188084630}
   - component: {fileID: 65598017634507144}
-  - component: {fileID: 114521844022873126}
   m_Layer: 0
   m_Name: BasePawn
   m_TagString: Untagged
@@ -127,15 +126,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 2100000, guid: 77a6b49df605c0348a83561f8c047c39, type: 2}
---- !u!114 &114521844022873126
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1554460695144738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d214a04c1fb2c24b8a3d65a44d4001e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}

@@ -126,8 +126,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d214a04c1fb2c24b8a3d65a44d4001e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeable: 0
+  xCoordinate: 0
+  yCoordinate: 0
   SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}
-  pawn: {fileID: 1554460695144738, guid: de441d06665a4244387cec666c3dda4e, type: 2}
+  basePawn: {fileID: 1554460695144738, guid: de441d06665a4244387cec666c3dda4e, type: 2}
+  advancedPawn: {fileID: 1421388866332954, guid: 890ba1773ae12a64689971f7c2df1f6b,
+    type: 2}
+  pawns: []
 --- !u!114 &114328673755536320
 MonoBehaviour:
   m_ObjectHideFlags: 1
