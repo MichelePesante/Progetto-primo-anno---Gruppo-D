@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RotationScript : MonoBehaviour {
 
 	public void OnRightRotationFirstGrid () {
-		GameController.Instance.GridC [0].transform.Rotate (0f, 90f, 0f);
+		GameController.Instance.GridC [0].GetComponentInChildren<Transform> ().Find ("Tasselli").gameObject.transform.Rotate(0f, 90f, 0f);
 		foreach (PawnData pawn in GameController.Instance.GridC[0].pawns) {
 			if (pawn.X == -1 && pawn.Y == -1) {
 				pawn.X += 0;
@@ -44,7 +44,7 @@ public class RotationScript : MonoBehaviour {
 	}
 
 	public void OnRightRotationSecondGrid () {
-		GameController.Instance.GridC [1].transform.Rotate (0f, 90f, 0f);
+		GameController.Instance.GridC [1].GetComponentInChildren<Transform> ().Find ("Tasselli 2").gameObject.transform.Rotate (0f, 90f, 0f);
 		foreach (PawnData pawn in GameController.Instance.GridC[1].pawns) {
 			if (pawn.X == -1 && pawn.Y == 3) {
 				pawn.X += 0;
@@ -82,7 +82,7 @@ public class RotationScript : MonoBehaviour {
 	}
 
 	public void OnLeftRotationFirstGrid () {
-		GameController.Instance.GridC [0].transform.Rotate (0f, -90f, 0f);
+		GameController.Instance.GridC [0].GetComponentInChildren<Transform> ().Find ("Tasselli").gameObject.transform.Rotate (0f, -90f, 0f);
 		foreach (PawnData pawn in GameController.Instance.GridC[0].pawns) {
 			if (pawn.X == -1 && pawn.Y == -1) {
 				pawn.X += 2;
@@ -120,7 +120,7 @@ public class RotationScript : MonoBehaviour {
 	}
 
 	public void OnLeftRotationSecondGrid () {
-		GameController.Instance.GridC [1].transform.Rotate (0f, -90f, 0f);
+		GameController.Instance.GridC [1].GetComponentInChildren<Transform> ().Find ("Tasselli 2").gameObject.transform.Rotate (0f, -90f, 0f);
 		foreach (PawnData pawn in GameController.Instance.GridC[1].pawns) {
 			if (pawn.X == -1 && pawn.Y == 3) {
 				pawn.X += 2;

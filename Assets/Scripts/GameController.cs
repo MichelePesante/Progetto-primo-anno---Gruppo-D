@@ -62,6 +62,12 @@ public class GameController : MonoBehaviour {
 
 	public int cardSelector;
 
+	public int clickCounter;
+
+	public int totalPlaceableCardsP1;
+
+	public int totalPlaceableCardsP2;
+
 	void Awake () {
 		// Se non esiste un'istanza di questo script.
 		if (Instance == null) {
@@ -95,6 +101,9 @@ public class GameController : MonoBehaviour {
 		scorep1 = 0;
 		scorep2 = 0;
 		cardSelector = 0;
+		clickCounter = 0;
+		totalPlaceableCardsP1 = 8;
+		totalPlaceableCardsP2 = 8;
 	}
 
 	void Update () {

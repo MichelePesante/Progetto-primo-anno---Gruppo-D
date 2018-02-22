@@ -30,9 +30,19 @@ public class GridController : MonoBehaviour {
 	public GameObject Tile;
 
 	/// <summary>
-	/// Tassello singolo.
+	/// GameObject preso da prefab.
 	/// </summary>
-	public GameObject thisTile;
+	public GameObject CellCollider;
+
+	/// <summary>
+	/// Contenitore cell colliders del player 1.
+	/// </summary>
+	public GameObject CellCollidersP1;
+
+	/// <summary>
+	/// Contenitore cell colliders del player 2.
+	/// </summary>
+	public GameObject CellCollidersP2;
 
 	/// <summary>
 	/// Lista di tutte le celle.
@@ -60,12 +70,10 @@ public class GridController : MonoBehaviour {
 			// Creazione griglia.
 			for (int x = -1; x < xPoint; x++) {
 				for (int y = -1; y < yPoint; y++) {
-					thisTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
-					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), thisTile));
+					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y)));
+					GameObject newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP1.transform);
+					newCellScript.GetComponent<ColliderScript> ().SetPosition (x, y);
 					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
-					if (x == 0 && y == 0) {
-						thisTile.SetActive (false);
-					}
 				}
 			}
 		}
@@ -77,65 +85,14 @@ public class GridController : MonoBehaviour {
 			// Creazione griglia.
 			for (int x = -1; x < xPoint; x++) {
 				for (int y = 3; y < yPoint; y++) {
-					thisTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, transform);
-					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), thisTile));
+					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y)));
+					GameObject newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP2.transform);
+					newCellScript.GetComponent<ColliderScript> ().SetPosition (x, y);
 					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
-					if (x == 0 && y == 4) {
-						thisTile.SetActive (false);
-					}
 				}
 			}
 		}
 	}
-
-	void Update () {
-
-		// Controllo quale GameObject sto usando.
-		if (this == GameController.Instance.GridC [0]) {
-			if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-				if (Input.GetKeyDown (KeyCode.Q)) {
-					GameController.Instance.GridC [0].transform.Rotate (0f, -90f, 0f);
-					OnLeftRotationFirstGrid ();
-				}
-				if (Input.GetKeyDown (KeyCode.E)) {
-					GameController.Instance.GridC [0].transform.Rotate (0f, 90f, 0f);
-					OnRightRotationFirstGrid ();
-				}
-			
-				if (Input.GetKeyDown (KeyCode.I)) {
-					GameController.Instance.GridC [1].gameObject.transform.Rotate (0f, -90f, 0f);
-					OnLeftRotationSecondGrid ();
-				}
-				if (Input.GetKeyDown (KeyCode.P)) {
-					GameController.Instance.GridC [1].gameObject.transform.Rotate (0f, 90f, 0f);
-					OnRightRotationSecondGrid ();
-				}
-			}
-		}
-
-		// Controllo quale GameObject sto usando.
-		if (this == GameController.Instance.GridC [1]) {
-			if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
-				if (Input.GetKeyDown (KeyCode.Q)) {
-					GameController.Instance.GridC [1].transform.Rotate (0f, -90f, 0f);
-					OnLeftRotationSecondGrid ();
-				}
-				if (Input.GetKeyDown (KeyCode.E)) {
-					GameController.Instance.GridC [1].transform.Rotate (0f, 90f, 0f);
-					OnRightRotationSecondGrid ();
-				}
-
-				if (Input.GetKeyDown (KeyCode.I)) {
-					GameController.Instance.GridC [0].gameObject.transform.Rotate (0f, -90f, 0f);
-					OnLeftRotationFirstGrid ();
-				}
-				if (Input.GetKeyDown (KeyCode.P)) {
-					GameController.Instance.GridC [0].gameObject.transform.Rotate (0f, 90f, 0f);
-					OnRightRotationFirstGrid();
-				}
-			}
-		}
-	}	
 
 	#region API
 
@@ -183,21 +140,6 @@ public class GridController : MonoBehaviour {
 			return false;
 		
 		return true;
-	}
-
-	/// <summary>
-	/// Prende il tassello con l'asse x e y selezionata.
-	/// </summary>
-	/// <returns>Il tassello.</returns>
-	/// <param name="_x">Coordinata x.</param>
-	/// <param name="_y">Coordinata y.</param>
-	public GameObject GetTile (int _x, int _y) {
-		foreach (CellData cell in cells) {
-			if (cell.X == _x && cell.Y == _y) {
-				thisTile = cell.Tile;
-			}
-		}
-		return thisTile;
 	}
 
 	private void OnRightRotationFirstGrid () {

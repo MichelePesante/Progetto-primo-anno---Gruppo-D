@@ -72,7 +72,8 @@ public class Hand : MonoBehaviour {
 		int cardPosition = 0;
 		if (_cardsInHand < maxHandLimit) {
 			for (int i = _cardsInHand; i < maxHandLimit && DeckToDrawFrom.cards.Count > 0; i++) {
-				cards.Add (new Card (DeckToDrawFrom.cards [cardPosition].Name, DeckToDrawFrom.cards [cardPosition].Value));
+				cards.Add (new Card (DeckToDrawFrom.cards [cardPosition].X, DeckToDrawFrom.cards [cardPosition].Y, DeckToDrawFrom.cards [cardPosition].Name, DeckToDrawFrom.cards [cardPosition].Value,
+					DeckToDrawFrom.cards [cardPosition].IsPlaced, DeckToDrawFrom.cards [cardPosition].Team));
 				DeckToDrawFrom.RemoveCardFromDeck (cardPosition);
 				cardsInHand = i + 1;
 				if (this == GameController.Instance.Hand [0]) {

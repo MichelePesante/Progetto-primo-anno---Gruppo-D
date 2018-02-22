@@ -292,8 +292,6 @@ public class SpawnController : MonoBehaviour {
 
 	public void PawnPositioning (GridController _ownGrid, Hand _ownHand, Color _ownColor) {
 			
-		Tile = _ownGrid.GetTile (xCoordinate, yCoordinate);
-			
 		if (_ownHand.cards [cardSelector].Value == 1 || _ownHand.cards [cardSelector].Value == 2) {
 			Pawn = PawnSpawn (BasePawn, _ownGrid);
 			pawns.Add (new PawnData (xCoordinate, yCoordinate, "Pedina base", _ownHand.cards [cardSelector].Value, true, _ownColor));

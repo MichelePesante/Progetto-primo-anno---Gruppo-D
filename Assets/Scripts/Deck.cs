@@ -20,26 +20,42 @@ public class Deck : MonoBehaviour {
 
 		// Inizializzazione degli elementi da 0 a 3.
 		for (int i = 0; i < 4; i++) {
+			cards [i].X = 0;
+			cards [i].Y = 0;
 			cards [i].Name = "Alpha";
 			cards [i].Value = 1;
+			cards [i].IsPlaced = false;
+			cards [i].Team = Color.black;
 		}
 
 		// Inizializzazione degli elementi da 4 a 7.
 		for (int i = 4; i < 8; i++) {
+			cards [i].X = 0;
+			cards [i].Y = 0;
 			cards [i].Name = "Beta";
 			cards [i].Value = 2;
+			cards [i].IsPlaced = false;
+			cards [i].Team = Color.black;
 		}
 
 		// Inizializzazione degli elementi da 8 a 11.
 		for (int i = 8; i < 12; i++) {
+			cards [i].X = 0;
+			cards [i].Y = 0;
 			cards [i].Name = "Gamma";
 			cards [i].Value = 3;
+			cards [i].IsPlaced = false;
+			cards [i].Team = Color.black;
 		}
 
 		// Inizializzazione degli elementi da 11 a 15.
 		for (int i = 12; i < 16; i++) {
+			cards [i].X = 0;
+			cards [i].Y = 0;
 			cards [i].Name = "Delta";
 			cards [i].Value = 4;
+			cards [i].IsPlaced = false;
+			cards [i].Team = Color.black;
 		}
 
 		Shuffle ();
