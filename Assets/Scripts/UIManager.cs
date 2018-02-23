@@ -22,15 +22,27 @@ public class UIManager : MonoBehaviour {
 
     public int TurnCount = 1;
 
+    public int MaxScore = 5;
+
+    public int MaxTurns = 16;
+
+    public int P1Score;
+
+    public int P2Score;
+
     private void Start()
     {
         TurnCountText.text = "Turno: " + TurnCount;
+        MicroFase.text = "Posiziona le tue carte!";
     }
 
     private void Update()
     {
         ShowMicro();
         ShowTurn();
+        ShowP1Score();
+        ShowP2Score();
+        Reset();
     }
 
     private void Awake()
@@ -43,22 +55,18 @@ public class UIManager : MonoBehaviour {
 
     public void ShowMicro()
     {
+       
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            MicroFase.text = "Posiziona le tue carte!";
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             MicroFase.text = "Scegli come ruotare le plance!";
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             MicroFase.text = "La prima linea combatte!";
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             MicroFase.text = "Rinforza la tua formazione!";
         }
@@ -66,7 +74,7 @@ public class UIManager : MonoBehaviour {
 
     public void ShowTurn()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && TurnCount < MaxTurns)
         {
             TurnCount = TurnCount + 1;
             TurnCountText.text = "Turno: " + TurnCount;
@@ -75,15 +83,36 @@ public class UIManager : MonoBehaviour {
     }
 
 
-    public void ShowP1Score(string _p1Score)
+    public void ShowP1Score()
     {
-        P1ScoreText.text = _p1Score;
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && P1Score < MaxScore)
+        {
+            P1Score = P1Score + 1;
+            P1ScoreText.text = "" + P1Score;
+        }
     }
 
 
 
-    public void ShowP2Score(string _p2Score)
+    public void ShowP2Score()
     {
-        P2ScoreText.text = _p2Score;
+        if (Input.GetKeyDown(KeyCode.RightArrow) && P2Score < MaxScore)
+        {
+            P2Score = P2Score + 1;
+            P2ScoreText.text = "" + P2Score;
+        }
+    }
+
+    private void Reset()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            P1Score = 0;
+            P2Score = 0;
+            TurnCount = 0;
+            TurnCountText.text = "Turno: " + TurnCount;
+            P2ScoreText.text = "" + P2Score;
+            P1ScoreText.text = "" + P1Score;
+        }
     }
 }
