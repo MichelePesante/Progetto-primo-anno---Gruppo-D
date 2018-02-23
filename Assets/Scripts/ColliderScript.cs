@@ -44,13 +44,41 @@ public class ColliderScript : MonoBehaviour {
 		placeable = true;
 	}
 
-	void OnMouseDown () {
-		print ("Ho clickato sulla cella: " + FindObjectsOfType<GridController> () [0].GetWorldPosition (X, Y));
+	void OnMouseEnter () {
+		if (this.placeable == true) {
+			foreach (CellScript cell in gc.CellS) {
+				if (this.X == cell.X && this.Y == cell.Y) {
+					cell.ChangeColorOnEnter ();
+				}
+			}
+		}
+	}
 
-		if (this.placeable == true && gc.clickCounter < gc.totalPlaceableCardsP1 && gc.Hand[0].cardsInHand > 0) {
-			CardPositioning (gc.Hand [0]);
-			cardModify (gc.Hand [0], Color.red);
-			gc.clickCounter++;
+	void OnMouseExit () {
+		foreach (CellScript cell in gc.CellS) {
+			if (this.X == cell.X && this.Y == cell.Y) {
+				cell.ChangeColorOnExit ();
+			}
+		}
+	}
+
+	void OnMouseDown () {
+		if (GetComponentInParent<GridController> () == gc.GridC [0]) {
+			if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+				if (this.placeable == true && gc.clickCounterP1 < gc.totalPlaceableCardsP1 && gc.Hand [0].cardsInHand > 0) {
+					CardPositioning (gc.Hand [0]);
+					gc.clickCounterP1++;
+				}
+			}
+		}
+
+		if (GetComponentInParent<GridController> () == gc.GridC [1]) {
+			if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+				if (this.placeable == true && gc.clickCounterP2 < gc.totalPlaceableCardsP2 && gc.Hand [1].cardsInHand > 0) {
+					CardPositioning (gc.Hand [1]);
+					gc.clickCounterP2++;
+				}
+			}
 		}
 	}
 
@@ -85,15 +113,6 @@ public class ColliderScript : MonoBehaviour {
 
 			_ownHand.RemoveCardFromHand (gc.cardSelector);
 			SetParentPosition (this.gameObject, SinglePawn);
-		}
-	}
-
-	public void cardModify (Hand _ownHand, Color _ownColor) {
-		if (this.X == 1 && this.Y == 0) {
-			_ownHand.cards [gc.cardSelector].X = this.X;
-			_ownHand.cards [gc.cardSelector].Y = this.Y;
-			_ownHand.cards [gc.cardSelector].IsPlaced = true;
-			_ownHand.cards [gc.cardSelector].Team = _ownColor;
 		}
 	}
 

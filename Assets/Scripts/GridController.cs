@@ -44,12 +44,20 @@ public class GridController : MonoBehaviour {
 	/// </summary>
 	public GameObject CellCollidersP2;
 
+	public GameObject TilesP1;
+
+	public GameObject TilesP2;
+
 	/// <summary>
 	/// Lista di tutte le celle.
 	/// </summary>
 	public List<CellData> cells = new List<CellData>();
 
 	public List<PawnData> pawns = new List<PawnData>();
+
+	private GameObject newCellScript;
+
+	private GameObject newTile;
 
 	void Awake () {
 		
@@ -71,9 +79,15 @@ public class GridController : MonoBehaviour {
 			for (int x = -1; x < xPoint; x++) {
 				for (int y = -1; y < yPoint; y++) {
 					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y)));
-					GameObject newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP1.transform);
+					newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP1.transform);
 					newCellScript.GetComponent<ColliderScript> ().SetPosition (x, y);
 					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
+					newTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, TilesP1.transform);
+					newTile.GetComponent<CellScript> ().SetPosition (x, y);
+					if (x == 0 && y == 0) {
+						newCellScript.SetActive (false);
+						newTile.SetActive (false);
+					}
 				}
 			}
 		}
@@ -86,9 +100,15 @@ public class GridController : MonoBehaviour {
 			for (int x = -1; x < xPoint; x++) {
 				for (int y = 3; y < yPoint; y++) {
 					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y)));
-					GameObject newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP2.transform);
+					newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP2.transform);
 					newCellScript.GetComponent<ColliderScript> ().SetPosition (x, y);
 					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
+					newTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, TilesP2.transform);
+					newTile.GetComponent<CellScript> ().SetPosition (x, y);
+					if (x == 0 && y == 4) {
+						newCellScript.SetActive (false);
+						newTile.SetActive (false);
+					}
 				}
 			}
 		}

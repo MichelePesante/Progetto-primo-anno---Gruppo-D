@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33662736088414978}
   - component: {fileID: 23942894222055116}
   - component: {fileID: 95173403298903510}
-  - component: {fileID: 114328673755536320}
   - component: {fileID: 114052550613890102}
   m_Layer: 0
   m_Name: Tassello
@@ -113,16 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9869cf08ec1e0f2448994ed08c88256e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X: 0
+  Y: 0
+  StartMaterial: {fileID: 2100000, guid: f7acc359f8e2fa04380285e68885d893, type: 2}
   SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}
-  placeable: 0
---- !u!114 &114328673755536320
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1906283400272794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64600ac834557284699d2c15adeac2af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

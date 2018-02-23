@@ -31,6 +31,11 @@ public class GameController : MonoBehaviour {
 	public Hand[] Hand;
 
 	/// <summary>
+	/// Riferimento a tutte le classi 'CellScript'.
+	/// </summary>
+	public CellScript[] CellS;
+
+	/// <summary>
 	/// Score giocatore 1.
 	/// </summary>
 	public int scorep1;
@@ -62,7 +67,9 @@ public class GameController : MonoBehaviour {
 
 	public int cardSelector;
 
-	public int clickCounter;
+	public int clickCounterP1;
+
+	public int clickCounterP2;
 
 	public int totalPlaceableCardsP1;
 
@@ -101,9 +108,13 @@ public class GameController : MonoBehaviour {
 		scorep1 = 0;
 		scorep2 = 0;
 		cardSelector = 0;
-		clickCounter = 0;
+		clickCounterP1 = 0;
+		clickCounterP2 = 0;
 		totalPlaceableCardsP1 = 8;
 		totalPlaceableCardsP2 = 8;
+
+		// Riferimento a tutti i Tassello(Clone).
+		CellS = FindObjectsOfType<CellScript> ();
 	}
 
 	void Update () {

@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class CellScript : MonoBehaviour {
 
+	public int X;
+
+	public int Y;
+
 	/// <summary>
 	/// Materiale iniziale.
 	/// </summary>
-	private Material StartMaterial;
+	public Material StartMaterial;
 
 	/// <summary>
 	/// Materiale utilizzato quando un oggetto è stato selezionato.
 	/// </summary>
 	public Material SelectedObject;
 
-	/// <summary>
-	/// Se true, è possibile piazzare una carta.
-	/// </summary>
-	public bool placeable;
-
 	void Start () {
 		StartMaterial = this.gameObject.GetComponent<MeshRenderer> ().material;
-		placeable = true;
 	}
 
-	void OnMouseEnter () {
-		if (this.placeable == true)
-			this.gameObject.GetComponent<MeshRenderer> ().material = SelectedObject;
+	public void SetPosition (int _x, int _y) {
+		X = _x;
+		Y = _y;
 	}
 
-	void OnMouseExit () {
+	public void ChangeColorOnEnter () {
+		this.gameObject.GetComponent<MeshRenderer> ().material = SelectedObject;
+	}
+
+	public void ChangeColorOnExit () {
 		this.gameObject.GetComponent<MeshRenderer> ().material = StartMaterial;
 	}
 }
