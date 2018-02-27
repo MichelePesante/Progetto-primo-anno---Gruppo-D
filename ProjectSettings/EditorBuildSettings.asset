@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ProgettoComuneGestioneCarte.unity
+    path: Assets/Scenes/MainScene.unity
     guid: 1b6cacecd68729f4384d9088ee95df0e

@@ -85,22 +85,16 @@ public class UIManager : MonoBehaviour {
 
     public void ShowP1Score()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && P1Score < MaxScore)
-        {
-            P1Score = P1Score + 1;
-            P1ScoreText.text = "" + P1Score;
-        }
+		P1Score = GameController.Instance.scorep1;
+        P1ScoreText.text = "" + P1Score;
     }
 
 
 
     public void ShowP2Score()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && P2Score < MaxScore)
-        {
-            P2Score = P2Score + 1;
-            P2ScoreText.text = "" + P2Score;
-        }
+		P2Score = GameController.Instance.scorep2;
+        P2ScoreText.text = "" + P2Score;
     }
 
     private void Reset()

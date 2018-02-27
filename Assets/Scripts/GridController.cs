@@ -53,8 +53,6 @@ public class GridController : MonoBehaviour {
 	/// </summary>
 	public List<CellData> cells = new List<CellData>();
 
-	public List<PawnData> pawns = new List<PawnData>();
-
 	private GameObject newCellScript;
 
 	private GameObject newTile;
@@ -81,7 +79,6 @@ public class GridController : MonoBehaviour {
 					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y)));
 					newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP1.transform);
 					newCellScript.GetComponent<ColliderScript> ().SetPosition (x, y);
-					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
 					newTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, TilesP1.transform);
 					newTile.GetComponent<CellScript> ().SetPosition (x, y);
 					if (x == 0 && y == 0) {
@@ -102,7 +99,6 @@ public class GridController : MonoBehaviour {
 					cells.Add (new CellData (x, y, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y)));
 					newCellScript = Instantiate (CellCollider, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, CellCollidersP2.transform);
 					newCellScript.GetComponent<ColliderScript> ().SetPosition (x, y);
-					pawns.Add (new PawnData (x, y, "", 0, false, Color.black));
 					newTile = Instantiate (Tile, new Vector3 (offsettedSize * x, transform.position.y, offsettedSize * y), transform.rotation, TilesP2.transform);
 					newTile.GetComponent<CellScript> ().SetPosition (x, y);
 					if (x == 0 && y == 4) {
@@ -138,7 +134,7 @@ public class GridController : MonoBehaviour {
 	/// <param name="_x">Posizione x.</param>
 	/// <param name="_y">Posizione y.</param>
 	public bool positionCheck (int _x, int _y) {
-		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+		if (GameController.Instance.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 			if (this == GameController.Instance.GridC [0]) {
 				if (_x < -1 || _y < -1)
 					return false;
@@ -147,7 +143,7 @@ public class GridController : MonoBehaviour {
 			}
 		}
 
-		if (GameController.Instance.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+		if (GameController.Instance.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 			if (this == GameController.Instance.GridC [1]) {
 				if (_x < -1 || _y < 3)
 					return false;
@@ -161,154 +157,5 @@ public class GridController : MonoBehaviour {
 		
 		return true;
 	}
-
-	private void OnRightRotationFirstGrid () {
-		foreach (PawnData pawn in GameController.Instance.SpawnC[0].pawns) {
-			if (pawn.X == -1 && pawn.Y == -1) {
-				pawn.X += 0;
-				pawn.Y += 2;
-			}
-			else if (pawn.X == -1 && pawn.Y == 1) {
-				pawn.X += 2;
-				pawn.Y += 0;
-			}
-			else if (pawn.X == 1 && pawn.Y == 1) {
-				pawn.X += 0;
-				pawn.Y += -2;
-			}
-			else if (pawn.X == 1 && pawn.Y == -1) {
-				pawn.X += -2;
-				pawn.Y += 0;
-			}
-			if (pawn.X == -1 && pawn.Y == 0) {
-				pawn.X += 1;
-				pawn.Y += 1;
-			}
-			else if (pawn.X == 0 && pawn.Y == 1) {
-				pawn.X += 1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 1 && pawn.Y == 0) {
-				pawn.X += -1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 0 && pawn.Y == -1) {
-				pawn.X += -1;
-				pawn.Y += 1;
-			}
-		}
-	}
-
-	private void OnRightRotationSecondGrid () {
-		foreach (PawnData pawn in GameController.Instance.SpawnC[1].pawns) {
-			if (pawn.X == -1 && pawn.Y == 3) {
-				pawn.X += 0;
-				pawn.Y += 2;
-			}
-			else if (pawn.X == -1 && pawn.Y == 5) {
-				pawn.X += 2;
-				pawn.Y += 0;
-			}
-			else if (pawn.X == 1 && pawn.Y == 5) {
-				pawn.X += 0;
-				pawn.Y += -2;
-			}
-			else if (pawn.X == 1 && pawn.Y == 3) {
-				pawn.X += -2;
-				pawn.Y += 0;
-			}
-			if (pawn.X == -1 && pawn.Y == 4) {
-				pawn.X += 1;
-				pawn.Y += 1;
-			}
-			else if (pawn.X == 0 && pawn.Y == 5) {
-				pawn.X += 1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 1 && pawn.Y == 4) {
-				pawn.X += -1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 0 && pawn.Y == 3) {
-				pawn.X += -1;
-				pawn.Y += 1;
-			}
-		}
-	}
-
-	private void OnLeftRotationFirstGrid () {
-		foreach (PawnData pawn in GameController.Instance.SpawnC[0].pawns) {
-			if (pawn.X == -1 && pawn.Y == -1) {
-				pawn.X += 2;
-				pawn.Y += 0;
-			}
-			else if (pawn.X == -1 && pawn.Y == 1) {
-				pawn.X += 0;
-				pawn.Y += -2;
-			}
-			else if (pawn.X == 1 && pawn.Y == 1) {
-				pawn.X += -2;
-				pawn.Y += 0;
-			}
-			else if (pawn.X == 1 && pawn.Y == -1) {
-				pawn.X += 0;
-				pawn.Y += 2;
-			}
-			if (pawn.X == -1 && pawn.Y == 0) {
-				pawn.X += 1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 0 && pawn.Y == 1) {
-				pawn.X += -1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 1 && pawn.Y == 0) {
-				pawn.X += -1;
-				pawn.Y += 1;
-			}
-			else if (pawn.X == 0 && pawn.Y == -1) {
-				pawn.X += 1;
-				pawn.Y += 1;
-			}
-		}
-	}
-
-	private void OnLeftRotationSecondGrid () {
-		foreach (PawnData pawn in GameController.Instance.SpawnC[1].pawns) {
-			if (pawn.X == -1 && pawn.Y == 3) {
-				pawn.X += 2;
-				pawn.Y += 0;
-			}
-			else if (pawn.X == -1 && pawn.Y == 5) {
-				pawn.X += 0;
-				pawn.Y += -2;
-			}
-			else if (pawn.X == 1 && pawn.Y == 5) {
-				pawn.X += -2;
-				pawn.Y += 0;
-			}
-			else if (pawn.X == 1 && pawn.Y == 3) {
-				pawn.X += 0;
-				pawn.Y += 2;
-			}
-			if (pawn.X == -1 && pawn.Y == 4) {
-				pawn.X += 1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 0 && pawn.Y == 5) {
-				pawn.X += -1;
-				pawn.Y += -1;
-			}
-			else if (pawn.X == 1 && pawn.Y == 4) {
-				pawn.X += -1;
-				pawn.Y += 1;
-			}
-			else if (pawn.X == 0 && pawn.Y == 3) {
-				pawn.X += 1;
-				pawn.Y += 1;
-			}
-		}
-	}
-
 	#endregion
 }

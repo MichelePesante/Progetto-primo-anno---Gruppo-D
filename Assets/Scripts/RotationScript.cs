@@ -7,152 +7,152 @@ public class RotationScript : MonoBehaviour {
 
 	public void OnRightRotationFirstGrid () {
 		GameController.Instance.GridC [0].GetComponentInChildren<Transform> ().Find ("Tasselli").gameObject.transform.Rotate(0f, 90f, 0f);
-		foreach (PawnData pawn in GameController.Instance.GridC[0].pawns) {
-			if (pawn.X == -1 && pawn.Y == -1) {
-				pawn.X += 0;
-				pawn.Y += 2;
+		foreach (PawnScript card in FindObjectsOfType<PawnScript>()) {
+			if (card.X == -1 && card.Y == -1) {
+				card.X += 0;
+				card.Y += 2;
 			}
-			else if (pawn.X == -1 && pawn.Y == 1) {
-				pawn.X += 2;
-				pawn.Y += 0;
+			else if (card.X == -1 && card.Y == 1) {
+				card.X += 2;
+				card.Y += 0;
 			}
-			else if (pawn.X == 1 && pawn.Y == 1) {
-				pawn.X += 0;
-				pawn.Y += -2;
+			else if (card.X == 1 && card.Y == 1) {
+				card.X += 0;
+				card.Y += -2;
 			}
-			else if (pawn.X == 1 && pawn.Y == -1) {
-				pawn.X += -2;
-				pawn.Y += 0;
+			else if (card.X == 1 && card.Y == -1) {
+				card.X += -2;
+				card.Y += 0;
 			}
-			if (pawn.X == -1 && pawn.Y == 0) {
-				pawn.X += 1;
-				pawn.Y += 1;
+			if (card.X == -1 && card.Y == 0) {
+				card.X += 1;
+				card.Y += 1;
 			}
-			else if (pawn.X == 0 && pawn.Y == 1) {
-				pawn.X += 1;
-				pawn.Y += -1;
+			else if (card.X == 0 && card.Y == 1) {
+				card.X += 1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 1 && pawn.Y == 0) {
-				pawn.X += -1;
-				pawn.Y += -1;
+			else if (card.X == 1 && card.Y == 0) {
+				card.X += -1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 0 && pawn.Y == -1) {
-				pawn.X += -1;
-				pawn.Y += 1;
+			else if (card.X == 0 && card.Y == -1) {
+				card.X += -1;
+				card.Y += 1;
 			}
 		}
 	}
 
 	public void OnRightRotationSecondGrid () {
 		GameController.Instance.GridC [1].GetComponentInChildren<Transform> ().Find ("Tasselli 2").gameObject.transform.Rotate (0f, 90f, 0f);
-		foreach (PawnData pawn in GameController.Instance.GridC[1].pawns) {
-			if (pawn.X == -1 && pawn.Y == 3) {
-				pawn.X += 0;
-				pawn.Y += 2;
+		foreach (PawnScript card in FindObjectsOfType<PawnScript>()) {
+			if (card.X == -1 && card.Y == 3) {
+				card.X += 0;
+				card.Y += 2;
 			}
-			else if (pawn.X == -1 && pawn.Y == 5) {
-				pawn.X += 2;
-				pawn.Y += 0;
+			else if (card.X == -1 && card.Y == 5) {
+				card.X += 2;
+				card.Y += 0;
 			}
-			else if (pawn.X == 1 && pawn.Y == 5) {
-				pawn.X += 0;
-				pawn.Y += -2;
+			else if (card.X == 1 && card.Y == 5) {
+				card.X += 0;
+				card.Y += -2;
 			}
-			else if (pawn.X == 1 && pawn.Y == 3) {
-				pawn.X += -2;
-				pawn.Y += 0;
+			else if (card.X == 1 && card.Y == 3) {
+				card.X += -2;
+				card.Y += 0;
 			}
-			if (pawn.X == -1 && pawn.Y == 4) {
-				pawn.X += 1;
-				pawn.Y += 1;
+			if (card.X == -1 && card.Y == 4) {
+				card.X += 1;
+				card.Y += 1;
 			}
-			else if (pawn.X == 0 && pawn.Y == 5) {
-				pawn.X += 1;
-				pawn.Y += -1;
+			else if (card.X == 0 && card.Y == 5) {
+				card.X += 1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 1 && pawn.Y == 4) {
-				pawn.X += -1;
-				pawn.Y += -1;
+			else if (card.X == 1 && card.Y == 4) {
+				card.X += -1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 0 && pawn.Y == 3) {
-				pawn.X += -1;
-				pawn.Y += 1;
+			else if (card.X == 0 && card.Y == 3) {
+				card.X += -1;
+				card.Y += 1;
 			}
 		}
 	}
 
 	public void OnLeftRotationFirstGrid () {
 		GameController.Instance.GridC [0].GetComponentInChildren<Transform> ().Find ("Tasselli").gameObject.transform.Rotate (0f, -90f, 0f);
-		foreach (PawnData pawn in GameController.Instance.GridC[0].pawns) {
-			if (pawn.X == -1 && pawn.Y == -1) {
-				pawn.X += 2;
-				pawn.Y += 0;
+		foreach (PawnScript card in FindObjectsOfType<PawnScript>()) {
+			if (card.X == -1 && card.Y == -1) {
+				card.X += 2;
+				card.Y += 0;
 			}
-			else if (pawn.X == -1 && pawn.Y == 1) {
-				pawn.X += 0;
-				pawn.Y += -2;
+			else if (card.X == -1 && card.Y == 1) {
+				card.X += 0;
+				card.Y += -2;
 			}
-			else if (pawn.X == 1 && pawn.Y == 1) {
-				pawn.X += -2;
-				pawn.Y += 0;
+			else if (card.X == 1 && card.Y == 1) {
+				card.X += -2;
+				card.Y += 0;
 			}
-			else if (pawn.X == 1 && pawn.Y == -1) {
-				pawn.X += 0;
-				pawn.Y += 2;
+			else if (card.X == 1 && card.Y == -1) {
+				card.X += 0;
+				card.Y += 2;
 			}
-			if (pawn.X == -1 && pawn.Y == 0) {
-				pawn.X += 1;
-				pawn.Y += -1;
+			if (card.X == -1 && card.Y == 0) {
+				card.X += 1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 0 && pawn.Y == 1) {
-				pawn.X += -1;
-				pawn.Y += -1;
+			else if (card.X == 0 && card.Y == 1) {
+				card.X += -1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 1 && pawn.Y == 0) {
-				pawn.X += -1;
-				pawn.Y += 1;
+			else if (card.X == 1 && card.Y == 0) {
+				card.X += -1;
+				card.Y += 1;
 			}
-			else if (pawn.X == 0 && pawn.Y == -1) {
-				pawn.X += 1;
-				pawn.Y += 1;
+			else if (card.X == 0 && card.Y == -1) {
+				card.X += 1;
+				card.Y += 1;
 			}
 		}
 	}
 
 	public void OnLeftRotationSecondGrid () {
 		GameController.Instance.GridC [1].GetComponentInChildren<Transform> ().Find ("Tasselli 2").gameObject.transform.Rotate (0f, -90f, 0f);
-		foreach (PawnData pawn in GameController.Instance.GridC[1].pawns) {
-			if (pawn.X == -1 && pawn.Y == 3) {
-				pawn.X += 2;
-				pawn.Y += 0;
+		foreach (PawnScript card in FindObjectsOfType<PawnScript>()) {
+			if (card.X == -1 && card.Y == 3) {
+				card.X += 2;
+				card.Y += 0;
 			}
-			else if (pawn.X == -1 && pawn.Y == 5) {
-				pawn.X += 0;
-				pawn.Y += -2;
+			else if (card.X == -1 && card.Y == 5) {
+				card.X += 0;
+				card.Y += -2;
 			}
-			else if (pawn.X == 1 && pawn.Y == 5) {
-				pawn.X += -2;
-				pawn.Y += 0;
+			else if (card.X == 1 && card.Y == 5) {
+				card.X += -2;
+				card.Y += 0;
 			}
-			else if (pawn.X == 1 && pawn.Y == 3) {
-				pawn.X += 0;
-				pawn.Y += 2;
+			else if (card.X == 1 && card.Y == 3) {
+				card.X += 0;
+				card.Y += 2;
 			}
-			if (pawn.X == -1 && pawn.Y == 4) {
-				pawn.X += 1;
-				pawn.Y += -1;
+			if (card.X == -1 && card.Y == 4) {
+				card.X += 1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 0 && pawn.Y == 5) {
-				pawn.X += -1;
-				pawn.Y += -1;
+			else if (card.X == 0 && card.Y == 5) {
+				card.X += -1;
+				card.Y += -1;
 			}
-			else if (pawn.X == 1 && pawn.Y == 4) {
-				pawn.X += -1;
-				pawn.Y += 1;
+			else if (card.X == 1 && card.Y == 4) {
+				card.X += -1;
+				card.Y += 1;
 			}
-			else if (pawn.X == 0 && pawn.Y == 3) {
-				pawn.X += 1;
-				pawn.Y += 1;
+			else if (card.X == 0 && card.Y == 3) {
+				card.X += 1;
+				card.Y += 1;
 			}
 		}
 	}

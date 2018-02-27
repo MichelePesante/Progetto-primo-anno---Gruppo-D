@@ -11,11 +11,6 @@ public class GameController : MonoBehaviour {
 	public static GameController Instance;
 
 	/// <summary>
-	/// Riferimento a tutte le classi 'SpawnController'.
-	/// </summary>
-	public SpawnController[] SpawnC;
-
-	/// <summary>
 	/// Riferimento a tutte le classi 'GridController'.
 	/// </summary>
 	public GridController[] GridC;
@@ -34,6 +29,11 @@ public class GameController : MonoBehaviour {
 	/// Riferimento a tutte le classi 'CellScript'.
 	/// </summary>
 	public CellScript[] CellS;
+
+	/// <summary>
+	/// Riferimento alla classe 'CardSpawn'.
+	/// </summary>
+	public CardSpawn CardS;
 
 	/// <summary>
 	/// Score giocatore 1.
@@ -60,10 +60,14 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	public int EnergyToSpend;
 
+	public GameObject P1Wins;
+
+	public GameObject P2Wins;
+
 	/// <summary>
 	/// Specificazione di chi è il turno.
 	/// </summary>
-	public PlayerTurn CurrentPlayerTurn;
+	public StateMachine.PlayerTurn CurrentPlayerTurn;
 
 	public int cardSelector;
 
@@ -87,9 +91,6 @@ public class GameController : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
-		// Riferimento a tutti gli SpawnController.
-		SpawnC = FindObjectsOfType<SpawnController> ();
-
 		// Riferimento a tutti i GridController.
 		GridC = FindObjectsOfType<GridController> ();
 
@@ -98,6 +99,9 @@ public class GameController : MonoBehaviour {
 
 		// Riferimento a tutti i Deck.
 		Deck = FindObjectsOfType<Deck> ();
+
+		// Riferimento a PedineGiocate.
+		CardS = FindObjectOfType<CardSpawn> ();
 	}
 
 	void Start () {
@@ -118,32 +122,38 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Update () {
-
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
-			CustomLogger.Log ("Turno del giocatore 1");
-		}
-
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			CurrentPlayerTurn = PlayerTurn.TurnPlayer2;
-			CustomLogger.Log ("Turno del giocatore 2");
-		}
-
+		
 		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && cardSelector > 0) {
 			cardSelector--;
 		}
 
-		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < 3) {
-			cardSelector++;
+		if (CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+			if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < Hand[0].cardsInHand - 1) {
+				cardSelector++;
+			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.K)) {
-			Battle ();
-			CustomLogger.Log ("Score del giocatore 1:  {0}     ---     Score del giocatore 2:  {1}", scorep1, scorep2);
+		if (CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+			if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < Hand[1].cardsInHand - 1) {
+				cardSelector++;
+			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.H)  || scorep1 >= 5 || scorep2 >= 5) {
+
+		if (Input.GetKeyDown (KeyCode.H)) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		}
+			
+		if (scorep1 >= 5 && P2Wins.activeInHierarchy == false) {
+			P1Wins.SetActive (true);
+			if (GameObject.Find ("PulsanteDraw") != null)
+				GameObject.Find ("PulsanteDraw").SetActive(false);
+		}
+
+		if (scorep2 >= 5 && P1Wins.activeInHierarchy == false) {
+			P2Wins.SetActive (true);
+			if (GameObject.Find ("PulsanteDraw") != null)
+				GameObject.Find ("PulsanteDraw").SetActive(false);
 		}
 
 		#region Vecchie meccaniche
@@ -170,87 +180,4 @@ public class GameController : MonoBehaviour {
 
 		#endregion
 	}
-
-	private void Battle () {
-		int battleResult1 = 0;
-		int battleResult2 = 0;
-		int battleResult3 = 0;
-
-		int scoretemp1 = 0;
-		int scoretemp2 = 0;
-		int finalScore = 0;
-
-		int ForzaPedina1p1 = 0;
-		int ForzaPedina2p1 = 0;
-		int ForzaPedina3p1 = 0;
-		int ForzaPedina1p2 = 0;
-		int ForzaPedina2p2 = 0;
-		int ForzaPedina3p2 = 0;
-
-		foreach (PawnData pawn in SpawnC[0].pawns) {
-			if (pawn.X == -1 && pawn.Y == 1) {
-				ForzaPedina1p1 = pawn.Strength;
-				CustomLogger.Log ("Forza pedina 1 player 1:   " + ForzaPedina1p1);
-			}
-			if (pawn.X == 0 && pawn.Y == 1) {
-				ForzaPedina2p1 = pawn.Strength;
-				CustomLogger.Log ("Forza pedina 2 player 1:   " + ForzaPedina2p1);
-			}
-			if (pawn.X == 1 && pawn.Y == 1) {
-				ForzaPedina3p1 = pawn.Strength;
-				CustomLogger.Log ("Forza pedina 3 player 1:   " + ForzaPedina3p1);
-			}
-		}
-
-		foreach (PawnData pawn in SpawnC[1].pawns) {
-			if (pawn.X == -1 && pawn.Y == 3) {
-				ForzaPedina1p2 = pawn.Strength;
-				CustomLogger.Log ("Forza pedina 1 player 2:   " + ForzaPedina1p2);
-			}
-			if (pawn.X == 0 && pawn.Y == 3) {
-				ForzaPedina2p2 = pawn.Strength;
-				CustomLogger.Log ("Forza pedina 2 player 2:   " + ForzaPedina2p2);
-			}
-			if (pawn.X == 1 && pawn.Y == 3) {
-				ForzaPedina3p2 = pawn.Strength;
-				CustomLogger.Log ("Forza pedina 3 player 2:   " + ForzaPedina3p2);
-			}
-		}
-
-		battleResult1 = ForzaPedina1p1 - ForzaPedina1p2;
-		if (battleResult1 > 0) {
-			scoretemp1 += 1;
-		}
-		if (battleResult1 < 0) {
-			scoretemp2 += 1;
-		}
-		battleResult2 = ForzaPedina2p1 - ForzaPedina2p2;
-		if (battleResult2 > 0) {
-			scoretemp1 += 1;
-		}
-		if (battleResult2 < 0) {
-			scoretemp2 += 1;
-		}
-		battleResult3 = ForzaPedina3p1 - ForzaPedina3p2;
-		if (battleResult3 > 0) {
-			scoretemp1 += 1;
-		}
-		if (battleResult3 < 0) {
-			scoretemp2 += 1;
-		}
-		if (scoretemp1 > scoretemp2) {
-			finalScore = scoretemp1 - scoretemp2;
-			scorep1 += finalScore;
-		}
-		if (scoretemp1 < scoretemp2) {
-			finalScore = scoretemp2 - scoretemp1;
-			scorep2 += finalScore;
-		}
-	}
-}
-
-public enum PlayerTurn
-{
-	TurnPlayer1, 
-	TurnPlayer2
 }

@@ -125,6 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac9723da03585a45b29adb0f64f7b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  X: 0
-  Y: 0
-  HasBeenPlaced: 0
+  StartMaterial: {fileID: 2100000, guid: f7acc359f8e2fa04380285e68885d893, type: 2}
+  SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}

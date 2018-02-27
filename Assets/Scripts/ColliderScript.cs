@@ -44,6 +44,7 @@ public class ColliderScript : MonoBehaviour {
 		placeable = true;
 	}
 
+	/*
 	void OnMouseEnter () {
 		if (this.placeable == true) {
 			foreach (CellScript cell in gc.CellS) {
@@ -61,21 +62,24 @@ public class ColliderScript : MonoBehaviour {
 			}
 		}
 	}
+	*/
 
 	void OnMouseDown () {
 		if (GetComponentInParent<GridController> () == gc.GridC [0]) {
-			if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+			if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 				if (this.placeable == true && gc.clickCounterP1 < gc.totalPlaceableCardsP1 && gc.Hand [0].cardsInHand > 0) {
-					CardPositioning (gc.Hand [0]);
+					CardPositioning (gc.Hand [0], GameObject.Find("Tasselli"));
+					gc.CardS.PlaceCardAndSetPlacedCard (this.X, this.Y, gc.Hand[0], Color.red);
 					gc.clickCounterP1++;
 				}
 			}
 		}
 
 		if (GetComponentInParent<GridController> () == gc.GridC [1]) {
-			if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+			if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 				if (this.placeable == true && gc.clickCounterP2 < gc.totalPlaceableCardsP2 && gc.Hand [1].cardsInHand > 0) {
-					CardPositioning (gc.Hand [1]);
+					CardPositioning (gc.Hand [1], GameObject.Find("Tasselli 2"));
+					gc.CardS.PlaceCardAndSetPlacedCard (this.X, this.Y, gc.Hand[1], Color.blue);
 					gc.clickCounterP2++;
 				}
 			}
@@ -88,7 +92,7 @@ public class ColliderScript : MonoBehaviour {
 		Y = _y;
 	}
 
-	public void CardPositioning (Hand _ownHand) {
+	public void CardPositioning (Hand _ownHand, GameObject _parentTransform) {
 		if (_ownHand.cardsInHand > 0) {
 			switch (_ownHand.cards [gc.cardSelector].Value) {
 			case 1:
@@ -111,8 +115,8 @@ public class ColliderScript : MonoBehaviour {
 				break;
 			}
 
-			_ownHand.RemoveCardFromHand (gc.cardSelector);
-			SetParentPosition (this.gameObject, SinglePawn);
+
+			SetParentPosition (_parentTransform, SinglePawn);
 		}
 	}
 

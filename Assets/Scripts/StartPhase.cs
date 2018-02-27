@@ -17,12 +17,12 @@ public static class StartPhase {
 		// Se il numero uscito è 1
 		if (StartingPlayer == 1) {
 			// Il primo a giocare sarà il giocatore 1.
-			GameController.Instance.CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
+			GameController.Instance.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer1;
 		}
 		// Altrimenti
 		else {
 			// Il primo a giocare sarà il giocatore 2.
-			GameController.Instance.CurrentPlayerTurn = PlayerTurn.TurnPlayer2;
+			GameController.Instance.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer2;
 		}
 
 		// Visualizzo a schermo chi sarà il primo a giocare.

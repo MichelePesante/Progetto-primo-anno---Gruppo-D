@@ -31,11 +31,11 @@ public static class SetupPhase {
 
 	public static void DrawPhase () {
 
-		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
+		if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 			gc.Hand [0].Draw (gc.Hand [0].cardsInHand);
 		}
 
-		if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
+		if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 			gc.Hand [1].Draw (gc.Hand [1].cardsInHand);
 		}
 	}
@@ -44,6 +44,7 @@ public static class SetupPhase {
 
 		if (setupTurnCount < maxSetupTurns) {
 
+			/*
 			if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
 				gc.SpawnC [0].PawnPositioning (gc.GridC [0], gc.Hand [0], Color.red);
 				pawnPlaced++;
@@ -53,13 +54,13 @@ public static class SetupPhase {
 				gc.SpawnC [1].PawnPositioning (gc.GridC [1], gc.Hand [1], Color.blue);
 				pawnPlaced++;
 			}
-	
+	        */
 			if (pawnPlaced == pawnsToPlace) {
 			
-				if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1)
-					gc.CurrentPlayerTurn = PlayerTurn.TurnPlayer2;
+				if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1)
+					gc.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer2;
 				else
-					gc.CurrentPlayerTurn = PlayerTurn.TurnPlayer1;
+					gc.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer1;
 			
 				pawnPlaced = 0;
 			}
