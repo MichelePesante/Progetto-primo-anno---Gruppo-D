@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class StateMachine {
 
+	public static PlayerTurn CurrentPlayerTurn;
+
+	public static MacroPhase CurrentMacroPhase;
+
 	public enum MacroPhase {
 		Start,
 		Setup,

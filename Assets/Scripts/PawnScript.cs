@@ -49,7 +49,7 @@ public class PawnScript : MonoBehaviour {
 
 	void OnMouseDown () {
 		if (GetComponentInParent<GridController> () == gc.GridC [0]) {
-			if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 				if (this.HasBeenPlaced == true && gc.Hand [0].cardsInHand > 0) {
 					UpgradeCard (gc.Hand [0]);
 				}
@@ -57,7 +57,7 @@ public class PawnScript : MonoBehaviour {
 		}
 
 		if (GetComponentInParent<GridController> () == gc.GridC [1]) {
-			if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 				if (this.HasBeenPlaced == true && gc.Hand [1].cardsInHand > 0) {
 					UpgradeCard (gc.Hand [1]);
 				}

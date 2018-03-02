@@ -48,7 +48,7 @@ public class Hand : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (this == GameController.Instance.Hand [0]) {
-			if (GameController.Instance.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 				if (Input.GetKeyDown (KeyCode.R)) {
 					Draw (cardsInHand);
 				}
@@ -56,7 +56,7 @@ public class Hand : MonoBehaviour {
 		}
 
 		if (this == GameController.Instance.Hand [1]) {
-			if (GameController.Instance.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 				if (Input.GetKeyDown (KeyCode.R)) {
 					Draw (cardsInHand);
 				}

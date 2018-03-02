@@ -8,7 +8,9 @@ public class UIManager : MonoBehaviour {
 
     public TextMeshProUGUI MicroFase;
 
-    public TextMeshProUGUI TurnCountText;
+    public TextMeshProUGUI TurnP1Text;
+
+	public TextMeshProUGUI TurnP2Text;
 
     public TextMeshProUGUI P1ScoreText;
 
@@ -20,8 +22,6 @@ public class UIManager : MonoBehaviour {
 
     public static UIManager Instance;
 
-    public int TurnCount = 1;
-
     public int MaxScore = 5;
 
     public int MaxTurns = 16;
@@ -32,11 +32,10 @@ public class UIManager : MonoBehaviour {
 
     private void Start()
     {
-        TurnCountText.text = "Turno: " + TurnCount;
         MicroFase.text = "Posiziona le tue carte!";
     }
 
-    private void Update()
+    void Update()
     {
         ShowMicro();
         ShowTurn();
@@ -45,7 +44,7 @@ public class UIManager : MonoBehaviour {
         Reset();
     }
 
-    private void Awake()
+    void Awake()
     {
         if (Instance == null)
             Instance = this;
@@ -74,12 +73,16 @@ public class UIManager : MonoBehaviour {
 
     public void ShowTurn()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && TurnCount < MaxTurns)
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1)
         {
-            TurnCount = TurnCount + 1;
-            TurnCountText.text = "Turno: " + TurnCount;
+			TurnP1Text.text = "Turno P1";
+			TurnP2Text.text = "";
         }
-       
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2)
+		{
+			TurnP2Text.text = "Turno P2";
+			TurnP1Text.text = "";
+		}
     }
 
 
@@ -103,8 +106,6 @@ public class UIManager : MonoBehaviour {
         {
             P1Score = 0;
             P2Score = 0;
-            TurnCount = 0;
-            TurnCountText.text = "Turno: " + TurnCount;
             P2ScoreText.text = "" + P2Score;
             P1ScoreText.text = "" + P1Score;
         }

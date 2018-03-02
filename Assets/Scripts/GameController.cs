@@ -64,11 +64,6 @@ public class GameController : MonoBehaviour {
 
 	public GameObject P2Wins;
 
-	/// <summary>
-	/// Specificazione di chi è il turno.
-	/// </summary>
-	public StateMachine.PlayerTurn CurrentPlayerTurn;
-
 	public int cardSelector;
 
 	public int clickCounterP1;
@@ -78,6 +73,12 @@ public class GameController : MonoBehaviour {
 	public int totalPlaceableCardsP1;
 
 	public int totalPlaceableCardsP2;
+
+	public Camera MainCamera;
+
+	public GameObject MainCameraPosition1;
+
+	public GameObject MainCameraPosition2;
 
 	void Awake () {
 		// Se non esiste un'istanza di questo script.
@@ -116,24 +117,40 @@ public class GameController : MonoBehaviour {
 		clickCounterP2 = 0;
 		totalPlaceableCardsP1 = 8;
 		totalPlaceableCardsP2 = 8;
+		MainCamera = FindObjectOfType<Camera> ();
+
+		StateMachine.CurrentMacroPhase = StateMachine.MacroPhase.Start;
+		if (StateMachine.CurrentMacroPhase == StateMachine.MacroPhase.Start) {
+			StartPhase.OnGameStart ();
+		}
 
 		// Riferimento a tutti i Tassello(Clone).
 		CellS = FindObjectsOfType<CellScript> ();
 	}
 
 	void Update () {
-		
+
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+			MainCamera.transform.position = MainCameraPosition1.transform.position;
+			MainCamera.transform.rotation = MainCameraPosition1.transform.rotation;
+		}
+
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+			MainCamera.transform.position = MainCameraPosition2.transform.position;
+			MainCamera.transform.rotation = MainCameraPosition2.transform.rotation;
+		}
+
 		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && cardSelector > 0) {
 			cardSelector--;
 		}
 
-		if (CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 			if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < Hand[0].cardsInHand - 1) {
 				cardSelector++;
 			}
 		}
 
-		if (CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 			if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < Hand[1].cardsInHand - 1) {
 				cardSelector++;
 			}
@@ -146,14 +163,10 @@ public class GameController : MonoBehaviour {
 			
 		if (scorep1 >= 5 && P2Wins.activeInHierarchy == false) {
 			P1Wins.SetActive (true);
-			if (GameObject.Find ("PulsanteDraw") != null)
-				GameObject.Find ("PulsanteDraw").SetActive(false);
 		}
 
 		if (scorep2 >= 5 && P1Wins.activeInHierarchy == false) {
 			P2Wins.SetActive (true);
-			if (GameObject.Find ("PulsanteDraw") != null)
-				GameObject.Find ("PulsanteDraw").SetActive(false);
 		}
 
 		#region Vecchie meccaniche

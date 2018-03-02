@@ -29,43 +29,44 @@ public static class SetupPhase {
 	/// </summary>
 	private static GameController gc = GameController.Instance;
 
+	/// <summary>
+	/// Funzione che permette ai giocatori di pescare.
+	/// </summary>
 	public static void DrawPhase () {
-
-		if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
-			gc.Hand [0].Draw (gc.Hand [0].cardsInHand);
-		}
-
-		if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
-			gc.Hand [1].Draw (gc.Hand [1].cardsInHand);
-		}
+		DrawScript.Draw ();
 	}
 
 	public static void PositioningPhase () {
 
 		if (setupTurnCount < maxSetupTurns) {
 
-			/*
-			if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer1) {
-				gc.SpawnC [0].PawnPositioning (gc.GridC [0], gc.Hand [0], Color.red);
-				pawnPlaced++;
+
+			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+				
 			} 
 
-			else if (gc.CurrentPlayerTurn == PlayerTurn.TurnPlayer2) {
-				gc.SpawnC [1].PawnPositioning (gc.GridC [1], gc.Hand [1], Color.blue);
-				pawnPlaced++;
+			else if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+				
 			}
-	        */
+	        
 			if (pawnPlaced == pawnsToPlace) {
 			
-				if (gc.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1)
-					gc.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer2;
+				if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1)
+					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer2;
 				else
-					gc.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer1;
+					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer1;
 			
 				pawnPlaced = 0;
 			}
 
 			setupTurnCount++;
 		}
+	}
+
+	public static bool IsSetupPhaseEnded () {
+		if (setupTurnCount >= maxSetupTurns) {
+			return true;
+		}
+		return false;
 	}
 }

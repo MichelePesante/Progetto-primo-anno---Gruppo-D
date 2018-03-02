@@ -134,7 +134,7 @@ public class GridController : MonoBehaviour {
 	/// <param name="_x">Posizione x.</param>
 	/// <param name="_y">Posizione y.</param>
 	public bool positionCheck (int _x, int _y) {
-		if (GameController.Instance.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 			if (this == GameController.Instance.GridC [0]) {
 				if (_x < -1 || _y < -1)
 					return false;
@@ -143,7 +143,7 @@ public class GridController : MonoBehaviour {
 			}
 		}
 
-		if (GameController.Instance.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 			if (this == GameController.Instance.GridC [1]) {
 				if (_x < -1 || _y < 3)
 					return false;
