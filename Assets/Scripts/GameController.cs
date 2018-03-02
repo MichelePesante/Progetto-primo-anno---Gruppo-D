@@ -64,6 +64,10 @@ public class GameController : MonoBehaviour {
 
 	public GameObject P2Wins;
 
+	public GameObject ButtonsRotationP1;
+
+	public GameObject ButtonsRotationP2;
+
 	public int cardSelector;
 
 	public int clickCounterP1;
@@ -79,6 +83,10 @@ public class GameController : MonoBehaviour {
 	public GameObject MainCameraPosition1;
 
 	public GameObject MainCameraPosition2;
+
+	private bool buttonsEnabled;
+
+	private bool battleStarted;
 
 	void Awake () {
 		// Se non esiste un'istanza di questo script.
@@ -117,11 +125,15 @@ public class GameController : MonoBehaviour {
 		clickCounterP2 = 0;
 		totalPlaceableCardsP1 = 8;
 		totalPlaceableCardsP2 = 8;
+		buttonsEnabled = false;
+		battleStarted = false;
 		MainCamera = FindObjectOfType<Camera> ();
 
 		StateMachine.CurrentMacroPhase = StateMachine.MacroPhase.Start;
+
 		if (StateMachine.CurrentMacroPhase == StateMachine.MacroPhase.Start) {
 			StartPhase.OnGameStart ();
+			StateMachine.CurrentMacroPhase = StateMachine.MacroPhase.Setup;
 		}
 
 		// Riferimento a tutti i Tassello(Clone).
@@ -167,6 +179,32 @@ public class GameController : MonoBehaviour {
 
 		if (scorep2 >= 5 && P1Wins.activeInHierarchy == false) {
 			P2Wins.SetActive (true);
+		}
+
+		if (SetupPhase.IsSetupPhaseEnded () == true) {
+			StateMachine.CurrentMacroPhase = StateMachine.MacroPhase.Core;
+		}
+			
+		if (StateMachine.CurrentMacroPhase == StateMachine.MacroPhase.Core) {
+			if (buttonsEnabled == false) {
+				FindObjectOfType<RotationScript> ().hasGrid1BeenRotated = false;
+				FindObjectOfType<RotationScript> ().hasGrid2BeenRotated = false;
+				CorePhase.EnableRotationButtons ();
+				buttonsEnabled = true;
+			}
+
+			if (FindObjectOfType<RotationScript> ().hasGrid1BeenRotated == true || FindObjectOfType<RotationScript> ().hasGrid2BeenRotated == true) {
+				if (battleStarted == false) {
+					CorePhase.BattlePhase ();
+					battleStarted = true;
+				}
+			}
+
+			if (battleStarted == true) {
+				CorePhase.BackupPhase ();
+				buttonsEnabled = false;
+				battleStarted = false;
+			}
 		}
 
 		#region Vecchie meccaniche

@@ -12,7 +12,7 @@ public static class SetupPhase {
 	/// <summary>
 	/// Numero di turni nella fase di Setup.
 	/// </summary>
-	private static int maxSetupTurns = 12;
+	private static int maxSetupTurns = 6;
 
 	/// <summary>
 	/// Conteggio delle pedine piazzate ogni turno.
@@ -25,41 +25,56 @@ public static class SetupPhase {
 	private static int pawnsToPlace = 2;
 
 	/// <summary>
-	/// Riferimento alla classe GameController.
-	/// </summary>
-	private static GameController gc = GameController.Instance;
-
-	/// <summary>
 	/// Funzione che permette ai giocatori di pescare.
 	/// </summary>
 	public static void DrawPhase () {
 		DrawScript.Draw ();
 	}
 
-	public static void PositioningPhase () {
+	public static void PositioningPhase (ColliderScript _collider) {
 
 		if (setupTurnCount < maxSetupTurns) {
 
-
 			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
-				
+				if (_collider.GetComponentInParent<GridController> () == GameController.Instance.GridC [0]) {
+					if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+						if (_collider.placeable == true && GameController.Instance.clickCounterP1 < GameController.Instance.totalPlaceableCardsP1 && GameController.Instance.Hand [0].cardsInHand > 0) {
+							_collider.CardPositioning (GameController.Instance.Hand [0], GameObject.Find("Tasselli"));
+							GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand[0], Color.red);
+							GameController.Instance.clickCounterP1++;
+							pawnPlaced++;
+						}
+					}
+				}
 			} 
 
 			else if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
-				
-			}
-	        
-			if (pawnPlaced == pawnsToPlace) {
-			
-				if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1)
-					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer2;
-				else
-					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer1;
-			
-				pawnPlaced = 0;
+				if (_collider.GetComponentInParent<GridController> () == GameController.Instance.GridC [1]) {
+					if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
+						if (_collider.placeable == true && GameController.Instance.clickCounterP2 < GameController.Instance.totalPlaceableCardsP2 && GameController.Instance.Hand [1].cardsInHand > 0) {
+							_collider.CardPositioning (GameController.Instance.Hand [1], GameObject.Find("Tasselli 2"));
+							GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand[1], Color.blue);
+							GameController.Instance.clickCounterP2++;
+							pawnPlaced++;
+						}
+					}
+				}
 			}
 
-			setupTurnCount++;
+			if (pawnPlaced == pawnsToPlace) {
+
+				DrawPhase ();
+
+				if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
+					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer2;
+					setupTurnCount++;
+				} else {
+					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer1;
+					setupTurnCount++;
+				}
+
+				pawnPlaced = 0;
+			}
 		}
 	}
 
