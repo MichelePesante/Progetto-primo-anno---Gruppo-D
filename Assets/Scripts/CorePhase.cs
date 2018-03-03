@@ -30,9 +30,10 @@ public static class CorePhase {
 					if (_collider.placeable == true && GameController.Instance.Hand [0].cardsInHand > 0) {
 						_collider.CardPositioning (GameController.Instance.Hand [0], GameObject.Find ("Tasselli"));
 						GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand [0], Color.red);
+						movesDone++;
+						EndTurnCheck ();
 					}
 				}
-				movesDone++;
 			}
 
 			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
@@ -40,13 +41,12 @@ public static class CorePhase {
 					if (_collider.placeable == true && GameController.Instance.Hand [1].cardsInHand > 0) {
 						_collider.CardPositioning (GameController.Instance.Hand [1], GameObject.Find ("Tasselli 2"));
 						GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand [1], Color.blue);
+						movesDone++;
+						EndTurnCheck ();
 					}
 				}
-				movesDone++;
 			}
 		}
-
-		EndTurnCheck ();
 	}
 
 	public static void UpgradingPhase (PawnScript _pawn) {
@@ -58,9 +58,10 @@ public static class CorePhase {
 					if (_pawn.HasBeenPlaced == true && GameController.Instance.Hand [0].cardsInHand > 0) {
 						_pawn.Strength += GameController.Instance.Hand [0].cards [GameController.Instance.cardSelector].Value;
 						GameController.Instance.Hand [0].RemoveCardFromHand (GameController.Instance.cardSelector);
+						movesDone++;
+						EndTurnCheck ();
 					}
 				}
-				movesDone++;
 			}
 
 			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
@@ -69,13 +70,12 @@ public static class CorePhase {
 						if (_pawn.HasBeenPlaced == true && GameController.Instance.Hand [1].cardsInHand > 0) {
 							_pawn.Strength += GameController.Instance.Hand [1].cards [GameController.Instance.cardSelector].Value;
 							GameController.Instance.Hand [1].RemoveCardFromHand (GameController.Instance.cardSelector);
+							movesDone++;
+							EndTurnCheck ();
 						}
 					}
 				}
-				movesDone++;
 			}
-
-			EndTurnCheck ();
 		}
 	}
 
