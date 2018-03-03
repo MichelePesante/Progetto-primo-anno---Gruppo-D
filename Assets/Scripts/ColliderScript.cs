@@ -67,6 +67,8 @@ public class ColliderScript : MonoBehaviour {
 	void OnMouseDown () {
 		if (StateMachine.CurrentMacroPhase == StateMachine.MacroPhase.Setup)
 			SetupPhase.PositioningPhase (this);
+		if (StateMachine.CurrentMacroPhase == StateMachine.MacroPhase.Core)
+			CorePhase.PositioningPhase (this);
 	}
 
 

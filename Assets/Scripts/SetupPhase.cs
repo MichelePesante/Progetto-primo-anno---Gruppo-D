@@ -37,26 +37,22 @@ public static class SetupPhase {
 
 			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 				if (_collider.GetComponentInParent<GridController> () == GameController.Instance.GridC [0]) {
-					if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
-						if (_collider.placeable == true && GameController.Instance.clickCounterP1 < GameController.Instance.totalPlaceableCardsP1 && GameController.Instance.Hand [0].cardsInHand > 0) {
-							_collider.CardPositioning (GameController.Instance.Hand [0], GameObject.Find("Tasselli"));
-							GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand[0], Color.red);
-							GameController.Instance.clickCounterP1++;
-							pawnPlaced++;
-						}
+					if (_collider.placeable == true && GameController.Instance.clickCounterP1 < GameController.Instance.totalPlaceableCardsP1 && GameController.Instance.Hand [0].cardsInHand > 0) {
+						_collider.CardPositioning (GameController.Instance.Hand [0], GameObject.Find("Tasselli"));
+						GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand[0], Color.red);
+						GameController.Instance.clickCounterP1++;
+						pawnPlaced++;
 					}
 				}
-			} 
+			}
 
 			else if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 				if (_collider.GetComponentInParent<GridController> () == GameController.Instance.GridC [1]) {
-					if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
-						if (_collider.placeable == true && GameController.Instance.clickCounterP2 < GameController.Instance.totalPlaceableCardsP2 && GameController.Instance.Hand [1].cardsInHand > 0) {
-							_collider.CardPositioning (GameController.Instance.Hand [1], GameObject.Find("Tasselli 2"));
-							GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand[1], Color.blue);
-							GameController.Instance.clickCounterP2++;
-							pawnPlaced++;
-						}
+					if (_collider.placeable == true && GameController.Instance.clickCounterP2 < GameController.Instance.totalPlaceableCardsP2 && GameController.Instance.Hand [1].cardsInHand > 0) {
+						_collider.CardPositioning (GameController.Instance.Hand [1], GameObject.Find("Tasselli 2"));
+						GameController.Instance.CardS.PlaceCardAndSetPlacedCard (_collider.X, _collider.Y, GameController.Instance.Hand[1], Color.blue);
+						GameController.Instance.clickCounterP2++;
+						pawnPlaced++;
 					}
 				}
 			}
@@ -67,12 +63,12 @@ public static class SetupPhase {
 
 				if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer2;
-					setupTurnCount++;
-				} else {
+				} 
+				else {
 					StateMachine.CurrentPlayerTurn = StateMachine.PlayerTurn.TurnPlayer1;
-					setupTurnCount++;
 				}
 
+				setupTurnCount++;
 				pawnPlaced = 0;
 			}
 		}

@@ -88,6 +88,8 @@ public class GameController : MonoBehaviour {
 
 	private bool battleStarted;
 
+	public bool backupPhaseIsEnded;
+
 	void Awake () {
 		// Se non esiste un'istanza di questo script.
 		if (Instance == null) {
@@ -127,6 +129,7 @@ public class GameController : MonoBehaviour {
 		totalPlaceableCardsP2 = 8;
 		buttonsEnabled = false;
 		battleStarted = false;
+		backupPhaseIsEnded = false;
 		MainCamera = FindObjectOfType<Camera> ();
 
 		StateMachine.CurrentMacroPhase = StateMachine.MacroPhase.Start;
@@ -154,17 +157,20 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && cardSelector > 0) {
 			cardSelector--;
+			CustomLogger.Log ("Carta numero {0}", cardSelector + 1);
 		}
 
 		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
 			if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < Hand[0].cardsInHand - 1) {
 				cardSelector++;
+				CustomLogger.Log ("Carta numero {0}", cardSelector + 1);
 			}
 		}
 
 		if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
 			if (Input.GetAxis ("Mouse ScrollWheel") > 0 && cardSelector < Hand[1].cardsInHand - 1) {
 				cardSelector++;
+				CustomLogger.Log ("Carta numero {0}", cardSelector + 1);
 			}
 		}
 
@@ -194,16 +200,18 @@ public class GameController : MonoBehaviour {
 			}
 
 			if (FindObjectOfType<RotationScript> ().hasGrid1BeenRotated == true || FindObjectOfType<RotationScript> ().hasGrid2BeenRotated == true) {
+				ButtonsRotationP1.SetActive (false);
+				ButtonsRotationP2.SetActive (false);
 				if (battleStarted == false) {
 					CorePhase.BattlePhase ();
 					battleStarted = true;
 				}
 			}
 
-			if (battleStarted == true) {
-				CorePhase.BackupPhase ();
+			if (backupPhaseIsEnded == true) {
 				buttonsEnabled = false;
 				battleStarted = false;
+				backupPhaseIsEnded = false;
 			}
 		}
 

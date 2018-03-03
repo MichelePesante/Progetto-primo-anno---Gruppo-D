@@ -5,11 +5,6 @@ using UnityEngine;
 public class PawnScript : MonoBehaviour {
 
 	/// <summary>
-	/// Riferimento alla classe GameController.
-	/// </summary>
-	private GameController gc;
-
-	/// <summary>
 	/// Materiale iniziale.
 	/// </summary>
 	public Material StartMaterial;
@@ -33,7 +28,6 @@ public class PawnScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gc = GameController.Instance;
 		StartMaterial = this.gameObject.GetComponent<MeshRenderer> ().material;
 	}
 
@@ -48,31 +42,13 @@ public class PawnScript : MonoBehaviour {
 	*/
 
 	void OnMouseDown () {
-		if (GetComponentInParent<GridController> () == gc.GridC [0]) {
-			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer1) {
-				if (this.HasBeenPlaced == true && gc.Hand [0].cardsInHand > 0) {
-					UpgradeCard (gc.Hand [0]);
-				}
-			}
-		}
-
-		if (GetComponentInParent<GridController> () == gc.GridC [1]) {
-			if (StateMachine.CurrentPlayerTurn == StateMachine.PlayerTurn.TurnPlayer2) {
-				if (this.HasBeenPlaced == true && gc.Hand [1].cardsInHand > 0) {
-					UpgradeCard (gc.Hand [1]);
-				}
-			}
+		if (StateMachine.CurrentMacroPhase == StateMachine.MacroPhase.Core) {
+			CorePhase.UpgradingPhase (this);
 		}
 	}
 
 	void OnMouseOver () {
 		
-	}
-
-	private void UpgradeCard (Hand _handToPlaceCardFrom) {
-		Strength += _handToPlaceCardFrom.cards [gc.cardSelector].Value;
-
-		_handToPlaceCardFrom.RemoveCardFromHand (gc.cardSelector);
 	}
 
 	public void SetVariables (int _x, int _y, string _name, int _strength, bool _hasBeenPlaced, Color _team) {
