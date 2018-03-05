@@ -1,0 +1,237 @@
+fileFormatVersion: 2
+guid: a495d4fe053ac8a41ab892c741d234f1
+timeCreated: 1520270968
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Big_Antenna
+    100002: Big_Flag
+    100004: //RootNode
+    100006: Eye
+    100008: group1
+    100010: group2
+    100012: Left_Ankle
+    100014: Left_Bones_Leg
+    100016: Left_Calf
+    100018: Left_Ext_Bones_Leg
+    100020: Left_Ext_Leg
+    100022: Left_Foot
+    100024: Left_Knee
+    100026: Left_Lower_Leg
+    100028: Left_Thigh
+    100030: Left_Upper_Leg
+    100032: Little_Antenna
+    100034: Little_Antenna 1
+    100036: Little_Flag
+    100038: Lower_Body
+    100040: Lower_Chest
+    100042: Middle_Chest
+    100044: Neck
+    100046: polySurface30
+    100048: polySurface31
+    100050: polySurface33
+    100052: Right_Ankle
+    100054: Right_Bones_Leg
+    100056: Right_Calf
+    100058: Right_Ext_Bones_Leg
+    100060: Right_Ext_Leg
+    100062: Right_Foot
+    100064: Right_Knee
+    100066: Right_Lower_Leg
+    100068: Right_Thigh
+    100070: Right_Upper_Leg
+    100072: transform1
+    100074: transform10
+    100076: transform11
+    100078: transform12
+    100080: transform13
+    100082: transform14
+    100084: transform15
+    100086: transform16
+    100088: transform17
+    100090: transform18
+    100092: transform19
+    100094: transform2
+    100096: transform20
+    100098: transform21
+    100100: transform22
+    100102: transform23
+    100104: transform24
+    100106: transform25
+    100108: transform26
+    100110: transform27
+    100112: transform28
+    100114: transform29
+    100116: transform3
+    100118: transform30
+    100120: transform31
+    100122: transform32
+    100124: transform33
+    100126: transform34
+    100128: transform4
+    100130: transform5
+    100132: transform6
+    100134: transform7
+    100136: transform8
+    100138: transform9
+    100140: Upper_Chest
+    100142: Upper_Con_Lower_Body
+    400000: Big_Antenna
+    400002: Big_Flag
+    400004: //RootNode
+    400006: Eye
+    400008: group1
+    400010: group2
+    400012: Left_Ankle
+    400014: Left_Bones_Leg
+    400016: Left_Calf
+    400018: Left_Ext_Bones_Leg
+    400020: Left_Ext_Leg
+    400022: Left_Foot
+    400024: Left_Knee
+    400026: Left_Lower_Leg
+    400028: Left_Thigh
+    400030: Left_Upper_Leg
+    400032: Little_Antenna
+    400034: Little_Antenna 1
+    400036: Little_Flag
+    400038: Lower_Body
+    400040: Lower_Chest
+    400042: Middle_Chest
+    400044: Neck
+    400046: polySurface30
+    400048: polySurface31
+    400050: polySurface33
+    400052: Right_Ankle
+    400054: Right_Bones_Leg
+    400056: Right_Calf
+    400058: Right_Ext_Bones_Leg
+    400060: Right_Ext_Leg
+    400062: Right_Foot
+    400064: Right_Knee
+    400066: Right_Lower_Leg
+    400068: Right_Thigh
+    400070: Right_Upper_Leg
+    400072: transform1
+    400074: transform10
+    400076: transform11
+    400078: transform12
+    400080: transform13
+    400082: transform14
+    400084: transform15
+    400086: transform16
+    400088: transform17
+    400090: transform18
+    400092: transform19
+    400094: transform2
+    400096: transform20
+    400098: transform21
+    400100: transform22
+    400102: transform23
+    400104: transform24
+    400106: transform25
+    400108: transform26
+    400110: transform27
+    400112: transform28
+    400114: transform29
+    400116: transform3
+    400118: transform30
+    400120: transform31
+    400122: transform32
+    400124: transform33
+    400126: transform34
+    400128: transform4
+    400130: transform5
+    400132: transform6
+    400134: transform7
+    400136: transform8
+    400138: transform9
+    400140: Upper_Chest
+    400142: Upper_Con_Lower_Body
+    2100000: lambert1
+    2300000: Little_Antenna
+    3300000: Little_Antenna
+    4300000: Little_Antenna
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
