@@ -21,6 +21,10 @@ public class PawnScript : MonoBehaviour {
 
 	public Color Team;
 
+	public RobotData Data;
+
+	private RobotData instanceData;
+
 	/// <summary>
 	/// Materiale utilizzato quando un oggetto è stato selezionato.
 	/// </summary>
@@ -29,6 +33,7 @@ public class PawnScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartMaterial = this.gameObject.GetComponent<MeshRenderer> ().material;
+		Setup ();
 	}
 
 	/*
@@ -58,5 +63,14 @@ public class PawnScript : MonoBehaviour {
 		Strength = _strength;
 		HasBeenPlaced = _hasBeenPlaced;
 		Team = _team;
+	}
+
+	private void Setup () {
+		if (!Data)
+			return;
+		instanceData = Instantiate<RobotData> (Data);
+		Strength = instanceData.Strength;
+		X = instanceData.X;
+		Y = instanceData.Y;
 	}
 }

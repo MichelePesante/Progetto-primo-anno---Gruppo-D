@@ -126,4 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartMaterial: {fileID: 2100000, guid: f7acc359f8e2fa04380285e68885d893, type: 2}
+  X: 0
+  Y: 0
+  Name: 
+  Strength: 0
+  HasBeenPlaced: 0
+  Team: {r: 0, g: 0, b: 0, a: 0}
+  Data: {fileID: 0}
   SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}
