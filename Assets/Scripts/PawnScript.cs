@@ -70,7 +70,5 @@ public class PawnScript : MonoBehaviour {
 			return;
 		instanceData = Instantiate<RobotData> (Data);
 		Strength = instanceData.Strength;
-		X = instanceData.X;
-		Y = instanceData.Y;
 	}
 }

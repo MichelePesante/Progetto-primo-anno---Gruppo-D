@@ -6,8 +6,6 @@ public static class CorePhase {
 
 	private static int maxCoreTurns = 20;
 
-	private static int coreTurnCount = 0;
-
 	private static int movesDone = 0;
 
 	private static int maxPlayerMoves = 2;

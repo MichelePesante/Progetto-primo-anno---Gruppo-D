@@ -132,5 +132,5 @@ MonoBehaviour:
   Strength: 0
   HasBeenPlaced: 0
   Team: {r: 0, g: 0, b: 0, a: 0}
-  Data: {fileID: 0}
+  Data: {fileID: 11400000, guid: 3c8e3fec797bda64b9a14810ed3047c8, type: 2}
   SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}
