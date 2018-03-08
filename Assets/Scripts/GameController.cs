@@ -193,19 +193,8 @@ public class GameController : MonoBehaviour {
 			
 		if (StateMachine.CurrentMacroPhase == StateMachine.MacroPhase.Core) {
 			if (buttonsEnabled == false) {
-				FindObjectOfType<RotationScript> ().hasGrid1BeenRotated = false;
-				FindObjectOfType<RotationScript> ().hasGrid2BeenRotated = false;
 				CorePhase.EnableRotationButtons ();
 				buttonsEnabled = true;
-			}
-
-			if (FindObjectOfType<RotationScript> ().hasGrid1BeenRotated == true || FindObjectOfType<RotationScript> ().hasGrid2BeenRotated == true) {
-				ButtonsRotationP1.SetActive (false);
-				ButtonsRotationP2.SetActive (false);
-				if (battleStarted == false) {
-					CorePhase.BattlePhase ();
-					battleStarted = true;
-				}
 			}
 
 			if (backupPhaseIsEnded == true) {

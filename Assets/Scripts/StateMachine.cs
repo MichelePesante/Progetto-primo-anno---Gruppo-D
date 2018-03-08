@@ -10,7 +10,21 @@ public class StateMachine : MonoBehaviour {
 
     private BattlePhase _currentPhase;
 
-
+	public BattlePhase CurrentPhase {
+		get {
+			return _currentPhase;
+		}
+		set {
+			if (CheckPhaseChange(value) == true) {
+				OnPhaseEnd(_currentPhase);
+				_currentPhase = value;
+				OnPhaseStart(_currentPhase);
+			}
+			else {
+				Debug.Log("Non è possibile passare da " + _currentPhase + " a " + value);
+			}
+		}
+	}
 
     public enum MacroPhase {
 		Start,
@@ -27,57 +41,29 @@ public class StateMachine : MonoBehaviour {
 
     //enumeratore per le fasi di battaglia/core
 
-    public enum BattlePhase{
-
+    public enum BattlePhase {
         Rotation,
         Battle,
         Reinforce,
 
     }
-
-
-    public BattlePhase CurrentPhase
-    {
-        get
-        {
-            return _currentPhase;
-        }
-        set
-        {
-            if (CheckPhaseChange(value) == true)
-            {
-                OnPhaseEnd(_currentPhase);
-                _currentPhase = value;
-                OnPhaseStart(_currentPhase);
-            }
-            else
-            {
-                Debug.Log("Non è possibile passare da " + _currentPhase + " a " + value);
-            }
-        }
-    }
-
-
-    
-    bool CheckPhaseChange (BattlePhase newPhase)
-    {
-        switch (newPhase)   
-        {
+		
+    bool CheckPhaseChange (BattlePhase newPhase) {
+        switch (newPhase) {
             case BattlePhase.Rotation:
+			if (CurrentPhase != BattlePhase.Reinforce)
+				return false;
+			return true;
             case BattlePhase.Battle:
                 if (CurrentPhase != BattlePhase.Rotation)
                     return false;
                 return true;
-                break;
             case BattlePhase.Reinforce:
                 if (CurrentPhase != BattlePhase.Battle)
                     return false;
                 return true;
-                break;
             default:
-                    return false;
-                return true;
-                break;
+				return false;
         }
     }
 
@@ -86,10 +72,11 @@ public class StateMachine : MonoBehaviour {
 
     void OnPhaseStart(BattlePhase newPhase) {
 
-        switch (newPhase)
-        {
-            case BattlePhase.Rotation:
-                Debug.Log("Sono entrato nello stato di " + newPhase);
+        switch (newPhase) {
+		case BattlePhase.Rotation:
+			Debug.Log ("Sono entrato nello stato di " + newPhase);
+			FindObjectOfType<RotationScript> ().EnableGridButtons ();
+			FindObjectOfType<RotationScript> ().SwitchButtonsPosition ();
                 break;
             case BattlePhase.Battle:
                 Debug.Log("Sono entrato nello stato di " + newPhase);
@@ -106,10 +93,9 @@ public class StateMachine : MonoBehaviour {
 
     void OnPhaseUpdate() {
 
-        switch (CurrentPhase)
-        {
-            case BattlePhase.Rotation:
-                Debug.Log("Sono nello stato di " + CurrentPhase);
+        switch (CurrentPhase) {
+		case BattlePhase.Rotation:
+				Debug.Log ("Sono nello stato di " + CurrentPhase);
                 break;
             case BattlePhase.Battle:
                 Debug.Log("Sono nello stato di " + CurrentPhase);
@@ -127,8 +113,7 @@ public class StateMachine : MonoBehaviour {
 
     void OnPhaseEnd(BattlePhase oldPhase) {
 
-        switch (oldPhase)
-        {
+        switch (oldPhase) {
             case BattlePhase.Rotation:
                 Debug.Log("Sto uscendo dallo stato di " + oldPhase);
                 break;
