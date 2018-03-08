@@ -78,8 +78,9 @@ public class StateMachine : MonoBehaviour {
 			FindObjectOfType<RotationScript> ().EnableGridButtons ();
 			FindObjectOfType<RotationScript> ().SwitchButtonsPosition ();
                 break;
-            case BattlePhase.Battle:
-                Debug.Log("Sono entrato nello stato di " + newPhase);
+		case BattlePhase.Battle:
+			Debug.Log ("Sono entrato nello stato di " + newPhase);
+			FindObjectOfType<BattleScript> ().Battle ();
                 break;
             case BattlePhase.Reinforce:
                 Debug.Log("Sono entrato nello stato di " + newPhase);
