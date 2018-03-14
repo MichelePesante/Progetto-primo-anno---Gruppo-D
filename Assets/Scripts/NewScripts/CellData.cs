@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -19,6 +20,8 @@ public class CellData {
 	/// </summary>
 	public Vector3 WorldPosition;
 
+	public bool IsValid = true;
+
 	/// <summary>
 	/// Inizializza una nuova istanza con le variabili x, y, la posizione nel mondo e la piazzabilità.
 	/// </summary>
@@ -29,5 +32,9 @@ public class CellData {
 		X = _x;
 		Y = _y;
 		WorldPosition = _worldPosition;
+	}
+
+	public void SetValidity(bool _isValid) {
+		IsValid = _isValid;
 	}
 }
