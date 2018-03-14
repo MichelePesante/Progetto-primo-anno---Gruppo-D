@@ -500,6 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4653826276982020}
   - component: {fileID: 95088741057716520}
+  - component: {fileID: 114557899900008590}
   - component: {fileID: 114276153286609560}
   m_Layer: 0
   m_Name: Curvo1_Prefab
@@ -2180,3 +2181,15 @@ MonoBehaviour:
   Team: {r: 0, g: 0, b: 0, a: 0}
   Data: {fileID: 0}
   SelectedObject: {fileID: 0}
+--- !u!114 &114557899900008590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1522253630188524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b61ca421fb82b74ca4883c62061b723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}

@@ -22,10 +22,11 @@ GameObject:
   - component: {fileID: 33923558856061290}
   - component: {fileID: 23932737931760444}
   - component: {fileID: 95905828795150776}
+  - component: {fileID: 114042820969492000}
   - component: {fileID: 65598017634507144}
   - component: {fileID: 114017286049563168}
   m_Layer: 0
-  m_Name: BasePawn
+  m_Name: Quadrato4_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,5 +133,17 @@ MonoBehaviour:
   Strength: 0
   HasBeenPlaced: 0
   Team: {r: 0, g: 0, b: 0, a: 0}
-  Data: {fileID: 11400000, guid: 3c8e3fec797bda64b9a14810ed3047c8, type: 2}
+  Data: {fileID: 0}
   SelectedObject: {fileID: 2100000, guid: 61cdd8621e6e28446bae3d013a7590c3, type: 2}
+--- !u!114 &114042820969492000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1554460695144738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b61ca421fb82b74ca4883c62061b723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
