@@ -89,7 +89,6 @@ public class StateMachine : MonoBehaviour {
                 Debug.Log("Sono entrato in uno stato sconosciuto " + newPhase);
                 break;
         }
-
     }
 
     void OnPhaseUpdate() {

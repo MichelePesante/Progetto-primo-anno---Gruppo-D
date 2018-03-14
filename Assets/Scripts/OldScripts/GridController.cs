@@ -110,6 +110,10 @@ public class GridController : MonoBehaviour {
 		}
 	}
 
+	private void CreateGrid () {
+		
+	}
+
 	#region API
 
 	/// <summary>
