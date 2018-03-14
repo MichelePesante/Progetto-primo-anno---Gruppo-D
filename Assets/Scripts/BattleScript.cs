@@ -79,5 +79,26 @@ public class BattleScript : MonoBehaviour {
 			finalScore = scoretemp2 - scoretemp1;
 			GameController.Instance.scorep2 += finalScore;
 		}
+
+		EndBattlePhase ();
+	}
+
+	private void EndBattlePhase () {
+		if (GameController.Instance.scorep1 < 5 || GameController.Instance.scorep1 < 5)
+			FindObjectOfType<StateMachine> ().CurrentPhase = StateMachine.BattlePhase.Reinforce;
+	}
+
+	private void EndGame () {
+		if (GameController.Instance.scorep1 >= 5 || GameController.Instance.scorep2 >= 5) {
+			if (GameController.Instance.scorep1 > GameController.Instance.scorep2) {
+				// Inserire immagine "Vince player 1".
+			}
+			if (GameController.Instance.scorep2 > GameController.Instance.scorep1) {
+				// Inserire immagine "Vince player 2".
+			}
+			if (GameController.Instance.scorep1 == GameController.Instance.scorep2) {
+				// Inserire immagine "Pareggio".
+			}
+		}
 	}
 }
