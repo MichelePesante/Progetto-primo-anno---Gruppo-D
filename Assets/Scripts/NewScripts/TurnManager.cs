@@ -88,9 +88,13 @@ public class TurnManager : MonoBehaviour {
     {
         switch (newMacroPhase)
         {
-            case MacroPhase.Preparation:
-                CurrentPlayerTurn = PlayerTurn.P1_Turn;
-                break;
+			case MacroPhase.Preparation:
+				FindObjectOfType<NewGridController> ().CreateGrid (FindObjectOfType<NewGridController> ().X, FindObjectOfType<NewGridController> ().Y, FindObjectOfType<NewGridController> ().Offset);
+				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotCurvi);
+				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotQuadrati);
+				CurrentPlayerTurn = PlayerTurn.P1_Turn;
+				_currentMacroPhase = MacroPhase.Game;
+	            break;
             case MacroPhase.Game:
                 CurrentPlayerTurn = PlayerTurn.P1_Turn;
                 break;
@@ -150,9 +154,8 @@ public class TurnManager : MonoBehaviour {
         {
             case TurnState.choosePlayer:
                 break;
-            case TurnState.placing:
-                CurrentPlayerTurn = PlayerTurn.P1_Turn;
-
+			case TurnState.placing:
+				CurrentPlayerTurn = PlayerTurn.P1_Turn;
                 break;
             case TurnState.rotation:
                 break;
