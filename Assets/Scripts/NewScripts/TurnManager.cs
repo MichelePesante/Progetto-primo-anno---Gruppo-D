@@ -16,7 +16,7 @@ public class TurnManager : MonoBehaviour {
         set
         {
             _currentPlayerTurn = value;
-            OnTurnStart(_currentPlayerTurn);
+			OnTurnStart(_currentPlayerTurn);
         }
     }
 
@@ -93,10 +93,10 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotCurvi);
 				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotQuadrati);
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
-				_currentMacroPhase = MacroPhase.Game;
+				CurrentTurnState = TurnState.choosePlayer;
 	            break;
-            case MacroPhase.Game:
-                CurrentPlayerTurn = PlayerTurn.P1_Turn;
+		case MacroPhase.Game:
+				CurrentPlayerTurn = PlayerTurn.P1_Turn;
                 break;
             default:
                 break;
@@ -152,10 +152,13 @@ public class TurnManager : MonoBehaviour {
     {
         switch (newState)
         {
-            case TurnState.choosePlayer:
+			case TurnState.choosePlayer:
+				CurrentTurnState = TurnState.placing;
                 break;
 			case TurnState.placing:
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
+				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotCurvi);
+				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotQuadrati);
                 break;
             case TurnState.rotation:
                 break;
@@ -171,29 +174,46 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    void OnTurnStart (PlayerTurn newTurn)
+	void OnTurnStart (PlayerTurn newTurn)
     {
-        switch(CurrentMacroPhase)
-        {
-            case MacroPhase.Preparation:
-                switch (CurrentTurnState)
-                {
-                    case TurnState.choosePlayer:
-                        //if player has been chosen, go to placing
-                        break;
-                    case TurnState.placing:
-                        //if 3+3 turns have passed (or some other thing to check for), go to MacroPhase game
-                        break;
-                }
-                break;
-            case MacroPhase.Game:
-                CurrentTurnState = TurnState.rotation;
-                //check for win/lose conditions here
-                break;
-            default:
-                Debug.Log("Errore: Nessuna macro fase");
-                break;
+		if (newTurn == PlayerTurn.P1_Turn) {
+			switch (CurrentMacroPhase) {
+			case MacroPhase.Preparation:
+				switch (CurrentTurnState) {
+				case TurnState.choosePlayer:
+					break;
+				case TurnState.placing:
+					FindObjectOfType<RobotManager> ().RobotsCurviInHand = FindObjectOfType<RobotManager> ().Draw (FindObjectOfType<RobotManager> ().RobotCurviInHand, FindObjectOfType<RobotManager> ().RobotCurvi, FindObjectOfType<RobotManager> ().RobotsCurviInHand);
+					break;
+				}
+				break;
+			case MacroPhase.Game:
+				CurrentTurnState = TurnState.rotation;
+				break;
+			default:
+				Debug.Log ("Errore: Nessuna macro fase");
+				break;
+			}
         }
+		if (newTurn == PlayerTurn.P2_Turn) {
+			switch (CurrentMacroPhase) {
+			case MacroPhase.Preparation:
+				switch (CurrentTurnState) {
+				case TurnState.choosePlayer:
+					break;
+				case TurnState.placing:
+					FindObjectOfType<RobotManager> ().RobotsQuadratiInHand = FindObjectOfType<RobotManager> ().Draw (FindObjectOfType<RobotManager> ().RobotQuadratiInHand, FindObjectOfType<RobotManager> ().RobotQuadrati, FindObjectOfType<RobotManager> ().RobotsQuadratiInHand);
+					break;
+				}
+				break;
+			case MacroPhase.Game:
+				CurrentTurnState = TurnState.rotation;
+				break;
+			default:
+				Debug.Log ("Errore: Nessuna macro fase");
+				break;
+			}
+		}
     }
 
 
@@ -206,13 +226,13 @@ public class TurnManager : MonoBehaviour {
     /// </summary>
     public void ChangeTurn()
     {
-        if (CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn)
+        if (CurrentPlayerTurn == PlayerTurn.P1_Turn)
         {
-            CurrentPlayerTurn = TurnManager.PlayerTurn.P2_Turn;
+            CurrentPlayerTurn = PlayerTurn.P2_Turn;
         }
-        else if (CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn)
+        else if (CurrentPlayerTurn == PlayerTurn.P2_Turn)
         {
-            CurrentPlayerTurn = TurnManager.PlayerTurn.P1_Turn;
+            CurrentPlayerTurn = PlayerTurn.P1_Turn;
         }
     }
 }
