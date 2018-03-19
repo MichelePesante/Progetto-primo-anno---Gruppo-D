@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
-
-	public GameObject CameraPlayer1;
-	public GameObject CameraPlayer2;
+	
+	public GameObject PointToLookP1;
+	public GameObject PointToLookP2;
+	public GameObject PreparationCamera;
 
 	void Update () {
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn) {
-			transform.position = CameraPlayer1.transform.position;
-			transform.rotation = CameraPlayer1.transform.rotation;
+			transform.LookAt (PointToLookP1.transform.position);
 		}
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn) {
-			transform.position = CameraPlayer2.transform.position;
-			transform.rotation = CameraPlayer2.transform.rotation;
+			transform.LookAt (PointToLookP2.transform.position);
 		}
 	}
 }

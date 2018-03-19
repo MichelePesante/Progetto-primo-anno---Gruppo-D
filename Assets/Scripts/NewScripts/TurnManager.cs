@@ -159,6 +159,8 @@ public class TurnManager : MonoBehaviour {
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
 				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotCurvi);
 				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotQuadrati);
+				FindObjectOfType<CameraController>().transform.SetParent (FindObjectOfType<CameraController>().PreparationCamera.transform);
+				FindObjectOfType<CameraController>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
                 break;
             case TurnState.rotation:
                 break;
@@ -184,6 +186,7 @@ public class TurnManager : MonoBehaviour {
 					break;
 				case TurnState.placing:
 					FindObjectOfType<RobotManager> ().RobotsCurviInHand = FindObjectOfType<RobotManager> ().Draw (FindObjectOfType<RobotManager> ().RobotCurviInHand, FindObjectOfType<RobotManager> ().RobotCurvi, FindObjectOfType<RobotManager> ().RobotsCurviInHand);
+					FindObjectOfType<CameraController>().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
 					break;
 				}
 				break;
@@ -203,6 +206,7 @@ public class TurnManager : MonoBehaviour {
 					break;
 				case TurnState.placing:
 					FindObjectOfType<RobotManager> ().RobotsQuadratiInHand = FindObjectOfType<RobotManager> ().Draw (FindObjectOfType<RobotManager> ().RobotQuadratiInHand, FindObjectOfType<RobotManager> ().RobotQuadrati, FindObjectOfType<RobotManager> ().RobotsQuadratiInHand);
+					FindObjectOfType<CameraController>().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
 					break;
 				}
 				break;
