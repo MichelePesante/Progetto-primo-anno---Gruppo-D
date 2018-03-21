@@ -25,6 +25,8 @@ public class RobotManager : MonoBehaviour {
 	private int currentFirstRobotQuadrato;
 	private int robotToPlay;
 	private int maxRobotsInHand = 4;
+	private int currentTurn;
+	private int maxPreparationTurns = 12;
 	private Vector3[] standardPositionsCurvi = new Vector3[4];
 	private Vector3[] standardPositionsQuadrati = new Vector3[4];
 	private Vector3[] highlightedPositionsCurvi = new Vector3[4];
@@ -37,17 +39,18 @@ public class RobotManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing) {
 			SwitchRobotToPlay (PosizioniRobotCurvi, standardPositionsCurvi, highlightedPositionsCurvi, RobotsCurviInHand);
 			PlayRobot (RobotCurviInHand, RobotCurviGiocati);
 			RobotPositioning (RobotCurviInHand, PosizioniRobotCurvi, RobotsCurviInHand);
 		}
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing) {
 			SwitchRobotToPlay (PosizioniRobotQuadrati, standardPositionsQuadrati, highlightedPositionsQuadrati, RobotsQuadratiInHand);
 			PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
 			RobotPositioning (RobotQuadratiInHand, PosizioniRobotQuadrati, RobotsQuadratiInHand);
 		}
 		SwitchPlacingTurn ();
+		EndPreparationPhase ();
 	}
 
 
@@ -109,6 +112,7 @@ public class RobotManager : MonoBehaviour {
 					RobotsCurviInHand--;
 					_hit.collider.gameObject.GetComponentInChildren<ColliderController> ().IsPlaceable = false;
 					robotToPlay = 0;
+					currentTurn++;
 				}
 			}
 		}
@@ -126,6 +130,7 @@ public class RobotManager : MonoBehaviour {
 					RobotsQuadratiInHand--;
 					_hit.collider.gameObject.GetComponentInChildren<ColliderController> ().IsPlaceable = false;
 					robotToPlay = 0;
+					currentTurn++;
 				}
 			}
 		}
@@ -205,5 +210,10 @@ public class RobotManager : MonoBehaviour {
 			FindObjectOfType<TurnManager> ().ChangeTurn ();
 			RobotPlayed = 0;
 		}
+	}
+
+	private void EndPreparationPhase () {
+		if (currentTurn == maxPreparationTurns)
+			FindObjectOfType<TurnManager> ().CurrentMacroPhase = TurnManager.MacroPhase.Game;
 	}
 }

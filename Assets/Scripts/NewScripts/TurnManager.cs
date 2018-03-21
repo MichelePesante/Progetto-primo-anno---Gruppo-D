@@ -162,7 +162,11 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<CameraController>().transform.SetParent (FindObjectOfType<CameraController>().PreparationCamera.transform);
 				FindObjectOfType<CameraController>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
                 break;
-            case TurnState.rotation:
+			case TurnState.rotation:
+				FindObjectOfType<NewGridController> ().MyLeftRotationButton.SetActive (true);
+				FindObjectOfType<NewGridController> ().MyRightRotationButton.SetActive (true);
+				FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.SetActive (true);
+				FindObjectOfType<NewGridController> ().EnemyRightRotationButton.SetActive (true);
                 break;
             case TurnState.battle:
                 break;

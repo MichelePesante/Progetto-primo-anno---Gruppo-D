@@ -18,7 +18,13 @@ public class NewGridController : MonoBehaviour {
 	public GameObject FirstTilesContainer;
 	public GameObject SecondTilesContainer;
 
-	public GameObject collider;
+	[Header ("Rotation Buttons")]
+	public GameObject MyLeftRotationButton;
+	public GameObject MyRightRotationButton;
+	public GameObject EnemyLeftRotationButton;
+	public GameObject EnemyRightRotationButton;
+
+	public GameObject Collider;
 
 	private List<CellData> cells = new List<CellData> ();
 		
@@ -38,8 +44,8 @@ public class NewGridController : MonoBehaviour {
 			for (int c = 0; c < _y; c++) {
 				CellData cellCheck = FindCell (i, c);
 				if (cellCheck.IsValid) {
-					collider = Instantiate (ColliderPrefab, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c), transform.rotation, CollidersContainer.transform);
-					collider.GetComponent<ColliderController>().SetPosition (i, c, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c));
+					Collider = Instantiate (ColliderPrefab, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c), transform.rotation, CollidersContainer.transform);
+					Collider.GetComponent<ColliderController>().SetPosition (i, c, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c));
 				}
 			}
 		}
@@ -54,7 +60,7 @@ public class NewGridController : MonoBehaviour {
 	}
 
 	private void SetGridPosition (GameObject _gridToSet) {
-		_gridToSet.transform.localPosition = new Vector3 (0f, 0f, 19.6f);
+		_gridToSet.transform.localPosition = new Vector3 (2.4f, 0f, 12f);
 	}
 
 	#region API
