@@ -107,6 +107,7 @@ public class RobotManager : MonoBehaviour {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 0 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 2 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
 					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
 					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 1.5f, 0f);
+					_listToPlayRobotFrom [robotToPlay].transform.SetParent (FindObjectOfType<NewGridController>().FirstTilesContainer.transform);
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
 					RobotPlayed++;
 					RobotsCurviInHand--;
@@ -125,6 +126,7 @@ public class RobotManager : MonoBehaviour {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 4 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 6 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
 					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
 					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 1.5f, 0f);
+					_listToPlayRobotFrom [robotToPlay].transform.SetParent (FindObjectOfType<NewGridController>().SecondTilesContainer.transform);
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
 					RobotPlayed++;
 					RobotsQuadratiInHand--;

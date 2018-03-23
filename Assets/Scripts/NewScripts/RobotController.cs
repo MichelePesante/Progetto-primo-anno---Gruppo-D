@@ -31,4 +31,12 @@ public class RobotController : MonoBehaviour {
 		abilità_3 = Data.Abilità_3;
 		abilità_4 = Data.Abilità_4;
 	}
+
+	#region API
+
+	public void SetRobotParent () {
+		
+	}
+
+	#endregion
 }

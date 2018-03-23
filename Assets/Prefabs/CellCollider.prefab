@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4936198813132834}
   - component: {fileID: 65482041477630798}
-  - component: {fileID: 114204539660518532}
   - component: {fileID: 114015126954789308}
   m_Layer: 0
   m_Name: CellCollider
@@ -67,20 +66,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X: 0
   Y: 0
---- !u!114 &114204539660518532
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1416807724635422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d214a04c1fb2c24b8a3d65a44d4001e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  X: 0
-  Y: 0
-  placeable: 0
-  basePawn: {fileID: 1554460695144738, guid: de441d06665a4244387cec666c3dda4e, type: 2}
-  advancedPawn: {fileID: 1421388866332954, guid: 890ba1773ae12a64689971f7c2df1f6b,
-    type: 2}
+  IsPlaceable: 1
+  WorldPosition: {x: 0, y: 0, z: 0}
