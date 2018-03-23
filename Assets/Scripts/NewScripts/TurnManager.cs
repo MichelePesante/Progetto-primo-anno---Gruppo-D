@@ -3,69 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour {
-    
-    /// <summary> ENUM per indicare di chi è il turno </summary>
-    public enum PlayerTurn { P1_Turn, P2_Turn };
-    private PlayerTurn _currentPlayerTurn;
-    public PlayerTurn CurrentPlayerTurn
-    {
-        get
-        {
-            return _currentPlayerTurn;
-        }
-        set
-        {
-            _currentPlayerTurn = value;
+
+	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
+	public enum MacroPhase { Preparation, Game };
+	private MacroPhase _currentMacroPhase;
+	public MacroPhase CurrentMacroPhase
+	{
+		get
+		{
+			return _currentMacroPhase;
+		}
+		set
+		{
+			if (MacroPhaseChange(value))
+			{
+				_currentMacroPhase = value;
+				OnMacroPhaseStart(_currentMacroPhase);
+			}
+		}
+	}
+
+	/// <summary> ENUM per indicare lo stato corrente a seconda della macro fase </summary>
+	public enum TurnState { choosePlayer, placing, rotation, battle, upgrade, useEnergy };
+	private TurnState _currentTurnState;
+	public TurnState CurrentTurnState
+	{
+		get
+		{
+			return _currentTurnState;
+		}
+		set
+		{
+			if (OnStateChange(value))
+			{
+				_currentTurnState = value;
+				OnStateStart(_currentTurnState);
+			}
+		}
+	}
+
+	/// <summary> ENUM per indicare di chi è il turno </summary>
+	public enum PlayerTurn { P1_Turn, P2_Turn };
+	private PlayerTurn _currentPlayerTurn;
+	public PlayerTurn CurrentPlayerTurn
+	{
+		get
+		{
+			return _currentPlayerTurn;
+		}
+		set
+		{
+			_currentPlayerTurn = value;
 			OnTurnStart(_currentPlayerTurn);
-        }
-    }
-
-    /// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
-    public enum MacroPhase { Preparation, Game };
-    private MacroPhase _currentMacroPhase;
-    public MacroPhase CurrentMacroPhase
-    {
-        get
-        {
-            return _currentMacroPhase;
-        }
-        set
-        {
-            if (MacroPhaseChange(value))
-            {
-                _currentMacroPhase = value;
-                OnMacroPhaseStart(_currentMacroPhase);
-            }
-        }
-    }
-
-    /// <summary> ENUM per indicare lo stato corrente a seconda della macro fase </summary>
-    public enum TurnState { choosePlayer, placing, rotation, battle, upgrade, useEnergy };
-    private TurnState _currentTurnState;
-    public TurnState CurrentTurnState
-    {
-        get
-        {
-            return _currentTurnState;
-        }
-        set
-        {
-            if (OnStateChange(value))
-            {
-                _currentTurnState = value;
-                OnStateStart(_currentTurnState);
-            }
-        }
-    }
-
+		}
+	}
 
     private void Start()
     {
 
         //at the start of the game, the various states will be:
-        CurrentPlayerTurn = PlayerTurn.P1_Turn;
         CurrentMacroPhase = MacroPhase.Preparation;
         CurrentTurnState = TurnState.choosePlayer;
+		CurrentPlayerTurn = PlayerTurn.P1_Turn;
     }
 
     /// <summary> Funzione che ritorna bool della macro fase corrente </summary>
@@ -92,10 +91,10 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<NewGridController> ().CreateGrid (FindObjectOfType<NewGridController> ().X, FindObjectOfType<NewGridController> ().Y, FindObjectOfType<NewGridController> ().Offset);
 				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotCurvi);
 				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotQuadrati);
+				CurrentTurnState = TurnState.choosePlayer;	
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
-				CurrentTurnState = TurnState.choosePlayer;
 	            break;
-		case MacroPhase.Game:
+			case MacroPhase.Game:
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
                 break;
             default:
@@ -168,7 +167,13 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.SetActive (true);
 				FindObjectOfType<NewGridController> ().EnemyRightRotationButton.SetActive (true);
                 break;
-            case TurnState.battle:
+			case TurnState.battle:
+				
+				FindObjectOfType<NewGridController> ().MyLeftRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().MyRightRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().EnemyRightRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().EndRotationButton.SetActive (false);
                 break;
             case TurnState.upgrade:
                 break;

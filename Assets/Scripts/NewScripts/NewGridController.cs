@@ -23,10 +23,19 @@ public class NewGridController : MonoBehaviour {
 	public GameObject MyRightRotationButton;
 	public GameObject EnemyLeftRotationButton;
 	public GameObject EnemyRightRotationButton;
+	public GameObject EndRotationButton;
 
 	public GameObject Collider;
+	public int GridRotated = 0;
 
 	private List<CellData> cells = new List<CellData> ();
+
+	void Update () {
+		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GridRotated == 2) {
+			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
+			GridRotated = 0;
+		}
+	}
 		
 	private void CreateGraphic (int _x, int _y, float _offset, GameObject _parent) {
 		for (int i = 0; i < _x; i++) {
