@@ -5,7 +5,7 @@ using UnityEngine;
 public class RotationController : MonoBehaviour {
 
 	void OnMouseDown () {
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
 			if (this.gameObject.name == "MyLeftRotationButton") {
 				RotateGrid ("FirstGrid", "FirstGridLeftRotation");
 				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
@@ -34,7 +34,7 @@ public class RotationController : MonoBehaviour {
 			}
 		}
 
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
 			if (this.gameObject.name == "EnemyLeftRotationButton") {
 				RotateGrid ("SecondGrid", "SecondGridLeftRotation");
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
@@ -63,7 +63,7 @@ public class RotationController : MonoBehaviour {
 			}
 		}
 
-		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && this.gameObject.name == "EndRotationButton") {
+		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && this.gameObject.name == "EndRotationButton" && GameMenu.GameIsPaused == false) {
 			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
 		}
 	}

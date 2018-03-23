@@ -39,12 +39,12 @@ public class RobotManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
 			SwitchRobotToPlay (PosizioniRobotCurvi, standardPositionsCurvi, highlightedPositionsCurvi, RobotsCurviInHand);
 			PlayRobot (RobotCurviInHand, RobotCurviGiocati);
 			RobotPositioning (RobotCurviInHand, PosizioniRobotCurvi, RobotsCurviInHand);
 		}
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
 			SwitchRobotToPlay (PosizioniRobotQuadrati, standardPositionsQuadrati, highlightedPositionsQuadrati, RobotsQuadratiInHand);
 			PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
 			RobotPositioning (RobotQuadratiInHand, PosizioniRobotQuadrati, RobotsQuadratiInHand);

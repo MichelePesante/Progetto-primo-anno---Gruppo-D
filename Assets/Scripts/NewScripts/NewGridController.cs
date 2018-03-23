@@ -31,7 +31,7 @@ public class NewGridController : MonoBehaviour {
 	private List<CellData> cells = new List<CellData> ();
 
 	void Update () {
-		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GridRotated == 2) {
+		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GridRotated == 2 && GameMenu.GameIsPaused == false) {
 			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
 			GridRotated = 0;
 		}

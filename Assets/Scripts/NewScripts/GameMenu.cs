@@ -4,16 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour {
 
+    public GameObject PauseImage;
 
-    public static bool GameIsPaused = false;
 
-    private void Start()
-    {
-        PauseMenu.SetActive(false);
-    }
+    public static bool GameIsPaused;
+
 
 
     public GameObject PauseMenu;
+
+
+
+    private void Start()
+    {
+        GameIsPaused = false;
+        Time.timeScale = 1f;
+        PauseMenu.SetActive(false);
+        PauseImage.SetActive(false);
+    }
+
+   
     // Update is called once per frame
     void Update()
     {
@@ -39,6 +49,7 @@ public class GameMenu : MonoBehaviour {
     public void Resume()
     {
         PauseMenu.SetActive(false);
+        PauseImage.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -46,8 +57,10 @@ public class GameMenu : MonoBehaviour {
     public void Pause()
     {
         PauseMenu.SetActive(true);
+        PauseImage.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        
     }
 
     public void GoBack()
@@ -58,6 +71,13 @@ public class GameMenu : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Resume();
     }
 
 
