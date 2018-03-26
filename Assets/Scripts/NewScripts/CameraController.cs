@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour {
 	public GameObject PointToLookP1;
 	public GameObject PointToLookP2;
 	public GameObject PreparationCamera;
-	public GameObject BattleCamera;
 
 	void Update () {
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing || FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation)) {

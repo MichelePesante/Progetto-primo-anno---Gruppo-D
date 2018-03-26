@@ -17,7 +17,7 @@ public class RobotManager : MonoBehaviour {
 	public List<RobotController> RobotCurviInHand;
 	public List<RobotController> RobotQuadratiInHand;
 
-	[Header ("Posizioni Robot")]
+	[Header ("Posizioni in mano Robot")]
 	public GameObject[] PosizioniRobotCurvi;
 	public GameObject[] PosizioniRobotQuadrati;
 
@@ -26,7 +26,7 @@ public class RobotManager : MonoBehaviour {
 	private int robotToPlay;
 	private int maxRobotsInHand = 4;
 	private int currentTurn;
-	private int maxPreparationTurns = 12;
+	private int maxPreparationTurns = 16;
 	private Vector3[] standardPositionsCurvi = new Vector3[4];
 	private Vector3[] standardPositionsQuadrati = new Vector3[4];
 	private Vector3[] highlightedPositionsCurvi = new Vector3[4];
@@ -107,7 +107,8 @@ public class RobotManager : MonoBehaviour {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 0 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 2 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
 					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
 					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 1.5f, 0f);
-					_listToPlayRobotFrom [robotToPlay].transform.SetParent (FindObjectOfType<NewGridController>().FirstTilesContainer.transform);
+					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
+					_listToPlayRobotFrom [robotToPlay].SetPosition ();
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
 					RobotPlayed++;
 					RobotsCurviInHand--;
@@ -126,7 +127,8 @@ public class RobotManager : MonoBehaviour {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 4 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 6 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
 					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
 					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 1.5f, 0f);
-					_listToPlayRobotFrom [robotToPlay].transform.SetParent (FindObjectOfType<NewGridController>().SecondTilesContainer.transform);
+					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
+					_listToPlayRobotFrom [robotToPlay].SetPosition ();
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
 					RobotPlayed++;
 					RobotsQuadratiInHand--;
@@ -193,6 +195,147 @@ public class RobotManager : MonoBehaviour {
 				highlightedPositionsQuadrati [i] = standardPositionsQuadrati [i] + Vector3.up;
 			}
 		}
+	}
+
+	public void SetGraphicAsParent () {
+		foreach (RobotController robot in RobotCurviGiocati) {
+			robot.transform.SetParent (FindObjectOfType<NewGridController> ().FirstTilesContainer.transform);
+		}
+		foreach (RobotController robot in RobotQuadratiGiocati) {
+			robot.transform.SetParent (FindObjectOfType<NewGridController> ().SecondTilesContainer.transform);
+		}
+	}
+
+	#region RobotRotation
+
+	public void OnLeftRotationFirstGrid () {
+		foreach (RobotController robot in RobotCurviGiocati) {
+			if (robot.X == 0 && robot.Y == 0) {
+				robot.X += 0;
+				robot.Y += 2;
+			} else if (robot.X == 0 && robot.Y == 2) {
+				robot.X += 2;
+				robot.Y += 0;
+			} else if (robot.X == 2 && robot.Y == 2) {
+				robot.X += 0;
+				robot.Y += -2;
+			} else if (robot.X == 2 && robot.Y == 0) {
+				robot.X += -2;
+				robot.Y += 0;
+			}
+			if (robot.X == 0 && robot.Y == 1) {
+				robot.X += 1;
+				robot.Y += 1;
+			} else if (robot.X == 1 && robot.Y == 2) {
+				robot.X += 1;
+				robot.Y += -1;
+			} else if (robot.X == 2 && robot.Y == 1) {
+				robot.X += -1;
+				robot.Y += -1;
+			} else if (robot.X == 1 && robot.Y == 0) {
+				robot.X += -1;
+				robot.Y += 1;
+			}
+		}
+	}
+
+	public void OnRightRotationFirstGrid () {
+		foreach (RobotController robot in RobotCurviGiocati) {
+			if (robot.X == 0 && robot.Y == 0) {
+				robot.X += 2;
+				robot.Y += 0;
+			} else if (robot.X == 0 && robot.Y == 2) {
+				robot.X += 0;
+				robot.Y += -2;
+			} else if (robot.X == 2 && robot.Y == 2) {
+				robot.X += -2;
+				robot.Y += 0;
+			} else if (robot.X == 2 && robot.Y == 0) {
+				robot.X += 0;
+				robot.Y += 2;
+			}
+			if (robot.X == 0 && robot.Y == 1) {
+				robot.X += 1;
+				robot.Y += -1;
+			} else if (robot.X == 1 && robot.Y == 2) {
+				robot.X += -1;
+				robot.Y += -1;
+			} else if (robot.X == 2 && robot.Y == 1) {
+				robot.X += -1;
+				robot.Y += 1;
+			} else if (robot.X == 1 && robot.Y == 0) {
+				robot.X += 1;
+				robot.Y += 1;
+			}
+		}
+	}
+
+	public void OnLeftRotationSecondGrid () {
+		foreach (RobotController robot in RobotQuadratiGiocati) {
+			if (robot.X == 0 && robot.Y == 4) {
+				robot.X += 0;
+				robot.Y += 2;
+			} else if (robot.X == 0 && robot.Y == 6) {
+				robot.X += 2;
+				robot.Y += 0;
+			} else if (robot.X == 2 && robot.Y == 6) {
+				robot.X += 0;
+				robot.Y += -2;
+			} else if (robot.X == 2 && robot.Y == 4) {
+				robot.X += -2;
+				robot.Y += 0;
+			}
+			if (robot.X == 0 && robot.Y == 5) {
+				robot.X += 1;
+				robot.Y += 1;
+			} else if (robot.X == 1 && robot.Y == 6) {
+				robot.X += 1;
+				robot.Y += -1;
+			} else if (robot.X == 2 && robot.Y == 5) {
+				robot.X += -1;
+				robot.Y += -1;
+			} else if (robot.X == 1 && robot.Y == 4) {
+				robot.X += -1;
+				robot.Y += 1;
+			}
+		}
+	}
+
+	public void OnRightRotationSecondGrid () {
+		foreach (RobotController robot in RobotQuadratiGiocati) {
+			if (robot.X == 0 && robot.Y == 4) {
+				robot.X += 2;
+				robot.Y += 0;
+			} else if (robot.X == 0 && robot.Y == 6) {
+				robot.X += 0;
+				robot.Y += -2;
+			} else if (robot.X == 2 && robot.Y == 6) {
+				robot.X += -2;
+				robot.Y += 0;
+			} else if (robot.X == 2 && robot.Y == 4) {
+				robot.X += 0;
+				robot.Y += 2;
+			}
+			if (robot.X == 0 && robot.Y == 5) {
+				robot.X += 1;
+				robot.Y += -1;
+			} else if (robot.X == 1 && robot.Y == 6) {
+				robot.X += -1;
+				robot.Y += -1;
+			} else if (robot.X == 2 && robot.Y == 5) {
+				robot.X += -1;
+				robot.Y += 1;
+			} else if (robot.X == 1 && robot.Y == 4) {
+				robot.X += 1;
+				robot.Y += 1;
+			}
+		}
+	}
+
+	#endregion
+
+	public void Battle () {
+
 	}
 
 	#endregion

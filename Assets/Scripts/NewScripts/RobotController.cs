@@ -6,6 +6,9 @@ public class RobotController : MonoBehaviour {
 
 	public RobotData Data;
 
+	public int X;
+	public int Y;
+
 	private int strength;
 	private int upgrade;
 	private int abilità_1;
@@ -34,8 +37,9 @@ public class RobotController : MonoBehaviour {
 
 	#region API
 
-	public void SetRobotParent () {
-		
+	public void SetPosition () {
+		X = GetComponentInParent<ColliderController> ().X;
+		Y = GetComponentInParent<ColliderController> ().Y;
 	}
 
 	#endregion
