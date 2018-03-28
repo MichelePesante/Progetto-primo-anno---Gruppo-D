@@ -42,5 +42,13 @@ public class RobotController : MonoBehaviour {
 		Y = GetComponentInParent<ColliderController> ().Y;
 	}
 
+	public int GetStrength () {
+		return strength;
+	}
+
+	public void AddStrength () {
+		
+	}
+
 	#endregion
 }

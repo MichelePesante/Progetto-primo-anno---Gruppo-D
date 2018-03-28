@@ -8,6 +8,8 @@ public class RobotManager : MonoBehaviour {
 	public int MaxRobotToPlay = 2;
 	public int RobotsCurviInHand;
 	public int RobotsQuadratiInHand;
+	public int ScoreP1;
+	public int ScoreP2;
 
 	[Header ("Liste Robot")]
 	public List<RobotController> RobotCurvi;
@@ -335,7 +337,82 @@ public class RobotManager : MonoBehaviour {
 	#endregion
 
 	public void Battle () {
+		int battleResult1 = 0;
+		int battleResult2 = 0;
+		int battleResult3 = 0;
 
+		int scoretemp1 = 0;
+		int scoretemp2 = 0;
+		int finalScore = 0;
+
+		int ForzaPedina1p1 = 0;
+		int ForzaPedina2p1 = 0;
+		int ForzaPedina3p1 = 0;
+		int ForzaPedina1p2 = 0;
+		int ForzaPedina2p2 = 0;
+		int ForzaPedina3p2 = 0;
+
+		foreach (RobotController robot in RobotCurviGiocati) {
+			if (robot.X == 0 && robot.Y == 2) {
+				ForzaPedina1p1 = robot.GetStrength();
+				CustomLogger.Log ("Forza pedina 1 player 1:   " + ForzaPedina1p1);
+			}
+			if (robot.X == 1 && robot.Y == 2) {
+				ForzaPedina2p1 = robot.GetStrength();
+				CustomLogger.Log ("Forza pedina 2 player 1:   " + ForzaPedina2p1);
+			}
+			if (robot.X == 2 && robot.Y == 2) {
+				ForzaPedina3p1 = robot.GetStrength();
+				CustomLogger.Log ("Forza pedina 3 player 1:   " + ForzaPedina3p1);
+			}
+		}
+
+		foreach (RobotController robot in RobotQuadratiGiocati) {
+			if (robot.X == 0 && robot.Y == 4) {
+				ForzaPedina1p2 = robot.GetStrength();
+				CustomLogger.Log ("Forza pedina 1 player 2:   " + ForzaPedina1p2);
+			}
+			if (robot.X == 1 && robot.Y == 4) {
+				ForzaPedina2p2 = robot.GetStrength();
+				CustomLogger.Log ("Forza pedina 2 player 2:   " + ForzaPedina2p2);
+			}
+			if (robot.X == 2 && robot.Y == 4) {
+				ForzaPedina3p2 = robot.GetStrength();
+				CustomLogger.Log ("Forza pedina 3 player 2:   " + ForzaPedina3p2);
+			}
+		}
+
+		battleResult1 = ForzaPedina1p1 - ForzaPedina1p2;
+		if (battleResult1 > 0) {
+			scoretemp1 += 1;
+		}
+		if (battleResult1 < 0) {
+			scoretemp2 += 1;
+		}
+		battleResult2 = ForzaPedina2p1 - ForzaPedina2p2;
+		if (battleResult2 > 0) {
+			scoretemp1 += 1;
+		}
+		if (battleResult2 < 0) {
+			scoretemp2 += 1;
+		}
+		battleResult3 = ForzaPedina3p1 - ForzaPedina3p2;
+		if (battleResult3 > 0) {
+			scoretemp1 += 1;
+		}
+		if (battleResult3 < 0) {
+			scoretemp2 += 1;
+		}
+		if (scoretemp1 > scoretemp2) {
+			finalScore = scoretemp1 - scoretemp2;
+			ScoreP1 += finalScore;
+			print (ScoreP1);
+		}
+		if (scoretemp1 < scoretemp2) {
+			finalScore = scoretemp2 - scoretemp1;
+			ScoreP2 += finalScore;
+			print (ScoreP2);
+		}
 	}
 
 	#endregion
