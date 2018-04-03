@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour {
 
+	public int RotationTurn = 0;
+	public int BattleTurn = 0;
+
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
 	public enum MacroPhase { Preparation, Game };
 	private MacroPhase _currentMacroPhase;

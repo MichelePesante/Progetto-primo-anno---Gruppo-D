@@ -11,14 +11,12 @@ public class RotationController : MonoBehaviour {
 				FindObjectOfType<RobotManager> ().OnLeftRotationFirstGrid ();
 				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 			if (this.gameObject.name == "MyRightRotationButton") {
 				RotateGrid ("FirstGrid", "FirstGridRightRotation");
 				FindObjectOfType<RobotManager> ().OnRightRotationFirstGrid ();
 				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 			if (this.gameObject.name == "EnemyLeftRotationButton") {
 				RotateGrid ("SecondGrid", "SecondGridLeftRotation");
@@ -26,7 +24,6 @@ public class RotationController : MonoBehaviour {
 				ActiveEndRotationButton ();
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 			if (this.gameObject.name == "EnemyRightRotationButton") {
 				RotateGrid ("SecondGrid", "SecondGridRightRotation");
@@ -34,7 +31,6 @@ public class RotationController : MonoBehaviour {
 				ActiveEndRotationButton ();
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 		}
 
@@ -44,14 +40,12 @@ public class RotationController : MonoBehaviour {
 				FindObjectOfType<RobotManager> ().OnLeftRotationSecondGrid ();
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 			if (this.gameObject.name == "EnemyRightRotationButton") {
 				RotateGrid ("SecondGrid", "SecondGridRightRotation");
 				FindObjectOfType<RobotManager> ().OnRightRotationSecondGrid ();
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 			if (this.gameObject.name == "MyLeftRotationButton") {
 				RotateGrid ("FirstGrid", "FirstGridLeftRotation");
@@ -59,7 +53,6 @@ public class RotationController : MonoBehaviour {
 				ActiveEndRotationButton ();
 				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 			if (this.gameObject.name == "MyRightRotationButton") {
 				RotateGrid ("FirstGrid", "FirstGridRightRotation");
@@ -67,7 +60,6 @@ public class RotationController : MonoBehaviour {
 				ActiveEndRotationButton ();
 				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
 				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
-				FindObjectOfType<NewGridController> ().GridRotated++;
 			}
 		}
 
