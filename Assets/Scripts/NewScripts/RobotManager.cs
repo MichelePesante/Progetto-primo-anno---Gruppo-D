@@ -406,13 +406,12 @@ public class RobotManager : MonoBehaviour {
 		if (scoretemp1 > scoretemp2) {
 			finalScore = scoretemp1 - scoretemp2;
 			ScoreP1 += finalScore;
-			print (ScoreP1);
 		}
 		if (scoretemp1 < scoretemp2) {
 			finalScore = scoretemp2 - scoretemp1;
 			ScoreP2 += finalScore;
-			print (ScoreP2);
 		}
+		print ("Player 1: " + ScoreP1 + ", Player 2: " + ScoreP2);
 	}
 
 	#endregion

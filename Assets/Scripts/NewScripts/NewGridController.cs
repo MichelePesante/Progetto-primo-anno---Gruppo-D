@@ -27,15 +27,22 @@ public class NewGridController : MonoBehaviour {
 
 	public GameObject Collider;
 	public int GridRotated = 0;
+	public int RotationTurn = 0;
 
 	private List<CellData> cells = new List<CellData> ();
 
-	void Update () {
+		/*
 		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GridRotated == 2 && GameMenu.GameIsPaused == false) {
 			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
 			GridRotated = 0;
 		}
-	}
+		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.battle && RotationTurn == 1 && GameMenu.GameIsPaused == false) {
+			// FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.upgrade;
+			FindObjectOfType<TurnManager> ().ChangeTurn();
+			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.rotation;
+			RotationTurn = 0;
+		}
+		*/
 		
 	private void CreateGraphic (int _x, int _y, float _offset, GameObject _parent) {
 		for (int i = 0; i < _x; i++) {

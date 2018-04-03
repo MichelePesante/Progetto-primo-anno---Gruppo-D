@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -401,6 +401,8 @@ MonoBehaviour:
   MaxRobotToPlay: 2
   RobotsCurviInHand: 0
   RobotsQuadratiInHand: 0
+  ScoreP1: 0
+  ScoreP2: 0
   RobotCurvi:
   - {fileID: 2116081175}
   - {fileID: 160364536}
@@ -1291,7 +1293,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33ab1bd171e35e849bafd9cd706f2aa3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1309,7 +1311,7 @@ Transform:
   m_GameObject: {fileID: 583001573}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 7, y: 0, z: 12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1484429422}
   m_RootOrder: 2
@@ -1324,7 +1326,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.2800003, z: 0.019697363}
+  m_Size: {x: 1, y: 1, z: 0.019697363}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &583001577
 MonoBehaviour:
@@ -2284,7 +2286,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df004ceb58a71124c87dc24e0273dadf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2302,7 +2304,7 @@ Transform:
   m_GameObject: {fileID: 931952155}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: -2.5, y: 0, z: 12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1484429422}
   m_RootOrder: 3
@@ -2317,7 +2319,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.2800003, z: 0.019697363}
+  m_Size: {x: 1, y: 1, z: 0.019697363}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &931952159
 MonoBehaviour:
@@ -3695,7 +3697,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f3b544d8105464409b609a0024e3db2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3713,7 +3715,7 @@ Transform:
   m_GameObject: {fileID: 1644881125}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 7, y: 0, z: 2.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1484429422}
   m_RootOrder: 1
@@ -3728,7 +3730,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.2800003, z: 0.019697363}
+  m_Size: {x: 1, y: 1, z: 0.019697363}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1644881129
 MonoBehaviour:
@@ -3853,7 +3855,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f038a740e4f9ed3449d1a6c23ea51136, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3871,7 +3873,7 @@ Transform:
   m_GameObject: {fileID: 1697240613}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -2.2, y: 0, z: 2.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1484429422}
   m_RootOrder: 0
@@ -3886,7 +3888,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.2800003, z: 0.019697363}
+  m_Size: {x: 1, y: 1, z: 0.019697363}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1697240617
 MonoBehaviour:
