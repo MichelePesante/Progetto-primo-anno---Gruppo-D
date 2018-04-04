@@ -66,6 +66,10 @@ public class RotationController : MonoBehaviour {
 		if (FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && this.gameObject.name == "EndRotationButton" && GameMenu.GameIsPaused == false) {
 			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
 		}
+
+		if (FindObjectOfType<NewGridController> ().MyLeftRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().MyRightRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().EnemyRightRotationButton.activeInHierarchy == false && GameMenu.GameIsPaused == false) {
+			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
+		}
 	}
 
 	private void RotateGrid (string _gridToRotateName, string _clipName) {

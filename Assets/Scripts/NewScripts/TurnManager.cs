@@ -6,6 +6,9 @@ public class TurnManager : MonoBehaviour {
 
 	public int RotationTurn = 0;
 	public int BattleTurn = 0;
+	public int ScoreToReach = 5;
+	public int ScoreP1;
+	public int ScoreP2;
 
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
 	public enum MacroPhase { Preparation, Game };

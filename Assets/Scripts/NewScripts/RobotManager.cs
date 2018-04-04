@@ -8,8 +8,6 @@ public class RobotManager : MonoBehaviour {
 	public int MaxRobotToPlay = 2;
 	public int RobotsCurviInHand;
 	public int RobotsQuadratiInHand;
-	public int ScoreP1;
-	public int ScoreP2;
 
 	[Header ("Liste Robot")]
 	public List<RobotController> RobotCurvi;
@@ -405,13 +403,12 @@ public class RobotManager : MonoBehaviour {
 		}
 		if (scoretemp1 > scoretemp2) {
 			finalScore = scoretemp1 - scoretemp2;
-			ScoreP1 += finalScore;
+			FindObjectOfType<TurnManager>().ScoreP1 += finalScore;
 		}
 		if (scoretemp1 < scoretemp2) {
 			finalScore = scoretemp2 - scoretemp1;
-			ScoreP2 += finalScore;
+			FindObjectOfType<TurnManager>().ScoreP2 += finalScore;
 		}
-		print ("Player 1: " + ScoreP1 + ", Player 2: " + ScoreP2);
 	}
 
 	#endregion
