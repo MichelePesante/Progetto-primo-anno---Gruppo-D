@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RotationController : MonoBehaviour {
 
+	private Quaternion angleToReach;
+
 	void OnMouseDown () {
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
 			if (this.gameObject.name == "MyLeftRotationButton") {
@@ -72,9 +74,17 @@ public class RotationController : MonoBehaviour {
 		}
 	}
 
-	private void RotateGrid (string _gridToRotateName, string _clipName) {
-		GameObject.Find(_gridToRotateName).GetComponent<Animator> ().Play (_clipName);
+	private void RotateGrid (string _gridToRotateName, string _clipToPlay) {
+		GameObject.Find (_gridToRotateName).GetComponent<Animator> ().Play (_clipToPlay);
 	}
+
+	// Funzione da chiamare in un update.
+
+	//private void RotateGrid (string _gridToRotateName) {
+	//	angleToReach = GameObject.Find (_gridToRotateName).transform.rotation;
+	//	angleToReach *= Quaternion.AngleAxis(90, Vector3.up);
+	//	GameObject.Find (_gridToRotateName).transform.rotation = Quaternion.Lerp (GameObject.Find (_gridToRotateName).transform.rotation, angleToReach, 4 * Time.deltaTime);
+	//}
 
 	private void ActiveEndRotationButton () {
 		FindObjectOfType<NewGridController> ().EndRotationButton.SetActive (true);

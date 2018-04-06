@@ -167,6 +167,8 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<CameraController>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
                 break;
 			case TurnState.rotation:
+				NewUIManager.Instance.Display_P1.SetActive (true);
+				NewUIManager.Instance.Display_P2.SetActive (true);
 				FindObjectOfType<RobotManager> ().SetGraphicAsParent ();
 				FindObjectOfType<NewGridController> ().MyLeftRotationButton.SetActive (true);
 				FindObjectOfType<NewGridController> ().MyRightRotationButton.SetActive (true);
@@ -181,19 +183,21 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<NewGridController> ().EndRotationButton.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
 					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
+					FindObjectOfType<RobotManager> ().Battle ();
 					CurrentTurnState = TurnState.rotation;
 					ChangeTurn ();
 				} 
 				else {
 					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
-					CurrentTurnState = TurnState.upgrade;
+					FindObjectOfType<RobotManager> ().Battle ();
+					CurrentTurnState = TurnState.rotation;
+					//CurrentTurnState = TurnState.upgrade;
 					ChangeTurn ();
 				}
                 break;
             case TurnState.upgrade:
                 break;
             case TurnState.useEnergy:
-                //if player has done everything, ChangeTurn();
                 break;
             default:
                 break;

@@ -22,6 +22,10 @@ public class RobotController : MonoBehaviour {
 		Setup ();
 	}
 
+	void OnMouseDown () {
+		
+	}
+
 	private void Setup () {
 		if (!Data) {
 			return;
