@@ -125,7 +125,7 @@ public class TurnManager : MonoBehaviour {
                 }
                 return true;
             case TurnState.rotation:
-                if (CurrentTurnState == TurnState.battle)
+				if (CurrentTurnState != TurnState.placing && CurrentTurnState != TurnState.battle)
                 {
                     return false;
                 }
@@ -164,7 +164,6 @@ public class TurnManager : MonoBehaviour {
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
 				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotCurvi);
 				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotQuadrati);
-				FindObjectOfType<CameraController>().transform.SetParent (FindObjectOfType<CameraController>().PreparationCamera.transform);
 				FindObjectOfType<CameraController>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
                 break;
 			case TurnState.rotation:
@@ -180,8 +179,16 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.SetActive (false);
 				FindObjectOfType<NewGridController> ().EnemyRightRotationButton.SetActive (false);
 				FindObjectOfType<NewGridController> ().EndRotationButton.SetActive (false);
-				FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
-				FindObjectOfType<RobotManager> ().Battle ();
+				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
+					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
+					CurrentTurnState = TurnState.rotation;
+					ChangeTurn ();
+				} 
+				else {
+					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
+					CurrentTurnState = TurnState.upgrade;
+					ChangeTurn ();
+				}
                 break;
             case TurnState.upgrade:
                 break;
