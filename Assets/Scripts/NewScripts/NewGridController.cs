@@ -15,14 +15,14 @@ public class NewGridController : MonoBehaviour {
 
 	[Header ("Containers")]
 	public GameObject CollidersContainer;
-	public GameObject FirstTilesContainer;
-	public GameObject SecondTilesContainer;
+	public GameObject CurveTilesContainer;
+	public GameObject QuadTilesContainer;
 
 	[Header ("Rotation Buttons")]
-	public GameObject MyLeftRotationButton;
-	public GameObject MyRightRotationButton;
-	public GameObject EnemyLeftRotationButton;
-	public GameObject EnemyRightRotationButton;
+	public GameObject CurveClockwiseRotationButton;
+	public GameObject CurveCounterclockwiseRotationButton;
+	public GameObject QuadClockwiseRotationButton;
+	public GameObject QuadCounterclockwiseRotationButton;
 	public GameObject EndRotationButton;
 
 	public GameObject Collider;
@@ -79,11 +79,11 @@ public class NewGridController : MonoBehaviour {
 		RemoveCell (2, 3);
 		RemoveCell (1, 5);
 
-		CreateGraphic (3, 3, _offset, FirstTilesContainer);
-		CreateGraphic (3, 3, _offset, SecondTilesContainer);
+		CreateGraphic (3, 3, _offset, CurveTilesContainer);
+		CreateGraphic (3, 3, _offset, QuadTilesContainer);
 		CreateColliders (_x, _y, _offset);
 
-		SetGridPosition (SecondTilesContainer);
+		SetGridPosition (QuadTilesContainer);
 	}
 
 	public Vector3 GetWorldPosition (int _x, int _y) {

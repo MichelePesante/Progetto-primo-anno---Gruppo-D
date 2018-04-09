@@ -170,16 +170,16 @@ public class TurnManager : MonoBehaviour {
 				NewUIManager.Instance.Display_P1.SetActive (true);
 				NewUIManager.Instance.Display_P2.SetActive (true);
 				FindObjectOfType<RobotManager> ().SetGraphicAsParent ();
-				FindObjectOfType<NewGridController> ().MyLeftRotationButton.SetActive (true);
-				FindObjectOfType<NewGridController> ().MyRightRotationButton.SetActive (true);
-				FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.SetActive (true);
-				FindObjectOfType<NewGridController> ().EnemyRightRotationButton.SetActive (true);
+				FindObjectOfType<NewGridController> ().CurveClockwiseRotationButton.SetActive (true);
+				FindObjectOfType<NewGridController> ().CurveCounterclockwiseRotationButton.SetActive (true);
+				FindObjectOfType<NewGridController> ().QuadClockwiseRotationButton.SetActive (true);
+				FindObjectOfType<NewGridController> ().QuadCounterclockwiseRotationButton.SetActive (true);
                 break;
 			case TurnState.battle:
-				FindObjectOfType<NewGridController> ().MyLeftRotationButton.SetActive (false);
-				FindObjectOfType<NewGridController> ().MyRightRotationButton.SetActive (false);
-				FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.SetActive (false);
-				FindObjectOfType<NewGridController> ().EnemyRightRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().CurveClockwiseRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().CurveCounterclockwiseRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().QuadClockwiseRotationButton.SetActive (false);
+				FindObjectOfType<NewGridController> ().QuadCounterclockwiseRotationButton.SetActive (false);
 				FindObjectOfType<NewGridController> ().EndRotationButton.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
 					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");

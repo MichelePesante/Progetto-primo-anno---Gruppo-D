@@ -4,64 +4,73 @@ using UnityEngine;
 
 public class RotationController : MonoBehaviour {
 
-	private Quaternion angleToReach;
+	public enum GridStep
+	{
+		First,
+		Second,
+		Third,
+		Fourth
+	}
+
+	public GridStep CurrentCurveGridStep;
+	public GridStep CurrentQuadGridStep;
 
 	void OnMouseDown () {
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
-			if (this.gameObject.name == "MyLeftRotationButton") {
-				RotateGrid ("FirstGrid", "FirstGridLeftRotation");
-				FindObjectOfType<RobotManager> ().OnLeftRotationFirstGrid ();
-				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
+			if (this.gameObject.name == "CurveClockwiseRotationButton") {
+				RotateGrid ("CurveGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnClockwiseRotationCurveGrid ();
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveClockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveCounterclockwiseRotationButton);
 			}
-			if (this.gameObject.name == "MyRightRotationButton") {
-				RotateGrid ("FirstGrid", "FirstGridRightRotation");
-				FindObjectOfType<RobotManager> ().OnRightRotationFirstGrid ();
-				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
+			if (this.gameObject.name == "CurveCounterclockwiseRotationButton") {
+				RotateGrid ("CurveGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnCounterclockwiseRotationCurveGrid ();
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveCounterclockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveClockwiseRotationButton);
 			}
-			if (this.gameObject.name == "EnemyLeftRotationButton") {
-				RotateGrid ("SecondGrid", "SecondGridLeftRotation");
-				FindObjectOfType<RobotManager> ().OnLeftRotationSecondGrid ();
+			if (this.gameObject.name == "QuadClockwiseRotationButton") {
+				RotateGrid ("QuadGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnClockwiseRotationQuadGrid ();
 				ActiveEndRotationButton ();
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadClockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadCounterclockwiseRotationButton);
 			}
-			if (this.gameObject.name == "EnemyRightRotationButton") {
-				RotateGrid ("SecondGrid", "SecondGridRightRotation");
-				FindObjectOfType<RobotManager> ().OnRightRotationSecondGrid ();
+			if (this.gameObject.name == "QuadCounterclockwiseRotationButton") {
+				RotateGrid ("QuadGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnCounterclockwiseRotationQuadGrid ();
 				ActiveEndRotationButton ();
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadCounterclockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadClockwiseRotationButton);
 			}
 		}
 
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
-			if (this.gameObject.name == "EnemyLeftRotationButton") {
-				RotateGrid ("SecondGrid", "SecondGridLeftRotation");
-				FindObjectOfType<RobotManager> ().OnLeftRotationSecondGrid ();
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
+			if (this.gameObject.name == "QuadClockwiseRotationButton") {
+				RotateGrid ("QuadGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnClockwiseRotationQuadGrid ();
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadClockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadCounterclockwiseRotationButton);
 			}
-			if (this.gameObject.name == "EnemyRightRotationButton") {
-				RotateGrid ("SecondGrid", "SecondGridRightRotation");
-				FindObjectOfType<RobotManager> ().OnRightRotationSecondGrid ();
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyRightRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().EnemyLeftRotationButton);
+			if (this.gameObject.name == "QuadCounterclockwiseRotationButton") {
+				RotateGrid ("QuadGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnCounterclockwiseRotationQuadGrid ();
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadCounterclockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().QuadClockwiseRotationButton);
 			}
-			if (this.gameObject.name == "MyLeftRotationButton") {
-				RotateGrid ("FirstGrid", "FirstGridLeftRotation");
-				FindObjectOfType<RobotManager> ().OnLeftRotationFirstGrid ();
+			if (this.gameObject.name == "CurveClockwiseRotationButton") {
+				RotateGrid ("CurveGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnClockwiseRotationCurveGrid ();
 				ActiveEndRotationButton ();
-				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveClockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveCounterclockwiseRotationButton);
 			}
-			if (this.gameObject.name == "MyRightRotationButton") {
-				RotateGrid ("FirstGrid", "FirstGridRightRotation");
-				FindObjectOfType<RobotManager> ().OnRightRotationFirstGrid ();
+			if (this.gameObject.name == "CurveCounterclockwiseRotationButton") {
+				RotateGrid ("CurveGrid", this.gameObject.name);
+				FindObjectOfType<RobotManager> ().OnCounterclockwiseRotationCurveGrid ();
 				ActiveEndRotationButton ();
-				DeactivateButton (FindObjectOfType<NewGridController>().MyRightRotationButton);
-				DeactivateButton (FindObjectOfType<NewGridController>().MyLeftRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveCounterclockwiseRotationButton);
+				DeactivateButton (FindObjectOfType<NewGridController>().CurveClockwiseRotationButton);
 			}
 		}
 
@@ -69,22 +78,102 @@ public class RotationController : MonoBehaviour {
 			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
 		}
 
-		if (FindObjectOfType<NewGridController> ().MyLeftRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().MyRightRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().EnemyLeftRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().EnemyRightRotationButton.activeInHierarchy == false && GameMenu.GameIsPaused == false) {
+		if (FindObjectOfType<NewGridController> ().CurveClockwiseRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().CurveCounterclockwiseRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().QuadClockwiseRotationButton.activeInHierarchy == false && FindObjectOfType<NewGridController> ().QuadCounterclockwiseRotationButton.activeInHierarchy == false && GameMenu.GameIsPaused == false) {
 			FindObjectOfType<TurnManager> ().CurrentTurnState = TurnManager.TurnState.battle;
 		}
 	}
 
-	private void RotateGrid (string _gridToRotateName, string _clipToPlay) {
-		GameObject.Find (_gridToRotateName).GetComponent<Animator> ().Play (_clipToPlay);
+	private void RotateGrid (string _gridToRotateName, string _buttonToPressName) {
+		GameObject gridToRotate = GameObject.Find (_gridToRotateName);
+		if (_gridToRotateName == "CurveGrid" && _buttonToPressName == "CurveClockwiseRotationButton") {
+			switch (CurrentCurveGridStep) {
+				case GridStep.First:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridFirstClockwiseRotation");
+					CurrentCurveGridStep = GridStep.Second;
+					break;
+				case GridStep.Second:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridSecondClockwiseRotation");
+					CurrentCurveGridStep = GridStep.Third;
+					break;
+				case GridStep.Third:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridThirdClockwiseRotation");
+					CurrentCurveGridStep = GridStep.Fourth;
+					break;
+				case GridStep.Fourth:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridFourthClockwiseRotation");
+					CurrentCurveGridStep = GridStep.First;
+					break;
+				default:
+					break;
+			}
+		}
+		if (_gridToRotateName == "CurveGrid" && _buttonToPressName == "CurveCounterclockwiseRotationButton") {
+			switch (CurrentCurveGridStep) {
+				case GridStep.First:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridFirstCounterclockwiseRotation");
+					CurrentCurveGridStep = GridStep.Fourth;
+					break;
+				case GridStep.Second:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridSecondCounterclockwiseRotation");
+					CurrentCurveGridStep = GridStep.First;
+					break;
+				case GridStep.Third:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridThirdCounterclockwiseRotation");
+					CurrentCurveGridStep = GridStep.Second;
+					break;
+				case GridStep.Fourth:
+					gridToRotate.GetComponent<Animator> ().Play ("CurveGridFourthCounterclockwiseRotation");
+					CurrentCurveGridStep = GridStep.Third;
+					break;
+				default:
+					break;
+			}
+		}
+		if (_gridToRotateName == "QuadGrid" && _buttonToPressName == "QuadClockwiseRotationButton") {
+			switch (CurrentQuadGridStep) {
+				case GridStep.First:
+					CurrentQuadGridStep = GridStep.Second;
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridFirstClockwiseRotation");
+					break;
+				case GridStep.Second:
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridSecondClockwiseRotation");
+					CurrentQuadGridStep = GridStep.Third;
+					break;
+				case GridStep.Third:
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridThirdClockwiseRotation");
+					CurrentQuadGridStep = GridStep.Fourth;
+					break;
+				case GridStep.Fourth:
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridFourthClockwiseRotation");
+					CurrentQuadGridStep = GridStep.First;
+					break;
+				default:
+					break;
+			}
+		}
+		if (_gridToRotateName == "QuadGrid" && _buttonToPressName == "QuadCounterclockwiseRotationButton") {
+			switch (CurrentQuadGridStep) {
+				case GridStep.First:
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridFirstCounterclockwiseRotation");
+					CurrentQuadGridStep = GridStep.Fourth;
+					break;
+				case GridStep.Second:
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridSecondCounterclockwiseRotation");
+					CurrentQuadGridStep = GridStep.First;
+					break;
+				case GridStep.Third:
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridThirdCounterclockwiseRotation");
+					CurrentQuadGridStep = GridStep.Second;
+					break;
+				case GridStep.Fourth:
+					gridToRotate.GetComponent<Animator> ().Play ("QuadGridFourthCounterclockwiseRotation");
+					CurrentQuadGridStep = GridStep.Third;
+					break;
+				default:
+					break;
+			}
+		}
 	}
-
-	// Funzione da chiamare in un update.
-
-	//private void RotateGrid (string _gridToRotateName) {
-	//	angleToReach = GameObject.Find (_gridToRotateName).transform.rotation;
-	//	angleToReach *= Quaternion.AngleAxis(90, Vector3.up);
-	//	GameObject.Find (_gridToRotateName).transform.rotation = Quaternion.Lerp (GameObject.Find (_gridToRotateName).transform.rotation, angleToReach, 4 * Time.deltaTime);
-	//}
 
 	private void ActiveEndRotationButton () {
 		FindObjectOfType<NewGridController> ().EndRotationButton.SetActive (true);

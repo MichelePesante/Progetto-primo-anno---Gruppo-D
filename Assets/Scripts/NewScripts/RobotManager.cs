@@ -199,16 +199,16 @@ public class RobotManager : MonoBehaviour {
 
 	public void SetGraphicAsParent () {
 		foreach (RobotController robot in RobotCurviGiocati) {
-			robot.transform.SetParent (FindObjectOfType<NewGridController> ().FirstTilesContainer.transform);
+			robot.transform.SetParent (FindObjectOfType<NewGridController> ().CurveTilesContainer.transform);
 		}
 		foreach (RobotController robot in RobotQuadratiGiocati) {
-			robot.transform.SetParent (FindObjectOfType<NewGridController> ().SecondTilesContainer.transform);
+			robot.transform.SetParent (FindObjectOfType<NewGridController> ().QuadTilesContainer.transform);
 		}
 	}
 
 	#region RobotRotation
 
-	public void OnLeftRotationFirstGrid () {
+	public void OnClockwiseRotationCurveGrid () {
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 0 && robot.Y == 0) {
 				robot.X += 0;
@@ -239,7 +239,7 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	public void OnRightRotationFirstGrid () {
+	public void OnCounterclockwiseRotationCurveGrid () {
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 0 && robot.Y == 0) {
 				robot.X += 2;
@@ -270,7 +270,7 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	public void OnLeftRotationSecondGrid () {
+	public void OnClockwiseRotationQuadGrid () {
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 0 && robot.Y == 4) {
 				robot.X += 0;
@@ -301,7 +301,7 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	public void OnRightRotationSecondGrid () {
+	public void OnCounterclockwiseRotationQuadGrid () {
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 0 && robot.Y == 4) {
 				robot.X += 2;
