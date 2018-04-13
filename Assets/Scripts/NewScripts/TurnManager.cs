@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour {
 
+	public static TurnManager Instance;
+
 	public int RotationTurn = 0;
 	public int BattleTurn = 0;
 	public int ScoreToReach = 5;
@@ -61,6 +63,15 @@ public class TurnManager : MonoBehaviour {
 		{
 			_currentPlayerTurn = value;
 			OnTurnStart(_currentPlayerTurn);
+		}
+	}
+
+	void Awake () {
+		if (Instance == null) {
+			Instance = this;
+		}
+		else {
+			Destroy (this.gameObject);
 		}
 	}
 
@@ -170,29 +181,22 @@ public class TurnManager : MonoBehaviour {
 				NewUIManager.Instance.Display_P1.SetActive (true);
 				NewUIManager.Instance.Display_P2.SetActive (true);
 				FindObjectOfType<RobotManager> ().SetGraphicAsParent ();
-				FindObjectOfType<NewGridController> ().CurveClockwiseRotationButton.SetActive (true);
-				FindObjectOfType<NewGridController> ().CurveCounterclockwiseRotationButton.SetActive (true);
-				FindObjectOfType<NewGridController> ().QuadClockwiseRotationButton.SetActive (true);
-				FindObjectOfType<NewGridController> ().QuadCounterclockwiseRotationButton.SetActive (true);
+				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
+				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
+				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
+				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (true);
                 break;
 			case TurnState.battle:
-				FindObjectOfType<NewGridController> ().CurveClockwiseRotationButton.SetActive (false);
-				FindObjectOfType<NewGridController> ().CurveCounterclockwiseRotationButton.SetActive (false);
-				FindObjectOfType<NewGridController> ().QuadClockwiseRotationButton.SetActive (false);
-				FindObjectOfType<NewGridController> ().QuadCounterclockwiseRotationButton.SetActive (false);
-				FindObjectOfType<NewGridController> ().EndRotationButton.SetActive (false);
+				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (false);
+				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (false);
+				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (false);
+				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (false);
+				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
 					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
-					FindObjectOfType<RobotManager> ().Battle ();
-					CurrentTurnState = TurnState.rotation;
-					ChangeTurn ();
 				} 
 				else {
 					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
-					FindObjectOfType<RobotManager> ().Battle ();
-					CurrentTurnState = TurnState.rotation;
-					//CurrentTurnState = TurnState.upgrade;
-					ChangeTurn ();
 				}
                 break;
             case TurnState.upgrade:
