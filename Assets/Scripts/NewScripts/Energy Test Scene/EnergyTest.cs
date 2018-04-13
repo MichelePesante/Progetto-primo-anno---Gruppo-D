@@ -14,11 +14,8 @@ public class EnergyTest : MonoBehaviour {
     public int P2EnergyValue;
     private int MinEnergyValue = 0;
     private int MaxEnergyValue = 5;
-    public GameObject P1Totem;
-    public GameObject P2Totem;
-    private Quaternion TotemRotation;
-    private float smooth = 1f;
-
+   
+   
     // Use this for initialization
     void Start()
     {
@@ -26,7 +23,8 @@ public class EnergyTest : MonoBehaviour {
         RedPlayerUI.SetActive(true);
         BluePlayerUI.SetActive(false);
         TurnText.text = "Turno Player 1";
-        
+        P1EnergyValue = P1EnergyValue + 1;
+
     }
 	
 	// Update is called once per frame
@@ -70,27 +68,25 @@ public class EnergyTest : MonoBehaviour {
                 TurnText.text = "Turno Player 2";
             }
         }
-        
-       
 
+
+        EnergyConsume();
 
         
     }
 
-    public void Energy()
+    public void EnergyConsume()
     {
         if (TurnPlayer1 == true && Input.GetKeyDown(KeyCode.Space))
         {
-            TotemRotation = P1Totem.transform.rotation;
-            TotemRotation *= Quaternion.AngleAxis(45, Vector3.up);
+            P1EnergyValue = P1EnergyValue - 1;
         }
        
        else if (TurnPlayer1 == false && Input.GetKeyDown(KeyCode.Space))
        {
-            TotemRotation = P2Totem.transform.rotation;
-            TotemRotation *= Quaternion.AngleAxis(45, Vector3.up);
+            P2EnergyValue = P2EnergyValue - 1;
        }
-        transform.rotation = Quaternion.Lerp(transform.rotation, TotemRotation, 4 * smooth * Time.deltaTime);
+      
     }
 
    
