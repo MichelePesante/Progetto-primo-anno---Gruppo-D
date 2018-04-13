@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class ButtonManager : MonoBehaviour {
 
+	public static ButtonManager Instance;
+
 	public Button CurveGridClockwiseButton;
 	public Button CurveGridCounterclockwiseButton;
 	public Button QuadGridClockwiseButton;
@@ -13,6 +15,15 @@ public class ButtonManager : MonoBehaviour {
 	public Button Skip_Turn;
 
 	private float rotationSpeed;
+
+	void Awake () {
+		if (Instance == null) {
+			Instance = this;
+		}
+		else {
+			Destroy (this.gameObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -24,11 +35,46 @@ public class ButtonManager : MonoBehaviour {
 		
 	}
 
+	private void EnableButton (Button _buttonToEnable) {
+		_buttonToEnable.gameObject.SetActive (true);
+	}
+
+	private void DisableButton (Button _buttonToDisable) {
+		_buttonToDisable.gameObject.SetActive (false);
+	}
+
+	private void RotateRobotsClockwise (List <RobotController> _robotsToRotate, float _degreesToRotate) {
+		Vector3 rotationToReach;
+		foreach (RobotController robot in _robotsToRotate) {
+			rotationToReach = robot.gameObject.transform.rotation.eulerAngles;
+			rotationToReach.y += _degreesToRotate;
+			robot.gameObject.transform.DORotate (rotationToReach, rotationSpeed);
+		}
+	}
+
+	private void RotateRobotsCounterclockwise (List <RobotController> _robotsToRotate, float _degreesToRotate) {
+		Vector3 rotationToReach;
+		foreach (RobotController robot in _robotsToRotate) {
+			rotationToReach = robot.gameObject.transform.rotation.eulerAngles;
+			rotationToReach.y += -_degreesToRotate;
+			robot.gameObject.transform.DORotate (rotationToReach, rotationSpeed);
+		}
+	}
+
+	#region API
+
 	public void CurveGridClockwiseRotation () {
 		Vector3 rotationToReach;
 		rotationToReach = FindObjectOfType<NewGridController> ().CurveTilesContainer.transform.rotation.eulerAngles;
 		rotationToReach.y += 90f;
 		FindObjectOfType<NewGridController> ().CurveTilesContainer.transform.DORotate (rotationToReach, rotationSpeed);
+		RotateRobotsCounterclockwise (RobotManager.Instance.RobotCurviGiocati, 360f);
+		RobotManager.Instance.OnClockwiseRotationCurveGrid ();
+		DisableButton (CurveGridClockwiseButton);
+		DisableButton (CurveGridCounterclockwiseButton);
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+			EnableButton (Skip_Turn);
+		}
 	}
 
 	public void CurveGridCounterclockwiseRotation () {
@@ -36,6 +82,13 @@ public class ButtonManager : MonoBehaviour {
 		rotationToReach = FindObjectOfType<NewGridController> ().CurveTilesContainer.transform.rotation.eulerAngles;
 		rotationToReach.y += -90f;
 		FindObjectOfType<NewGridController> ().CurveTilesContainer.transform.DORotate (rotationToReach, rotationSpeed);
+		RotateRobotsClockwise (RobotManager.Instance.RobotCurviGiocati, 360f);
+		RobotManager.Instance.OnCounterclockwiseRotationCurveGrid ();
+		DisableButton (CurveGridCounterclockwiseButton);
+		DisableButton (CurveGridClockwiseButton);
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+			EnableButton (Skip_Turn);
+		}
 	}
 
 	public void QuadGridClockwiseRotation () {
@@ -43,6 +96,13 @@ public class ButtonManager : MonoBehaviour {
 		rotationToReach = FindObjectOfType<NewGridController> ().QuadTilesContainer.transform.rotation.eulerAngles;
 		rotationToReach.y += 90f;
 		FindObjectOfType<NewGridController> ().QuadTilesContainer.transform.DORotate (rotationToReach, rotationSpeed);
+		RotateRobotsCounterclockwise (RobotManager.Instance.RobotQuadratiGiocati, 360f);
+		RobotManager.Instance.OnClockwiseRotationQuadGrid ();
+		DisableButton (QuadGridClockwiseButton);
+		DisableButton (QuadGridCounterclockwiseButton);
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+			EnableButton (Skip_Turn);
+		}
 	}
 
 	public void QuadGridCounterclockwiseRotation () {
@@ -50,5 +110,24 @@ public class ButtonManager : MonoBehaviour {
 		rotationToReach = FindObjectOfType<NewGridController> ().QuadTilesContainer.transform.rotation.eulerAngles;
 		rotationToReach.y += -90f;
 		FindObjectOfType<NewGridController> ().QuadTilesContainer.transform.DORotate (rotationToReach, rotationSpeed);
+		RotateRobotsClockwise (RobotManager.Instance.RobotQuadratiGiocati, 360f);
+		RobotManager.Instance.OnCounterclockwiseRotationQuadGrid ();
+		DisableButton (QuadGridCounterclockwiseButton);
+		DisableButton (QuadGridClockwiseButton);
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+			EnableButton (Skip_Turn);
+		}
 	}
+
+	public void RotationCheck () {
+		if (CurveGridClockwiseButton.gameObject.activeInHierarchy == false && QuadGridClockwiseButton.gameObject.activeInHierarchy == false) {
+			TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.battle;
+		}
+	}
+
+	public void EndRotationTurn () {
+		TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.battle;
+	}
+
+	#endregion
 }

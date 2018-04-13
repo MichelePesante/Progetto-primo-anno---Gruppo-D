@@ -21,7 +21,7 @@ public class NewUIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Punteggio_P1.text = ("" + FindObjectOfType<TurnManager> ().ScoreP1);
-		Punteggio_P2.text = ("" + FindObjectOfType<TurnManager> ().ScoreP2);
+		Punteggio_P1.text = FindObjectOfType<TurnManager> ().ScoreP1.ToString();
+		Punteggio_P2.text = FindObjectOfType<TurnManager> ().ScoreP2.ToString();
 	}
 }

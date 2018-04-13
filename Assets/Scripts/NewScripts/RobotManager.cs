@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RobotManager : MonoBehaviour {
 
+	public static RobotManager Instance;
+
 	public int RobotPlayed;
 	public int MaxRobotToPlay = 2;
 	public int RobotsCurviInHand;
@@ -31,6 +33,15 @@ public class RobotManager : MonoBehaviour {
 	private Vector3[] standardPositionsQuadrati = new Vector3[4];
 	private Vector3[] highlightedPositionsCurvi = new Vector3[4];
 	private Vector3[] highlightedPositionsQuadrati = new Vector3[4];
+
+	void Awake () {
+		if (Instance == null) {
+			Instance = this;
+		}
+		else {
+			Destroy (this.gameObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
