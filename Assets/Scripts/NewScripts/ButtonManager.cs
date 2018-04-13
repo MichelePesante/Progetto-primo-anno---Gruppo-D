@@ -24,15 +24,9 @@ public class ButtonManager : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 	}
-
-	// Use this for initialization
+		
 	void Start () {
 		rotationSpeed = 1f;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	private void EnableButton (Button _buttonToEnable) {

@@ -345,6 +345,8 @@ public class RobotManager : MonoBehaviour {
 
 	#endregion
 
+	#region Battle
+
 	public void Battle () {
 		int battleResult1 = 0;
 		int battleResult2 = 0;
@@ -424,6 +426,8 @@ public class RobotManager : MonoBehaviour {
 
 	#endregion
 
+	#endregion
+
 	private void RobotPositioning (List<RobotController> _listToPositionRobotFrom, GameObject[] _robotPositions, int _robotsInHand) {
 		for (int i = 0; i < _robotsInHand; i++) {
 			_listToPositionRobotFrom [i].transform.position = _robotPositions[i].transform.position;
@@ -442,7 +446,8 @@ public class RobotManager : MonoBehaviour {
 	}
 
 	private void EndPreparationPhase () {
-		if (currentTurn == maxPreparationTurns)
-			FindObjectOfType<TurnManager> ().CurrentMacroPhase = TurnManager.MacroPhase.Game;
+		if (currentTurn == maxPreparationTurns) {
+			TurnManager.Instance.CurrentMacroPhase = TurnManager.MacroPhase.Game;
+		}
 	}
 }

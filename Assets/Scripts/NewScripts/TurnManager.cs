@@ -113,6 +113,7 @@ public class TurnManager : MonoBehaviour {
 	            break;
 			case MacroPhase.Game:
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
+				CurrentTurnState = TurnState.rotation;
                 break;
             default:
                 break;
@@ -194,9 +195,11 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
 					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
+					ChangeTurn ();
 				} 
 				else {
 					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
+					ChangeTurn ();
 				}
                 break;
             case TurnState.upgrade:
@@ -223,7 +226,6 @@ public class TurnManager : MonoBehaviour {
 				}
 				break;
 			case MacroPhase.Game:
-				CurrentTurnState = TurnState.rotation;
 				break;
 			default:
 				Debug.Log ("Errore: Nessuna macro fase");
@@ -243,7 +245,6 @@ public class TurnManager : MonoBehaviour {
 				}
 				break;
 			case MacroPhase.Game:
-				CurrentTurnState = TurnState.rotation;
 				break;
 			default:
 				Debug.Log ("Errore: Nessuna macro fase");
