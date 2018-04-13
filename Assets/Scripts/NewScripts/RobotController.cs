@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RobotController : MonoBehaviour {
 
 	public RobotData Data;
+	public TextMeshProUGUI AttackText;
 
 	public int X;
 	public int Y;
@@ -20,6 +22,10 @@ public class RobotController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Setup ();
+	}
+
+	void Update () {
+		AttackText.text = strength.ToString();
 	}
 
 	void OnMouseDown () {
