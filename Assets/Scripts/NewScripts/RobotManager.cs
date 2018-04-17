@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RobotManager : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class RobotManager : MonoBehaviour {
 
 	public int RobotPlayed;
 	public int MaxRobotToPlay = 2;
+	public int maxRobotsInHand = 4;
 	public int RobotsCurviInHand;
 	public int RobotsQuadratiInHand;
 
@@ -19,14 +21,17 @@ public class RobotManager : MonoBehaviour {
 	public List<RobotController> RobotCurviInHand;
 	public List<RobotController> RobotQuadratiInHand;
 
-	[Header ("Posizioni in mano Robot")]
-	public GameObject[] PosizioniRobotCurvi;
-	public GameObject[] PosizioniRobotQuadrati;
+	[Header ("Carte")]
+	public List <Image> CarteRobotCurvi;
+	public List <Image> CarteRobotQuadrati;
+	public List <Image> CarteRobotCurviInHand;
+	public List <Image> CarteRobotQuadratiInHand;
+	public List <Image> BackupCarteRobotCurviInHand;
+	public List <Image> BackupCarteRobotQuadratiInHand;
 
 	private int currentFirstRobotCurvo;
 	private int currentFirstRobotQuadrato;
 	private int robotToPlay;
-	private int maxRobotsInHand = 4;
 	private int currentTurn;
 	private int maxPreparationTurns = 16;
 	private Vector3[] standardPositionsCurvi = new Vector3[4];
@@ -51,14 +56,14 @@ public class RobotManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
-			SwitchRobotToPlay (PosizioniRobotCurvi, standardPositionsCurvi, highlightedPositionsCurvi, RobotsCurviInHand);
+			RobotPositioning (RobotCurviInHand, CarteRobotCurvi, RobotsCurviInHand);
 			PlayRobot (RobotCurviInHand, RobotCurviGiocati);
-			RobotPositioning (RobotCurviInHand, PosizioniRobotCurvi, RobotsCurviInHand);
+			SwitchRobotToPlay (CarteRobotCurviInHand, standardPositionsCurvi, highlightedPositionsCurvi, RobotsCurviInHand);
 		}
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
-			SwitchRobotToPlay (PosizioniRobotQuadrati, standardPositionsQuadrati, highlightedPositionsQuadrati, RobotsQuadratiInHand);
+			RobotPositioning (RobotQuadratiInHand, CarteRobotQuadrati, RobotsQuadratiInHand);
 			PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
-			RobotPositioning (RobotQuadratiInHand, PosizioniRobotQuadrati, RobotsQuadratiInHand);
+			SwitchRobotToPlay (CarteRobotQuadratiInHand, standardPositionsQuadrati, highlightedPositionsQuadrati, RobotsQuadratiInHand);
 		}
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
@@ -97,7 +102,49 @@ public class RobotManager : MonoBehaviour {
 			}
 		}
 		return _robotsInHand;
-	} 
+	}
+
+	//public void AddRemovedCards (List <Image> _listToAddTo) {
+	//	if (_listToAddTo == CarteRobotCurviInHand) {
+	//		CarteRobotCurviInHand = new List<Image> (4);
+	//	}
+	//		
+	//	if (_listToAddTo == CarteRobotQuadratiInHand) {
+	//		CarteRobotQuadratiInHand = new List<Image> (4);
+	//	}
+	//}
+
+	public void SetCardsInHand (List <Image> _listToCheck) {
+		if (_listToCheck == CarteRobotCurviInHand) {
+			for (int i = 0; i < CarteRobotCurviInHand.Count; i++) {
+				CarteRobotCurviInHand [i].GetComponent<Image>().sprite = CarteRobotCurvi [i].GetComponent<Image>().sprite;
+			}
+		}
+
+		if (_listToCheck == CarteRobotQuadratiInHand) {
+			for (int i = 0; i < CarteRobotQuadratiInHand.Count; i++) {
+				CarteRobotQuadratiInHand [i].GetComponent<Image>().sprite = CarteRobotQuadrati [i].GetComponent<Image>().sprite;
+			}
+		}
+	}
+
+	// DA ELIMINARE NEL CASO NON VENGANO MAI USATI
+
+	//public RobotController GetCurveRobotByID (float _robotID) {
+	//	foreach (RobotController robot in RobotCurvi) {
+	//		if (robot.ID == _robotID)
+	//			return robot;
+	//	}
+	//	return null;
+	//}
+	//
+	//public RobotController GetQuadRobotByID (float _robotID) {
+	//	foreach (RobotController robot in RobotQuadrati) {
+	//		if (robot.ID == _robotID)
+	//			return robot;
+	//	}
+	//	return null;
+	//}
 
 	/// <summary>
 	/// Funzione che permette di piazzare un robot.
@@ -120,6 +167,10 @@ public class RobotManager : MonoBehaviour {
 					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 1.5f, 0f);
 					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
 					_listToPlayRobotFrom [robotToPlay].SetPosition ();
+					CarteRobotCurvi [robotToPlay].gameObject.SetActive (false);
+					CarteRobotCurvi.Remove (CarteRobotCurvi [robotToPlay]);
+					//CarteRobotCurviInHand [robotToPlay].gameObject.SetActive (false);
+					//CarteRobotCurviInHand.Remove (CarteRobotCurviInHand [robotToPlay]);
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
 					RobotPlayed++;
 					RobotsCurviInHand--;
@@ -140,6 +191,10 @@ public class RobotManager : MonoBehaviour {
 					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 1.5f, 0f);
 					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
 					_listToPlayRobotFrom [robotToPlay].SetPosition ();
+					CarteRobotQuadrati [robotToPlay].gameObject.SetActive (false);
+					CarteRobotQuadrati.Remove (CarteRobotQuadrati [robotToPlay]);
+					//CarteRobotQuadratiInHand [robotToPlay].gameObject.SetActive (false);
+					//CarteRobotQuadratiInHand.Remove (CarteRobotQuadratiInHand [robotToPlay]);
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
 					RobotPlayed++;
 					RobotsQuadratiInHand--;
@@ -154,7 +209,7 @@ public class RobotManager : MonoBehaviour {
 	/// <summary>
 	/// Funzione che permette di cambiare il focus da un robot ad un altro tramite rotellina.
 	/// </summary>
-	public void SwitchRobotToPlay (GameObject[] _positionToHighlight, Vector3[] _standardPositions, Vector3[] _highlightedPositions, int _robotsInHand) {
+	public void SwitchRobotToPlay (List <Image> _positionToHighlight, Vector3[] _standardPositions, Vector3[] _highlightedPositions, int _robotsInHand) {
 		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && robotToPlay < _robotsInHand - 1) {
 			robotToPlay++;
 		}
@@ -166,22 +221,27 @@ public class RobotManager : MonoBehaviour {
 		case 0:
 			_positionToHighlight [0].transform.position = _highlightedPositions [0];
 			_positionToHighlight [1].transform.position = _standardPositions [1];
-			_positionToHighlight [2].transform.position = _standardPositions [2];
-			_positionToHighlight [3].transform.position = _standardPositions [3];
+			//if (_positionToHighlight.Count == 3)
+				_positionToHighlight [2].transform.position = _standardPositions [2];
+			//if (_positionToHighlight.Count == 4)
+				_positionToHighlight [3].transform.position = _standardPositions [3];
 			break;
 		case 1:
 			_positionToHighlight [0].transform.position = _standardPositions [0];
 			_positionToHighlight [1].transform.position = _highlightedPositions [1];
-			_positionToHighlight [2].transform.position = _standardPositions [2];
-			_positionToHighlight [3].transform.position = _standardPositions [3];
+			//if (_positionToHighlight.Count == 3)
+				_positionToHighlight [2].transform.position = _standardPositions [2];
+			//if (_positionToHighlight.Count == 4)
+				_positionToHighlight [3].transform.position = _standardPositions [3];
 			break;
 		case 2:
-			_positionToHighlight [0].transform.position = _standardPositions [0];
+			_positionToHighlight [1].transform.position = _standardPositions [0];
 			_positionToHighlight [1].transform.position = _standardPositions [1];
 			_positionToHighlight [2].transform.position = _highlightedPositions [2];
-			_positionToHighlight [3].transform.position = _standardPositions [3];
+			//if (_positionToHighlight.Count == 4)
+				_positionToHighlight [3].transform.position = _standardPositions [3];
 			break;										
-		case 3:										   
+		case 3:
 			_positionToHighlight [0].transform.position = _standardPositions [0];
 			_positionToHighlight [1].transform.position = _standardPositions [1];
 			_positionToHighlight [2].transform.position = _standardPositions [2];
@@ -192,18 +252,18 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	public void SetPositions (GameObject[] _positionToSet) {
-		if (_positionToSet == PosizioniRobotCurvi) {
+	public void SetPositions (List <Image> _positionToSet) {
+		if (_positionToSet == CarteRobotCurviInHand) {
 			for (int i = 0; i < standardPositionsCurvi.Length; i++) {
 				standardPositionsCurvi [i] = _positionToSet [i].transform.position;
-				highlightedPositionsCurvi [i] = standardPositionsCurvi [i] + Vector3.up;
+				highlightedPositionsCurvi [i] = standardPositionsCurvi [i] + Vector3.right * 5;
 			}
 		}
 
-		if (_positionToSet == PosizioniRobotQuadrati) {
+		if (_positionToSet == CarteRobotQuadratiInHand) {
 			for (int i = 0; i < standardPositionsQuadrati.Length; i++) {
 				standardPositionsQuadrati [i] = _positionToSet [i].transform.position;
-				highlightedPositionsQuadrati [i] = standardPositionsQuadrati [i] + Vector3.up;
+				highlightedPositionsQuadrati [i] = standardPositionsQuadrati [i] + Vector3.left * 5;
 			}
 		}
 	}
@@ -426,9 +486,129 @@ public class RobotManager : MonoBehaviour {
 
 	#endregion
 
+	#region CardImage
+
+	public void SetCardImage (List <RobotController> _listToCheck) {
+		if (_listToCheck == RobotCurviInHand) {
+			for (int i = 0; i < CarteRobotCurvi.Count; i++) {
+				switch (RobotCurvi [i].ID) {
+				case 11:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1;
+					break;
+				case 12:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1;
+					break;
+				case 13:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1;
+					break;
+				case 14:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1;
+					break;
+				case 21:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2;
+					break;
+				case 22:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2;
+					break;
+				case 23:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2;
+					break;
+				case 24:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2;
+					break;
+				case 31:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3;
+					break;
+				case 32:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3;
+					break;
+				case 33:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3;
+					break;
+				case 34:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3;
+					break;
+				case 41:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4;
+					break;
+				case 42:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4;
+					break;
+				case 43:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4;
+					break;
+				case 44:
+					CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		if (_listToCheck == RobotQuadratiInHand) {
+			for (int i = 0; i <CarteRobotQuadrati.Count; i++) {
+				switch (RobotQuadrati [i].ID) {
+				case 11:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1;
+					break;
+				case 12:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1;
+					break;
+				case 13:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1;
+					break;
+				case 14:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1;
+					break;
+				case 21:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2;
+					break;
+				case 22:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2;
+					break;
+				case 23:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2;
+					break;
+				case 24:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2;
+					break;
+				case 31:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3;
+					break;
+				case 32:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3;
+					break;
+				case 33:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3;
+					break;
+				case 34:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3;
+					break;
+				case 41:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4;
+					break;
+				case 42:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4;
+					break;
+				case 43:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4;
+					break;
+				case 44:
+					CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
 	#endregion
 
-	private void RobotPositioning (List<RobotController> _listToPositionRobotFrom, GameObject[] _robotPositions, int _robotsInHand) {
+	#endregion
+
+	private void RobotPositioning (List<RobotController> _listToPositionRobotFrom, List <Image> _robotPositions, int _robotsInHand) {
 		for (int i = 0; i < _robotsInHand; i++) {
 			_listToPositionRobotFrom [i].transform.position = _robotPositions[i].transform.position;
 		}

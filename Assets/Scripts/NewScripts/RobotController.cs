@@ -10,6 +10,7 @@ public class RobotController : MonoBehaviour {
 
 	public int X;
 	public int Y;
+	public int ID;
 
 	private int strength;
 	private int upgrade;

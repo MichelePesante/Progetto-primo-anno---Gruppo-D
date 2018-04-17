@@ -106,8 +106,10 @@ public class TurnManager : MonoBehaviour {
         {
 			case MacroPhase.Preparation:
 				FindObjectOfType<NewGridController> ().CreateGrid (FindObjectOfType<NewGridController> ().X, FindObjectOfType<NewGridController> ().Y, FindObjectOfType<NewGridController> ().Offset);
-				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotCurvi);
-				FindObjectOfType<RobotManager> ().Shuffle (FindObjectOfType<RobotManager> ().RobotQuadrati);
+				RobotManager.Instance.Shuffle (RobotManager.Instance.RobotCurvi);
+				RobotManager.Instance.Shuffle (RobotManager.Instance.RobotQuadrati);
+				RobotManager.Instance.SetCardImage (RobotManager.Instance.RobotCurviInHand);
+				RobotManager.Instance.SetCardImage (RobotManager.Instance.RobotQuadratiInHand);
 				CurrentTurnState = TurnState.choosePlayer;	
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
 	            break;
@@ -174,14 +176,17 @@ public class TurnManager : MonoBehaviour {
                 break;
 			case TurnState.placing:
 				CurrentPlayerTurn = PlayerTurn.P1_Turn;
-				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotCurvi);
-				FindObjectOfType<RobotManager> ().SetPositions (FindObjectOfType<RobotManager> ().PosizioniRobotQuadrati);
-				FindObjectOfType<CameraController>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
+				RobotManager.Instance.SetPositions (RobotManager.Instance.CarteRobotCurviInHand);
+				RobotManager.Instance.SetPositions (RobotManager.Instance.CarteRobotQuadratiInHand);
+				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
+				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
+				FindObjectOfType<Camera>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
+				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
                 break;
 			case TurnState.rotation:
 				NewUIManager.Instance.Display_P1.SetActive (true);
 				NewUIManager.Instance.Display_P2.SetActive (true);
-				FindObjectOfType<RobotManager> ().SetGraphicAsParent ();
+				RobotManager.Instance.SetGraphicAsParent ();
 				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
@@ -194,11 +199,11 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (false);
 				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
-					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
+					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
 					ChangeTurn ();
 				} 
 				else {
-					FindObjectOfType<CameraController> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
+					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
 					ChangeTurn ();
 				}
                 break;
@@ -220,8 +225,10 @@ public class TurnManager : MonoBehaviour {
 				case TurnState.choosePlayer:
 					break;
 				case TurnState.placing:
-					FindObjectOfType<RobotManager> ().RobotsCurviInHand = FindObjectOfType<RobotManager> ().Draw (FindObjectOfType<RobotManager> ().RobotCurviInHand, FindObjectOfType<RobotManager> ().RobotCurvi, FindObjectOfType<RobotManager> ().RobotsCurviInHand);
-					FindObjectOfType<CameraController>().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
+					//RobotManager.Instance.AddRemovedCards (RobotManager.Instance.CarteRobotCurviInHand);
+					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
+					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
+					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
 					break;
 				}
 				break;
@@ -239,8 +246,9 @@ public class TurnManager : MonoBehaviour {
 				case TurnState.choosePlayer:
 					break;
 				case TurnState.placing:
-					FindObjectOfType<RobotManager> ().RobotsQuadratiInHand = FindObjectOfType<RobotManager> ().Draw (FindObjectOfType<RobotManager> ().RobotQuadratiInHand, FindObjectOfType<RobotManager> ().RobotQuadrati, FindObjectOfType<RobotManager> ().RobotsQuadratiInHand);
-					FindObjectOfType<CameraController>().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
+					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
+					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
+					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
 					break;
 				}
 				break;
