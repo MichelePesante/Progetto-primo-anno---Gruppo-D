@@ -7,6 +7,7 @@ public class RobotController : MonoBehaviour {
 
 	public RobotData Data;
 	public TextMeshProUGUI AttackText;
+	public Canvas myCanvas;
 
 	public int X;
 	public int Y;
@@ -23,10 +24,19 @@ public class RobotController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Setup ();
+		AttackText = GetComponentInChildren<TextMeshProUGUI> ();
+		myCanvas = GetComponentInChildren<Canvas> ();
+		myCanvas.gameObject.SetActive (false);
 	}
 
 	void Update () {
 		AttackText.text = strength.ToString();
+		if (Input.GetKeyDown (KeyCode.Space) && GameMenu.GameIsPaused == false) {
+			myCanvas.gameObject.SetActive (true);
+		}
+		if (Input.GetKeyUp (KeyCode.Space) && GameMenu.GameIsPaused == false) {
+			myCanvas.gameObject.SetActive (false);
+		}
 	}
 
 	void OnMouseDown () {

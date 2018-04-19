@@ -12,6 +12,7 @@ public class RobotManager : MonoBehaviour {
 	public int maxRobotsInHand = 4;
 	public int RobotsCurviInHand;
 	public int RobotsQuadratiInHand;
+	public bool firstTurnPassed;
 
 	[Header ("Liste Robot")]
 	public List<RobotController> RobotCurvi;
@@ -38,6 +39,10 @@ public class RobotManager : MonoBehaviour {
 	private Vector3[] standardPositionsQuadrati = new Vector3[4];
 	private Vector3[] highlightedPositionsCurvi = new Vector3[4];
 	private Vector3[] highlightedPositionsQuadrati = new Vector3[4];
+	private Vector3[] standardScalesCurvi = new Vector3[4];
+	private Vector3[] standardScalesQuadrati = new Vector3[4];
+	private Vector3[] highlightedScalesCurvi = new Vector3[4];
+	private Vector3[] highlightedScalesQuadrati = new Vector3[4];
 
 	void Awake () {
 		if (Instance == null) {
@@ -58,12 +63,12 @@ public class RobotManager : MonoBehaviour {
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
 			RobotPositioning (RobotCurviInHand, CarteRobotCurvi, RobotsCurviInHand);
 			PlayRobot (RobotCurviInHand, RobotCurviGiocati);
-			SwitchRobotToPlay (CarteRobotCurviInHand, standardPositionsCurvi, highlightedPositionsCurvi, RobotsCurviInHand);
+			SwitchRobotToPlay (CarteRobotCurviInHand, standardPositionsCurvi, standardScalesCurvi, highlightedPositionsCurvi, highlightedScalesCurvi, RobotsCurviInHand);
 		}
 		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
 			RobotPositioning (RobotQuadratiInHand, CarteRobotQuadrati, RobotsQuadratiInHand);
 			PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
-			SwitchRobotToPlay (CarteRobotQuadratiInHand, standardPositionsQuadrati, highlightedPositionsQuadrati, RobotsQuadratiInHand);
+			SwitchRobotToPlay (CarteRobotQuadratiInHand, standardPositionsQuadrati, standardScalesQuadrati, highlightedPositionsQuadrati, highlightedScalesQuadrati, RobotsQuadratiInHand);
 		}
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
@@ -177,6 +182,8 @@ public class RobotManager : MonoBehaviour {
 					_hit.collider.gameObject.GetComponentInChildren<ColliderController> ().IsPlaceable = false;
 					robotToPlay = 0;
 					currentTurn++;
+					if (firstTurnPassed == false)
+						firstTurnPassed = true;
 				}
 			}
 		}
@@ -209,7 +216,7 @@ public class RobotManager : MonoBehaviour {
 	/// <summary>
 	/// Funzione che permette di cambiare il focus da un robot ad un altro tramite rotellina.
 	/// </summary>
-	public void SwitchRobotToPlay (List <Image> _positionToHighlight, Vector3[] _standardPositions, Vector3[] _highlightedPositions, int _robotsInHand) {
+	public void SwitchRobotToPlay (List <Image> _cardToHighlight, Vector3[] _standardPositions, Vector3[] _standardScale, Vector3[] _highlightedPositions, Vector3[] _highlightedScale, int _robotsInHand) {
 		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && robotToPlay < _robotsInHand - 1) {
 			robotToPlay++;
 		}
@@ -217,53 +224,84 @@ public class RobotManager : MonoBehaviour {
 			robotToPlay--;
 		}
 
+		CardPositionReset (_cardToHighlight);
+
+		_cardToHighlight [robotToPlay].transform.position = _highlightedPositions [robotToPlay];
+		_cardToHighlight [robotToPlay].transform.localScale = _highlightedScale [robotToPlay];
+
+		#region Shit
+
+		/*
 		switch (robotToPlay) {
 		case 0:
-			_positionToHighlight [0].transform.position = _highlightedPositions [0];
-			_positionToHighlight [1].transform.position = _standardPositions [1];
+			_cardToHighlight [0].transform.position = _highlightedPositions [0];
+			_cardToHighlight [0].transform.localScale = _highlightedScale [0];
+			_cardToHighlight [1].transform.position = _standardPositions [1];
+			_cardToHighlight [1].transform.localScale = _standardScale [1];
 			//if (_positionToHighlight.Count == 3)
-				_positionToHighlight [2].transform.position = _standardPositions [2];
+				_cardToHighlight [2].transform.position = _standardPositions [2];
+				_cardToHighlight [2].transform.localScale = _standardScale [2];
 			//if (_positionToHighlight.Count == 4)
-				_positionToHighlight [3].transform.position = _standardPositions [3];
+				_cardToHighlight [3].transform.position = _standardPositions [3];
+				_cardToHighlight [3].transform.localScale = _standardScale [3];
 			break;
 		case 1:
-			_positionToHighlight [0].transform.position = _standardPositions [0];
-			_positionToHighlight [1].transform.position = _highlightedPositions [1];
+			_cardToHighlight [0].transform.position = _standardPositions [0];
+			_cardToHighlight [0].transform.localScale = _standardScale [0];
+			_cardToHighlight [1].transform.position = _highlightedPositions [1];
+			_cardToHighlight [1].transform.localScale = _highlightedScale [1];
 			//if (_positionToHighlight.Count == 3)
-				_positionToHighlight [2].transform.position = _standardPositions [2];
+				_cardToHighlight [2].transform.position = _standardPositions [2];
+				_cardToHighlight [2].transform.localScale = _standardScale [2];
 			//if (_positionToHighlight.Count == 4)
-				_positionToHighlight [3].transform.position = _standardPositions [3];
+				_cardToHighlight [3].transform.position = _standardPositions [3];
+				_cardToHighlight [3].transform.localScale = _standardScale [3];
 			break;
 		case 2:
-			_positionToHighlight [1].transform.position = _standardPositions [0];
-			_positionToHighlight [1].transform.position = _standardPositions [1];
-			_positionToHighlight [2].transform.position = _highlightedPositions [2];
+			_cardToHighlight [0].transform.position = _standardPositions [0];
+			_cardToHighlight [0].transform.localScale = _standardScale [0];
+			_cardToHighlight [1].transform.position = _standardPositions [1];
+			_cardToHighlight [1].transform.localScale = _standardScale [1];
+			_cardToHighlight [2].transform.position = _highlightedPositions [2];
+			_cardToHighlight [2].transform.localScale = _highlightedScale [2];
 			//if (_positionToHighlight.Count == 4)
-				_positionToHighlight [3].transform.position = _standardPositions [3];
+				_cardToHighlight [3].transform.position = _standardPositions [3];
+				_cardToHighlight [3].transform.localScale = _standardScale [3];
 			break;										
 		case 3:
-			_positionToHighlight [0].transform.position = _standardPositions [0];
-			_positionToHighlight [1].transform.position = _standardPositions [1];
-			_positionToHighlight [2].transform.position = _standardPositions [2];
-			_positionToHighlight [3].transform.position = _highlightedPositions [3];
+			_cardToHighlight [0].transform.position = _standardPositions [0];
+			_cardToHighlight [0].transform.localScale = _standardScale [0];
+			_cardToHighlight [1].transform.position = _standardPositions [1];
+			_cardToHighlight [1].transform.localScale = _standardScale [1];
+			_cardToHighlight [2].transform.position = _standardPositions [2];
+			_cardToHighlight [2].transform.localScale = _standardScale [2];
+			_cardToHighlight [3].transform.position = _highlightedPositions [3];
+			_cardToHighlight [3].transform.localScale = _highlightedScale [3];
 			break;
 		default:
 			break;
 		}
+		*/
+
+		#endregion
 	}
 
 	public void SetPositions (List <Image> _positionToSet) {
 		if (_positionToSet == CarteRobotCurviInHand) {
 			for (int i = 0; i < standardPositionsCurvi.Length; i++) {
 				standardPositionsCurvi [i] = _positionToSet [i].transform.position;
-				highlightedPositionsCurvi [i] = standardPositionsCurvi [i] + Vector3.right * 5;
+				standardScalesCurvi [i] = _positionToSet [i].transform.localScale;
+				highlightedPositionsCurvi [i] = standardPositionsCurvi [i] + Vector3.right * 70f;
+				highlightedScalesCurvi [i] = standardScalesCurvi [i] + new Vector3 (1f, 1f, 1f);
 			}
 		}
 
 		if (_positionToSet == CarteRobotQuadratiInHand) {
 			for (int i = 0; i < standardPositionsQuadrati.Length; i++) {
 				standardPositionsQuadrati [i] = _positionToSet [i].transform.position;
-				highlightedPositionsQuadrati [i] = standardPositionsQuadrati [i] + Vector3.left * 5;
+				standardScalesQuadrati [i] = _positionToSet [i].transform.localScale;
+				highlightedPositionsQuadrati [i] = standardPositionsQuadrati [i] + Vector3.left * 70f;
+				highlightedScalesQuadrati [i] = standardScalesQuadrati [i] + new Vector3 (1f, 1f, 1f);
 			}
 		}
 	}
@@ -628,6 +666,22 @@ public class RobotManager : MonoBehaviour {
 	private void EndPreparationPhase () {
 		if (currentTurn == maxPreparationTurns) {
 			TurnManager.Instance.CurrentMacroPhase = TurnManager.MacroPhase.Game;
+		}
+	}
+
+	public void CardPositionReset (List <Image> _cardsToReset) {
+		if (_cardsToReset == CarteRobotCurviInHand) {
+			for (int i = 0; i < 4; i++) {
+				_cardsToReset [i].transform.position = standardPositionsCurvi [i];
+				_cardsToReset [i].transform.localScale = standardScalesCurvi [i];
+			}
+		}
+
+		if (_cardsToReset == CarteRobotQuadratiInHand) {
+			for (int i = 0; i < 4; i++) {
+				_cardsToReset [i].transform.position = standardPositionsQuadrati [i];
+				_cardsToReset [i].transform.localScale = standardScalesQuadrati [i];
+			}
 		}
 	}
 }

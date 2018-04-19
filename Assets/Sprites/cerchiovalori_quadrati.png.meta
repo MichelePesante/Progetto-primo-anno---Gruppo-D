@@ -1,15 +1,9 @@
 fileFormatVersion: 2
-guid: d3c690a331c478e4f9f6c85db1b3c735
-timeCreated: 1523692249
+guid: 4726a6c4f6b75cb4f96b1ac48bce48fc
+timeCreated: 1524069568
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Cartequadrati_JacopoLonati_1
-    21300002: Cartequadrati_JacopoLonati_1
-    21300004: Cartequadrati_JacopoLonati_4
-    21300006: Cartequadrati_JacopoLonati_3
-    21300008: Cartequadrati_JacopoLonati_4
-    21300010: Cartequadrati_JacopoLonati_2
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -46,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -104,63 +98,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Cartequadrati_JacopoLonati_1
-      rect:
-        serializedVersion: 2
-        x: 409
-        y: 1315
-        width: 1063
-        height: 1065
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cartequadrati_JacopoLonati_4
-      rect:
-        serializedVersion: 2
-        x: 2007
-        y: 1333
-        width: 1063
-        height: 1066
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cartequadrati_JacopoLonati_3
-      rect:
-        serializedVersion: 2
-        x: 409
-        y: 167
-        width: 1063
-        height: 1064
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cartequadrati_JacopoLonati_2
-      rect:
-        serializedVersion: 2
-        x: 2041
-        y: 152
-        width: 1064
-        height: 1063
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 

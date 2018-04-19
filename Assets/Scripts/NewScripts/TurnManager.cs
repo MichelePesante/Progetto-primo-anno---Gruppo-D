@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour {
 	public int ScoreToReach = 5;
 	public int ScoreP1;
 	public int ScoreP2;
+	public Vector3 CameraPosition;
 
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
 	public enum MacroPhase { Preparation, Game };
@@ -180,7 +181,7 @@ public class TurnManager : MonoBehaviour {
 				RobotManager.Instance.SetPositions (RobotManager.Instance.CarteRobotQuadratiInHand);
 				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
 				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
-				FindObjectOfType<Camera>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
+				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
 				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
                 break;
 			case TurnState.rotation:
@@ -227,6 +228,8 @@ public class TurnManager : MonoBehaviour {
 				case TurnState.placing:
 					//RobotManager.Instance.AddRemovedCards (RobotManager.Instance.CarteRobotCurviInHand);
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
+					if (RobotManager.Instance.firstTurnPassed)
+						RobotManager.Instance.CardPositionReset (RobotManager.Instance.CarteRobotQuadratiInHand);
 					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
 					break;
@@ -247,6 +250,7 @@ public class TurnManager : MonoBehaviour {
 					break;
 				case TurnState.placing:
 					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
+					RobotManager.Instance.CardPositionReset (RobotManager.Instance.CarteRobotCurviInHand);
 					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
 					break;

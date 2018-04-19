@@ -28,6 +28,17 @@ public class GameMenu : MonoBehaviour {
     void Update()
     {
         OpenMenu();
+
+		if (Input.GetKeyDown (KeyCode.P)) {
+			if (!GameIsPaused) {
+				Time.timeScale = 0f;
+				GameIsPaused = true;
+			} 
+			else {
+				Time.timeScale = 1f;
+				GameIsPaused = false;
+			}
+		}
     }
 
     public void OpenMenu()
