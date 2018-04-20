@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: d87d03fc958aebb4c856ef39949a5b43
+timeCreated: 1524155837
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: anello_1_dx
+    100002: anello_2_dx
+    100004: anello_2_sx
+    100006: anello_sx
+    100008: annello_1_sx
+    100010: annello_3_dx
+    100012: attaccamento_dx
+    100014: attaccamento_sx
+    100016: bracciale_dx
+    100018: bracciale_sx
+    100020: braccio_dx
+    100022: braccio_sx
+    100024: cannone_dx
+    100026: cannone_sx
+    100028: //RootNode
+    100030: occhio
+    100032: palla_dx
+    100034: palla_sx
+    100036: spalla_dx
+    100038: spalla_sx
+    100040: testa
+    100042: torso_avanti
+    100044: torso_dietro
+    400000: anello_1_dx
+    400002: anello_2_dx
+    400004: anello_2_sx
+    400006: anello_sx
+    400008: annello_1_sx
+    400010: annello_3_dx
+    400012: attaccamento_dx
+    400014: attaccamento_sx
+    400016: bracciale_dx
+    400018: bracciale_sx
+    400020: braccio_dx
+    400022: braccio_sx
+    400024: cannone_dx
+    400026: cannone_sx
+    400028: //RootNode
+    400030: occhio
+    400032: palla_dx
+    400034: palla_sx
+    400036: spalla_dx
+    400038: spalla_sx
+    400040: testa
+    400042: torso_avanti
+    400044: torso_dietro
+    2300000: anello_1_dx
+    2300002: anello_2_dx
+    2300004: anello_2_sx
+    2300006: anello_sx
+    2300008: annello_1_sx
+    2300010: annello_3_dx
+    2300012: attaccamento_dx
+    2300014: attaccamento_sx
+    2300016: bracciale_dx
+    2300018: bracciale_sx
+    2300020: braccio_dx
+    2300022: braccio_sx
+    2300024: cannone_dx
+    2300026: cannone_sx
+    2300028: occhio
+    2300030: palla_dx
+    2300032: palla_sx
+    2300034: spalla_dx
+    2300036: spalla_sx
+    2300038: testa
+    2300040: torso_avanti
+    2300042: torso_dietro
+    3300000: anello_1_dx
+    3300002: anello_2_dx
+    3300004: anello_2_sx
+    3300006: anello_sx
+    3300008: annello_1_sx
+    3300010: annello_3_dx
+    3300012: attaccamento_dx
+    3300014: attaccamento_sx
+    3300016: bracciale_dx
+    3300018: bracciale_sx
+    3300020: braccio_dx
+    3300022: braccio_sx
+    3300024: cannone_dx
+    3300026: cannone_sx
+    3300028: occhio
+    3300030: palla_dx
+    3300032: palla_sx
+    3300034: spalla_dx
+    3300036: spalla_sx
+    3300038: testa
+    3300040: torso_avanti
+    3300042: torso_dietro
+    4300000: torso_avanti
+    4300002: occhio
+    4300004: anello_1_dx
+    4300006: attaccamento_dx
+    4300008: anello_2_dx
+    4300010: palla_dx
+    4300012: spalla_dx
+    4300014: cannone_dx
+    4300016: braccio_dx
+    4300018: annello_3_dx
+    4300020: bracciale_dx
+    4300022: annello_1_sx
+    4300024: attaccamento_sx
+    4300026: anello_2_sx
+    4300028: palla_sx
+    4300030: spalla_sx
+    4300032: cannone_sx
+    4300034: braccio_sx
+    4300036: anello_sx
+    4300038: bracciale_sx
+    4300040: testa
+    4300042: torso_dietro
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Curvo3
+    second: {fileID: 2100000, guid: 8430af2e5cdd5e345b7b3f44d5c3145a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

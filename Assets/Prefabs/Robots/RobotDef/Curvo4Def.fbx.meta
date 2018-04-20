@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 940cc58486f0cc842805f6e255a0e940
+timeCreated: 1524157797
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Curvo4__UpperRightLeg
+    100002: Curvo4_Body
+    100004: Curvo4_Eye
+    100006: Curvo4_Head
+    100008: Curvo4_LowerLeftArm
+    100010: Curvo4_LowerLeftLeg
+    100012: Curvo4_LowerRightArm
+    100014: Curvo4_LowerRightLeg
+    100016: Curvo4_Middle_RightArm
+    100018: Curvo4_MiddleLeftArm
+    100020: Curvo4_MiddleLeftLeg
+    100022: Curvo4_MiddleRightLeg
+    100024: Curvo4_UpperLeftArm
+    100026: Curvo4_UpperLeftLeg
+    100028: Curvo4_UpperRightArm
+    100030: //RootNode
+    400000: Curvo4__UpperRightLeg
+    400002: Curvo4_Body
+    400004: Curvo4_Eye
+    400006: Curvo4_Head
+    400008: Curvo4_LowerLeftArm
+    400010: Curvo4_LowerLeftLeg
+    400012: Curvo4_LowerRightArm
+    400014: Curvo4_LowerRightLeg
+    400016: Curvo4_Middle_RightArm
+    400018: Curvo4_MiddleLeftArm
+    400020: Curvo4_MiddleLeftLeg
+    400022: Curvo4_MiddleRightLeg
+    400024: Curvo4_UpperLeftArm
+    400026: Curvo4_UpperLeftLeg
+    400028: Curvo4_UpperRightArm
+    400030: //RootNode
+    2300000: Curvo4__UpperRightLeg
+    2300002: Curvo4_Body
+    2300004: Curvo4_Eye
+    2300006: Curvo4_Head
+    2300008: Curvo4_LowerLeftArm
+    2300010: Curvo4_LowerLeftLeg
+    2300012: Curvo4_LowerRightArm
+    2300014: Curvo4_LowerRightLeg
+    2300016: Curvo4_Middle_RightArm
+    2300018: Curvo4_MiddleLeftArm
+    2300020: Curvo4_MiddleLeftLeg
+    2300022: Curvo4_MiddleRightLeg
+    2300024: Curvo4_UpperLeftArm
+    2300026: Curvo4_UpperLeftLeg
+    2300028: Curvo4_UpperRightArm
+    3300000: Curvo4__UpperRightLeg
+    3300002: Curvo4_Body
+    3300004: Curvo4_Eye
+    3300006: Curvo4_Head
+    3300008: Curvo4_LowerLeftArm
+    3300010: Curvo4_LowerLeftLeg
+    3300012: Curvo4_LowerRightArm
+    3300014: Curvo4_LowerRightLeg
+    3300016: Curvo4_Middle_RightArm
+    3300018: Curvo4_MiddleLeftArm
+    3300020: Curvo4_MiddleLeftLeg
+    3300022: Curvo4_MiddleRightLeg
+    3300024: Curvo4_UpperLeftArm
+    3300026: Curvo4_UpperLeftLeg
+    3300028: Curvo4_UpperRightArm
+    4300000: Curvo4_Eye
+    4300002: Curvo4_Head
+    4300004: Curvo4_Body
+    4300006: Curvo4_UpperRightArm
+    4300008: Curvo4_UpperLeftArm
+    4300010: Curvo4_MiddleLeftArm
+    4300012: Curvo4_Middle_RightArm
+    4300014: Curvo4_LowerRightArm
+    4300016: Curvo4_LowerLeftArm
+    4300018: Curvo4_UpperLeftLeg
+    4300020: Curvo4__UpperRightLeg
+    4300022: Curvo4_MiddleLeftLeg
+    4300024: Curvo4_MiddleRightLeg
+    4300026: Curvo4_LowerLeftLeg
+    4300028: Curvo4_LowerRightLeg
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Curvo4
+    second: {fileID: 2100000, guid: e3ecd00868d4d1a4992232b610648833, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
