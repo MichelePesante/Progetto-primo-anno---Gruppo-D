@@ -1,13 +1,13 @@
 fileFormatVersion: 2
 guid: ba2afefed887b9849bab88e4e4ccdc80
-timeCreated: 1524056712
+timeCreated: 1524241425
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Carte quadrati_0
-    21300002: Carte quadrati_1
-    21300004: Carte quadrati_2
-    21300006: Carte quadrati_3
+    21300000: Carte quadrati_1
+    21300002: Carte quadrati_4
+    21300004: Carte quadrati_3
+    21300006: Carte quadrati_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carte quadrati_0
+      name: Carte quadrati_1
       rect:
         serializedVersion: 2
         x: 409
@@ -112,13 +112,13 @@ TextureImporter:
         width: 1063
         height: 1065
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Carte quadrati_1
+      name: Carte quadrati_4
       rect:
         serializedVersion: 2
         x: 2007
@@ -126,21 +126,7 @@ TextureImporter:
         width: 1063
         height: 1066
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Carte quadrati_2
-      rect:
-        serializedVersion: 2
-        x: 409
-        y: 167
-        width: 1063
-        height: 1064
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,12 +135,26 @@ TextureImporter:
       name: Carte quadrati_3
       rect:
         serializedVersion: 2
+        x: 409
+        y: 167
+        width: 1063
+        height: 1064
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Carte quadrati_2
+      rect:
+        serializedVersion: 2
         x: 2041
         y: 152
         width: 1064
         height: 1063
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

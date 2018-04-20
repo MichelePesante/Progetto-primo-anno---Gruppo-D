@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RobotManager : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class RobotManager : MonoBehaviour {
 	public int RobotsCurviInHand;
 	public int RobotsQuadratiInHand;
 	public bool firstTurnPassed;
+	public int robotToPlay;
+	public int robotUpgraded;
 
 	[Header ("Liste Robot")]
 	public List<RobotController> RobotCurvi;
@@ -32,7 +35,6 @@ public class RobotManager : MonoBehaviour {
 
 	private int currentFirstRobotCurvo;
 	private int currentFirstRobotQuadrato;
-	private int robotToPlay;
 	private int currentTurn;
 	private int maxPreparationTurns = 16;
 	private Vector3[] standardPositionsCurvi = new Vector3[4];
@@ -60,22 +62,33 @@ public class RobotManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
 			RobotPositioning (RobotCurviInHand, CarteRobotCurvi, RobotsCurviInHand);
 			PlayRobot (RobotCurviInHand, RobotCurviGiocati);
 			SwitchRobotToPlay (CarteRobotCurviInHand, standardPositionsCurvi, standardScalesCurvi, highlightedPositionsCurvi, highlightedScalesCurvi, RobotsCurviInHand);
 		}
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
 			RobotPositioning (RobotQuadratiInHand, CarteRobotQuadrati, RobotsQuadratiInHand);
 			PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
 			SwitchRobotToPlay (CarteRobotQuadratiInHand, standardPositionsQuadrati, standardScalesQuadrati, highlightedPositionsQuadrati, highlightedScalesQuadrati, RobotsQuadratiInHand);
 		}
+		if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
+			if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn)
+				SwitchRobotToPlay (CarteRobotCurviInHand, standardPositionsCurvi, standardScalesCurvi, highlightedPositionsCurvi, highlightedScalesCurvi, RobotsCurviInHand);
+			if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn)
+				SwitchRobotToPlay (CarteRobotQuadratiInHand, standardPositionsQuadrati, standardScalesQuadrati, highlightedPositionsQuadrati, highlightedScalesQuadrati, RobotsQuadratiInHand);
+		}
+		SetCardsValue ();
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
 	}
 
 
 	#region API
+
+	public int GetCurrentIndex () {
+		return robotToPlay;
+	}
 
 	public void Shuffle (List<RobotController> _listToShuffle) {
 		// Variabile temporanea.
@@ -133,24 +146,6 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	// DA ELIMINARE NEL CASO NON VENGANO MAI USATI
-
-	//public RobotController GetCurveRobotByID (float _robotID) {
-	//	foreach (RobotController robot in RobotCurvi) {
-	//		if (robot.ID == _robotID)
-	//			return robot;
-	//	}
-	//	return null;
-	//}
-	//
-	//public RobotController GetQuadRobotByID (float _robotID) {
-	//	foreach (RobotController robot in RobotQuadrati) {
-	//		if (robot.ID == _robotID)
-	//			return robot;
-	//	}
-	//	return null;
-	//}
-
 	/// <summary>
 	/// Funzione che permette di piazzare un robot.
 	/// </summary>
@@ -162,7 +157,7 @@ public class RobotManager : MonoBehaviour {
 		Ray _ray = _camera.ScreenPointToRay(Input.mousePosition);
 		RaycastHit _hit;
 
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn) {
 			if (Physics.Raycast (_ray, out _hit) && Input.GetMouseButtonDown (0)) {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>() == null) {
 					return;
@@ -188,7 +183,7 @@ public class RobotManager : MonoBehaviour {
 			}
 		}
 
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn) {
 			if (Physics.Raycast (_ray, out _hit) && Input.GetMouseButtonDown (0)) {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>() == null) {
 					return;
@@ -229,7 +224,7 @@ public class RobotManager : MonoBehaviour {
 		_cardToHighlight [robotToPlay].transform.position = _highlightedPositions [robotToPlay];
 		_cardToHighlight [robotToPlay].transform.localScale = _highlightedScale [robotToPlay];
 
-		#region Shit
+		#region Shitty script
 
 		/*
 		switch (robotToPlay) {
@@ -291,7 +286,7 @@ public class RobotManager : MonoBehaviour {
 			for (int i = 0; i < standardPositionsCurvi.Length; i++) {
 				standardPositionsCurvi [i] = _positionToSet [i].transform.position;
 				standardScalesCurvi [i] = _positionToSet [i].transform.localScale;
-				highlightedPositionsCurvi [i] = standardPositionsCurvi [i] + Vector3.right * 70f;
+				highlightedPositionsCurvi [i] = standardPositionsCurvi [i] + Vector3.right * 150f;
 				highlightedScalesCurvi [i] = standardScalesCurvi [i] + new Vector3 (1f, 1f, 1f);
 			}
 		}
@@ -300,7 +295,7 @@ public class RobotManager : MonoBehaviour {
 			for (int i = 0; i < standardPositionsQuadrati.Length; i++) {
 				standardPositionsQuadrati [i] = _positionToSet [i].transform.position;
 				standardScalesQuadrati [i] = _positionToSet [i].transform.localScale;
-				highlightedPositionsQuadrati [i] = standardPositionsQuadrati [i] + Vector3.left * 70f;
+				highlightedPositionsQuadrati [i] = standardPositionsQuadrati [i] + Vector3.left * 150f;
 				highlightedScalesQuadrati [i] = standardScalesQuadrati [i] + new Vector3 (1f, 1f, 1f);
 			}
 		}
@@ -644,6 +639,29 @@ public class RobotManager : MonoBehaviour {
 
 	#endregion
 
+	public void RemoveRobotFromList (List<RobotController> _listToRemoveRobotFrom, int _indexRobotToRemove) {
+		_listToRemoveRobotFrom.Remove (_listToRemoveRobotFrom [_indexRobotToRemove]);
+	}
+
+	public void SetCardsValue () {
+		if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
+			for (int i = 0; i < RobotsCurviInHand; i++) {
+				CarteRobotCurviInHand [i].GetComponentInChildren<TextMeshProUGUI> ().text = RobotCurviInHand [i].strength.ToString();
+			}
+			for (int i = 0; i < RobotsQuadratiInHand; i++) {
+				CarteRobotQuadratiInHand [i].GetComponentInChildren<TextMeshProUGUI> ().text = RobotQuadratiInHand [i].strength.ToString();
+			}
+		}
+		if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
+			for (int i = 0; i < RobotsCurviInHand; i++) {
+				CarteRobotCurviInHand [i].GetComponentInChildren<TextMeshProUGUI> ().text = RobotCurviInHand [i].upgrade.ToString();
+			}
+			for (int i = 0; i < RobotsQuadratiInHand; i++) {
+				CarteRobotQuadratiInHand [i].GetComponentInChildren<TextMeshProUGUI> ().text = RobotQuadratiInHand [i].upgrade.ToString();
+			}
+		}
+	}
+
 	#endregion
 
 	private void RobotPositioning (List<RobotController> _listToPositionRobotFrom, List <Image> _robotPositions, int _robotsInHand) {
@@ -652,13 +670,9 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	private void RemoveRobotFromList (List<RobotController> _listToRemoveRobotFrom, int _indexRobotToRemove) {
-		_listToRemoveRobotFrom.Remove (_listToRemoveRobotFrom [_indexRobotToRemove]);
-	}
-
 	private void SwitchPlacingTurn () {
 		if (RobotPlayed == MaxRobotToPlay) {
-			FindObjectOfType<TurnManager> ().ChangeTurn ();
+			TurnManager.Instance.ChangeTurn ();
 			RobotPlayed = 0;
 		}
 	}

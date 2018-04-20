@@ -140,7 +140,7 @@ public class TurnManager : MonoBehaviour {
                 }
                 return true;
             case TurnState.rotation:
-				if (CurrentTurnState != TurnState.placing && CurrentTurnState != TurnState.battle)
+				if (CurrentTurnState != TurnState.placing && CurrentTurnState != TurnState.battle && CurrentTurnState != TurnState.upgrade)
                 {
                     return false;
                 }
@@ -185,6 +185,7 @@ public class TurnManager : MonoBehaviour {
 				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
                 break;
 			case TurnState.rotation:
+				NewUIManager.Instance.Slots.SetActive (false);
 				NewUIManager.Instance.Display_P1.SetActive (true);
 				NewUIManager.Instance.Display_P2.SetActive (true);
 				RobotManager.Instance.SetGraphicAsParent ();
@@ -208,7 +209,16 @@ public class TurnManager : MonoBehaviour {
 					ChangeTurn ();
 				}
                 break;
-            case TurnState.upgrade:
+			case TurnState.upgrade:
+				NewUIManager.Instance.Slots.SetActive (true);
+				NewUIManager.Instance.Display_P1.SetActive (false);
+				NewUIManager.Instance.Display_P2.SetActive (false);
+				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
+					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
+				} 
+				else {
+				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
+				}
                 break;
             case TurnState.useEnergy:
                 break;

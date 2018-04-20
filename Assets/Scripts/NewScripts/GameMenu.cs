@@ -29,7 +29,7 @@ public class GameMenu : MonoBehaviour {
     {
         OpenMenu();
 
-		if (Input.GetKeyDown (KeyCode.P)) {
+		if (Input.GetKeyDown (KeyCode.Space)) {
 			if (!GameIsPaused) {
 				Time.timeScale = 0f;
 				GameIsPaused = true;

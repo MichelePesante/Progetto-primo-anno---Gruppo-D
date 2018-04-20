@@ -10,6 +10,7 @@ public class NewUIManager : MonoBehaviour {
 	public TextMeshProUGUI Punteggio_P2;
 	public GameObject Display_P1;
 	public GameObject Display_P2;
+	public GameObject Slots;
 
 	// Use this for initialization
 	void Awake () {
