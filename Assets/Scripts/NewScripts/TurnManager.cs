@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour {
 	public int ScoreToReach = 5;
 	public int ScoreP1;
 	public int ScoreP2;
+	public Vector3 CameraPosition;
 
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
 	public enum MacroPhase { Preparation, Game };
@@ -139,7 +140,7 @@ public class TurnManager : MonoBehaviour {
                 }
                 return true;
             case TurnState.rotation:
-				if (CurrentTurnState != TurnState.placing && CurrentTurnState != TurnState.battle)
+				if (CurrentTurnState != TurnState.placing && CurrentTurnState != TurnState.battle && CurrentTurnState != TurnState.upgrade)
                 {
                     return false;
                 }
@@ -180,10 +181,11 @@ public class TurnManager : MonoBehaviour {
 				RobotManager.Instance.SetPositions (RobotManager.Instance.CarteRobotQuadratiInHand);
 				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
 				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
-				FindObjectOfType<Camera>().transform.localPosition = new Vector3 (0f, 9.13f, -9.58f);
+				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
 				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
                 break;
 			case TurnState.rotation:
+				NewUIManager.Instance.Slots.SetActive (false);
 				NewUIManager.Instance.Display_P1.SetActive (true);
 				NewUIManager.Instance.Display_P2.SetActive (true);
 				RobotManager.Instance.SetGraphicAsParent ();
@@ -207,7 +209,16 @@ public class TurnManager : MonoBehaviour {
 					ChangeTurn ();
 				}
                 break;
-            case TurnState.upgrade:
+			case TurnState.upgrade:
+				NewUIManager.Instance.Slots.SetActive (true);
+				NewUIManager.Instance.Display_P1.SetActive (false);
+				NewUIManager.Instance.Display_P2.SetActive (false);
+				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
+					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
+				} 
+				else {
+				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
+				}
                 break;
             case TurnState.useEnergy:
                 break;
@@ -227,6 +238,8 @@ public class TurnManager : MonoBehaviour {
 				case TurnState.placing:
 					//RobotManager.Instance.AddRemovedCards (RobotManager.Instance.CarteRobotCurviInHand);
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
+					if (RobotManager.Instance.firstTurnPassed)
+						RobotManager.Instance.CardPositionReset (RobotManager.Instance.CarteRobotQuadratiInHand);
 					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
 					break;
@@ -247,6 +260,7 @@ public class TurnManager : MonoBehaviour {
 					break;
 				case TurnState.placing:
 					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
+					RobotManager.Instance.CardPositionReset (RobotManager.Instance.CarteRobotCurviInHand);
 					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
 					break;

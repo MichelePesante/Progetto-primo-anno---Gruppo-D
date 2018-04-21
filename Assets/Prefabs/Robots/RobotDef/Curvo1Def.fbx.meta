@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: 95b31aa70695cab47a4ac8d31af8c2c8
+timeCreated: 1524157654
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Curvo1_Eye
+    100002: Curvo1_Flag
+    100004: Curvo1_Flag2
+    100006: Curvo1_Head
+    100008: Curvo1_LowerBody
+    100010: Curvo1_LowerLeftLeg
+    100012: Curvo1_LowerRightLeg
+    100014: Curvo1_MiddleLeftLeg
+    100016: Curvo1_MiddleRightLeg
+    100018: Curvo1_Neck
+    100020: Curvo1_UpperBody
+    100022: Curvo1_UpperLeftLeg
+    100024: Curvo1_UpperRightLeg
+    100026: //RootNode
+    400000: Curvo1_Eye
+    400002: Curvo1_Flag
+    400004: Curvo1_Flag2
+    400006: Curvo1_Head
+    400008: Curvo1_LowerBody
+    400010: Curvo1_LowerLeftLeg
+    400012: Curvo1_LowerRightLeg
+    400014: Curvo1_MiddleLeftLeg
+    400016: Curvo1_MiddleRightLeg
+    400018: Curvo1_Neck
+    400020: Curvo1_UpperBody
+    400022: Curvo1_UpperLeftLeg
+    400024: Curvo1_UpperRightLeg
+    400026: //RootNode
+    2300000: Curvo1_Eye
+    2300002: Curvo1_Flag
+    2300004: Curvo1_Flag2
+    2300006: Curvo1_Head
+    2300008: Curvo1_LowerBody
+    2300010: Curvo1_LowerLeftLeg
+    2300012: Curvo1_LowerRightLeg
+    2300014: Curvo1_MiddleLeftLeg
+    2300016: Curvo1_MiddleRightLeg
+    2300018: Curvo1_Neck
+    2300020: Curvo1_UpperBody
+    2300022: Curvo1_UpperLeftLeg
+    2300024: Curvo1_UpperRightLeg
+    3300000: Curvo1_Eye
+    3300002: Curvo1_Flag
+    3300004: Curvo1_Flag2
+    3300006: Curvo1_Head
+    3300008: Curvo1_LowerBody
+    3300010: Curvo1_LowerLeftLeg
+    3300012: Curvo1_LowerRightLeg
+    3300014: Curvo1_MiddleLeftLeg
+    3300016: Curvo1_MiddleRightLeg
+    3300018: Curvo1_Neck
+    3300020: Curvo1_UpperBody
+    3300022: Curvo1_UpperLeftLeg
+    3300024: Curvo1_UpperRightLeg
+    4300000: Curvo1_UpperRightLeg
+    4300002: Curvo1_MiddleRightLeg
+    4300004: Curvo1_LowerRightLeg
+    4300006: Curvo1_LowerLeftLeg
+    4300008: Curvo1_MiddleLeftLeg
+    4300010: Curvo1_UpperLeftLeg
+    4300012: Curvo1_LowerBody
+    4300014: Curvo1_UpperBody
+    4300016: Curvo1_Eye
+    4300018: Curvo1_Flag
+    4300020: Curvo1_Flag2
+    4300022: Curvo1_Head
+    4300024: Curvo1_Neck
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Curvo1
+    second: {fileID: 2100000, guid: a3f80f7d1b19ddb4ab1d557dabbc8884, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
