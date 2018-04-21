@@ -221,11 +221,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnPlayer1: 1
-  RedPlayerUI: {fileID: 1006713598}
-  BluePlayerUI: {fileID: 189810876}
   TurnText: {fileID: 690898302}
   P1EnergyValue: 0
   P2EnergyValue: 0
+  Totem: {fileID: 667952734}
 --- !u!1 &667952734
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class ObjectRotation : MonoBehaviour {
 
     public void RotateTotem()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) )
         {
             TotemRotation *= Quaternion.AngleAxis(45, Vector3.up);
         }

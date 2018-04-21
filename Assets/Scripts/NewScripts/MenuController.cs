@@ -5,27 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
+    public GameObject MainMenu;
+    public GameObject OptionsMenu;
+    public GameObject MainMenuGraphic;
+    public GameObject OptionsGraphic;
+    public GameObject TutorialPanel;
 
+    private void Start()
+    {
+        OptionsMenu.SetActive(false);
+    }
 
-
-    
-	
-
-
-
-
-	
-	void OnMouseDown () {
-		if(this.gameObject.name == "NuovaPartita")
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            StartGame();
+            BackToMainMenu();
         }
-
-        if (this.gameObject.name == "QuitGame")
-        {
-            QuitGame();
-        }
-
     }
 
     public void StartGame()
@@ -38,8 +34,30 @@ public class MenuController : MonoBehaviour {
         Application.Quit();
     }
 
+    public void AttivaImpostazioni()
+    {
+        MainMenu.SetActive(false);
+        OptionsMenu.SetActive(true);
+    }
 
+    public void BackToMainMenu()
+    {
+        MainMenu.SetActive(true);
+        OptionsMenu.SetActive(false);
+    }
 
+    public void RegolazioneAudio()
+    {
 
+    }
 
+    public void GestioneInterfacciaComandi()
+    {
+
+    }
+
+    public void ScaleInterfaccia()
+    {
+
+    }
 }
