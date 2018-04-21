@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewScenes/NewMainGame.unity
     guid: 31660eaded31d9b4987de6a60c014090
+  - enabled: 1
+    path: Assets/Scenes/NewScenes/NewEndScene.unity
+    guid: d94d8bb7721a0424aba16430fd1fb7ec
