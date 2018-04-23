@@ -759,10 +759,10 @@ MonoBehaviour:
   - {fileID: 2018545481}
   - {fileID: 212222393}
   CarteRobotQuadratiInHand:
-  - {fileID: 2009683238}
-  - {fileID: 1827767716}
-  - {fileID: 749405483}
   - {fileID: 1114058342}
+  - {fileID: 749405483}
+  - {fileID: 1827767716}
+  - {fileID: 2009683238}
   BackupCarteRobotCurviInHand:
   - {fileID: 624021288}
   - {fileID: 409782652}
@@ -3876,7 +3876,7 @@ GameObject:
   - component: {fileID: 749405484}
   - component: {fileID: 749405483}
   m_Layer: 0
-  m_Name: SlotQuadCard_3
+  m_Name: SlotQuadCard_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3894,7 +3894,7 @@ RectTransform:
   m_Children:
   - {fileID: 2140794927}
   m_Father: {fileID: 918987617}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.63500005, y: 0.36413613}
   m_AnchorMax: {x: 0.7925002, y: 0.97700006}
@@ -4564,10 +4564,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2009683237}
-  - {fileID: 1827767715}
-  - {fileID: 749405482}
   - {fileID: 1114058341}
+  - {fileID: 749405482}
+  - {fileID: 1827767715}
+  - {fileID: 2009683237}
   - {fileID: 638042367}
   m_Father: {fileID: 1839247709}
   m_RootOrder: 1
@@ -5390,7 +5390,7 @@ GameObject:
   - component: {fileID: 1114058343}
   - component: {fileID: 1114058342}
   m_Layer: 0
-  m_Name: SlotQuadCard_4
+  m_Name: SlotQuadCard_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5408,7 +5408,7 @@ RectTransform:
   m_Children:
   - {fileID: 1669852451}
   m_Father: {fileID: 918987617}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.8014999, y: 0.36400002}
   m_AnchorMax: {x: 0.9635002, y: 0.9598166}
@@ -7064,7 +7064,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
@@ -8460,7 +8460,7 @@ GameObject:
   - component: {fileID: 1827767717}
   - component: {fileID: 1827767716}
   m_Layer: 0
-  m_Name: SlotQuadCard_2
+  m_Name: SlotQuadCard_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8478,7 +8478,7 @@ RectTransform:
   m_Children:
   - {fileID: 503043769}
   m_Father: {fileID: 918987617}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.46400002, y: 0.36400002}
   m_AnchorMax: {x: 0.62600005, y: 0.97700006}
@@ -9284,7 +9284,7 @@ GameObject:
   - component: {fileID: 2009683239}
   - component: {fileID: 2009683238}
   m_Layer: 0
-  m_Name: SlotQuadCard_1
+  m_Name: SlotQuadCard_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9302,7 +9302,7 @@ RectTransform:
   m_Children:
   - {fileID: 1465747548}
   m_Father: {fileID: 918987617}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.293, y: 0.36400002}
   m_AnchorMax: {x: 0.455, y: 0.97700006}

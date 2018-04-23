@@ -212,10 +212,10 @@ public class RobotManager : MonoBehaviour {
 	/// Funzione che permette di cambiare il focus da un robot ad un altro tramite rotellina.
 	/// </summary>
 	public void SwitchRobotToPlay (List <Image> _cardToHighlight, Vector3[] _standardPositions, Vector3[] _standardScale, Vector3[] _highlightedPositions, Vector3[] _highlightedScale, int _robotsInHand) {
-		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && robotToPlay < _robotsInHand - 1) {
+		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && robotToPlay < _robotsInHand - 1) {
 			robotToPlay++;
 		}
-		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && robotToPlay > 0) {
+		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && robotToPlay > 0) {
 			robotToPlay--;
 		}
 

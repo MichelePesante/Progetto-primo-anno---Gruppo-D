@@ -19,11 +19,13 @@ public class RobotController : MonoBehaviour {
 	private int abilità_2;
 	private int abilità_3;
 	private int abilità_4;
+	private bool isUpgradable;
 	private RobotData InstanceData;
 
 	// Use this for initialization
 	void Start () {
 		Setup ();
+		isUpgradable = true;
 		AttackText = GetComponentInChildren<TextMeshProUGUI> ();
 		myCanvas = GetComponentInChildren<Canvas> ();
 		myCanvas.gameObject.SetActive (false);
@@ -77,22 +79,24 @@ public class RobotController : MonoBehaviour {
 	}
 
 	public void UpgradeRobot (List <RobotController> _listToUpgradeFrom) {
-		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3) {
+		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			RobotManager.Instance.CarteRobotCurvi.Remove (RobotManager.Instance.CarteRobotCurvi [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsCurviInHand--;
 			RobotManager.Instance.robotUpgraded++;
 			RobotManager.Instance.robotToPlay = 0;
+			isUpgradable = false;
 		}
 
-		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3) {
+		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			RobotManager.Instance.CarteRobotQuadrati.Remove (RobotManager.Instance.CarteRobotQuadrati [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsQuadratiInHand--;
 			RobotManager.Instance.robotUpgraded++;
 			RobotManager.Instance.robotToPlay = 0;
+			isUpgradable = false;
 		}
 	}
 
