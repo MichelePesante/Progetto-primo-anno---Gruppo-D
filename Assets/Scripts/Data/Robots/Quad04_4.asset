@@ -14,7 +14,11 @@ MonoBehaviour:
   UniqueID: 32
   Strength: 4
   Upgrade: 4
-  "Abilit\xE0_1": 4
-  "Abilit\xE0_2": 4
-  "Abilit\xE0_3": 6
-  "Abilit\xE0_4": 6
+  "Abilit\xE0_1": 5
+  "Abilit\xE0_2": 0
+  "Abilit\xE0_3": 4
+  "Abilit\xE0_4": 0
+  "Abilit\xE0_5": 4
+  "Abilit\xE0_6": 0
+  "Abilit\xE0_7": 5
+  "Abilit\xE0_8": 0

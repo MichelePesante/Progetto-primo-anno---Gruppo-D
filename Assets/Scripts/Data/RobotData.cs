@@ -14,6 +14,10 @@ public class RobotData : ScriptableObject {
 	public int Abilità_2;
 	public int Abilità_3;
 	public int Abilità_4;
+	public int Abilità_5;
+	public int Abilità_6;
+	public int Abilità_7;
+	public int Abilità_8;
 
 	private static int maxUniqueID = 0;
 

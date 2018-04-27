@@ -11,10 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fda8556bb7215948bbb8c9feb87d2bb, type: 3}
   m_Name: Curv02_2
   m_EditorClassIdentifier: 
-  UniqueID: 6
+  UniqueID: 1
   Strength: 2
   Upgrade: 2
-  "Abilit\xE0_1": 5
-  "Abilit\xE0_2": 2
-  "Abilit\xE0_3": 4
+  "Abilit\xE0_1": 0
+  "Abilit\xE0_2": 5
+  "Abilit\xE0_3": 0
   "Abilit\xE0_4": 2
+  "Abilit\xE0_5": 0
+  "Abilit\xE0_6": 2
+  "Abilit\xE0_7": 0
+  "Abilit\xE0_8": 5

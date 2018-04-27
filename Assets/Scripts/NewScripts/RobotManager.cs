@@ -79,6 +79,8 @@ public class RobotManager : MonoBehaviour {
 				SwitchRobotToPlay (CarteRobotQuadratiInHand, standardPositionsQuadrati, standardScalesQuadrati, highlightedPositionsQuadrati, highlightedScalesQuadrati, RobotsQuadratiInHand);
 		}
 		SetCardsValue ();
+		SetCardsInHand (CarteRobotCurviInHand);
+		SetCardsInHand (CarteRobotQuadratiInHand);
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
 	}
@@ -136,12 +138,82 @@ public class RobotManager : MonoBehaviour {
 		if (_listToCheck == CarteRobotCurviInHand) {
 			for (int i = 0; i < CarteRobotCurviInHand.Count; i++) {
 				CarteRobotCurviInHand [i].GetComponent<Image>().sprite = CarteRobotCurvi [i].GetComponent<Image>().sprite;
+				SetHighlightedCards (_listToCheck);
 			}
 		}
 
 		if (_listToCheck == CarteRobotQuadratiInHand) {
 			for (int i = 0; i < CarteRobotQuadratiInHand.Count; i++) {
 				CarteRobotQuadratiInHand [i].GetComponent<Image>().sprite = CarteRobotQuadrati [i].GetComponent<Image>().sprite;
+				SetHighlightedCards (_listToCheck);
+			}
+		}
+	}
+
+	public void SetHighlightedCards (List <Image> _listToCheck) {
+		if (_listToCheck == CarteRobotCurviInHand) {
+			for (int i = 0; i < CarteRobotCurviInHand.Count; i++) {
+				if (highlightedPositionsCurvi [i] == standardPositionsCurvi [i] + Vector3.right * 150f) {
+					switch (RobotCurvi [i].ID) {
+					case 11:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1_1_Highlighted;
+						break;
+					case 12:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1_2_Highlighted;
+						break;
+					case 13:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1_3_Highlighted;
+						break;
+					case 14:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1_4_Highlighted;
+						break;
+					case 21:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2_1_Highlighted;
+						break;
+					case 22:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2_2_Highlighted;
+						break;
+					case 23:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2_3_Highlighted;
+						break;
+					case 24:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_2_4_Highlighted;
+						break;
+					case 31:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3_1_Highlighted;
+						break;
+					case 32:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3_2_Highlighted;
+						break;
+					case 33:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3_3_Highlighted;
+						break;
+					case 34:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_3_4_Highlighted;
+						break;
+					case 41:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4_1_Highlighted;
+						break;
+					case 42:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4_2_Highlighted;
+						break;
+					case 43:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4_3_Highlighted;
+						break;
+					case 44:
+						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_4_4_Highlighted;
+						break;
+					default:
+						break;
+					}
+				}
+			}
+		}
+		if (_listToCheck == CarteRobotQuadratiInHand) {
+			for (int i = 0; i < CarteRobotQuadratiInHand.Count; i++) {
+				if (highlightedPositionsQuadrati [i] == standardPositionsQuadrati [i] + Vector3.left * 150f) {
+
+				}
 			}
 		}
 	}
@@ -662,6 +734,22 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
+	public void CardPositionReset (List <Image> _cardsToReset) {
+		if (_cardsToReset == CarteRobotCurviInHand) {
+			for (int i = 0; i < 4; i++) {
+				_cardsToReset [i].transform.position = standardPositionsCurvi [i];
+				_cardsToReset [i].transform.localScale = standardScalesCurvi [i];
+			}
+		}
+
+		if (_cardsToReset == CarteRobotQuadratiInHand) {
+			for (int i = 0; i < 4; i++) {
+				_cardsToReset [i].transform.position = standardPositionsQuadrati [i];
+				_cardsToReset [i].transform.localScale = standardScalesQuadrati [i];
+			}
+		}
+	}
+
 	#endregion
 
 	private void RobotPositioning (List<RobotController> _listToPositionRobotFrom, List <Image> _robotPositions, int _robotsInHand) {
@@ -680,22 +768,6 @@ public class RobotManager : MonoBehaviour {
 	private void EndPreparationPhase () {
 		if (currentTurn == maxPreparationTurns) {
 			TurnManager.Instance.CurrentMacroPhase = TurnManager.MacroPhase.Game;
-		}
-	}
-
-	public void CardPositionReset (List <Image> _cardsToReset) {
-		if (_cardsToReset == CarteRobotCurviInHand) {
-			for (int i = 0; i < 4; i++) {
-				_cardsToReset [i].transform.position = standardPositionsCurvi [i];
-				_cardsToReset [i].transform.localScale = standardScalesCurvi [i];
-			}
-		}
-
-		if (_cardsToReset == CarteRobotQuadratiInHand) {
-			for (int i = 0; i < 4; i++) {
-				_cardsToReset [i].transform.position = standardPositionsQuadrati [i];
-				_cardsToReset [i].transform.localScale = standardScalesQuadrati [i];
-			}
 		}
 	}
 }

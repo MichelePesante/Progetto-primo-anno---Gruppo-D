@@ -242,6 +242,14 @@ MonoBehaviour:
   ID: 14
   strength: 0
   upgrade: 0
+  "abilit\xE0_1": 0
+  "abilit\xE0_2": 0
+  "abilit\xE0_3": 0
+  "abilit\xE0_4": 0
+  "abilit\xE0_5": 0
+  "abilit\xE0_6": 0
+  "abilit\xE0_7": 0
+  "abilit\xE0_8": 0
 --- !u!4 &18225313 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4794113886759102, guid: d4d9aef2568184f49988d7e99d1c9b3d,
@@ -338,6 +346,14 @@ MonoBehaviour:
   ID: 13
   strength: 0
   upgrade: 0
+  "abilit\xE0_1": 0
+  "abilit\xE0_2": 0
+  "abilit\xE0_3": 0
+  "abilit\xE0_4": 0
+  "abilit\xE0_5": 0
+  "abilit\xE0_6": 0
+  "abilit\xE0_7": 0
+  "abilit\xE0_8": 0
 --- !u!4 &30938797 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4794113886759102, guid: d4d9aef2568184f49988d7e99d1c9b3d,
@@ -492,7 +508,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.55
+  m_fontSize: 39.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -920,8 +936,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.006756757, y: 0.67700005}
   m_AnchorMax: {x: 0.38089192, y: 0.851}
-  m_AnchoredPosition: {x: -1.1312256, y: -1}
-  m_SizeDelta: {x: 0.52000046, y: 0.27000046}
+  m_AnchoredPosition: {x: 30, y: -1}
+  m_SizeDelta: {x: 0, y: 0.27000046}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &136939760
 MonoBehaviour:
@@ -942,7 +958,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0b3e4ee9db9539248b836ccaeb35fe12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36bbd1de012c59343add754686787496, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -986,10 +1002,10 @@ RectTransform:
   m_Father: {fileID: 136939759}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0.7192264, y: 0.32000002}
-  m_AnchorMax: {x: 0.882, y: 0.94000006}
-  m_AnchoredPosition: {x: -1.1000061, y: 0}
-  m_SizeDelta: {x: -0.05001831, y: -0.000061035156}
+  m_AnchorMin: {x: 0.7695803, y: 0.14400001}
+  m_AnchorMax: {x: 0.94500005, y: 0.8122664}
+  m_AnchoredPosition: {x: -0.6999817, y: 0.0999794}
+  m_SizeDelta: {x: 1.25, y: 0.14000034}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142765360
 MonoBehaviour:
@@ -1316,10 +1332,10 @@ RectTransform:
   m_Father: {fileID: 136939759}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0.54724556, y: 0.32000002}
-  m_AnchorMax: {x: 0.71000004, y: 0.94000006}
-  m_AnchoredPosition: {x: -0.024993896, y: -0.000022888184}
-  m_SizeDelta: {x: -0.050018, y: -0.000061035}
+  m_AnchorMin: {x: 0.58919346, y: 0.128}
+  m_AnchorMax: {x: 0.7646132, y: 0.82800007}
+  m_AnchoredPosition: {x: -0.22998047, y: 0.0999794}
+  m_SizeDelta: {x: 1.25, y: -1.8599997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &212222393
 MonoBehaviour:
@@ -2071,10 +2087,10 @@ RectTransform:
   m_Father: {fileID: 136939759}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0.20626354, y: 0.32000002}
-  m_AnchorMax: {x: 0.36886284, y: 0.94000006}
-  m_AnchoredPosition: {x: -0.000091552734, y: 0.0000076293945}
-  m_SizeDelta: {x: -0.00021362, y: -0.000030518}
+  m_AnchorMin: {x: 0.223, y: 0.1284186}
+  m_AnchorMax: {x: 0.39819342, y: 0.8281903}
+  m_AnchoredPosition: {x: 0.47000122, y: 0.0999794}
+  m_SizeDelta: {x: 1.3000002, y: -1.8599997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &409782652
 MonoBehaviour:
@@ -2600,7 +2616,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.3
+  m_fontSize: 40.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2995,6 +3011,14 @@ MonoBehaviour:
   ID: 12
   strength: 0
   upgrade: 0
+  "abilit\xE0_1": 0
+  "abilit\xE0_2": 0
+  "abilit\xE0_3": 0
+  "abilit\xE0_4": 0
+  "abilit\xE0_5": 0
+  "abilit\xE0_6": 0
+  "abilit\xE0_7": 0
+  "abilit\xE0_8": 0
 --- !u!4 &612361875 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4794113886759102, guid: d4d9aef2568184f49988d7e99d1c9b3d,
@@ -3099,10 +3123,10 @@ RectTransform:
   m_Father: {fileID: 136939759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0.02626353, y: 0.32000002}
-  m_AnchorMax: {x: 0.1942455, y: 0.96000004}
-  m_AnchoredPosition: {x: 0.00004196167, y: 0.00016784668}
-  m_SizeDelta: {x: 0.000068665, y: -0.00030518}
+  m_AnchorMin: {x: 0.03465033, y: 0.12841856}
+  m_AnchorMax: {x: 0.2151934, y: 0.84800005}
+  m_AnchoredPosition: {x: 0.10000992, y: 0.1699791}
+  m_SizeDelta: {x: 1.4499998, y: -1.7600002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624021288
 MonoBehaviour:
@@ -3203,10 +3227,10 @@ RectTransform:
   m_Father: {fileID: 918987617}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.121378854, y: 0.36400002}
-  m_AnchorMax: {x: 0.28300002, y: 0.97700006}
-  m_AnchoredPosition: {x: -0.2000122, y: 0}
-  m_SizeDelta: {x: 0.0000076293945, y: 0.0000076293945}
+  m_AnchorMin: {x: 0.054208543, y: 0.17333479}
+  m_AnchorMax: {x: 0.23260428, y: 0.8498929}
+  m_AnchoredPosition: {x: -0.269989, y: 0.3000145}
+  m_SizeDelta: {x: 0.55999947, y: 0.5500002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &638042368
 MonoBehaviour:
@@ -3896,10 +3920,10 @@ RectTransform:
   m_Father: {fileID: 918987617}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.63500005, y: 0.36413613}
-  m_AnchorMax: {x: 0.7925002, y: 0.97700006}
-  m_AnchoredPosition: {x: -0.00012207031, y: -0.00005340576}
-  m_SizeDelta: {x: 0.00026703, y: -0.000041962}
+  m_AnchorMin: {x: 0.6014065, y: 0.17355798}
+  m_AnchorMax: {x: 0.78419787, y: 0.86578137}
+  m_AnchoredPosition: {x: -0.53941345, y: -0.1999855}
+  m_SizeDelta: {x: -1.6300001, y: -0.4499998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749405483
 MonoBehaviour:
@@ -4148,6 +4172,14 @@ MonoBehaviour:
   ID: 22
   strength: 0
   upgrade: 0
+  "abilit\xE0_1": 0
+  "abilit\xE0_2": 0
+  "abilit\xE0_3": 0
+  "abilit\xE0_4": 0
+  "abilit\xE0_5": 0
+  "abilit\xE0_6": 0
+  "abilit\xE0_7": 0
+  "abilit\xE0_8": 0
 --- !u!4 &818132602 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4102038967912970, guid: 46a7b470333da9b43b3610d164faf3b9,
@@ -4574,8 +4606,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.61700004, y: 0.67700005}
   m_AnchorMax: {x: 0.9915541, y: 0.851}
-  m_AnchoredPosition: {x: 0.5999756, y: -1}
-  m_SizeDelta: {x: 0.47999954, y: 0.5600004}
+  m_AnchoredPosition: {x: -30, y: -1}
+  m_SizeDelta: {x: 0, y: 0.5600004}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &918987618
 MonoBehaviour:
@@ -4596,7 +4628,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3e34b8e131e12004397ea34ff5899a4e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: afab08a040d29c64e97e08e03cdd249f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4701,6 +4733,14 @@ MonoBehaviour:
   ID: 24
   strength: 0
   upgrade: 0
+  "abilit\xE0_1": 0
+  "abilit\xE0_2": 0
+  "abilit\xE0_3": 0
+  "abilit\xE0_4": 0
+  "abilit\xE0_5": 0
+  "abilit\xE0_6": 0
+  "abilit\xE0_7": 0
+  "abilit\xE0_8": 0
 --- !u!4 &966159850 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4102038967912970, guid: 46a7b470333da9b43b3610d164faf3b9,
@@ -4787,7 +4827,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.55
+  m_fontSize: 39.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5098,7 +5138,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 60, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093418435
 MonoBehaviour:
@@ -5146,7 +5186,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 35.85
+  m_fontSize: 40.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5410,10 +5450,10 @@ RectTransform:
   m_Father: {fileID: 918987617}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.8014999, y: 0.36400002}
-  m_AnchorMax: {x: 0.9635002, y: 0.9598166}
-  m_AnchoredPosition: {x: 0.1599884, y: -0.00010681152}
-  m_SizeDelta: {x: -0.32, y: 0.000053406}
+  m_AnchorMin: {x: 0.7848022, y: 0.1892232}
+  m_AnchorMax: {x: 0.9635002, y: 0.86455804}
+  m_AnchoredPosition: {x: 0.20000005, y: -0.6000004}
+  m_SizeDelta: {x: 0.19000006, y: -0.6300001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114058342
 MonoBehaviour:
@@ -6217,7 +6257,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.55
+  m_fontSize: 39.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7235,7 +7275,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.3
+  m_fontSize: 40.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7687,7 +7727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1608884665
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7936,7 +7976,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 35.35
+  m_fontSize: 39.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8480,10 +8520,10 @@ RectTransform:
   m_Father: {fileID: 918987617}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.46400002, y: 0.36400002}
-  m_AnchorMax: {x: 0.62600005, y: 0.97700006}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
-  m_SizeDelta: {x: 0.0000038147, y: 0.00005722}
+  m_AnchorMin: {x: 0.41780216, y: 0.15744638}
+  m_AnchorMax: {x: 0.60081285, y: 0.8657813}
+  m_AnchoredPosition: {x: -0.6000004, y: 0.3000002}
+  m_SizeDelta: {x: -0.4499998, y: -1.4499998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827767716
 MonoBehaviour:
@@ -9304,10 +9344,10 @@ RectTransform:
   m_Father: {fileID: 918987617}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.293, y: 0.36400002}
-  m_AnchorMax: {x: 0.455, y: 0.97700006}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
-  m_SizeDelta: {x: 0.000011444, y: 0.0000076294}
+  m_AnchorMin: {x: 0.23420855, y: 0.17333479}
+  m_AnchorMax: {x: 0.41300002, y: 0.86577684}
+  m_AnchoredPosition: {x: 0.14999962, y: -0.1999855}
+  m_SizeDelta: {x: 0.5500002, y: -0.4499998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009683238
 MonoBehaviour:
@@ -9373,10 +9413,10 @@ RectTransform:
   m_Father: {fileID: 136939759}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0.374, y: 0.32000002}
-  m_AnchorMax: {x: 0.53675455, y: 0.94000006}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000022888184}
-  m_SizeDelta: {x: -0.000053406, y: -0.00006485}
+  m_AnchorMin: {x: 0.40341982, y: 0.128}
+  m_AnchorMax: {x: 0.583, y: 0.8281903}
+  m_AnchoredPosition: {x: -0.3999939, y: 0.099998474}
+  m_SizeDelta: {x: 0.3000002, y: -1.8599997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2018545481
 MonoBehaviour:
@@ -9451,14 +9491,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef618bc90eacc3749b15fdee5b0aec85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Curve_1: {fileID: 21300004, guid: 48807c96b1b8dbc4fa980f7976d6e34c, type: 3}
-  Curve_2: {fileID: 21300000, guid: 48807c96b1b8dbc4fa980f7976d6e34c, type: 3}
-  Curve_3: {fileID: 21300002, guid: 48807c96b1b8dbc4fa980f7976d6e34c, type: 3}
-  Curve_4: {fileID: 21300006, guid: 48807c96b1b8dbc4fa980f7976d6e34c, type: 3}
-  Quad_1: {fileID: 21300000, guid: ba2afefed887b9849bab88e4e4ccdc80, type: 3}
-  Quad_2: {fileID: 21300006, guid: ba2afefed887b9849bab88e4e4ccdc80, type: 3}
-  Quad_3: {fileID: 21300004, guid: ba2afefed887b9849bab88e4e4ccdc80, type: 3}
-  Quad_4: {fileID: 21300002, guid: ba2afefed887b9849bab88e4e4ccdc80, type: 3}
+  Curve_1: {fileID: 21300004, guid: 003269a7ff0fdae41be86690dab47531, type: 3}
+  Curve_2: {fileID: 21300000, guid: 003269a7ff0fdae41be86690dab47531, type: 3}
+  Curve_3: {fileID: 21300002, guid: 003269a7ff0fdae41be86690dab47531, type: 3}
+  Curve_4: {fileID: 21300006, guid: 003269a7ff0fdae41be86690dab47531, type: 3}
+  Quad_1: {fileID: 21300000, guid: d0dbf9a6468ed3143a184d3e3ad45f75, type: 3}
+  Quad_2: {fileID: 21300006, guid: d0dbf9a6468ed3143a184d3e3ad45f75, type: 3}
+  Quad_3: {fileID: 21300004, guid: d0dbf9a6468ed3143a184d3e3ad45f75, type: 3}
+  Quad_4: {fileID: 21300002, guid: d0dbf9a6468ed3143a184d3e3ad45f75, type: 3}
+  Curve_1_1_Highlighted: {fileID: 21300000, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_1_2_Highlighted: {fileID: 21300002, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_1_3_Highlighted: {fileID: 21300006, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_1_4_Highlighted: {fileID: 21300004, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_2_1_Highlighted: {fileID: 21300008, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_2_2_Highlighted: {fileID: 21300010, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_2_3_Highlighted: {fileID: 21300012, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_2_4_Highlighted: {fileID: 21300014, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_3_1_Highlighted: {fileID: 21300016, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_3_2_Highlighted: {fileID: 21300018, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_3_3_Highlighted: {fileID: 21300020, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_3_4_Highlighted: {fileID: 21300022, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_4_1_Highlighted: {fileID: 21300024, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_4_2_Highlighted: {fileID: 21300026, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_4_3_Highlighted: {fileID: 21300028, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Curve_4_4_Highlighted: {fileID: 21300030, guid: 28451ccc21e3d2648a3cdf5e1353859b,
+    type: 3}
+  Quad_1_1_Highlighted: {fileID: 21300000, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_1_2_Highlighted: {fileID: 21300002, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_1_3_Highlighted: {fileID: 21300004, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_1_4_Highlighted: {fileID: 21300006, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_2_1_Highlighted: {fileID: 21300010, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_2_2_Highlighted: {fileID: 21300008, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_2_3_Highlighted: {fileID: 21300012, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_2_4_Highlighted: {fileID: 21300014, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_3_1_Highlighted: {fileID: 21300016, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_3_2_Highlighted: {fileID: 21300018, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_3_3_Highlighted: {fileID: 21300022, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_3_4_Highlighted: {fileID: 21300020, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_4_1_Highlighted: {fileID: 21300024, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_4_2_Highlighted: {fileID: 21300026, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_4_3_Highlighted: {fileID: 21300028, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
+  Quad_4_4_Highlighted: {fileID: 21300030, guid: 1c60891a763ca494f81e5cbb13f7214a,
+    type: 3}
 --- !u!1 &2050297456
 GameObject:
   m_ObjectHideFlags: 0
@@ -9955,6 +10059,14 @@ MonoBehaviour:
   ID: 23
   strength: 0
   upgrade: 0
+  "abilit\xE0_1": 0
+  "abilit\xE0_2": 0
+  "abilit\xE0_3": 0
+  "abilit\xE0_4": 0
+  "abilit\xE0_5": 0
+  "abilit\xE0_6": 0
+  "abilit\xE0_7": 0
+  "abilit\xE0_8": 0
 --- !u!4 &2124788661 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4102038967912970, guid: 46a7b470333da9b43b3610d164faf3b9,
@@ -10109,7 +10221,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.3
+  m_fontSize: 40.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

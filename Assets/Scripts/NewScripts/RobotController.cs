@@ -14,13 +14,18 @@ public class RobotController : MonoBehaviour {
 	public int ID;
 	public int strength;
 	public int upgrade;
+	public int abilità_1;
+	public int abilità_2;
+	public int abilità_3;
+	public int abilità_4;
+	public int abilità_5;
+	public int abilità_6;
+	public int abilità_7;
+	public int abilità_8;
 
-	private int abilità_1;
-	private int abilità_2;
-	private int abilità_3;
-	private int abilità_4;
 	private bool isUpgradable;
 	private RobotData InstanceData;
+	private bool isCanvasActive;
 
 	// Use this for initialization
 	void Start () {
@@ -34,10 +39,14 @@ public class RobotController : MonoBehaviour {
 	void Update () {
 		AttackText.text = strength.ToString();
 		if (Input.GetKeyDown (KeyCode.Tab) && GameMenu.GameIsPaused == false) {
-			myCanvas.gameObject.SetActive (true);
-		}
-		if (Input.GetKeyUp (KeyCode.Tab) && GameMenu.GameIsPaused == false) {
-			myCanvas.gameObject.SetActive (false);
+			if (isCanvasActive) {
+				myCanvas.gameObject.SetActive (false);
+				isCanvasActive = false;
+			} 
+			else {
+				myCanvas.gameObject.SetActive (true);
+				isCanvasActive = true;
+			}
 		}
 	}
 
@@ -76,6 +85,10 @@ public class RobotController : MonoBehaviour {
 		abilità_2 = Data.Abilità_2;
 		abilità_3 = Data.Abilità_3;
 		abilità_4 = Data.Abilità_4;
+		abilità_5 = Data.Abilità_5;
+		abilità_6 = Data.Abilità_6;
+		abilità_7 = Data.Abilità_7;
+		abilità_8 = Data.Abilità_8;
 	}
 
 	public void UpgradeRobot (List <RobotController> _listToUpgradeFrom) {
@@ -99,7 +112,7 @@ public class RobotController : MonoBehaviour {
 			isUpgradable = false;
 		}
 	}
-
+		
 	#region API
 
 	public void SetPosition () {

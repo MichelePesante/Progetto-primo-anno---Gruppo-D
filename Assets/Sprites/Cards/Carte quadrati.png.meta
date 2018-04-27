@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ba2afefed887b9849bab88e4e4ccdc80
-timeCreated: 1524241425
+guid: d0dbf9a6468ed3143a184d3e3ad45f75
+timeCreated: 1524824433
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -112,7 +112,7 @@ TextureImporter:
         width: 1063
         height: 1065
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,7 +126,7 @@ TextureImporter:
         width: 1063
         height: 1066
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -136,11 +136,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 409
-        y: 167
+        y: 160
         width: 1063
         height: 1064
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,12 +149,12 @@ TextureImporter:
       name: Carte quadrati_2
       rect:
         serializedVersion: 2
-        x: 2041
-        y: 152
+        x: 2034
+        y: 156
         width: 1064
         height: 1063
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
