@@ -3,7 +3,7 @@ guid: 7e5d1eaf6cc4e854d81df8f9471f57db
 timeCreated: 1520270968
 licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: pasted__pCube53
     100002: pCube10
@@ -105,6 +105,11 @@ ModelImporter:
     100194: polySurface299
     100196: polySurface300
     100198: //RootNode
+    100200: polySurface255_MeshPart0
+    100202: polySurface255_MeshPart1
+    100204: polySurface255_MeshPart2
+    100206: polySurface255_MeshPart3
+    100208: polySurface255_MeshPart4
     400000: pasted__pCube53
     400002: pCube10
     400004: pCube11
@@ -205,6 +210,11 @@ ModelImporter:
     400194: polySurface299
     400196: polySurface300
     400198: //RootNode
+    400200: polySurface255_MeshPart0
+    400202: polySurface255_MeshPart1
+    400204: polySurface255_MeshPart2
+    400206: polySurface255_MeshPart3
+    400208: polySurface255_MeshPart4
     2100000: lambert1
     2300000: pasted__pCube53
     2300002: pCube10
@@ -305,6 +315,11 @@ ModelImporter:
     2300192: polySurface298
     2300194: polySurface299
     2300196: polySurface300
+    2300198: polySurface255_MeshPart0
+    2300200: polySurface255_MeshPart1
+    2300202: polySurface255_MeshPart2
+    2300204: polySurface255_MeshPart3
+    2300206: polySurface255_MeshPart4
     3300000: pasted__pCube53
     3300002: pCube10
     3300004: pCube11
@@ -404,6 +419,11 @@ ModelImporter:
     3300192: polySurface298
     3300194: polySurface299
     3300196: polySurface300
+    3300198: polySurface255_MeshPart0
+    3300200: polySurface255_MeshPart1
+    3300202: polySurface255_MeshPart2
+    3300204: polySurface255_MeshPart3
+    3300206: polySurface255_MeshPart4
     4300000: polySurface212
     4300002: polySurface213
     4300004: polySurface255
@@ -503,13 +523,16 @@ ModelImporter:
     4300192: polySurface204
     4300194: polySurface224
     4300196: polySurface223
+    4300198: polySurface255_MeshPart0
+    4300200: polySurface255_MeshPart1
+    4300202: polySurface255_MeshPart2
+    4300204: polySurface255_MeshPart3
+    4300206: polySurface255_MeshPart4
     9500000: //RootNode
-  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -522,14 +545,12 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -537,18 +558,13 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -558,7 +574,6 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
