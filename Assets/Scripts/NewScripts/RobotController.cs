@@ -95,7 +95,7 @@ public class RobotController : MonoBehaviour {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
-			RobotManager.Instance.CarteRobotCurvi.Remove (RobotManager.Instance.CarteRobotCurvi [RobotManager.Instance.robotToPlay]);
+			//RobotManager.Instance.CarteRobotCurviInHand.Remove (RobotManager.Instance.CarteRobotCurviInHand [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsCurviInHand--;
 			RobotManager.Instance.robotUpgraded++;
 			RobotManager.Instance.robotToPlay = 0;
@@ -105,7 +105,7 @@ public class RobotController : MonoBehaviour {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
-			RobotManager.Instance.CarteRobotQuadrati.Remove (RobotManager.Instance.CarteRobotQuadrati [RobotManager.Instance.robotToPlay]);
+			//RobotManager.Instance.CarteRobotQuadrati.Remove (RobotManager.Instance.CarteRobotQuadrati [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsQuadratiInHand--;
 			RobotManager.Instance.robotUpgraded++;
 			RobotManager.Instance.robotToPlay = 0;

@@ -79,8 +79,6 @@ public class RobotManager : MonoBehaviour {
 				SwitchRobotToPlay (CarteRobotQuadratiInHand, standardPositionsQuadrati, standardScalesQuadrati, highlightedPositionsQuadrati, highlightedScalesQuadrati, RobotsQuadratiInHand);
 		}
 		SetCardsValue ();
-		SetCardsInHand (CarteRobotCurviInHand);
-		SetCardsInHand (CarteRobotQuadratiInHand);
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
 	}
@@ -138,14 +136,14 @@ public class RobotManager : MonoBehaviour {
 		if (_listToCheck == CarteRobotCurviInHand) {
 			for (int i = 0; i < CarteRobotCurviInHand.Count; i++) {
 				CarteRobotCurviInHand [i].GetComponent<Image>().sprite = CarteRobotCurvi [i].GetComponent<Image>().sprite;
-				SetHighlightedCards (_listToCheck);
+				//SetHighlightedCards (_listToCheck);
 			}
 		}
 
 		if (_listToCheck == CarteRobotQuadratiInHand) {
 			for (int i = 0; i < CarteRobotQuadratiInHand.Count; i++) {
 				CarteRobotQuadratiInHand [i].GetComponent<Image>().sprite = CarteRobotQuadrati [i].GetComponent<Image>().sprite;
-				SetHighlightedCards (_listToCheck);
+				//SetHighlightedCards (_listToCheck);
 			}
 		}
 	}
@@ -153,7 +151,7 @@ public class RobotManager : MonoBehaviour {
 	public void SetHighlightedCards (List <Image> _listToCheck) {
 		if (_listToCheck == CarteRobotCurviInHand) {
 			for (int i = 0; i < CarteRobotCurviInHand.Count; i++) {
-				if (highlightedPositionsCurvi [i] == standardPositionsCurvi [i] + Vector3.right * 150f) {
+				if (CarteRobotCurviInHand [robotToPlay].transform.position == standardPositionsCurvi [robotToPlay]) {
 					switch (RobotCurvi [i].ID) {
 					case 11:
 						CarteRobotCurvi [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Curve_1_1_Highlighted;
@@ -211,8 +209,59 @@ public class RobotManager : MonoBehaviour {
 		}
 		if (_listToCheck == CarteRobotQuadratiInHand) {
 			for (int i = 0; i < CarteRobotQuadratiInHand.Count; i++) {
-				if (highlightedPositionsQuadrati [i] == standardPositionsQuadrati [i] + Vector3.left * 150f) {
-
+				if (CarteRobotQuadratiInHand [robotToPlay].transform.position == standardPositionsQuadrati [robotToPlay]) {
+					switch (RobotQuadrati [i].ID) {
+					case 11:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1_1_Highlighted;
+						break;
+					case 12:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1_2_Highlighted;
+						break;
+					case 13:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1_3_Highlighted;
+						break;
+					case 14:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_1_4_Highlighted;
+						break;
+					case 21:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2_1_Highlighted;
+						break;
+					case 22:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2_2_Highlighted;
+						break;
+					case 23:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2_3_Highlighted;
+						break;
+					case 24:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_2_4_Highlighted;
+						break;
+					case 31:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3_1_Highlighted;
+						break;
+					case 32:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3_2_Highlighted;
+						break;
+					case 33:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3_3_Highlighted;
+						break;
+					case 34:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_3_4_Highlighted;
+						break;
+					case 41:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4_1_Highlighted;
+						break;
+					case 42:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4_2_Highlighted;
+						break;
+					case 43:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4_3_Highlighted;
+						break;
+					case 44:
+						CarteRobotQuadrati [i].GetComponent<Image> ().sprite = SpriteManager.Instance.Quad_4_4_Highlighted;
+						break;
+					default:
+						break;
+					}
 				}
 			}
 		}
