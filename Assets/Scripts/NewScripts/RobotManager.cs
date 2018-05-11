@@ -799,6 +799,137 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
+	#region Ability
+
+	public void ActiveAbility (int _ability) {
+		for (int i = 0; i < RobotCurviGiocati.Count; i++) {
+			for (int j = 0; j < RobotCurviGiocati.Count; j++) {
+				if (RobotCurviGiocati [i].X == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y + 1 == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+				if (RobotCurviGiocati [i].X + 1 == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y + 1 == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+				if (RobotCurviGiocati [i].X + 1 == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+				if (RobotCurviGiocati [i].X + 1 == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y - 1 == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+				if (RobotCurviGiocati [i].X == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y - 1 == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+				if (RobotCurviGiocati [i].X - 1 == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y - 1 == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+				if (RobotCurviGiocati [i].X - 1 == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+				if (RobotCurviGiocati [i].X - 1 == RobotCurviGiocati [j].X && RobotCurviGiocati [i].Y + 1 == RobotCurviGiocati [j].Y) {
+					switch (_ability) {
+					case 1:
+						RobotCurviGiocati [j].strength += 1;
+						break;
+					case 2:
+						RobotCurviGiocati [j].strength += 2;
+						break;
+					case 3:
+						RobotCurviGiocati [j].strength += 3;
+						break;
+					default:
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	#endregion
+
 	#endregion
 
 	private void RobotPositioning (List<RobotController> _listToPositionRobotFrom, List <Image> _robotPositions, int _robotsInHand) {
