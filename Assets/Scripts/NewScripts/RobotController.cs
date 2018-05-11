@@ -13,6 +13,7 @@ public class RobotController : MonoBehaviour {
 	public int Y;
 	public int ID;
 	public int strength;
+	public int OriginalStrength;
 	public int upgrade;
 	public int abilità_1;
 	public int abilità_2;
@@ -30,6 +31,7 @@ public class RobotController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Setup ();
+		OriginalStrength = strength;
 		isUpgradable = true;
 		AttackText = GetComponentInChildren<TextMeshProUGUI> ();
 		myCanvas = GetComponentInChildren<Canvas> ();
@@ -91,9 +93,13 @@ public class RobotController : MonoBehaviour {
 		abilità_8 = Data.Abilità_8;
 	}
 
+		
+	#region API
+
 	public void UpgradeRobot (List <RobotController> _listToUpgradeFrom) {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+			AttackText.color = Color.red;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			//RobotManager.Instance.CarteRobotCurviInHand.Remove (RobotManager.Instance.CarteRobotCurviInHand [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsCurviInHand--;
@@ -101,9 +107,10 @@ public class RobotController : MonoBehaviour {
 			RobotManager.Instance.robotToPlay = 0;
 			isUpgradable = false;
 		}
-
+		
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+			AttackText.color = Color.red;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			//RobotManager.Instance.CarteRobotQuadrati.Remove (RobotManager.Instance.CarteRobotQuadrati [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsQuadratiInHand--;
@@ -112,8 +119,10 @@ public class RobotController : MonoBehaviour {
 			isUpgradable = false;
 		}
 	}
-		
-	#region API
+
+	public void ResetRobotStrength () {
+		strength = OriginalStrength;
+	}
 
 	public void SetPosition () {
 		X = GetComponentInParent<ColliderController> ().X;
