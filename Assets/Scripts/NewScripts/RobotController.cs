@@ -94,6 +94,7 @@ public class RobotController : MonoBehaviour {
 	public void UpgradeRobot (List <RobotController> _listToUpgradeFrom) {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+			AttackText.color = Color.red;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			//RobotManager.Instance.CarteRobotCurviInHand.Remove (RobotManager.Instance.CarteRobotCurviInHand [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsCurviInHand--;
@@ -104,6 +105,7 @@ public class RobotController : MonoBehaviour {
 
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
 			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+			AttackText.color = Color.red;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			//RobotManager.Instance.CarteRobotQuadrati.Remove (RobotManager.Instance.CarteRobotQuadrati [RobotManager.Instance.robotToPlay]);
 			RobotManager.Instance.RobotsQuadratiInHand--;
