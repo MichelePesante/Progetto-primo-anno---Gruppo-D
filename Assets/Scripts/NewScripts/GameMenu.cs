@@ -91,5 +91,8 @@ public class GameMenu : MonoBehaviour {
         Resume();
     }
 
+    public void OptionsMenu()
+    {
 
+    }
 }
