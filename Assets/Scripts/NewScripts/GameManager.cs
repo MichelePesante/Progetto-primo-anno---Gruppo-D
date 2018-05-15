@@ -16,3 +16,8 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 }
+
+public enum Player {
+	Player_Curve = 1, 
+	Player_Quad = 2
+}

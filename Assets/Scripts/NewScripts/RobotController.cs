@@ -15,14 +15,6 @@ public class RobotController : MonoBehaviour {
 	public int strength;
 	public int OriginalStrength;
 	public int upgrade;
-	public int abilità_1;
-	public int abilità_2;
-	public int abilità_3;
-	public int abilità_4;
-	public int abilità_5;
-	public int abilità_6;
-	public int abilità_7;
-	public int abilità_8;
 
 	private bool isUpgradable;
 	private RobotData InstanceData;
@@ -81,16 +73,9 @@ public class RobotController : MonoBehaviour {
 			return;
 		}
 		InstanceData = Instantiate <RobotData> (Data);
-		strength = Data.Strength;
-		upgrade = Data.Upgrade;
-		abilità_1 = Data.Abilità_1;
-		abilità_2 = Data.Abilità_2;
-		abilità_3 = Data.Abilità_3;
-		abilità_4 = Data.Abilità_4;
-		abilità_5 = Data.Abilità_5;
-		abilità_6 = Data.Abilità_6;
-		abilità_7 = Data.Abilità_7;
-		abilità_8 = Data.Abilità_8;
+		ID = InstanceData.Unique_ID;
+		strength = InstanceData.Strength;
+		upgrade = InstanceData.Upgrade;
 	}
 
 		
