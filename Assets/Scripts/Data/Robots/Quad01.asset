@@ -17,3 +17,4 @@ MonoBehaviour:
   Highlighted_Card: {fileID: 0}
   Strength: 1
   Upgrade: 1
+  Ability_Array: 010000000100000001000000010000000000000001000000010000000100000001000000

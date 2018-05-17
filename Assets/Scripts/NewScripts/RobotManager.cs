@@ -76,6 +76,9 @@ public class RobotManager : MonoBehaviour {
 				CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
 			}
 		}
+		SetAbilityValues (Player.Player_Curve);
+		SetAbilityValues (Player.Player_Quad);
+		CalculateStrength ();
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
 	}
@@ -451,20 +454,107 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
+	#region AbilityValues
+
 	public void SetAbilityValues (Player player) {
 		if (player == Player.Player_Curve) {
-			for (int main_row = 0; main_row < AbilityCurveValues.GetLength(0); main_row++) {
-				for (int main_column = 0; main_column < AbilityCurveValues.GetLength(1); main_column++) {
-					
+			RobotController[,] CurveRobots = new RobotController[3, 3];
+			for (int main_row = 0; main_row < AbilityCurveValues.GetLength (0); main_row++) {
+				for (int main_column = 0; main_column < AbilityCurveValues.GetLength (1); main_column++) {
+					CurveRobots [main_row, main_column] = GetRobotController (player, main_row, main_column);
+					if (CurveRobots [main_row, main_column] != null) {
+						CurveRobots [main_row, main_column].SetAbilityCheckToFalse ();
+					}
+					AbilityCurveValues [main_row, main_column] = 0;
+				}
+			}
+
+			for (int main_row = 0; main_row < AbilityCurveValues.GetLength(0); main_row++) {																			// scorro le righe della matrice principale
+				for (int main_column = 0; main_column < AbilityCurveValues.GetLength(1); main_column++) {																//   scorro le colonne della matrice principale
+					if (CurveRobots [main_row, main_column] != null) {																									//     controllo che sia presente un robot nella casella attuale della matrice principale
+						for (int sub_row = -1; sub_row <= 1; sub_row++) {																								//       scorro le righe della matrice delle abilità del robot
+							for (int sub_column = -1; sub_column <= 1; sub_column++) {																					//         scorro le colonne della matrice delle abilità del robot
+								if (CheckIndex(main_row + sub_row, main_column + sub_column)) {																			//           controllo che gli indici ottenuti sommando gli indici della matrice principale e della matrice delle abilità siano all interno della matrice principale
+									if (CurveRobots [main_row + sub_row, main_column + sub_column] != null) {															//             controllo che l'elemento adiacente esista
+										if (CurveRobots [main_row, main_column].AbilityCheck [sub_row+1, sub_column+1] != true 
+											&& CurveRobots [main_row, main_column].Abilities [sub_row+1, sub_column+1] != 0) {											//               controllo che la mia abilità su quel lato non sia gia stata calcolata precedentemente da un altro oggetto
+											int value = CurveRobots [main_row, main_column].Abilities [sub_row+1, sub_column+1];										//                 salvo in "value" il valore di incremento
+											CurveRobots [main_row, main_column].AbilityCheck [sub_row+1, sub_column+1] = true;											//                 imposto che l'abilità su questo lato è gia stata controllata
+											if (CurveRobots [main_row + sub_row, main_column + sub_column].Abilities [1 -sub_row, 1-sub_column] != 0) {					//                 controllo che il valore di incremento del robot adiacente, nella direzione opposta a quella che sto controllando sia diverso da 0 
+												value += CurveRobots [main_row + sub_row, main_column + sub_column].Abilities [1-sub_row, 1-sub_column];				//                   incremento "value" con il valore di incremento del robot adiacente, della direzione opposta a quella controllata
+												CurveRobots [main_row + sub_row, main_column + sub_column].AbilityCheck [1-sub_row, 1-sub_column] = true;				//                   imposto che l'abilità del robot adiacente, sul lato opposto a quello controllato, è gia stata calcolata
+												AbilityCurveValues [main_row, main_column] += value;																	//                   incremento il valore della matrice definitiva all indice del robot adiacente a quello controllato di value
+											}
+											AbilityCurveValues [main_row + sub_row, main_column + sub_column] += value;													//                 incremento il valore della matrice definitiva all indice del robot controllato di value
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		} 
 		else if (player == Player.Player_Quad) {
-			
+			RobotController[,] QuadRobots = new RobotController[3, 3];
+			for (int main_row = 0; main_row < AbilityQuadValues.GetLength (0); main_row++) {
+				for (int main_column = 0; main_column < AbilityQuadValues.GetLength (1); main_column++) {
+					QuadRobots [main_row, main_column] = GetRobotController (player, main_row, main_column);
+					if (QuadRobots [main_row, main_column] != null) {
+						QuadRobots [main_row, main_column].SetAbilityCheckToFalse ();
+					}
+					AbilityQuadValues [main_row, main_column] = 0;
+				}
+			}
+
+			for (int main_row = 0; main_row < AbilityQuadValues.GetLength(0); main_row++) {																				// scorro le righe della matrice principale
+				for (int main_column = 0; main_column < AbilityQuadValues.GetLength(1); main_column++) {																//   scorro le colonne della matrice principale
+					if (QuadRobots [main_row, main_column] != null) {																									//     controllo che sia presente un robot nella casella attuale della matrice principale
+						for (int sub_row = -1; sub_row <= 1; sub_row++) {																								//       scorro le righe della matrice delle abilità del robot
+							for (int sub_column = -1; sub_column <= 1; sub_column++) {																					//         scorro le colonne della matrice delle abilità del robot
+								if (CheckIndex(main_row + sub_row, main_column + sub_column)) {																			//           controllo che gli indici ottenuti sommando gli indici della matrice principale e della matrice delle abilità siano all interno della matrice principale
+									if (QuadRobots [main_row + sub_row, main_column + sub_column] != null) {															//             controllo che l'elemento adiacente esista
+										if (QuadRobots [main_row, main_column].AbilityCheck [sub_row+1, sub_column+1] != true 
+											&& QuadRobots [main_row, main_column].Abilities [sub_row+1, sub_column+1] != 0) {											//               controllo che la mia abilità su quel lato non sia gia stata calcolata precedentemente da un altro oggetto
+											int value = QuadRobots [main_row, main_column].Abilities [sub_row+1, sub_column+1];										//                 salvo in "value" il valore di incremento
+											QuadRobots [main_row, main_column].AbilityCheck [sub_row+1, sub_column+1] = true;											//                 imposto che l'abilità su questo lato è gia stata controllata
+											if (QuadRobots [main_row + sub_row, main_column + sub_column].Abilities [1 -sub_row, 1-sub_column] != 0) {					//                 controllo che il valore di incremento del robot adiacente, nella direzione opposta a quella che sto controllando sia diverso da 0 
+												value += QuadRobots [main_row + sub_row, main_column + sub_column].Abilities [1-sub_row, 1-sub_column];				//                   incremento "value" con il valore di incremento del robot adiacente, della direzione opposta a quella controllata
+												QuadRobots [main_row + sub_row, main_column + sub_column].AbilityCheck [1-sub_row, 1-sub_column] = true;				//                   imposto che l'abilità del robot adiacente, sul lato opposto a quello controllato, è gia stata calcolata
+												AbilityQuadValues [main_row, main_column] += value;																	//                   incremento il valore della matrice definitiva all indice del robot adiacente a quello controllato di value
+											}
+											AbilityQuadValues [main_row + sub_row, main_column + sub_column] += value;													//                 incremento il valore della matrice definitiva all indice del robot controllato di value
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#endregion    // NON TOCCARE!!!
+
+	public void CalculateStrength () {
+		for (int i = 0; i < AbilityCurveValues.GetLength (0); i++) {
+			for (int j = 0; j < AbilityCurveValues.GetLength (1); j++) {
+				RobotController curveRobotController = GetRobotController (Player.Player_Curve, i, j);
+				RobotController quadRobotController = GetRobotController (Player.Player_Quad, i, j);
+				if (curveRobotController != null)
+					curveRobotController.strength = curveRobotController.OriginalStrength + curveRobotController.UpgradedValue + AbilityCurveValues [i, j];
+				if (quadRobotController != null)
+					quadRobotController.strength = quadRobotController.OriginalStrength + quadRobotController.UpgradedValue + AbilityQuadValues [i, j];
+			} 
 		}
 	}
 
 	#endregion
+
+	private bool CheckIndex (int row, int column) {
+		return row >= 0 && row < AbilityCurveValues.GetLength (0) && column >= 0 && column < AbilityCurveValues.GetLength (1);
+	}
 
 	private void SwitchPlacingTurn () {
 		if (RobotPlayed == MaxRobotToPlay) {

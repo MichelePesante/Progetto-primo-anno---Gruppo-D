@@ -14,6 +14,7 @@ public class RobotController : MonoBehaviour {
 	public int ID;
 	public int strength;
 	public int OriginalStrength;
+	public int UpgradedValue;
 	public int upgrade;
 	public int [,] Abilities = new int[3, 3];
 	public bool[,] AbilityCheck = new bool[3, 3];
@@ -25,7 +26,7 @@ public class RobotController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Setup ();
-		SetAbilitieyCheckToFalse ();
+		SetAbilityCheckToFalse ();
 		OriginalStrength = strength;
 		isUpgradable = true;
 		AttackText = GetComponentInChildren<TextMeshProUGUI> ();
@@ -86,7 +87,7 @@ public class RobotController : MonoBehaviour {
 
 	public void UpgradeRobot (List <RobotController> _listToUpgradeFrom) {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3 && isUpgradable) {
-			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+			UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			AttackText.color = Color.red;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			FindObjectOfType<CardManager> ().PlaceCard (Player.Player_Curve, RobotManager.Instance.robotToPlay);
@@ -97,7 +98,7 @@ public class RobotController : MonoBehaviour {
 		}
 		
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
-			strength += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+			UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			AttackText.color = Color.red;
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			FindObjectOfType<CardManager> ().PlaceCard (Player.Player_Quad, RobotManager.Instance.robotToPlay);
@@ -117,7 +118,7 @@ public class RobotController : MonoBehaviour {
 		Y = GetComponentInParent<ColliderController> ().Y;
 	}
 
-	public void SetAbilitieyCheckToFalse () {
+	public void SetAbilityCheckToFalse () {
 		for (int i = 0; i < AbilityCheck.GetLength(0); i++) {
 			for (int j = 0; j < AbilityCheck.GetLength (1); j++) {
 				AbilityCheck [i, j] = false;

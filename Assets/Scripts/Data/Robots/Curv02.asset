@@ -17,3 +17,4 @@ MonoBehaviour:
   Highlighted_Card: {fileID: 21300000, guid: 88ea88f75ed63f147b8c0d3053bbdca6, type: 3}
   Strength: 2
   Upgrade: 2
+  Ability_Array: 020000000200000002000000020000000000000002000000020000000200000002000000
