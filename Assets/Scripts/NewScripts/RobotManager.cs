@@ -55,13 +55,23 @@ public class RobotManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ChangeRobotToPlay ();
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
-			PlayRobot (RobotCurviInHand, RobotCurviGiocati);
-			CardManager.Instance.HighlightCard (Player.Player_Curve, robotToPlay);
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && GameMenu.GameIsPaused == false) {
+			if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
+				PlayRobot (RobotCurviInHand, RobotCurviGiocati);
+				CardManager.Instance.HighlightCard (Player.Player_Curve, robotToPlay);
+			}
+			else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
+				CardManager.Instance.HighlightCard (Player.Player_Curve, robotToPlay);
+			}
 		}
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false) {
-			PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
-			CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && GameMenu.GameIsPaused == false) {
+			if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
+				PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
+				CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
+			}
+			else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
+				CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
+			}
 		}
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
