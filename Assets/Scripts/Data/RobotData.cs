@@ -14,6 +14,6 @@ public class RobotData : ScriptableObject {
 	public Sprite Highlighted_Card;
 	public int Strength;
 	public int Upgrade;
-	public int [,] Abilities = new int[3, 3];
+	public int[] Ability_Array = new int[9];
 }
 

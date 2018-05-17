@@ -25,6 +25,9 @@ public class RobotManager : MonoBehaviour {
 	public List<RobotController> RobotCurviInHand;
 	public List<RobotController> RobotQuadratiInHand;
 
+	public int[,] AbilityCurveValues = new int[3, 3];
+	public int[,] AbilityQuadValues = new int[3, 3];
+
 	private int currentFirstRobotCurvo;
 	private int currentFirstRobotQuadrato;
 	private int currentTurn;
@@ -420,6 +423,45 @@ public class RobotManager : MonoBehaviour {
 
 	public void RemoveRobotFromList (List<RobotController> _listToRemoveRobotFrom, int _indexRobotToRemove) {
 		_listToRemoveRobotFrom.Remove (_listToRemoveRobotFrom [_indexRobotToRemove]);
+	}
+
+	public RobotController GetRobotController (Player player, int _x, int _y) {
+		
+		if (player == Player.Player_Curve) {
+			_y = 2 - _y;
+			foreach (RobotController robot in RobotCurviGiocati) {
+				if (robot.X == _x && robot.Y == _y) {
+					return robot;
+				}
+			}
+			return null;
+		}
+		else if (player == Player.Player_Quad) {
+			_y = 4 + _y;
+			_x = 2 - _x;
+			foreach (RobotController robot in RobotQuadratiGiocati) {
+				if (robot.X == _x && robot.Y== _y) {
+					return robot;
+				}
+			}
+			return null;
+		}
+		else {
+			return null;
+		}
+	}
+
+	public void SetAbilityValues (Player player) {
+		if (player == Player.Player_Curve) {
+			for (int main_row = 0; main_row < AbilityCurveValues.GetLength(0); main_row++) {
+				for (int main_column = 0; main_column < AbilityCurveValues.GetLength(1); main_column++) {
+					
+				}
+			}
+		} 
+		else if (player == Player.Player_Quad) {
+			
+		}
 	}
 
 	#endregion
