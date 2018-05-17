@@ -9,8 +9,8 @@ public class TurnManager : MonoBehaviour {
 	public int RotationTurn = 0;
 	public int BattleTurn = 0;
 	public int ScoreToReach = 5;
-	public int ScoreP1;
-	public int ScoreP2;
+	public int ScoreCurve;
+	public int ScoreQuad;
 	public Vector3 CameraPosition;
 
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
@@ -52,7 +52,7 @@ public class TurnManager : MonoBehaviour {
 	}
 
 	/// <summary> ENUM per indicare di chi è il turno </summary>
-	public enum PlayerTurn { P1_Turn, P2_Turn };
+	public enum PlayerTurn { Curve_Turn, Quad_Turn };
 	private PlayerTurn _currentPlayerTurn;
 	public PlayerTurn CurrentPlayerTurn
 	{
@@ -82,7 +82,7 @@ public class TurnManager : MonoBehaviour {
         //at the start of the game, the various states will be:
         CurrentMacroPhase = MacroPhase.Preparation;
         CurrentTurnState = TurnState.choosePlayer;
-		CurrentPlayerTurn = PlayerTurn.P1_Turn;
+		CurrentPlayerTurn = PlayerTurn.Curve_Turn;
     }
 
     /// <summary> Funzione che ritorna bool della macro fase corrente </summary>
@@ -109,13 +109,11 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<NewGridController> ().CreateGrid (FindObjectOfType<NewGridController> ().X, FindObjectOfType<NewGridController> ().Y, FindObjectOfType<NewGridController> ().Offset);
 				RobotManager.Instance.Shuffle (RobotManager.Instance.RobotCurvi);
 				RobotManager.Instance.Shuffle (RobotManager.Instance.RobotQuadrati);
-				RobotManager.Instance.SetCardImage (RobotManager.Instance.RobotCurviInHand);
-				RobotManager.Instance.SetCardImage (RobotManager.Instance.RobotQuadratiInHand);
 				CurrentTurnState = TurnState.choosePlayer;	
-				CurrentPlayerTurn = PlayerTurn.P1_Turn;
+				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 	            break;
 			case MacroPhase.Game:
-				CurrentPlayerTurn = PlayerTurn.P1_Turn;
+				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 				CurrentTurnState = TurnState.rotation;
                 break;
             default:
@@ -176,11 +174,7 @@ public class TurnManager : MonoBehaviour {
 				CurrentTurnState = TurnState.placing;
                 break;
 			case TurnState.placing:
-				CurrentPlayerTurn = PlayerTurn.P1_Turn;
-				RobotManager.Instance.SetPositions (RobotManager.Instance.CarteRobotCurviInHand);
-				RobotManager.Instance.SetPositions (RobotManager.Instance.CarteRobotQuadratiInHand);
-				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
-				RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
+				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
 				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
                 break;
@@ -200,7 +194,7 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (false);
 				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (false);
 				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
-				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
+				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
 					ChangeTurn ();
 				} 
@@ -213,7 +207,7 @@ public class TurnManager : MonoBehaviour {
 				NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Display_P1.SetActive (false);
 				NewUIManager.Instance.Display_P2.SetActive (false);
-				if (_currentPlayerTurn == PlayerTurn.P1_Turn) {
+				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
 				} 
 				else {
@@ -229,7 +223,7 @@ public class TurnManager : MonoBehaviour {
 
 	void OnTurnStart (PlayerTurn newTurn)
     {
-		if (newTurn == PlayerTurn.P1_Turn) {
+		if (newTurn == PlayerTurn.Curve_Turn) {
 			switch (CurrentMacroPhase) {
 			case MacroPhase.Preparation:
 				switch (CurrentTurnState) {
@@ -238,9 +232,6 @@ public class TurnManager : MonoBehaviour {
 				case TurnState.placing:
 					//RobotManager.Instance.AddRemovedCards (RobotManager.Instance.CarteRobotCurviInHand);
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
-					if (RobotManager.Instance.firstTurnPassed)
-						RobotManager.Instance.CardPositionReset (RobotManager.Instance.CarteRobotQuadratiInHand);
-					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotCurviInHand);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
 					break;
 				}
@@ -252,7 +243,7 @@ public class TurnManager : MonoBehaviour {
 				break;
 			}
         }
-		if (newTurn == PlayerTurn.P2_Turn) {
+		if (newTurn == PlayerTurn.Quad_Turn) {
 			switch (CurrentMacroPhase) {
 			case MacroPhase.Preparation:
 				switch (CurrentTurnState) {
@@ -260,8 +251,6 @@ public class TurnManager : MonoBehaviour {
 					break;
 				case TurnState.placing:
 					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
-					RobotManager.Instance.CardPositionReset (RobotManager.Instance.CarteRobotCurviInHand);
-					RobotManager.Instance.SetCardsInHand (RobotManager.Instance.CarteRobotQuadratiInHand);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
 					break;
 				}
@@ -285,13 +274,13 @@ public class TurnManager : MonoBehaviour {
     /// </summary>
     public void ChangeTurn()
     {
-        if (CurrentPlayerTurn == PlayerTurn.P1_Turn)
+        if (CurrentPlayerTurn == PlayerTurn.Curve_Turn)
         {
-            CurrentPlayerTurn = PlayerTurn.P2_Turn;
+            CurrentPlayerTurn = PlayerTurn.Quad_Turn;
         }
-        else if (CurrentPlayerTurn == PlayerTurn.P2_Turn)
+        else if (CurrentPlayerTurn == PlayerTurn.Quad_Turn)
         {
-            CurrentPlayerTurn = PlayerTurn.P1_Turn;
+            CurrentPlayerTurn = PlayerTurn.Curve_Turn;
         }
     }
 }

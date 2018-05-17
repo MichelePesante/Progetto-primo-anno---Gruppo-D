@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (TurnManager.Instance.ScoreP1 >= 5) {
+		if (TurnManager.Instance.ScoreCurve >= 5) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 		}
 
-		if (TurnManager.Instance.ScoreP2 >= 5) {
+		if (TurnManager.Instance.ScoreQuad >= 5) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 		}
 	}

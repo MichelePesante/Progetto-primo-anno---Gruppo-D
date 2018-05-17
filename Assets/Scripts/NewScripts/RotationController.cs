@@ -16,7 +16,7 @@ public class RotationController : MonoBehaviour {
 	public GridStep CurrentQuadGridStep;
 
 	void OnMouseDown () {
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
 			if (this.gameObject.name == "CurveClockwiseRotationButton") {
 				RotateGrid ("CurveGrid", this.gameObject.name);
 				FindObjectOfType<RobotManager> ().OnClockwiseRotationCurveGrid ();
@@ -45,7 +45,7 @@ public class RotationController : MonoBehaviour {
 			}
 		}
 
-		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
+		if (FindObjectOfType<TurnManager> ().CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && FindObjectOfType<TurnManager> ().CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false) {
 			if (this.gameObject.name == "QuadClockwiseRotationButton") {
 				RotateGrid ("QuadGrid", this.gameObject.name);
 				FindObjectOfType<RobotManager> ().OnClockwiseRotationQuadGrid ();

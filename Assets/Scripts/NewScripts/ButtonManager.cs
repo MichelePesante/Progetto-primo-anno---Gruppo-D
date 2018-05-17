@@ -66,7 +66,7 @@ public class ButtonManager : MonoBehaviour {
 		RobotManager.Instance.OnClockwiseRotationCurveGrid ();
 		DisableButton (CurveGridClockwiseButton);
 		DisableButton (CurveGridCounterclockwiseButton);
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true)) {
 			EnableButton (Skip_Turn);
 		}
 	}
@@ -80,7 +80,7 @@ public class ButtonManager : MonoBehaviour {
 		RobotManager.Instance.OnCounterclockwiseRotationCurveGrid ();
 		DisableButton (CurveGridCounterclockwiseButton);
 		DisableButton (CurveGridClockwiseButton);
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P2_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true)) {
 			EnableButton (Skip_Turn);
 		}
 	}
@@ -94,7 +94,7 @@ public class ButtonManager : MonoBehaviour {
 		RobotManager.Instance.OnClockwiseRotationQuadGrid ();
 		DisableButton (QuadGridClockwiseButton);
 		DisableButton (QuadGridCounterclockwiseButton);
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true)) {
 			EnableButton (Skip_Turn);
 		}
 	}
@@ -108,7 +108,7 @@ public class ButtonManager : MonoBehaviour {
 		RobotManager.Instance.OnCounterclockwiseRotationQuadGrid ();
 		DisableButton (QuadGridCounterclockwiseButton);
 		DisableButton (QuadGridClockwiseButton);
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.P1_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true)) {
+		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true)) {
 			EnableButton (Skip_Turn);
 		}
 	}

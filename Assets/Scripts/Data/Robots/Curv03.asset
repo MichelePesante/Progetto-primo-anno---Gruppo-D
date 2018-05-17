@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unique_ID: 3
   Robot_Prefab: {fileID: 0}
-  Normal_Card: {fileID: 21300002, guid: 003269a7ff0fdae41be86690dab47531, type: 3}
-  Highlighted_Card: {fileID: 0}
+  Normal_Card: {fileID: 21300000, guid: 6827022cc77f84b4e92fc48f05509359, type: 3}
+  Highlighted_Card: {fileID: 21300000, guid: 588fcb5bf3475f243acca99fff9bbc8b, type: 3}
   Strength: 3
   Upgrade: 3

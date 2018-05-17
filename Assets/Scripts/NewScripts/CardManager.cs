@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour {
 
+	public static CardManager Instance;
+
+	public Vector3 IncScale;
+	public Vector3 IncPosition;
+
 	public List <CardController> CurveCards;
 	public List <CardController> QuadCards;
+
+	void Awake () {
+		if (Instance == null) {
+			Instance = this;
+		} 
+		else {
+			Destroy (gameObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -64,6 +78,28 @@ public class CardManager : MonoBehaviour {
 					}
 				}
 			}
+		}
+	}
+
+	public void PlaceCard (Player player, int index) {
+		if (player == Player.Player_Curve) {
+			CurveCards [index].hasBeenPlaced = true;
+		} 
+		else if (player == Player.Player_Quad) {
+			QuadCards [index].hasBeenPlaced = true;
+		}
+	}
+
+	public void HighlightCard (Player player, int index) {
+		for (int i = 0; i < CurveCards.Count; i++) {
+			CurveCards [i].isHighlighted = false;
+			QuadCards [i].isHighlighted = false;
+		}
+		if (player == Player.Player_Curve) {
+			CurveCards [index].isHighlighted = true;
+		}
+		else if (player == Player.Player_Quad) {
+			QuadCards [index].isHighlighted = true;
 		}
 	}
 }
