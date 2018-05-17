@@ -15,6 +15,8 @@ public class RobotController : MonoBehaviour {
 	public int strength;
 	public int OriginalStrength;
 	public int upgrade;
+	public int [,] Abilities = new int[3, 3];
+	public bool[,] AbilityCheck = new bool[3, 3];
 
 	private bool isUpgradable;
 	private RobotData InstanceData;
@@ -23,6 +25,7 @@ public class RobotController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Setup ();
+		SetAbilitieyCheckToFalse ();
 		OriginalStrength = strength;
 		isUpgradable = true;
 		AttackText = GetComponentInChildren<TextMeshProUGUI> ();
@@ -74,8 +77,10 @@ public class RobotController : MonoBehaviour {
 		ID = InstanceData.Unique_ID;
 		strength = InstanceData.Strength;
 		upgrade = InstanceData.Upgrade;
+		for (int i = 0; i < Data.Ability_Array.Length; i++) {
+			Abilities [i / 3, i % 3] = InstanceData.Ability_Array [i];
+		}
 	}
-
 		
 	#region API
 
@@ -110,6 +115,14 @@ public class RobotController : MonoBehaviour {
 	public void SetPosition () {
 		X = GetComponentInParent<ColliderController> ().X;
 		Y = GetComponentInParent<ColliderController> ().Y;
+	}
+
+	public void SetAbilitieyCheckToFalse () {
+		for (int i = 0; i < AbilityCheck.GetLength(0); i++) {
+			for (int j = 0; j < AbilityCheck.GetLength (1); j++) {
+				AbilityCheck [i, j] = false;
+			}
+		}
 	}
 
 	#endregion
