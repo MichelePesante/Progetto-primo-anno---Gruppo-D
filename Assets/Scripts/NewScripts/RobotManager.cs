@@ -202,10 +202,10 @@ public class RobotManager : MonoBehaviour {
 
 	public void ChangeRobotToPlay () {
 		CardManager cm = FindObjectOfType<CardManager> ();
-		if (Input.GetAxis ("Mouse ScrollWheel") < 0f && robotToPlay > 0) {
+		if (Input.GetAxis ("Mouse ScrollWheel") > 0f && robotToPlay > 0) {
 			robotToPlay--;
 		} 
-		else if (Input.GetAxis ("Mouse ScrollWheel") > 0f) {
+		else if (Input.GetAxis ("Mouse ScrollWheel") < 0f) {
 			if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && robotToPlay < RobotsCurviInHand - 1) {
 				robotToPlay++;
 			} 
