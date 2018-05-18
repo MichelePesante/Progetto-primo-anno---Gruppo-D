@@ -1,0 +1,329 @@
+fileFormatVersion: 2
+guid: b51039fe159149c4bb8ddc65208a63c1
+timeCreated: 1526676586
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: anca_dx
+    100002: anca_sx
+    100004: AncaDX1
+    100006: AncaSX
+    100008: Bacino
+    100010: Bacino 1
+    100012: BraccioDX
+    100014: BraccioDX 1
+    100016: BraccioSX
+    100018: Bracciosx
+    100020: Cannone
+    100022: Cannone 1
+    100024: Corpo
+    100026: CosoAlPiedeDX
+    100028: CosoalPiedeDX
+    100030: CosoAlPiedeSX
+    100032: CosoalPiedeSX
+    100034: GiuntoBraccioDX
+    100036: GiuntoBraccioSX
+    100038: GiuntoCannone
+    100040: GiuntoPolpacciodx
+    100042: GiuntoPolpaccioSx
+    100044: GiunzioneBraccioDX
+    100046: GiunzioneBraccioSX
+    100048: GiunzioneSpalleDX
+    100050: GiunzioneSpalleSX
+    100052: group1
+    100054: Pelvis
+    100056: persp1
+    100058: PiedeDX
+    100060: PiedeDX 1
+    100062: PiedeSX
+    100064: PiedeSX 1
+    100066: PolpaccioDX
+    100068: PolpaccioSX
+    100070: PolpaggioDX
+    100072: PolpaggioSX
+    100074: //RootNode
+    100076: right1
+    100078: SpallaDX
+    100080: SpallaDX1
+    100082: SpallaSX
+    100084: Spallasx
+    400000: anca_dx
+    400002: anca_sx
+    400004: AncaDX1
+    400006: AncaSX
+    400008: Bacino
+    400010: Bacino 1
+    400012: BraccioDX
+    400014: BraccioDX 1
+    400016: BraccioSX
+    400018: Bracciosx
+    400020: Cannone
+    400022: Cannone 1
+    400024: Corpo
+    400026: CosoAlPiedeDX
+    400028: CosoalPiedeDX
+    400030: CosoAlPiedeSX
+    400032: CosoalPiedeSX
+    400034: GiuntoBraccioDX
+    400036: GiuntoBraccioSX
+    400038: GiuntoCannone
+    400040: GiuntoPolpacciodx
+    400042: GiuntoPolpaccioSx
+    400044: GiunzioneBraccioDX
+    400046: GiunzioneBraccioSX
+    400048: GiunzioneSpalleDX
+    400050: GiunzioneSpalleSX
+    400052: group1
+    400054: Pelvis
+    400056: persp1
+    400058: PiedeDX
+    400060: PiedeDX 1
+    400062: PiedeSX
+    400064: PiedeSX 1
+    400066: PolpaccioDX
+    400068: PolpaccioSX
+    400070: PolpaggioDX
+    400072: PolpaggioSX
+    400074: //RootNode
+    400076: right1
+    400078: SpallaDX
+    400080: SpallaDX1
+    400082: SpallaSX
+    400084: Spallasx
+    2000000: persp1
+    2000002: right1
+    4300000: SpallaDX1
+    4300002: CosoAlPiedeSX
+    4300004: Bracciosx
+    4300006: CosoAlPiedeDX
+    4300008: Corpo
+    4300010: PolpaccioSX
+    4300012: GiunzioneBraccioDX
+    4300014: BraccioDX
+    4300016: Bacino
+    4300018: Spallasx
+    4300020: PiedeDX
+    4300022: GiunzioneBraccioSX
+    4300024: Cannone
+    4300026: anca_sx
+    4300028: anca_dx
+    4300030: PolpaccioDX
+    4300032: PiedeSX
+    7400000: Quad2_Idle
+    7400002: Quad2_Idle2
+    7400004: Quad2_Attack
+    7400006: Quad2_Hitted
+    9500000: //RootNode
+    13700000: anca_dx
+    13700002: anca_sx
+    13700004: Bacino 1
+    13700006: BraccioDX
+    13700008: Bracciosx
+    13700010: Cannone
+    13700012: Corpo
+    13700014: CosoAlPiedeDX
+    13700016: CosoAlPiedeSX
+    13700018: GiunzioneBraccioDX
+    13700020: GiunzioneBraccioSX
+    13700022: PiedeDX
+    13700024: PiedeSX
+    13700026: PolpaccioDX
+    13700028: PolpaccioSX
+    13700030: SpallaDX1
+    13700032: Spallasx
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: dad8806959b21d34d8cbc85789be013a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Quad2_Idle
+      takeName: Quad2_Idle
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Quad2_Idle2
+      takeName: Quad2_Idle2
+      firstFrame: 50
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Quad2_Attack
+      takeName: Quad2_Attack
+      firstFrame: 160
+      lastFrame: 270
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Quad2_Hitted
+      takeName: Quad2_Hitted
+      firstFrame: 320
+      lastFrame: 430
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
