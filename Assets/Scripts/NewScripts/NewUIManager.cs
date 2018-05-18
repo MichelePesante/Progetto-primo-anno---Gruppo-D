@@ -8,8 +8,9 @@ public class NewUIManager : MonoBehaviour {
 	public static NewUIManager Instance;
 	public TextMeshProUGUI Punteggio_P1;
 	public TextMeshProUGUI Punteggio_P2;
-	public GameObject Display_P1;
-	public GameObject Display_P2;
+	public GameObject Display_Curve;
+	public GameObject Display_Quad;
+	public GameObject Energies;
 	public GameObject Slots;
 
 	// Use this for initialization

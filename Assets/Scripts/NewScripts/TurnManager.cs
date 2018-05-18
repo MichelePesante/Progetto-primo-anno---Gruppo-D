@@ -180,8 +180,9 @@ public class TurnManager : MonoBehaviour {
                 break;
 			case TurnState.rotation:
 				NewUIManager.Instance.Slots.SetActive (false);
-				NewUIManager.Instance.Display_P1.SetActive (true);
-				NewUIManager.Instance.Display_P2.SetActive (true);
+				NewUIManager.Instance.Energies.SetActive (false);
+				NewUIManager.Instance.Display_Curve.SetActive (true);
+				NewUIManager.Instance.Display_Quad.SetActive (true);
 				RobotManager.Instance.SetGraphicAsParent ();
 				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
@@ -205,8 +206,9 @@ public class TurnManager : MonoBehaviour {
                 break;
 			case TurnState.upgrade:
 				NewUIManager.Instance.Slots.SetActive (true);
-				NewUIManager.Instance.Display_P1.SetActive (false);
-				NewUIManager.Instance.Display_P2.SetActive (false);
+				NewUIManager.Instance.Energies.SetActive (true);
+				NewUIManager.Instance.Display_Curve.SetActive (false);
+				NewUIManager.Instance.Display_Quad.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand);
 				} 
