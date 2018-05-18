@@ -6,20 +6,15 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour {
 
-    public GameObject GameTitleGraphic;
-    public GameObject MainMenu;
+	public GameObject MainMenu;
     public GameObject OptionsMenu;
-    public GameObject MainMenuGraphic;
-    public GameObject OptionsGraphic;
-    public GameObject TutorialPanel;
-    public Slider VolumeSlider;
-    public Slider InterfaceSlider;
-    public AudioSource GameMusic;
-
+	public GameObject AudioMenu;
+	public GameObject VideoMenu;
+	public GameObject CommandMenu;
 
     private void Start()
     {
-        OptionsMenu.SetActive(false);
+        OptionsMenu.SetActive (false);
     }
 
     private void Update()
@@ -42,21 +37,32 @@ public class MenuController : MonoBehaviour {
 
     public void AttivaImpostazioni()
     {
-        GameTitleGraphic.SetActive(false);
-        MainMenu.SetActive(false);
-        MainMenuGraphic.SetActive(false);
-        OptionsMenu.SetActive(true);
-        OptionsGraphic.SetActive(true);
+        MainMenu.SetActive (false);
+        OptionsMenu.SetActive (true);
     }
 
     public void BackToMainMenu()
     {
-        GameTitleGraphic.SetActive(true);
-        MainMenu.SetActive(true);
-        MainMenuGraphic.SetActive(true);
-        OptionsMenu.SetActive(false);
-        OptionsGraphic.SetActive(false);
+        MainMenu.SetActive (true);
+        OptionsMenu.SetActive (false);
+		AudioMenu.SetActive (false);
+		VideoMenu.SetActive (false);
     }
+
+	public void AttivaVideoMenu () {
+		OptionsMenu.SetActive (false);
+		VideoMenu.SetActive (true);
+	}
+
+	public void AttivaAudioMenu () {
+		OptionsMenu.SetActive (false);
+		AudioMenu.SetActive (true);
+	}
+
+	public void AttivaCommandMenu () {
+		OptionsMenu.SetActive (false);
+		CommandMenu.SetActive (true);
+	}
 
     public void RegolazioneAudio()
     {

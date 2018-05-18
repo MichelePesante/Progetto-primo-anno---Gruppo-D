@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class GameMenu : MonoBehaviour {
-
-    public GameObject PauseImage;
-
 
     public static bool GameIsPaused;
 
-
-
     public GameObject PauseMenu;
-
-
+	public GameObject OptionsMenu;
+	public GameObject AudioMenu;
+	public GameObject VideoMenu;
+	public GameObject CommandMenu;
 
     private void Start()
     {
         GameIsPaused = false;
         Time.timeScale = 1f;
         PauseMenu.SetActive(false);
-        PauseImage.SetActive(false);
     }
 
    
@@ -60,7 +57,9 @@ public class GameMenu : MonoBehaviour {
     public void Resume()
     {
         PauseMenu.SetActive(false);
-        PauseImage.SetActive(false);
+		OptionsMenu.SetActive(false);
+		AudioMenu.SetActive(false);
+		VideoMenu.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -68,7 +67,6 @@ public class GameMenu : MonoBehaviour {
     public void Pause()
     {
         PauseMenu.SetActive(true);
-        PauseImage.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
         
@@ -91,8 +89,23 @@ public class GameMenu : MonoBehaviour {
         Resume();
     }
 
-    public void OptionsMenu()
-    {
+	public void OpenOptionsMenu () {
+		PauseMenu.SetActive (false);
+		OptionsMenu.SetActive (true);
+	}
 
-    }
+	public void OpenAudioMenu () {
+		OptionsMenu.SetActive (false);
+		AudioMenu.SetActive (true);
+	}
+
+	public void OpenVideoMenu () {
+		OptionsMenu.SetActive (false);
+		VideoMenu.SetActive (true);
+	}
+
+	public void OpenCommandMenu () {
+		OptionsMenu.SetActive (false);
+		CommandMenu.SetActive (true);
+	}
 }
