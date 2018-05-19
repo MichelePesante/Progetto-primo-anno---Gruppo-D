@@ -8,9 +8,8 @@ public class IntroScript : MonoBehaviour {
 
 	private VideoPlayer vid;
 
-	void Start () {
+	void Awake () {
 		vid = FindObjectOfType<VideoPlayer> ();
-		vid.Play ();
 	}
 
 	// Update is called once per frame
