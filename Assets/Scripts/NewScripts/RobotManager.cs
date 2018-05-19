@@ -110,7 +110,7 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	public int Draw (List<RobotController> _listToFill, List<RobotController> _listToDrawFrom, int _robotsInHand) {
+	public int Draw (List<RobotController> _listToFill, List<RobotController> _listToDrawFrom, int _robotsInHand, Player player) {
 		int cardPosition = 0;
 		CardManager cm = FindObjectOfType<CardManager> ();
 		if (_robotsInHand < maxRobotsInHand) {
@@ -120,13 +120,13 @@ public class RobotManager : MonoBehaviour {
 				_robotsInHand = i + 1;
 			}
 		}
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn) {
+		if (player == Player.Player_Curve) {
 			for (int i = 0; i < cm.CurveCards.Count; i++) {
 				cm.CurveCards [i].SetData (_listToFill [i].Data);
 				cm.CurveCards [i].hasBeenPlaced = false;
 			}
-		} 
-		else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn) {
+		}
+		else if (player == Player.Player_Quad) {
 			for (int i = 0; i < cm.QuadCards.Count; i++) {
 				cm.QuadCards [i].SetData (_listToFill [i].Data);
 				cm.QuadCards [i].hasBeenPlaced = false;

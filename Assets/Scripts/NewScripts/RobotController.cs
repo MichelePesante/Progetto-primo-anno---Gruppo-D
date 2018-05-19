@@ -53,7 +53,7 @@ public class RobotController : MonoBehaviour {
 			UpgradeRobot (RobotManager.Instance.RobotCurviInHand);
 			if (RobotManager.Instance.robotUpgraded == 2) {
 				TurnManager.Instance.ChangeTurn ();
-				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
+				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
 				RobotManager.Instance.robotUpgraded = 0;
 				FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
 			}
