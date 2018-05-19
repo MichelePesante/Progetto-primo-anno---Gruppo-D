@@ -60,6 +60,7 @@ public class GameMenu : MonoBehaviour {
 		OptionsMenu.SetActive(false);
 		AudioMenu.SetActive(false);
 		VideoMenu.SetActive(false);
+		CommandMenu.SetActive (false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -107,5 +108,24 @@ public class GameMenu : MonoBehaviour {
 	public void OpenCommandMenu () {
 		OptionsMenu.SetActive (false);
 		CommandMenu.SetActive (true);
+	}
+
+	public void PreviousMenu () {
+		if (OptionsMenu.activeInHierarchy) {
+			PauseMenu.SetActive (true);
+			OptionsMenu.SetActive (false);
+		} 
+		else if (AudioMenu.activeInHierarchy) {
+			OptionsMenu.SetActive (true);
+			AudioMenu.SetActive (false);
+		} 
+		else if (VideoMenu.activeInHierarchy) {
+			OptionsMenu.SetActive (true);
+			VideoMenu.SetActive (false);
+		} 
+		else if (CommandMenu.activeInHierarchy) {
+			OptionsMenu.SetActive (true);
+			CommandMenu.SetActive (false);
+		}
 	}
 }

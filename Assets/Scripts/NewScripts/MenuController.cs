@@ -47,6 +47,7 @@ public class MenuController : MonoBehaviour {
         OptionsMenu.SetActive (false);
 		AudioMenu.SetActive (false);
 		VideoMenu.SetActive (false);
+		CommandMenu.SetActive (false);
     }
 
 	public void AttivaVideoMenu () {
@@ -62,6 +63,25 @@ public class MenuController : MonoBehaviour {
 	public void AttivaCommandMenu () {
 		OptionsMenu.SetActive (false);
 		CommandMenu.SetActive (true);
+	}
+
+	public void PreviousMenu () {
+		if (OptionsMenu.activeInHierarchy) {
+			MainMenu.SetActive (true);
+			OptionsMenu.SetActive (false);
+		} 
+		else if (AudioMenu.activeInHierarchy) {
+			OptionsMenu.SetActive (true);
+			AudioMenu.SetActive (false);
+		} 
+		else if (VideoMenu.activeInHierarchy) {
+			OptionsMenu.SetActive (true);
+			VideoMenu.SetActive (false);
+		} 
+		else if (CommandMenu.activeInHierarchy) {
+			OptionsMenu.SetActive (true);
+			CommandMenu.SetActive (false);
+		}
 	}
 
     public void RegolazioneAudio()
