@@ -4,7 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-	
+
+	public static GameManager Instance;
+
+	void Awake () {
+		if (Instance == null)
+			Instance = this;
+		else
+			GameObject.Destroy(gameObject);
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (TurnManager.Instance.ScoreCurve >= 5) {

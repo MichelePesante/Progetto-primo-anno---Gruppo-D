@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour {
 	public int ScoreToReach = 5;
 	public int ScoreCurve;
 	public int ScoreQuad;
+	public bool TextIsActive;
 	public Vector3 CameraPosition;
 
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
@@ -176,6 +177,8 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.placing:
 				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
+				//NewUIManager.Instance.ChangeText ("Piazza 2 robot");
+				//NewUIManager.Instance.TutorialBoxSummon ();
 				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand);
                 break;
 			case TurnState.rotation:
