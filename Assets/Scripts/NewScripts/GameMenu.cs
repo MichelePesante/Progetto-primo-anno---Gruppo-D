@@ -111,6 +111,9 @@ public class GameMenu : MonoBehaviour {
 	}
 
 	public void PreviousMenu () {
+		if (PauseMenu.activeInHierarchy) {
+			Resume ();
+		} 
 		if (OptionsMenu.activeInHierarchy) {
 			PauseMenu.SetActive (true);
 			OptionsMenu.SetActive (false);

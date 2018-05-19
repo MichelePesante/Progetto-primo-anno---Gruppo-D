@@ -177,8 +177,8 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.placing:
 				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
-				NewUIManager.Instance.ChangeText ("Piazza 2 robot");
-				NewUIManager.Instance.TutorialBoxSummon ();
+				//NewUIManager.Instance.ChangeText ("Piazza 2 robot");
+				//NewUIManager.Instance.TutorialBoxSummon ();
 			RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);    
 				break;
 			case TurnState.rotation:
