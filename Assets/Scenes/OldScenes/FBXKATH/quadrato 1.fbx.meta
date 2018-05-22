@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: b0656df5f4f76d840be8eba3f4c44687
+timeCreated: 1526981424
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Body
+    100002: Left_Articula
+    100004: Left_Elbow
+    100006: Left_Foot
+    100008: Left_ForwardLeg
+    100010: Left_Hand
+    100012: Left_Knee
+    100014: Left_Shoulder
+    100016: Left_Shoulder 1
+    100018: Pelvis
+    100020: Portal
+    100022: Portal 1
+    100024: //RootNode
+    100026: Right_Articula
+    100028: Right_Elbow
+    100030: Right_Foot
+    100032: Right_ForwardLeg
+    100034: Right_Hand
+    100036: Right_Knee
+    100038: Right_Shoulder
+    100040: Right_Shoulder 1
+    400000: Body
+    400002: Left_Articula
+    400004: Left_Elbow
+    400006: Left_Foot
+    400008: Left_ForwardLeg
+    400010: Left_Hand
+    400012: Left_Knee
+    400014: Left_Shoulder
+    400016: Left_Shoulder 1
+    400018: Pelvis
+    400020: Portal
+    400022: Portal 1
+    400024: //RootNode
+    400026: Right_Articula
+    400028: Right_Elbow
+    400030: Right_Foot
+    400032: Right_ForwardLeg
+    400034: Right_Hand
+    400036: Right_Knee
+    400038: Right_Shoulder
+    400040: Right_Shoulder 1
+    4300000: Portal
+    4300002: Left_ForwardLeg
+    4300004: Left_Articula
+    4300006: Left_Foot
+    4300008: Left_Knee
+    4300010: Left_Shoulder
+    4300012: Right_ForwardLeg
+    4300014: Right_Articula
+    4300016: Right_Foot
+    4300018: Right_Knee
+    4300020: Right_Shoulder
+    4300022: Body
+    7400000: Quad1_Idle
+    7400002: Quad1_Attack
+    7400004: Quad1_Hitted
+    9500000: //RootNode
+    13700000: Body
+    13700002: Left_Articula
+    13700004: Left_Foot
+    13700006: Left_ForwardLeg
+    13700008: Left_Knee
+    13700010: Left_Shoulder
+    13700012: Portal
+    13700014: Right_Articula
+    13700016: Right_Foot
+    13700018: Right_ForwardLeg
+    13700020: Right_Knee
+    13700022: Right_Shoulder
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Quadrato1
+    second: {fileID: 2100000, guid: de742c244117f9945b55037e139cfcc4, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Quad1_Idle
+      takeName: Quad1_Idle
+      firstFrame: 1
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Quad1_Attack
+      takeName: Quad1_Attack
+      firstFrame: 160
+      lastFrame: 270
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Quad1_Hitted
+      takeName: Quad1_Hitted
+      firstFrame: 270
+      lastFrame: 380
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 25
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
