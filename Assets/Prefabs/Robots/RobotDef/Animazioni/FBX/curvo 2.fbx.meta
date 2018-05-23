@@ -1,0 +1,358 @@
+fileFormatVersion: 2
+guid: ed7cb3f219628b54087b80660e66df95
+timeCreated: 1527067104
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: anello1_sx
+    100002: anello_1_dx
+    100004: anello_2_dx
+    100006: anello_2_sx
+    100008: anello_centrale
+    100010: attaccamento_coscia_dx
+    100012: attaccamento_coscia_sx
+    100014: attaccamento_gamba_dx
+    100016: attaccamento_gamba_sx
+    100018: attaccamento_spalla_dx
+    100020: attaccamento_spalla_sx
+    100022: bracciale_dx
+    100024: bracciale_dx 1
+    100026: bracciale_sx
+    100028: braccio_dx
+    100030: braccio_dx 1
+    100032: braccio_sx
+    100034: braciale_sx
+    100036: bracio_sx
+    100038: busto
+    100040: busto 1
+    100042: copri_____
+    100044: coscia_dx
+    100046: coscia_dx 1
+    100048: coscia_sx
+    100050: coscia_sx 1
+    100052: cresta_zaino
+    100054: //RootNode
+    100056: dita_1_dx
+    100058: dito3_sx
+    100060: dito_1_sx
+    100062: dito_2_dx
+    100064: dito_2_sx
+    100066: dito_3_dx
+    100068: gamba_dx
+    100070: gamba_dx 1
+    100072: gamba_sx
+    100074: gamba_sx 1
+    100076: joint11
+    100078: joint14
+    100080: occhio
+    100082: occhio 1
+    100084: palla_al_centro
+    100086: parte_sopra_zaino
+    100088: parte_sotto_zaino
+    100090: spalla_dx
+    100092: spalla_dx 1
+    100094: spalla_sx
+    100096: spalla_sx 1
+    100098: testa
+    100100: testa1
+    100102: tubo__sx
+    100104: tubo_dx
+    400000: anello1_sx
+    400002: anello_1_dx
+    400004: anello_2_dx
+    400006: anello_2_sx
+    400008: anello_centrale
+    400010: attaccamento_coscia_dx
+    400012: attaccamento_coscia_sx
+    400014: attaccamento_gamba_dx
+    400016: attaccamento_gamba_sx
+    400018: attaccamento_spalla_dx
+    400020: attaccamento_spalla_sx
+    400022: bracciale_dx
+    400024: bracciale_dx 1
+    400026: bracciale_sx
+    400028: braccio_dx
+    400030: braccio_dx 1
+    400032: braccio_sx
+    400034: braciale_sx
+    400036: bracio_sx
+    400038: busto
+    400040: busto 1
+    400042: copri_____
+    400044: coscia_dx
+    400046: coscia_dx 1
+    400048: coscia_sx
+    400050: coscia_sx 1
+    400052: cresta_zaino
+    400054: //RootNode
+    400056: dita_1_dx
+    400058: dito3_sx
+    400060: dito_1_sx
+    400062: dito_2_dx
+    400064: dito_2_sx
+    400066: dito_3_dx
+    400068: gamba_dx
+    400070: gamba_dx 1
+    400072: gamba_sx
+    400074: gamba_sx 1
+    400076: joint11
+    400078: joint14
+    400080: occhio
+    400082: occhio 1
+    400084: palla_al_centro
+    400086: parte_sopra_zaino
+    400088: parte_sotto_zaino
+    400090: spalla_dx
+    400092: spalla_dx 1
+    400094: spalla_sx
+    400096: spalla_sx 1
+    400098: testa
+    400100: testa1
+    400102: tubo__sx
+    400104: tubo_dx
+    4300000: gamba_dx
+    4300002: attaccamento_gamba_dx
+    4300004: coscia_dx
+    4300006: attaccamento_coscia_dx
+    4300008: dito_3_dx
+    4300010: dito_2_dx
+    4300012: dita_1_dx
+    4300014: bracciale_dx
+    4300016: braccio_dx
+    4300018: attaccamento_spalla_dx
+    4300020: spalla_dx
+    4300022: anello_2_dx
+    4300024: anello_1_dx
+    4300026: tubo_dx
+    4300028: gamba_sx
+    4300030: attaccamento_gamba_sx
+    4300032: coscia_sx
+    4300034: attaccamento_coscia_sx
+    4300036: dito_1_sx
+    4300038: dito_2_sx
+    4300040: dito3_sx
+    4300042: braciale_sx
+    4300044: bracio_sx
+    4300046: attaccamento_spalla_sx
+    4300048: spalla_sx
+    4300050: anello1_sx
+    4300052: anello_2_sx
+    4300054: tubo__sx
+    4300056: parte_sotto_zaino
+    4300058: parte_sopra_zaino
+    4300060: cresta_zaino
+    4300062: testa
+    4300064: palla_al_centro
+    4300066: occhio
+    4300068: copri_____
+    4300070: busto
+    4300072: anello_centrale
+    7400000: Curvo2_Idle
+    7400002: Curvo2_Attack
+    7400004: Curvo2_Hitted
+    9500000: //RootNode
+    13700000: anello1_sx
+    13700002: anello_1_dx
+    13700004: anello_2_dx
+    13700006: anello_2_sx
+    13700008: anello_centrale
+    13700010: attaccamento_coscia_dx
+    13700012: attaccamento_coscia_sx
+    13700014: attaccamento_gamba_dx
+    13700016: attaccamento_gamba_sx
+    13700018: attaccamento_spalla_dx
+    13700020: attaccamento_spalla_sx
+    13700022: bracciale_dx
+    13700024: braccio_dx
+    13700026: braciale_sx
+    13700028: bracio_sx
+    13700030: busto
+    13700032: copri_____
+    13700034: coscia_dx
+    13700036: coscia_sx
+    13700038: cresta_zaino
+    13700040: dita_1_dx
+    13700042: dito3_sx
+    13700044: dito_1_sx
+    13700046: dito_2_dx
+    13700048: dito_2_sx
+    13700050: dito_3_dx
+    13700052: gamba_dx
+    13700054: gamba_sx
+    13700056: occhio
+    13700058: palla_al_centro
+    13700060: parte_sopra_zaino
+    13700062: parte_sotto_zaino
+    13700064: spalla_dx
+    13700066: spalla_sx
+    13700068: testa
+    13700070: tubo__sx
+    13700072: tubo_dx
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_curvo2
+    second: {fileID: 2100000, guid: f37b345f003349c4f86c68bd35b2f490, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Curvo2_Idle
+      takeName: Curvo2_Idle
+      firstFrame: 1
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Curvo2_Attack
+      takeName: Curvo2_Attack
+      firstFrame: 140
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Curvo2_Hitted
+      takeName: Curvo2_Hitted
+      firstFrame: 250
+      lastFrame: 360
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.14
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
