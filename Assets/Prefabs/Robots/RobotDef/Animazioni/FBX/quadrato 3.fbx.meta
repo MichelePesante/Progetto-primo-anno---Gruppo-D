@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 65307294f459e454085b1c15534586e5
-timeCreated: 1526981422
+guid: d4b96449f67356d44b1589c2fc675345
+timeCreated: 1527069226
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -35,35 +35,36 @@ ModelImporter:
     100054: Left_UpperLegArticula
     100056: LeftMinigun
     100058: Pelvis
-    100060: //RootNode
-    100062: Right_Arm
-    100064: Right_ArmConnection
-    100066: Right_ArticulaElbow
-    100068: Right_Bicep
-    100070: Right_ConnessioneRazzi
-    100072: Right_Elbow
-    100074: Right_Elbow 1
-    100076: Right_Foot
-    100078: Right_Foot 1
-    100080: Right_FootArticula
-    100082: Right_FootArticula 1
-    100084: Right_ForwardLeg
-    100086: Right_Hand
-    100088: Right_Hand 1
-    100090: Right_KneeArticula
-    100092: Right_KneeArticula 1
-    100094: Right_LegArticula
-    100096: Right_Minigun
-    100098: Right_Rockets
-    100100: Right_Rockets 1
-    100102: Right_Shoulder
-    100104: Right_Shoulder 1
-    100106: Right_ShoulderArticula
-    100108: Right_Tight
-    100110: Right_UpperArticula
-    100112: Right_UpperLegArticula
-    100114: RightMinigun
-    100116: Wast
+    100060: pezzi
+    100062: //RootNode
+    100064: Right_Arm
+    100066: Right_ArmConnection
+    100068: Right_ArticulaElbow
+    100070: Right_Bicep
+    100072: Right_ConnessioneRazzi
+    100074: Right_Elbow
+    100076: Right_Elbow 1
+    100078: Right_Foot
+    100080: Right_Foot 1
+    100082: Right_FootArticula
+    100084: Right_FootArticula 1
+    100086: Right_ForwardLeg
+    100088: Right_Hand
+    100090: Right_Hand 1
+    100092: Right_KneeArticula
+    100094: Right_KneeArticula 1
+    100096: Right_LegArticula
+    100098: Right_Minigun
+    100100: Right_Rockets
+    100102: Right_Rockets 1
+    100104: Right_Shoulder
+    100106: Right_Shoulder 1
+    100108: Right_ShoulderArticula
+    100110: Right_Tight
+    100112: Right_UpperArticula
+    100114: Right_UpperLegArticula
+    100116: RightMinigun
+    100118: Wast
     400000: Body
     400002: Bottom
     400004: Left_Arm
@@ -94,35 +95,36 @@ ModelImporter:
     400054: Left_UpperLegArticula
     400056: LeftMinigun
     400058: Pelvis
-    400060: //RootNode
-    400062: Right_Arm
-    400064: Right_ArmConnection
-    400066: Right_ArticulaElbow
-    400068: Right_Bicep
-    400070: Right_ConnessioneRazzi
-    400072: Right_Elbow
-    400074: Right_Elbow 1
-    400076: Right_Foot
-    400078: Right_Foot 1
-    400080: Right_FootArticula
-    400082: Right_FootArticula 1
-    400084: Right_ForwardLeg
-    400086: Right_Hand
-    400088: Right_Hand 1
-    400090: Right_KneeArticula
-    400092: Right_KneeArticula 1
-    400094: Right_LegArticula
-    400096: Right_Minigun
-    400098: Right_Rockets
-    400100: Right_Rockets 1
-    400102: Right_Shoulder
-    400104: Right_Shoulder 1
-    400106: Right_ShoulderArticula
-    400108: Right_Tight
-    400110: Right_UpperArticula
-    400112: Right_UpperLegArticula
-    400114: RightMinigun
-    400116: Wast
+    400060: pezzi
+    400062: //RootNode
+    400064: Right_Arm
+    400066: Right_ArmConnection
+    400068: Right_ArticulaElbow
+    400070: Right_Bicep
+    400072: Right_ConnessioneRazzi
+    400074: Right_Elbow
+    400076: Right_Elbow 1
+    400078: Right_Foot
+    400080: Right_Foot 1
+    400082: Right_FootArticula
+    400084: Right_FootArticula 1
+    400086: Right_ForwardLeg
+    400088: Right_Hand
+    400090: Right_Hand 1
+    400092: Right_KneeArticula
+    400094: Right_KneeArticula 1
+    400096: Right_LegArticula
+    400098: Right_Minigun
+    400100: Right_Rockets
+    400102: Right_Rockets 1
+    400104: Right_Shoulder
+    400106: Right_Shoulder 1
+    400108: Right_ShoulderArticula
+    400110: Right_Tight
+    400112: Right_UpperArticula
+    400114: Right_UpperLegArticula
+    400116: RightMinigun
+    400118: Wast
     4300000: Right_Minigun
     4300002: Right_Hand
     4300004: Right_ArticulaElbow
@@ -161,7 +163,6 @@ ModelImporter:
     7400002: Quad3_Idle2
     7400004: Quad3_Attack
     7400006: Quad3_Hitted
-    7400008: Quad3_Idle2 (1)
     9500000: //RootNode
     13700000: Body
     13700002: Left_ArmConnection
@@ -206,7 +207,7 @@ ModelImporter:
   materials:
     importMaterials: 1
     materialName: 0
-    materialSearch: 0
+    materialSearch: 1
     materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
@@ -229,6 +230,62 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations:
+    - serializedVersion: 16
+      name: Quad3_Idle
+      takeName: Quad3_Idle
+      firstFrame: 1
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Quad3_Idle2
+      takeName: Quad3_Idle2
+      firstFrame: 80
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Quad3_Attack
       takeName: Quad3_Attack
@@ -285,34 +342,6 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Quad3_Idle2
-      takeName: Quad3_Idle2
-      firstFrame: 80
-      lastFrame: 200
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -329,8 +358,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
