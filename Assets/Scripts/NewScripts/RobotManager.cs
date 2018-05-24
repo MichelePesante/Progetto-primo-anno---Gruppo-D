@@ -361,7 +361,7 @@ public class RobotManager : MonoBehaviour {
 
 	#region Battle
 
-	public void Battle () {
+	public void FinalBattle () {
 		int battleResult1 = 0;
 		int battleResult2 = 0;
 		int battleResult3 = 0;
@@ -380,30 +380,24 @@ public class RobotManager : MonoBehaviour {
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 0 && robot.Y == 2) {
 				ForzaPedina1p1 = robot.strength;
-				CustomLogger.Log ("Forza pedina 1 player 1:   " + ForzaPedina1p1);
 			}
 			if (robot.X == 1 && robot.Y == 2) {
 				ForzaPedina2p1 = robot.strength;
-				CustomLogger.Log ("Forza pedina 2 player 1:   " + ForzaPedina2p1);
 			}
 			if (robot.X == 2 && robot.Y == 2) {
 				ForzaPedina3p1 = robot.strength;
-				CustomLogger.Log ("Forza pedina 3 player 1:   " + ForzaPedina3p1);
 			}
 		}
 
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 0 && robot.Y == 4) {
 				ForzaPedina1p2 = robot.strength;
-				CustomLogger.Log ("Forza pedina 1 player 2:   " + ForzaPedina1p2);
 			}
 			if (robot.X == 1 && robot.Y == 4) {
 				ForzaPedina2p2 = robot.strength;
-				CustomLogger.Log ("Forza pedina 2 player 2:   " + ForzaPedina2p2);
 			}
 			if (robot.X == 2 && robot.Y == 4) {
 				ForzaPedina3p2 = robot.strength;
-				CustomLogger.Log ("Forza pedina 3 player 2:   " + ForzaPedina3p2);
 			}
 		}
 
@@ -437,6 +431,57 @@ public class RobotManager : MonoBehaviour {
 			FindObjectOfType<TurnManager>().ScoreQuad += finalScore;
 		}
 	}
+
+	public int FirstBattle () {
+		Animator curveRobotAnimator = null;
+		Animator quadRobotAnimator = null;
+
+		int battleResult1 = 0;
+		int scoretemp = 0;
+
+		int ForzaPedina1p1 = 0;
+		int ForzaPedina1p2 = 0;
+
+		foreach (RobotController robot in RobotCurviGiocati) {
+			if (robot.X == 0 && robot.Y == 2) {
+				curveRobotAnimator = robot.GetComponentInChildren<Animator>();
+				ForzaPedina1p1 = robot.strength;
+			}
+		}
+
+		foreach (RobotController robot in RobotQuadratiGiocati) {
+			if (robot.X == 0 && robot.Y == 4) {
+				quadRobotAnimator = robot.GetComponentInChildren<Animator>();
+				ForzaPedina1p2 = robot.strength;
+			}
+		}
+
+		battleResult1 = ForzaPedina1p1 - ForzaPedina1p2;
+
+		if (battleResult1 > 0) {
+			scoretemp = 1;
+			curveRobotAnimator.Play ("Attack");
+			quadRobotAnimator.Play ("Hitted");
+			return scoretemp;
+		}
+
+		if (battleResult1 < 0) {
+			scoretemp = 1;
+			quadRobotAnimator.Play ("Attack");
+			curveRobotAnimator.Play ("Hitted");
+			return scoretemp;
+		}
+
+		return 0;
+	}
+
+	//public int SecondBattle () {
+	//
+	//}
+	//
+	//public int ThirdBattle () {
+	//
+	//}
 
 	#endregion
 

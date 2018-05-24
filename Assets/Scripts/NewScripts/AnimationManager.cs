@@ -13,6 +13,18 @@ public class AnimationManager : MonoBehaviour {
 	}
 
 	public void DoBattle () {
-		RobotManager.Instance.Battle ();
+		RobotManager.Instance.FinalBattle ();
+	}
+
+	public void DoFirstBattle () {
+		RobotManager.Instance.FirstBattle ();
+	}
+
+	public void DoSecondBattle () {
+		
+	}
+
+	public void DoThirdBattle () {
+		
 	}
 }
