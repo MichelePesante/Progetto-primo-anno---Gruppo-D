@@ -12,8 +12,8 @@ public class AnimationManager : MonoBehaviour {
 		TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.upgrade;
 	}
 
-	public void DoBattle () {
-		RobotManager.Instance.FinalBattle ();
+	public void SeeBattleResults () {
+		RobotManager.Instance.BattleResults ();
 	}
 
 	public void DoFirstBattle () {
@@ -21,10 +21,10 @@ public class AnimationManager : MonoBehaviour {
 	}
 
 	public void DoSecondBattle () {
-		
+		RobotManager.Instance.SecondBattle ();
 	}
 
 	public void DoThirdBattle () {
-		
+		RobotManager.Instance.ThirdBattle ();
 	}
 }
