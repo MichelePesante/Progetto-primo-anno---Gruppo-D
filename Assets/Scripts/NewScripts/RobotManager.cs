@@ -219,29 +219,36 @@ public class RobotManager : MonoBehaviour {
 
 	public void OnClockwiseRotationCurveGrid () {
 		foreach (RobotController robot in RobotCurviGiocati) {
+			robot.RotateRobotMatrix (1);
 			if (robot.X == 0 && robot.Y == 0) {
 				robot.X += 0;
 				robot.Y += 2;
-			} else if (robot.X == 0 && robot.Y == 2) {
+			} 
+			else if (robot.X == 0 && robot.Y == 2) {
 				robot.X += 2;
 				robot.Y += 0;
-			} else if (robot.X == 2 && robot.Y == 2) {
+			} 
+			else if (robot.X == 2 && robot.Y == 2) {
 				robot.X += 0;
 				robot.Y += -2;
-			} else if (robot.X == 2 && robot.Y == 0) {
+			} 
+			else if (robot.X == 2 && robot.Y == 0) {
 				robot.X += -2;
 				robot.Y += 0;
 			}
 			if (robot.X == 0 && robot.Y == 1) {
 				robot.X += 1;
 				robot.Y += 1;
-			} else if (robot.X == 1 && robot.Y == 2) {
+			} 
+			else if (robot.X == 1 && robot.Y == 2) {
 				robot.X += 1;
 				robot.Y += -1;
-			} else if (robot.X == 2 && robot.Y == 1) {
+			} 
+			else if (robot.X == 2 && robot.Y == 1) {
 				robot.X += -1;
 				robot.Y += -1;
-			} else if (robot.X == 1 && robot.Y == 0) {
+			} 
+			else if (robot.X == 1 && robot.Y == 0) {
 				robot.X += -1;
 				robot.Y += 1;
 			}
@@ -250,29 +257,36 @@ public class RobotManager : MonoBehaviour {
 
 	public void OnCounterclockwiseRotationCurveGrid () {
 		foreach (RobotController robot in RobotCurviGiocati) {
+			robot.RotateRobotMatrix (-1);
 			if (robot.X == 0 && robot.Y == 0) {
 				robot.X += 2;
 				robot.Y += 0;
-			} else if (robot.X == 0 && robot.Y == 2) {
+			} 
+			else if (robot.X == 0 && robot.Y == 2) {
 				robot.X += 0;
 				robot.Y += -2;
-			} else if (robot.X == 2 && robot.Y == 2) {
+			} 
+			else if (robot.X == 2 && robot.Y == 2) {
 				robot.X += -2;
 				robot.Y += 0;
-			} else if (robot.X == 2 && robot.Y == 0) {
+			} 
+			else if (robot.X == 2 && robot.Y == 0) {
 				robot.X += 0;
 				robot.Y += 2;
 			}
 			if (robot.X == 0 && robot.Y == 1) {
 				robot.X += 1;
 				robot.Y += -1;
-			} else if (robot.X == 1 && robot.Y == 2) {
+			} 
+			else if (robot.X == 1 && robot.Y == 2) {
 				robot.X += -1;
 				robot.Y += -1;
-			} else if (robot.X == 2 && robot.Y == 1) {
+			} 
+			else if (robot.X == 2 && robot.Y == 1) {
 				robot.X += -1;
 				robot.Y += 1;
-			} else if (robot.X == 1 && robot.Y == 0) {
+			} 
+			else if (robot.X == 1 && robot.Y == 0) {
 				robot.X += 1;
 				robot.Y += 1;
 			}
@@ -281,6 +295,7 @@ public class RobotManager : MonoBehaviour {
 
 	public void OnClockwiseRotationQuadGrid () {
 		foreach (RobotController robot in RobotQuadratiGiocati) {
+			robot.RotateRobotMatrix (1);
 			if (robot.X == 0 && robot.Y == 4) {
 				robot.X += 0;
 				robot.Y += 2;
@@ -312,6 +327,7 @@ public class RobotManager : MonoBehaviour {
 
 	public void OnCounterclockwiseRotationQuadGrid () {
 		foreach (RobotController robot in RobotQuadratiGiocati) {
+			robot.RotateRobotMatrix (-1);
 			if (robot.X == 0 && robot.Y == 4) {
 				robot.X += 2;
 				robot.Y += 0;

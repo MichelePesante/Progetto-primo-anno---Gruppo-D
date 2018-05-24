@@ -16,8 +16,8 @@ public class RobotController : MonoBehaviour {
 	public int OriginalStrength;
 	public int UpgradedValue;
 	public int upgrade;
-	public int [,] Abilities = new int[3, 3];
-	public bool[,] AbilityCheck = new bool[3, 3];
+	public TurnableGrid3x3 <int> Abilities = new TurnableGrid3x3 <int>();
+	public TurnableGrid3x3 <bool> AbilityCheck = new TurnableGrid3x3 <bool>();
 
 	private bool isUpgradable;
 	private RobotData InstanceData;
@@ -120,10 +120,15 @@ public class RobotController : MonoBehaviour {
 
 	public void SetAbilityCheckToFalse () {
 		for (int i = 0; i < AbilityCheck.GetLength(0); i++) {
-			for (int j = 0; j < AbilityCheck.GetLength (1); j++) {
+			for (int j = 0; j < AbilityCheck.GetLength(1); j++) {
 				AbilityCheck [i, j] = false;
 			}
 		}
+	}
+
+	public void RotateRobotMatrix (int _rotationStep) {
+		Abilities.Rotate (_rotationStep);
+		AbilityCheck.Rotate (_rotationStep);
 	}
 
 	#endregion
