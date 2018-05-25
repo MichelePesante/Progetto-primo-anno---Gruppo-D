@@ -119,9 +119,9 @@ ModelImporter:
     4300038: Curvo4_MiddleLeftLeg
     4300040: Curvo4_LowerLeftLeg
     4300042: Curvo4_LeftFoot
-    7400000: Curvo4_Idle
-    7400002: Curvo4_Attack
-    7400004: Curvo4_Hitted
+    7400000: Idle
+    7400002: Attack
+    7400004: Hitted
     9500000: //RootNode
     13700000: Curvo4_Body
     13700002: Curvo4_Head
@@ -150,7 +150,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_Curvo4
-    second: {fileID: 2100000, guid: 017cc6cae91dee04996b8986a0aa8485, type: 2}
+    second: {fileID: 2100000, guid: 0843018538a80dd4a90889125c7b7143, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -178,7 +178,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Curvo4_Idle
+      name: Idle
       takeName: Curvo4_Idle
       firstFrame: 1
       lastFrame: 60
@@ -206,7 +206,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Curvo4_Attack
+      name: Attack
       takeName: Curvo4_Attack
       firstFrame: 60
       lastFrame: 120
@@ -234,7 +234,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Curvo4_Hitted
+      name: Hitted
       takeName: Curvo4_Hitted
       firstFrame: 120
       lastFrame: 180

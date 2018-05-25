@@ -148,9 +148,9 @@ ModelImporter:
     4300068: copri_____
     4300070: busto
     4300072: anello_centrale
-    7400000: Curvo2_Idle
-    7400002: Curvo2_Attack
-    7400004: Curvo2_Hitted
+    7400000: Idle
+    7400002: Attack
+    7400004: Hitted
     9500000: //RootNode
     13700000: anello1_sx
     13700002: anello_1_dx
@@ -222,7 +222,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Curvo2_Idle
+      name: Idle
       takeName: Curvo2_Idle
       firstFrame: 1
       lastFrame: 140
@@ -250,7 +250,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Curvo2_Attack
+      name: Attack
       takeName: Curvo2_Attack
       firstFrame: 140
       lastFrame: 250
@@ -278,7 +278,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Curvo2_Hitted
+      name: Hitted
       takeName: Curvo2_Hitted
       firstFrame: 250
       lastFrame: 360
@@ -321,6 +321,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
