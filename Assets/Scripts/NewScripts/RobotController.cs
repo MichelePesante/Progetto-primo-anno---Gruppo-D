@@ -36,15 +36,8 @@ public class RobotController : MonoBehaviour {
 
 	void Update () {
 		AttackText.text = strength.ToString();
-		if (Input.GetKeyDown (KeyCode.Tab) && GameMenu.GameIsPaused == false) {
-			if (isCanvasActive) {
-				myCanvas.gameObject.SetActive (false);
-				isCanvasActive = false;
-			} 
-			else {
-				myCanvas.gameObject.SetActive (true);
-				isCanvasActive = true;
-			}
+		if ((Input.GetKeyDown (KeyCode.Tab) || Input.GetKeyDown (KeyCode.JoystickButton2)) && GameMenu.GameIsPaused == false) {
+			SwitchCanvas ();
 		}
 	}
 
@@ -129,6 +122,17 @@ public class RobotController : MonoBehaviour {
 	public void RotateRobotMatrix (int _rotationStep) {
 		Abilities.Rotate (_rotationStep);
 		AbilityCheck.Rotate (_rotationStep);
+	}
+
+	public void SwitchCanvas () {
+		if (isCanvasActive) {
+			myCanvas.gameObject.SetActive (false);
+			isCanvasActive = false;
+		} 
+		else {
+			myCanvas.gameObject.SetActive (true);
+			isCanvasActive = true;
+		}
 	}
 
 	#endregion

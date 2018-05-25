@@ -27,4 +27,9 @@ public class AnimationManager : MonoBehaviour {
 	public void DoThirdBattle () {
 		RobotManager.Instance.ThirdBattle ();
 	}
+
+	public void ResetRotationFlags () {
+		JoystickManager.Instance.hasMyGridAlreadyBeenRotated = false;
+		JoystickManager.Instance.hasEnemyGridAlreadyBeenRotated = false;
+	}
 }

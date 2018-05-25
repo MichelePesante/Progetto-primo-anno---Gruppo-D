@@ -26,6 +26,10 @@ public class GameMenu : MonoBehaviour {
     {
         OpenMenu();
 
+		if (Input.GetKeyDown (KeyCode.JoystickButton1)) {
+			PreviousMenu ();
+		}
+
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			if (!GameIsPaused) {
 				Time.timeScale = 0f;
@@ -40,7 +44,7 @@ public class GameMenu : MonoBehaviour {
 
     public void OpenMenu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown (KeyCode.JoystickButton7))
         {
             if (GameIsPaused)
             {

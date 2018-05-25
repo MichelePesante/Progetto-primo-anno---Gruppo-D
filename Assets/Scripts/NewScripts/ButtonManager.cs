@@ -115,7 +115,7 @@ public class ButtonManager : MonoBehaviour {
 
 	public void RotationCheck () {
 		if (CurveGridClockwiseButton.gameObject.activeInHierarchy == false && QuadGridClockwiseButton.gameObject.activeInHierarchy == false) {
-			TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.battle;
+			EndRotationTurn ();
 		}
 	}
 
