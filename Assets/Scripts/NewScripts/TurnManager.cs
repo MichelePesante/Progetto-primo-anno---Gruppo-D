@@ -184,8 +184,7 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.rotation:
 				NewUIManager.Instance.Slots.SetActive (false);
 				NewUIManager.Instance.Energies.SetActive (false);
-				NewUIManager.Instance.Display_Curve.SetActive (true);
-				NewUIManager.Instance.Display_Quad.SetActive (true);
+				NewUIManager.Instance.Rotation_Buttons.SetActive (true);
                 NewUIManager.Instance.ChangeText("Ruota obbligatoriamente la plancia avversaria e decidi se ruotare la tua");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
@@ -195,10 +194,7 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (true);
                 break;
 			case TurnState.battle:
-				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (false);
-				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (false);
-				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (false);
-				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (false);
+				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
 				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
@@ -212,8 +208,7 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.upgrade:
 				NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Energies.SetActive (true);
-				NewUIManager.Instance.Display_Curve.SetActive (false);
-				NewUIManager.Instance.Display_Quad.SetActive (false);
+				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
                 NewUIManager.Instance.ChangeText("Potenzia i tuoi Robot");
                 NewUIManager.Instance.TutorialBoxSummon();
                 if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {

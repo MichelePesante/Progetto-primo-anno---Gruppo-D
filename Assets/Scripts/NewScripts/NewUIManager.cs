@@ -11,8 +11,7 @@ public class NewUIManager : MonoBehaviour {
 	public TextMeshProUGUI TutorialText;
 	public Animator TutorialBoxAnimator;
 	public GameObject TutorialBox;
-	public GameObject Display_Curve;
-	public GameObject Display_Quad;
+	public GameObject Rotation_Buttons;
 	public GameObject Energies;
 	public GameObject Slots;
 
