@@ -177,8 +177,8 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.placing:
 				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
-				//NewUIManager.Instance.ChangeText ("Piazza 2 robot");
-				//NewUIManager.Instance.TutorialBoxSummon ();
+				NewUIManager.Instance.ChangeText ("Posiziona due Robot");
+				NewUIManager.Instance.TutorialBoxSummon ();
 			RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);    
 				break;
 			case TurnState.rotation:
@@ -186,7 +186,9 @@ public class TurnManager : MonoBehaviour {
 				NewUIManager.Instance.Energies.SetActive (false);
 				NewUIManager.Instance.Display_Curve.SetActive (true);
 				NewUIManager.Instance.Display_Quad.SetActive (true);
-				RobotManager.Instance.SetGraphicAsParent ();
+                NewUIManager.Instance.ChangeText("Ruota obbligatoriamente la plancia avversaria e decidi se ruotare la tua");
+                NewUIManager.Instance.TutorialBoxSummon();
+                RobotManager.Instance.SetGraphicAsParent ();
 				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
@@ -212,7 +214,9 @@ public class TurnManager : MonoBehaviour {
 				NewUIManager.Instance.Energies.SetActive (true);
 				NewUIManager.Instance.Display_Curve.SetActive (false);
 				NewUIManager.Instance.Display_Quad.SetActive (false);
-				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
+                NewUIManager.Instance.ChangeText("Potenzia i tuoi Robot");
+                NewUIManager.Instance.TutorialBoxSummon();
+                if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 				RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
 				} 
 				else {
