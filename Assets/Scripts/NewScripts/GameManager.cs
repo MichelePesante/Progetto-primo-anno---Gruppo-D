@@ -13,17 +13,6 @@ public class GameManager : MonoBehaviour {
 		else
 			GameObject.Destroy(gameObject);
 	}
-
-	// Update is called once per frame
-	void Update () {
-		if (TurnManager.Instance.ScoreCurve >= 5) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-		}
-
-		if (TurnManager.Instance.ScoreQuad >= 5) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-		}
-	}
 }
 
 public enum Player {

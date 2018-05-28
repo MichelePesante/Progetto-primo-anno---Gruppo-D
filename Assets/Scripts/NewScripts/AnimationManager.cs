@@ -32,4 +32,11 @@ public class AnimationManager : MonoBehaviour {
 		JoystickManager.Instance.hasMyGridAlreadyBeenRotated = false;
 		JoystickManager.Instance.hasEnemyGridAlreadyBeenRotated = false;
 	}
+
+    public void ShowEndImage() {
+        if (TurnManager.Instance.ScoreCurve >= 5 || TurnManager.Instance.ScoreQuad >= 5)
+        {
+            EndManager.Instance.OnEndScene();
+        }
+    }
 }
