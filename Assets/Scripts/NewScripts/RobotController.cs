@@ -17,7 +17,7 @@ public class RobotController : MonoBehaviour {
 	public int UpgradedValue;
 	public int upgrade;
 	public TurnableGrid3x3 <int> Abilities = new TurnableGrid3x3 <int>();
-	public TurnableGrid3x3 <bool> AbilityCheck = new TurnableGrid3x3 <bool>();
+	public bool [,] AbilityCheck = new bool [3, 3];
 
 	private bool isUpgradable;
 	private RobotData InstanceData;
@@ -32,6 +32,7 @@ public class RobotController : MonoBehaviour {
 		AttackText = GetComponentInChildren<TextMeshProUGUI> ();
 		myCanvas = GetComponentInChildren<Canvas> ();
 		myCanvas.gameObject.SetActive (false);
+        Abilities.ResetRotationStatus();
 	}
 
 	void Update () {
@@ -121,7 +122,6 @@ public class RobotController : MonoBehaviour {
 
 	public void RotateRobotMatrix (int _rotationStep) {
 		Abilities.Rotate (_rotationStep);
-		AbilityCheck.Rotate (_rotationStep);
 	}
 
 	public void SwitchCanvas () {

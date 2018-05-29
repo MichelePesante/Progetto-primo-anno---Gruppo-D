@@ -75,4 +75,7 @@ public class TurnableGrid3x3<T> {
 		return grid.GetLength (_index);
 	}
 
+    public void ResetRotationStatus() {
+        rotationStatus = 1;
+    }
 }
