@@ -14,6 +14,7 @@ public class NewUIManager : MonoBehaviour {
 	public GameObject Rotation_Buttons;
 	public GameObject Energies;
 	public GameObject Slots;
+    public GameObject Segnapunti;
 
 	// Use this for initialization
 	void Awake () {

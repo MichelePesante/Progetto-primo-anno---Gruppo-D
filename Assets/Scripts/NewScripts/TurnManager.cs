@@ -198,11 +198,15 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
-					ChangeTurn ();
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play ("Punteggio_Curve_Start");
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start");
+                    ChangeTurn ();
 				} 
 				else {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
-					ChangeTurn ();
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Curve_Start");
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start");
+                    ChangeTurn ();
 				}
                 break;
 			case TurnState.upgrade:
@@ -239,10 +243,7 @@ public class TurnManager : MonoBehaviour {
 					break;
 				}
 				break;
-			case MacroPhase.Game:
-				break;
 			default:
-				Debug.Log ("Errore: Nessuna macro fase");
 				break;
 			}
         }
@@ -258,10 +259,7 @@ public class TurnManager : MonoBehaviour {
 					break;
 				}
 				break;
-			case MacroPhase.Game:
-				break;
 			default:
-				Debug.Log ("Errore: Nessuna macro fase");
 				break;
 			}
 		}
