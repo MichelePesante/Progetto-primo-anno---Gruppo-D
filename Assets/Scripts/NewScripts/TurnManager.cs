@@ -179,7 +179,7 @@ public class TurnManager : MonoBehaviour {
 				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
 				NewUIManager.Instance.ChangeText ("Posiziona due Robot");
 				NewUIManager.Instance.TutorialBoxSummon ();
-			RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);    
+			    RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);    
 				break;
 			case TurnState.rotation:
 				NewUIManager.Instance.Slots.SetActive (false);
@@ -200,12 +200,14 @@ public class TurnManager : MonoBehaviour {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play ("Punteggio_Curve_Start");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start");
+                    GameManager.isSomeAnimationGoing = true;
                     ChangeTurn ();
 				} 
 				else {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Curve_Start");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start");
+                    GameManager.isSomeAnimationGoing = true;
                     ChangeTurn ();
 				}
                 break;
@@ -240,6 +242,7 @@ public class TurnManager : MonoBehaviour {
 				case TurnState.placing:
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
+                    GameManager.isSomeAnimationGoing = true;
 					break;
 				}
 				break;
@@ -256,7 +259,8 @@ public class TurnManager : MonoBehaviour {
 				case TurnState.placing:
 					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
-					break;
+                    GameManager.isSomeAnimationGoing = true;
+                    break;
 				}
 				break;
 			default:

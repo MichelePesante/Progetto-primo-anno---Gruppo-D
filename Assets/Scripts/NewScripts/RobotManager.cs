@@ -67,7 +67,8 @@ public class RobotManager : MonoBehaviour {
 		ChangeRobotToPlay ();
 		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && GameMenu.GameIsPaused == false) {
 			if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
-				PlayRobot (RobotCurviInHand, RobotCurviGiocati);
+                if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+				    PlayRobot (RobotCurviInHand, RobotCurviGiocati);
 				CardManager.Instance.HighlightCard (Player.Player_Curve, robotToPlay);
 			}
 			else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
@@ -76,7 +77,8 @@ public class RobotManager : MonoBehaviour {
 		}
 		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && GameMenu.GameIsPaused == false) {
 			if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
-				PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
+                if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+                    PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
 				CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
 			}
 			else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
@@ -88,7 +90,7 @@ public class RobotManager : MonoBehaviour {
 		CalculateStrength ();
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
-		PlayRobotFromJoystick ();
+		//PlayRobotFromJoystick ();
 	}
 
 

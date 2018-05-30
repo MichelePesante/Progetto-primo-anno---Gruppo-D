@@ -44,23 +44,27 @@ public class RobotController : MonoBehaviour {
 
 	void OnMouseDown () {
 		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
-			UpgradeRobot (RobotManager.Instance.RobotCurviInHand);
+            if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+			    UpgradeRobot (RobotManager.Instance.RobotCurviInHand);
 			if (RobotManager.Instance.robotUpgraded == 2) {
 				TurnManager.Instance.ChangeTurn ();
 				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
 				RobotManager.Instance.robotUpgraded = 0;
 				FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
+                GameManager.isSomeAnimationGoing = true;
 			}
 		}
 
 		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
-			UpgradeRobot (RobotManager.Instance.RobotQuadratiInHand);
+            if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+                UpgradeRobot (RobotManager.Instance.RobotQuadratiInHand);
 			if (RobotManager.Instance.robotUpgraded == 2) {
 				TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.rotation;
 				TurnManager.Instance.ChangeTurn ();
 				RobotManager.Instance.robotUpgraded = 0;
 				FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
-			}
+                GameManager.isSomeAnimationGoing = true;
+            }
 		}
 	}
 

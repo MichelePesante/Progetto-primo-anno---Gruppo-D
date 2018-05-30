@@ -39,4 +39,12 @@ public class AnimationManager : MonoBehaviour {
             EndManager.Instance.OnEndScene();
         }
     }
+
+    public void ResetAnimationBool() {
+        GameManager.isSomeAnimationGoing = false;
+    }
+
+    public void ResetTutorialBool() {
+        GameManager.isTutorialOn = false;
+    }
 }

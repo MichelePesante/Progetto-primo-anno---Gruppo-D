@@ -39,6 +39,7 @@ public class NewUIManager : MonoBehaviour {
 	}
 
 	public void TutorialBoxSummon () {
+        GameManager.isTutorialOn = true;
 		TutorialBoxAnimator.SetBool ("IsTutorialActive", true);
 		if (TutorialBoxAnimator.GetBool("IsTutorialActive") == true)
 			TutorialBoxAnimator.Play ("TutorialBox");
