@@ -68,7 +68,7 @@ public class TurnableGrid3x3<T> {
 	/// </summary>
 	/// <param name="step">numero di rotazioni da effettuare</param>
 	public void Rotate(int step) {
-		rotationStatus = (int)Mathf.Repeat(rotationStatus + step, GRID_DIM);
+		rotationStatus = (int)Mathf.Repeat(rotationStatus + step, 4);
 	}
 
 	public int GetLength (int _index) {
