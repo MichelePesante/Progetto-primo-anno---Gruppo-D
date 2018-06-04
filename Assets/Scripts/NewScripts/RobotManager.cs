@@ -29,8 +29,6 @@ public class RobotManager : MonoBehaviour {
 	public int[,] AbilityCurveValues = new int[3, 3];
 	public int[,] AbilityQuadValues = new int[3, 3];
 
-	private int currentFirstRobotCurvo;
-	private int currentFirstRobotQuadrato;
 	private int currentTurn;
 	private int maxPreparationTurns = 16;
 	private float JoystickTimer = 0f;
@@ -90,7 +88,6 @@ public class RobotManager : MonoBehaviour {
 		CalculateStrength ();
 		SwitchPlacingTurn ();
 		EndPreparationPhase ();
-		//PlayRobotFromJoystick ();
 	}
 
 
@@ -201,15 +198,26 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-	public void PlayRobotFromJoystick () {
-		if (Input.GetAxis ("Enter_Curve") > 0) {
-			print ("Sono il primo");
-		}
-
-		if (Input.GetAxis ("Enter_Quad") > 0) {
-			print ("Sono il secondo");
-		}
-	}
+   public void JoystickRobotPlacement(List<RobotController> _listToPlayRobotFrom, List<RobotController> _listToFill, int _x, int _y) {
+       _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
+       _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3 (0f, 0.3f, 0f);
+       foreach (ColliderController collider in FindObjectOfType<NewGridController>().Colliders)
+       {
+            if (collider.X == _x && collider.Y == _y) {
+                _listToPlayRobotFrom[robotToPlay].transform.SetParent(collider.transform);
+                collider.IsPlaceable = false;
+            }
+       }
+       _listToPlayRobotFrom[robotToPlay].SetPosition();
+       RemoveRobotFromList(_listToPlayRobotFrom, robotToPlay);
+       RobotPlayed++;
+       RobotsCurviInHand--;
+       FindObjectOfType<CardManager>().PlaceCard(Player.Player_Curve, robotToPlay);
+       robotToPlay = 0;
+       currentTurn++;
+       if (firstTurnPassed == false)
+           firstTurnPassed = true;
+   }
 
 	public void SetGraphicAsParent () {
 		foreach (RobotController robot in RobotCurviGiocati) {

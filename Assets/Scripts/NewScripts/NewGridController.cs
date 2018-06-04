@@ -25,9 +25,11 @@ public class NewGridController : MonoBehaviour {
 	public GameObject QuadCounterclockwiseRotationButton;
 	public GameObject EndRotationButton;
 
-	public GameObject Collider;
+	public GameObject ColliderObject;
+    public ColliderController Collider;
 
-	private List<CellData> cells = new List<CellData> ();
+	public List<CellData> Cells = new List<CellData>();
+    public List<ColliderController> Colliders = new List<ColliderController>();
 		
 	private void CreateGraphic (int _x, int _y, float _offset, GameObject _parent) {
 		for (int i = 0; i < _x; i++) {
@@ -45,15 +47,17 @@ public class NewGridController : MonoBehaviour {
 			for (int c = 0; c < _y; c++) {
 				CellData cellCheck = FindCell (i, c);
 				if (cellCheck.IsValid) {
-					Collider = Instantiate (ColliderPrefab, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c), transform.rotation, CollidersContainer.transform);
-					Collider.GetComponent<ColliderController>().SetPosition (i, c, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c));
+                    ColliderObject = Instantiate (ColliderPrefab, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c), transform.rotation, CollidersContainer.transform);
+                    ColliderObject.GetComponent<ColliderController>().SetPosition (i, c, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c));
+                    Collider = ColliderObject.GetComponent<ColliderController>();
+                    Colliders.Add(Collider);
 				}
 			}
 		}
 	}
 
 	private CellData FindCell (int _x, int _y) {
-		return (cells.Find (c => c.X == _x && c.Y == _y));
+		return (Cells.Find (c => c.X == _x && c.Y == _y));
 	}
 
 	private void RemoveCell (int _x, int _y) {
@@ -69,7 +73,7 @@ public class NewGridController : MonoBehaviour {
 	public void CreateGrid (int _x, int _y, float _offset) {
 		for (int i = 0; i < _x; i++) {
 			for (int c = 0; c < _y; c++) {
-				cells.Add (new CellData (i, c, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c)));
+				Cells.Add (new CellData (i, c, new Vector3 ((ColliderPrefab.transform.localScale.x + _offset) * i, transform.position.y, (ColliderPrefab.transform.localScale.x + _offset) * c)));
 			}
 		}
 
@@ -87,7 +91,7 @@ public class NewGridController : MonoBehaviour {
 	}
 
 	public Vector3 GetWorldPosition (int _x, int _y) {
-		foreach (CellData cell in cells) {
+		foreach (CellData cell in Cells) {
 			if (cell.X == _x && cell.Y == _y) {
 				return cell.WorldPosition;
 			}
