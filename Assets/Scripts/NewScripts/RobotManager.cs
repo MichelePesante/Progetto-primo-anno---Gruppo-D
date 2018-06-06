@@ -198,28 +198,110 @@ public class RobotManager : MonoBehaviour {
 		}
 	}
 
-   public void JoystickRobotPlacement(List<RobotController> _listToPlayRobotFrom, List<RobotController> _listToFill, int _x, int _y) {
-       _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
-       _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3 (0f, 0.3f, 0f);
-       foreach (ColliderController collider in FindObjectOfType<NewGridController>().Colliders)
-       {
-            if (collider.X == _x && collider.Y == _y) {
-                _listToPlayRobotFrom[robotToPlay].transform.SetParent(collider.transform);
-                collider.IsPlaceable = false;
+   public void JoystickRobotPlacement(List<RobotController> _listToPlayRobotFrom, List<RobotController> _listToFill, int _x, int _y)
+   {
+        if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+        {
+            foreach (ColliderController collider in FindObjectOfType<NewGridController>().Colliders)
+            {
+                if (collider.X == _x && collider.Y == _y && collider.IsPlaceable)
+                {
+                    _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
+                    _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3(0f, 0.3f, 0f);
+                    _listToPlayRobotFrom[robotToPlay].transform.SetParent(collider.transform);
+                    collider.IsPlaceable = false;
+                    _listToPlayRobotFrom[robotToPlay].SetPosition();
+                    RemoveRobotFromList(_listToPlayRobotFrom, robotToPlay);
+                    RobotPlayed++;
+                    RobotsCurviInHand--;
+                    FindObjectOfType<CardManager>().PlaceCard(Player.Player_Curve, robotToPlay);
+                    robotToPlay = 0;
+                    currentTurn++;
+                    if (firstTurnPassed == false)
+                        firstTurnPassed = true;
+                }
             }
-       }
-       _listToPlayRobotFrom[robotToPlay].SetPosition();
-       RemoveRobotFromList(_listToPlayRobotFrom, robotToPlay);
-       RobotPlayed++;
-       RobotsCurviInHand--;
-       FindObjectOfType<CardManager>().PlaceCard(Player.Player_Curve, robotToPlay);
-       robotToPlay = 0;
-       currentTurn++;
-       if (firstTurnPassed == false)
-           firstTurnPassed = true;
-   }
+        }
+        else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+        {
+            foreach (ColliderController collider in FindObjectOfType<NewGridController>().Colliders)
+            {
+                if (collider.X == _x && collider.Y == _y && collider.IsPlaceable)
+                {
+                    _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
+                    _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3(0f, 0.3f, 0f);
+                    _listToPlayRobotFrom[robotToPlay].transform.SetParent(collider.transform);
+                    collider.IsPlaceable = false;
+                    _listToPlayRobotFrom[robotToPlay].SetPosition();
+                    RemoveRobotFromList(_listToPlayRobotFrom, robotToPlay);
+                    RobotPlayed++;
+                    RobotsQuadratiInHand--;
+                    FindObjectOfType<CardManager>().PlaceCard(Player.Player_Quad, robotToPlay);
+                    robotToPlay = 0;
+                    currentTurn++;
+                    if (firstTurnPassed == false)
+                        firstTurnPassed = true;
+                }
+            }
+        }
+    }
 
-	public void SetGraphicAsParent () {
+    public void JoystickRobotUpgrade(List<RobotController> _listToUpgradeFrom, int _x, int _y)
+    {
+        if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+        {
+            foreach (RobotController robot in RobotCurviGiocati)
+            {
+                if (robot.X == _x && robot.Y == _y && robot.isUpgradable)
+                {
+                    robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade;
+                    robot.AttackText.color = Color.red;
+                    RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
+                    FindObjectOfType<CardManager>().PlaceCard(Player.Player_Curve, robotToPlay);
+                    RobotsCurviInHand--;
+                    robotUpgraded++;
+                    robotToPlay = 0;
+                    robot.isUpgradable = false;
+                    if (robotUpgraded == 2)
+                    {
+                        TurnManager.Instance.ChangeTurn();
+                        RobotsQuadratiInHand = Draw(RobotQuadratiInHand, RobotQuadrati, RobotsQuadratiInHand, Player.Player_Quad);
+                        robotUpgraded = 0;
+                        FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraStart");
+                        GameManager.isSomeAnimationGoing = true;
+                    }
+
+                }
+            }
+        }
+        else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+        {
+            foreach (RobotController robot in RobotQuadratiGiocati)
+            {
+                if (robot.X == _x && robot.Y == _y && robot.isUpgradable)
+                {
+                    robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade;
+                    robot.AttackText.color = Color.red;
+                    RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
+                    FindObjectOfType<CardManager>().PlaceCard(Player.Player_Quad, robotToPlay);
+                    RobotsQuadratiInHand--;
+                    robotUpgraded++;
+                    robotToPlay = 0;
+                    robot.isUpgradable = false;
+                    if (robotUpgraded == 2)
+                    {
+                        TurnManager.Instance.ChangeTurn();
+                        robotUpgraded = 0;
+                        FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraStart");
+                        GameManager.isSomeAnimationGoing = true;
+                    }
+
+                }
+            }
+        }
+    }
+
+    public void SetGraphicAsParent () {
 		foreach (RobotController robot in RobotCurviGiocati) {
 			robot.transform.SetParent (FindObjectOfType<NewGridController> ().CurveTilesContainer.transform);
 		}
@@ -435,27 +517,27 @@ public class RobotManager : MonoBehaviour {
 
 		if (firstBattleResult < 0) {
 			scoretemp2 += 1;
-			firstBattleResult = 0;
+            firstBattleResult = 0;
 		}
 
 		if (secondBattleResult > 0) {
 			scoretemp1 += 1;
-			secondBattleResult = 0;
+            secondBattleResult = 0;
 		}
 
 		if (secondBattleResult < 0) {
 			scoretemp2 += 1;
-			secondBattleResult = 0;
+            secondBattleResult = 0;
 		}
 
 		if (thirdBattleResult > 0) {
 			scoretemp1 += 1;
-			thirdBattleResult = 0;
+            thirdBattleResult = 0;
 		}
 
 		if (thirdBattleResult < 0) {
 			scoretemp2 += 1;
-			thirdBattleResult = 0;
+            thirdBattleResult = 0;
 		}
 
 		if (scoretemp1 > scoretemp2) {
@@ -466,7 +548,8 @@ public class RobotManager : MonoBehaviour {
 			finalScore = scoretemp2 - scoretemp1;
 			FindObjectOfType<TurnManager>().ScoreQuad += finalScore;
 		}
-	}
+        EnergyManager.Instance.RefreshEnergy();
+    }
 
 	public void FirstBattle () {
 		Animator curveRobotAnimator = null;
@@ -495,7 +578,8 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult1 > 0) {
 			firstBattleResult = 1;
-			curveRobotAnimator.Play ("Attack");
+            EnergyManager.Instance.AddQuadEnergy(1);
+            curveRobotAnimator.Play ("Attack");
 			quadRobotAnimator.Play ("Hitted");
 		}
 
@@ -506,7 +590,8 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult1 < 0) {
 			firstBattleResult = -1;
-			quadRobotAnimator.Play ("Attack");
+            EnergyManager.Instance.AddCurveEnergy(1);
+            quadRobotAnimator.Play ("Attack");
 			curveRobotAnimator.Play ("Hitted");
 		}
 	}
@@ -538,7 +623,8 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult2 > 0) {
 			secondBattleResult = 1;
-			curveRobotAnimator.Play ("Attack");
+            EnergyManager.Instance.AddQuadEnergy(1);
+            curveRobotAnimator.Play ("Attack");
 			quadRobotAnimator.Play ("Hitted");
 		}
 
@@ -549,7 +635,8 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult2 < 0) {
 			secondBattleResult = -1;
-			quadRobotAnimator.Play ("Attack");
+            EnergyManager.Instance.AddCurveEnergy(1);
+            quadRobotAnimator.Play ("Attack");
 			curveRobotAnimator.Play ("Hitted");
 		}
 	}
@@ -581,7 +668,8 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult3 > 0) {
 			thirdBattleResult = 1;
-			curveRobotAnimator.Play ("Attack");
+            EnergyManager.Instance.AddQuadEnergy(1);
+            curveRobotAnimator.Play ("Attack");
 			quadRobotAnimator.Play ("Hitted");
 		}
 
@@ -592,7 +680,8 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult3 < 0) {
 			thirdBattleResult = -1;
-			quadRobotAnimator.Play ("Attack");
+            EnergyManager.Instance.AddCurveEnergy(1);
+            quadRobotAnimator.Play ("Attack");
 			curveRobotAnimator.Play ("Hitted");
 		}
 	}

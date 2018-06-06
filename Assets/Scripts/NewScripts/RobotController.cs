@@ -8,8 +8,9 @@ public class RobotController : MonoBehaviour {
 	public RobotData Data;
 	public TextMeshProUGUI AttackText;
 	public Canvas myCanvas;
+    public bool isUpgradable;
 
-	public int X;
+    public int X;
 	public int Y;
 	public int ID;
 	public int strength;
@@ -19,11 +20,9 @@ public class RobotController : MonoBehaviour {
 	public TurnableGrid3x3 <int> Abilities = new TurnableGrid3x3 <int>();
 	public bool [,] AbilityCheck = new bool [3, 3];
 
-	private bool isUpgradable;
 	private RobotData InstanceData;
 	private bool isCanvasActive;
 
-	// Use this for initialization
 	void Start () {
 		Setup ();
 		SetAbilityCheckToFalse ();
@@ -46,25 +45,11 @@ public class RobotController : MonoBehaviour {
 		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
             if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
 			    UpgradeRobot (RobotManager.Instance.RobotCurviInHand);
-			if (RobotManager.Instance.robotUpgraded == 2) {
-				TurnManager.Instance.ChangeTurn ();
-				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
-				RobotManager.Instance.robotUpgraded = 0;
-				FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
-                GameManager.isSomeAnimationGoing = true;
-			}
 		}
 
 		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
             if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
                 UpgradeRobot (RobotManager.Instance.RobotQuadratiInHand);
-			if (RobotManager.Instance.robotUpgraded == 2) {
-				TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.rotation;
-				TurnManager.Instance.ChangeTurn ();
-				RobotManager.Instance.robotUpgraded = 0;
-				FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
-                GameManager.isSomeAnimationGoing = true;
-            }
 		}
 	}
 
@@ -72,7 +57,7 @@ public class RobotController : MonoBehaviour {
 		if (!Data) {
 			return;
 		}
-		InstanceData = Instantiate <RobotData> (Data);
+		InstanceData = Instantiate(Data);
 		ID = InstanceData.Unique_ID;
 		strength = InstanceData.Strength;
 		upgrade = InstanceData.Upgrade;
@@ -93,7 +78,15 @@ public class RobotController : MonoBehaviour {
 			RobotManager.Instance.robotUpgraded++;
 			RobotManager.Instance.robotToPlay = 0;
 			isUpgradable = false;
-		}
+            if (RobotManager.Instance.robotUpgraded == 2)
+            {
+                TurnManager.Instance.ChangeTurn();
+                RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
+                RobotManager.Instance.robotUpgraded = 0;
+                FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraStart");
+                GameManager.isSomeAnimationGoing = true;
+            }
+        }
 		
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
 			UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
@@ -104,7 +97,15 @@ public class RobotController : MonoBehaviour {
 			RobotManager.Instance.robotUpgraded++;
 			RobotManager.Instance.robotToPlay = 0;
 			isUpgradable = false;
-		}
+            if (RobotManager.Instance.robotUpgraded == 2)
+            {
+                TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.rotation;
+                TurnManager.Instance.ChangeTurn();
+                RobotManager.Instance.robotUpgraded = 0;
+                FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraReturn");
+                GameManager.isSomeAnimationGoing = true;
+            }
+        }
 	}
 
 	public void ResetRobotStrength () {

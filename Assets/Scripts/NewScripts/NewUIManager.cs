@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class NewUIManager : MonoBehaviour {
@@ -10,6 +11,8 @@ public class NewUIManager : MonoBehaviour {
 	public TextMeshProUGUI Punteggio_P2;
 	public TextMeshProUGUI TutorialText;
 	public Animator TutorialBoxAnimator;
+    public Image Curve_Energy;
+    public Image Quad_Energy;
 	public GameObject TutorialBox;
 	public GameObject Rotation_Buttons;
 	public GameObject Energies;

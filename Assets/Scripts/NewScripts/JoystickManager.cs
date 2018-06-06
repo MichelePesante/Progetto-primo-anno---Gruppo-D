@@ -19,7 +19,7 @@ public class JoystickManager : MonoBehaviour {
 			Instance = this;
 		}
 		else {
-			Destroy (this.gameObject);
+			Destroy (gameObject);
 		}
 	}
 
@@ -28,7 +28,7 @@ public class JoystickManager : MonoBehaviour {
 	}
 
 	void Update () {
-        if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameMenu.GameIsPaused == false)
+        if (GameMenu.GameIsPaused == false)
         {
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {
@@ -108,46 +108,54 @@ public class JoystickManager : MonoBehaviour {
         {
             CurrentStickPosition = StickPosition.NE;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
         else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
         {
             CurrentStickPosition = StickPosition.SE;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
         else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) > 0.3f && Input.GetAxis(yAxis) < 1f))
         {
             CurrentStickPosition = StickPosition.NW;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
         else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
         {
             CurrentStickPosition = StickPosition.SW;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
         else if (Input.GetAxis(xAxis) < -0.5f)
         {
             CurrentStickPosition = StickPosition.W;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
         else if (Input.GetAxis(xAxis) > 0.5f)
         {
             CurrentStickPosition = StickPosition.E;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
         else if (Input.GetAxis(yAxis) < -0.5f)
         {
             CurrentStickPosition = StickPosition.S;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
         else if (Input.GetAxis(yAxis) > 0.5f)
         {
             CurrentStickPosition = StickPosition.N;
             PlayRobotFromJoystick(CurrentStickPosition);
+            UpgradeRobotFromJoystick(CurrentStickPosition);
         }
     }
 
     private void PlayRobotFromJoystick(StickPosition _currentStickPosition) {
-        if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+        if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
             if (Input.GetKeyUp(KeyCode.Joystick1Button0))
             {
@@ -181,39 +189,113 @@ public class JoystickManager : MonoBehaviour {
                         break;
                 }
             }
-        }
-        else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
-        {
             if (Input.GetKeyUp(KeyCode.Joystick2Button0))
             {
                 switch (_currentStickPosition)
                 {
                     case StickPosition.N:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 1, 6);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 1, 6);
                         break;
                     case StickPosition.NE:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 2, 6);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 6);
                         break;
                     case StickPosition.E:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 2, 5);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 5);
                         break;
                     case StickPosition.SE:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 2, 4);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 4);
                         break;
                     case StickPosition.S:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 1, 4);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 1, 4);
                         break;
                     case StickPosition.SW:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 0, 4);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 0, 4);
                         break;
                     case StickPosition.W:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 0, 5);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 0, 5);
                         break;
                     case StickPosition.NW:
-                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 0, 6);
+                        RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 0, 6);
                         break;
                     default:
                         break;
+                }
+            }
+        }
+    }
+
+    private void UpgradeRobotFromJoystick(StickPosition _currentStickPosition)
+    {
+        if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+        {
+            if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            {
+                if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+                {
+                    switch (_currentStickPosition)
+                    {
+                        case StickPosition.N:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 2);
+                            break;
+                        case StickPosition.NE:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 2);
+                            break;
+                        case StickPosition.E:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 1);
+                            break;
+                        case StickPosition.SE:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 0);
+                            break;
+                        case StickPosition.S:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 0);
+                            break;
+                        case StickPosition.SW:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 0);
+                            break;
+                        case StickPosition.W:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 1);
+                            break;
+                        case StickPosition.NW:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 2);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+            {
+                if (Input.GetKeyUp(KeyCode.Joystick2Button0))
+                {
+                    switch (_currentStickPosition)
+                    {
+                        case StickPosition.N:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 6);
+                            break;
+                        case StickPosition.NE:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 6);
+                            break;
+                        case StickPosition.E:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 5);
+                            break;
+                        case StickPosition.SE:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 4);
+                            break;
+                        case StickPosition.S:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 4);
+                            break;
+                        case StickPosition.SW:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 4);
+                            break;
+                        case StickPosition.W:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 5);
+                            break;
+                        case StickPosition.NW:
+                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 6);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
