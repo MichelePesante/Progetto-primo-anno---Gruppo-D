@@ -10,8 +10,9 @@ public class JoystickManager : MonoBehaviour {
     public StickPosition CurrentStickPosition;
 
 	public bool hasMyGridAlreadyBeenRotated;
-	public bool hasEnemyGridAlreadyBeenRotated; 
+	public bool hasEnemyGridAlreadyBeenRotated;
 
+    private ArrowManager am;
 	private ButtonManager bm;
 
 	void Awake () {
@@ -24,6 +25,7 @@ public class JoystickManager : MonoBehaviour {
 	}
 
 	void Start () {
+        am = ArrowManager.Instance;
 		bm = ButtonManager.Instance;
 	}
 
@@ -100,57 +102,148 @@ public class JoystickManager : MonoBehaviour {
 	}
 
     public void StickOrientation(string xAxis, string yAxis) {
-        if ((Input.GetAxis(xAxis) > -0.2f && Input.GetAxis(xAxis) < 0.2f) && (Input.GetAxis(yAxis) > -0.2f && Input.GetAxis(yAxis) < 0.2f))
+        if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
-            CurrentStickPosition = StickPosition.C;
-        }
-        else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) > 0.3f && Input.GetAxis(yAxis) < 1f))
-        {
-            CurrentStickPosition = StickPosition.NE;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
-        }
-        else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
-        {
-            CurrentStickPosition = StickPosition.SE;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
-        }
-        else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) > 0.3f && Input.GetAxis(yAxis) < 1f))
-        {
-            CurrentStickPosition = StickPosition.NW;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
-        }
-        else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
-        {
-            CurrentStickPosition = StickPosition.SW;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
-        }
-        else if (Input.GetAxis(xAxis) < -0.5f)
-        {
-            CurrentStickPosition = StickPosition.W;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
-        }
-        else if (Input.GetAxis(xAxis) > 0.5f)
-        {
-            CurrentStickPosition = StickPosition.E;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
-        }
-        else if (Input.GetAxis(yAxis) < -0.5f)
-        {
-            CurrentStickPosition = StickPosition.S;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
-        }
-        else if (Input.GetAxis(yAxis) > 0.5f)
-        {
-            CurrentStickPosition = StickPosition.N;
-            PlayRobotFromJoystick(CurrentStickPosition);
-            UpgradeRobotFromJoystick(CurrentStickPosition);
+            if ((Input.GetAxis(xAxis) > -0.2f && Input.GetAxis(xAxis) < 0.2f) && (Input.GetAxis(yAxis) > -0.2f && Input.GetAxis(yAxis) < 0.2f))
+            {
+                CurrentStickPosition = StickPosition.C;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                }
+            }
+            else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) > 0.3f && Input.GetAxis(yAxis) < 1f))
+            {
+                CurrentStickPosition = StickPosition.NE;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Nord_Est_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Nord_Est_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                    PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
+            else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
+            {
+                CurrentStickPosition = StickPosition.SE;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Sud_Est_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Sud_Est_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
+            else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) > 0.3f && Input.GetAxis(yAxis) < 1f))
+            {
+                CurrentStickPosition = StickPosition.NW;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Nord_Ovest_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Nord_Ovest_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
+            else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
+            {
+                CurrentStickPosition = StickPosition.SW;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Sud_Ovest_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Sud_Ovest_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
+            else if (Input.GetAxis(xAxis) < -0.5f)
+            {
+                CurrentStickPosition = StickPosition.W;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Ovest_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Ovest_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
+            else if (Input.GetAxis(xAxis) > 0.5f)
+            {
+                CurrentStickPosition = StickPosition.E;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Est_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Est_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
+            else if (Input.GetAxis(yAxis) < -0.5f)
+            {
+                CurrentStickPosition = StickPosition.S;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Sud_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Sud_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
+            else if (Input.GetAxis(yAxis) > 0.5f)
+            {
+                CurrentStickPosition = StickPosition.N;
+                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                {
+                    am.ResetAllCurveMaterials();
+                    am.Freccia_Nord_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                {
+                    am.ResetAllQuadMaterials();
+                    am.Freccia_Nord_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
+                }
+                PlayRobotFromJoystick(CurrentStickPosition);
+                UpgradeRobotFromJoystick(CurrentStickPosition);
+            }
         }
     }
 
@@ -163,27 +256,35 @@ public class JoystickManager : MonoBehaviour {
                 {
                     case StickPosition.N:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 1, 2);
+                        am.Freccia_Nord_Curve.SetActive(false);
                         break;
                     case StickPosition.NE:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 2, 2);
+                        am.Freccia_Nord_Est_Curve.SetActive(false);
                         break;
                     case StickPosition.E:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 2, 1);
+                        am.Freccia_Est_Curve.SetActive(false);
                         break;
                     case StickPosition.SE:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 2, 0);
+                        am.Freccia_Sud_Est_Curve.SetActive(false);
                         break;
                     case StickPosition.S:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 1, 0);
+                        am.Freccia_Sud_Curve.SetActive(false);
                         break;
                     case StickPosition.SW:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 0, 0);
+                        am.Freccia_Sud_Ovest_Curve.SetActive(false);
                         break;
                     case StickPosition.W:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 0, 1);
+                        am.Freccia_Ovest_Curve.SetActive(false);
                         break;
                     case StickPosition.NW:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurviGiocati, 0, 2);
+                        am.Freccia_Nord_Ovest_Curve.SetActive(false);
                         break;
                     default:
                         break;
@@ -195,27 +296,35 @@ public class JoystickManager : MonoBehaviour {
                 {
                     case StickPosition.N:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 1, 6);
+                        am.Freccia_Nord_Quad.SetActive(false);
                         break;
                     case StickPosition.NE:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 6);
+                        am.Freccia_Nord_Est_Quad.SetActive(false);
                         break;
-                    case StickPosition.E:
+                    case StickPosition.E:am.Freccia_Est_Curve.SetActive(false);
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 5);
+                        am.Freccia_Est_Quad.SetActive(false);
                         break;
                     case StickPosition.SE:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 4);
+                        am.Freccia_Sud_Est_Quad.SetActive(false);
                         break;
                     case StickPosition.S:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 1, 4);
+                        am.Freccia_Sud_Quad.SetActive(false);
                         break;
                     case StickPosition.SW:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 0, 4);
+                        am.Freccia_Sud_Ovest_Quad.SetActive(false);
                         break;
                     case StickPosition.W:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 0, 5);
+                        am.Freccia_Ovest_Quad.SetActive(false);
                         break;
                     case StickPosition.NW:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 0, 6);
+                        am.Freccia_Nord_Ovest_Quad.SetActive(false);
                         break;
                     default:
                         break;

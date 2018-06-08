@@ -42,10 +42,6 @@ public class EnergyManager : MonoBehaviour {
         Quad_Energy = 2;
         RefreshEnergy();
 	}
-	
-	void Update () {
-		
-	}
 
     public void AddCurveEnergy(int energyToAdd)
     {

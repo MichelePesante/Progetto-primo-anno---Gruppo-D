@@ -28813,8 +28813,13 @@ MonoBehaviour:
   Freccia_Sud_Est_Quad: {fileID: 360494740}
   Freccia_Sud_Quad: {fileID: 1335806039}
   Freccia_Sud_Ovest_Quad: {fileID: 1569089230}
-  Freccia_Ovest_Quade: {fileID: 780562899}
+  Freccia_Ovest_Quad: {fileID: 780562899}
   Freccia_Nord_Ovest_Quad: {fileID: 1124280175}
+  Frecce_Curve_Starting_Position: {x: 0, y: 0, z: 0}
+  Frecce_Curve_Starting_Scale: {x: 0, y: 0, z: 0}
+  Frecce_Quad_Starting_Position: {x: 0, y: 0, z: 0}
+  Frecce_Quad_Starting_Scale: {x: 0, y: 0, z: 0}
+  HighlightMaterial: {fileID: 2100000, guid: 2e49525f8714a0649a4e34eb7dba5a33, type: 2}
 --- !u!4 &1182595540
 Transform:
   m_ObjectHideFlags: 0

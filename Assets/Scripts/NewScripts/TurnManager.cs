@@ -243,6 +243,8 @@ public class TurnManager : MonoBehaviour {
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
                     ArrowManager.Instance.Frecce_Curve.SetActive(false);
                     ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                    ArrowManager.Instance.Frecce_Quad.transform.position = ArrowManager.Instance.Frecce_Quad_Starting_Position;
+                    ArrowManager.Instance.Frecce_Quad.transform.localScale = ArrowManager.Instance.Frecce_Quad_Starting_Scale;
                     FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
                     GameManager.isSomeAnimationGoing = true;
 					break;
@@ -262,6 +264,8 @@ public class TurnManager : MonoBehaviour {
 					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
                     ArrowManager.Instance.Frecce_Quad.SetActive(false);
                     ArrowManager.Instance.Frecce_Curve.SetActive(false);
+                    ArrowManager.Instance.Frecce_Curve.transform.position = ArrowManager.Instance.Frecce_Curve_Starting_Position;
+                    ArrowManager.Instance.Frecce_Curve.transform.localScale = ArrowManager.Instance.Frecce_Curve_Starting_Scale;
                     FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
                     GameManager.isSomeAnimationGoing = true;
                     break;
