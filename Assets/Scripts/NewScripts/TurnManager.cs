@@ -73,7 +73,7 @@ public class TurnManager : MonoBehaviour {
 			Instance = this;
 		}
 		else {
-			Destroy (this.gameObject);
+			Destroy (gameObject);
 		}
 	}
 
@@ -198,15 +198,15 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
 				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
-                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play ("Punteggio_Curve_Start");
-                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start");
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play ("Punteggio_Curve_Start_Curve_Turn");
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start_Curve_Turn");
                     GameManager.isSomeAnimationGoing = true;
                     ChangeTurn ();
 				} 
 				else {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
-                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Curve_Start");
-                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start");
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Curve_Start_Quad_Turn");
+                    NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start_Quad_Turn");
                     GameManager.isSomeAnimationGoing = true;
                     ChangeTurn ();
 				}
@@ -241,7 +241,9 @@ public class TurnManager : MonoBehaviour {
 					break;
 				case TurnState.placing:
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
-					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
+                    ArrowManager.Instance.Frecce_Curve.SetActive(false);
+                    ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                    FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
                     GameManager.isSomeAnimationGoing = true;
 					break;
 				}
@@ -258,7 +260,9 @@ public class TurnManager : MonoBehaviour {
 					break;
 				case TurnState.placing:
 					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
-					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
+                    ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                    ArrowManager.Instance.Frecce_Curve.SetActive(false);
+                    FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
                     GameManager.isSomeAnimationGoing = true;
                     break;
 				}

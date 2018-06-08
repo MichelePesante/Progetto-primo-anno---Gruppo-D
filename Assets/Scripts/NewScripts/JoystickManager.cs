@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class JoystickManager : MonoBehaviour {
 
-	public static JoystickManager Instance;
+    public static JoystickManager Instance;
 
     public StickPosition CurrentStickPosition;
 
@@ -40,7 +40,7 @@ public class JoystickManager : MonoBehaviour {
             }
         }
 
-        if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false)
+        if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {

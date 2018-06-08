@@ -47,4 +47,13 @@ public class AnimationManager : MonoBehaviour {
     public void ResetTutorialBool() {
         GameManager.isTutorialOn = false;
     }
+
+    public void ShowCurveArrows() {
+        ArrowManager.Instance.Frecce_Curve.SetActive(true);
+    }
+
+    public void ShowQuadArrows()
+    {
+        ArrowManager.Instance.Frecce_Quad.SetActive(true);
+    }
 }
