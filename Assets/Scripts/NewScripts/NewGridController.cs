@@ -31,16 +31,16 @@ public class NewGridController : MonoBehaviour {
 	public List<CellData> Cells = new List<CellData>();
     public List<ColliderController> Colliders = new List<ColliderController>();
 		
-	private void CreateGraphic (int _x, int _y, float _offset, GameObject _parent) {
-		for (int i = 0; i < _x; i++) {
-			for (int c = 0; c < _y; c++) {
-				CellData cellCheck = FindCell (i, c);
-				if (cellCheck.IsValid) {
-					Instantiate (TilePrefab, new Vector3 ((TilePrefab.transform.localScale.x + _offset) * i, transform.position.y, (TilePrefab.transform.localScale.x + _offset) * c), transform.rotation, _parent.transform);
-				}
-			}
-		}
-	}
+	//private void CreateGraphic (int _x, int _y, float _offset, GameObject _parent) {
+	//	for (int i = 0; i < _x; i++) {
+	//		for (int c = 0; c < _y; c++) {
+	//			CellData cellCheck = FindCell (i, c);
+	//			if (cellCheck.IsValid) {
+	//				Instantiate (TilePrefab, new Vector3 ((TilePrefab.transform.localScale.x + _offset) * i, transform.position.y, (TilePrefab.transform.localScale.x + _offset) * c), transform.rotation, _parent.transform);
+	//			}
+	//		}
+	//	}
+	//}
 
 	private void CreateColliders (int _x, int _y, float _offset) {
 		for (int i = 0; i < _x; i++) {
@@ -83,8 +83,8 @@ public class NewGridController : MonoBehaviour {
 		RemoveCell (2, 3);
 		RemoveCell (1, 5);
 
-		CreateGraphic (3, 3, _offset, CurveTilesContainer);
-		CreateGraphic (3, 3, _offset, QuadTilesContainer);
+		//CreateGraphic (3, 3, _offset, CurveTilesContainer);
+		//CreateGraphic (3, 3, _offset, QuadTilesContainer);
 		CreateColliders (_x, _y, _offset);
 
 		SetGridPosition (QuadTilesContainer);
