@@ -34,10 +34,7 @@ public class AnimationManager : MonoBehaviour {
 	}
 
     public void ShowEndImage() {
-        if (TurnManager.Instance.ScoreCurve >= 5 || TurnManager.Instance.ScoreQuad >= 5)
-        {
-            EndManager.Instance.OnEndScene();
-        }
+        EndManager.Instance.OnEndScene();
     }
 
     public void ResetAnimationBool() {

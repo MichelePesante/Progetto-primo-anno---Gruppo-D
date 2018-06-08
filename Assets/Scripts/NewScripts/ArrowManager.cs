@@ -89,4 +89,24 @@ public class ArrowManager : MonoBehaviour
         Freccia_Ovest_Quad.GetComponent<Renderer>().material = StartingMaterial;
         Freccia_Nord_Ovest_Quad.GetComponent<Renderer>().material = StartingMaterial;
     }
+
+    public void ActiveAllArrows() {
+        Freccia_Nord_Curve.SetActive(true);
+        Freccia_Nord_Est_Curve.SetActive(true);
+        Freccia_Est_Curve.SetActive(true);
+        Freccia_Sud_Est_Curve.SetActive(true);
+        Freccia_Sud_Curve.SetActive(true);
+        Freccia_Sud_Ovest_Curve.SetActive(true);
+        Freccia_Ovest_Curve.SetActive(true);
+        Freccia_Nord_Ovest_Curve.SetActive(true);
+
+        Freccia_Nord_Quad.SetActive(true);
+        Freccia_Nord_Est_Quad.SetActive(true);
+        Freccia_Est_Quad.SetActive(true);
+        Freccia_Sud_Est_Quad.SetActive(true);
+        Freccia_Sud_Quad.SetActive(true);
+        Freccia_Sud_Ovest_Quad.SetActive(true);
+        Freccia_Ovest_Quad.SetActive(true);
+        Freccia_Nord_Ovest_Quad.SetActive(true);
+    }
 }

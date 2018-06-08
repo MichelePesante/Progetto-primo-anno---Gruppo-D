@@ -41,6 +41,10 @@ public class EndManager : MonoBehaviour
         {
             QuadEnd.gameObject.SetActive(true);
         }
+        if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad)
+        {
+            // INSERIRE QUI IMMAGINE DI PAREGGIO
+        }
     }
 
     public void ReturnToMainMenu()

@@ -541,12 +541,30 @@ public class RobotManager : MonoBehaviour {
 
 		if (scoretemp1 > scoretemp2) {
 			finalScore = scoretemp1 - scoretemp2;
-			FindObjectOfType<TurnManager>().ScoreCurve += finalScore;
+			TurnManager.Instance.ScoreCurve += finalScore;
 		}
 		if (scoretemp1 < scoretemp2) {
 			finalScore = scoretemp2 - scoretemp1;
-			FindObjectOfType<TurnManager>().ScoreQuad += finalScore;
+            TurnManager.Instance.ScoreQuad += finalScore;
 		}
+
+        if (RobotsCurviInHand == 0 && RobotsQuadratiInHand == 0) {
+            if (TurnManager.Instance.ScoreCurve > TurnManager.Instance.ScoreQuad)
+            {
+                TurnManager.Instance.ScoreCurve = 5;
+                EndManager.Instance.OnEndScene();
+            }
+            else if (TurnManager.Instance.ScoreQuad > TurnManager.Instance.ScoreCurve)
+            {
+                TurnManager.Instance.ScoreQuad = 5;
+                EndManager.Instance.OnEndScene();
+            }
+            else
+            {
+                EndManager.Instance.OnEndScene();
+            }
+        }
+
         EnergyManager.Instance.RefreshEnergy();
     }
 

@@ -345,27 +345,35 @@ public class JoystickManager : MonoBehaviour {
                     {
                         case StickPosition.N:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 2);
+                            //am.Freccia_Nord_Curve.SetActive(false);
                             break;
                         case StickPosition.NE:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 2);
+                            //am.Freccia_Nord_Est_Curve.SetActive(false);
                             break;
                         case StickPosition.E:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 1);
+                            //am.Freccia_Est_Curve.SetActive(false);
                             break;
                         case StickPosition.SE:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 0);
+                            //am.Freccia_Sud_Est_Curve.SetActive(false);
                             break;
                         case StickPosition.S:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 0);
+                            //am.Freccia_Sud_Curve.SetActive(false);
                             break;
                         case StickPosition.SW:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 0);
+                            //am.Freccia_Sud_Ovest_Curve.SetActive(false);
                             break;
                         case StickPosition.W:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 1);
+                            //am.Freccia_Ovest_Curve.SetActive(false);
                             break;
                         case StickPosition.NW:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 2);
+                            //am.Freccia_Nord_Ovest_Curve.SetActive(false);
                             break;
                         default:
                             break;
@@ -380,27 +388,35 @@ public class JoystickManager : MonoBehaviour {
                     {
                         case StickPosition.N:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 6);
+                            //am.Freccia_Nord_Quad.SetActive(false);
                             break;
                         case StickPosition.NE:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 6);
+                            //am.Freccia_Nord_Est_Quad.SetActive(false);
                             break;
                         case StickPosition.E:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 5);
+                            //am.Freccia_Est_Quad.SetActive(false);
                             break;
                         case StickPosition.SE:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 4);
+                            //am.Freccia_Sud_Est_Quad.SetActive(false);
                             break;
                         case StickPosition.S:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 4);
+                            //am.Freccia_Sud_Quad.SetActive(false);
                             break;
                         case StickPosition.SW:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 4);
+                            //am.Freccia_Sud_Ovest_Quad.SetActive(false);
                             break;
                         case StickPosition.W:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 5);
+                            //am.Freccia_Ovest_Quad.SetActive(false);
                             break;
                         case StickPosition.NW:
                             RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 6);
+                            //am.Freccia_Nord_Ovest_Quad.SetActive(false);
                             break;
                         default:
                             break;

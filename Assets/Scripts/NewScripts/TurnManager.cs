@@ -14,6 +14,8 @@ public class TurnManager : MonoBehaviour {
 	public bool TextIsActive;
 	public Vector3 CameraPosition;
 
+    private bool isFirstUpgradeTurn = true;
+
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
 	public enum MacroPhase { Preparation, Game };
 	private MacroPhase _currentMacroPhase;
@@ -188,6 +190,7 @@ public class TurnManager : MonoBehaviour {
                 NewUIManager.Instance.ChangeText("Ruota obbligatoriamente la plancia avversaria e decidi se ruotare la tua");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
+                ArrowManager.Instance.Frecce.SetActive(false);
 				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
@@ -212,7 +215,12 @@ public class TurnManager : MonoBehaviour {
 				}
                 break;
 			case TurnState.upgrade:
-				NewUIManager.Instance.Slots.SetActive (true);
+                if (isFirstUpgradeTurn) {
+                    ArrowManager.Instance.ActiveAllArrows();
+                    isFirstUpgradeTurn = false;
+                }
+                ArrowManager.Instance.Frecce.SetActive(true);
+                NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Energies.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
                 NewUIManager.Instance.ChangeText("Potenzia i tuoi Robot");
@@ -253,6 +261,10 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
+            if (CurrentTurnState == TurnState.upgrade) {
+                ArrowManager.Instance.Frecce_Curve.SetActive(false);
+                ArrowManager.Instance.Frecce_Quad.SetActive(false);
+            }
         }
 		if (newTurn == PlayerTurn.Quad_Turn) {
 			switch (CurrentMacroPhase) {
@@ -274,7 +286,12 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
-		}
+            if (CurrentTurnState == TurnState.upgrade)
+            {
+                ArrowManager.Instance.Frecce_Curve.SetActive(false);
+                ArrowManager.Instance.Frecce_Quad.SetActive(false);
+            }
+        }
     }
 
 
