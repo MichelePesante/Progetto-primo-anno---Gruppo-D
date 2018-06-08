@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 4102038967912970}
   - component: {fileID: 65691576056358150}
   - component: {fileID: 114936504265942008}
+  - component: {fileID: 320777901119137354}
   m_Layer: 0
   m_Name: Curvo2_Def
   m_TagString: Untagged
@@ -1900,6 +1901,7 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: ef06e8a0d41c9054ba1d9fb23b465c57, type: 2}
   AttackText: {fileID: 0}
   myCanvas: {fileID: 0}
+  isUpgradable: 0
   X: 0
   Y: 0
   ID: 21
@@ -3961,3 +3963,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.003}
   m_SizeDelta: {x: 0.8556, y: 0.7686}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!320 &320777901119137354
+PlayableDirector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312809873352050}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: f240bbd4b3a4422448bb2cf889ec6964, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 114249743085298962, guid: f240bbd4b3a4422448bb2cf889ec6964, type: 2}
+    value: {fileID: 1759628241725876}
+  m_ExposedReferences:
+    m_References: []

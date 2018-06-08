@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using UnityEngine.Playables;
 
 public class RobotManager : MonoBehaviour {
 
@@ -552,8 +551,9 @@ public class RobotManager : MonoBehaviour {
     }
 
 	public void FirstBattle () {
-		Animator curveRobotAnimator = null;
-		Animator quadRobotAnimator = null;
+		PlayableDirector curveRobotDirector = null;
+        Animator curveRobotAnimator = null;
+        Animator quadRobotAnimator = null;
 
 		int battleResult1 = 0;
 
@@ -562,7 +562,8 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 0 && robot.Y == 2) {
-				curveRobotAnimator = robot.GetComponentInChildren<Animator>();
+				curveRobotDirector = robot.GetComponent<PlayableDirector>();
+                curveRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina1p1 = robot.strength;
 			}
 		}
@@ -579,12 +580,12 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult1 > 0) {
 			firstBattleResult = 1;
             EnergyManager.Instance.AddQuadEnergy(1);
-            curveRobotAnimator.Play ("Attack");
+            curveRobotDirector.Play ();
 			quadRobotAnimator.Play ("Hitted");
 		}
 
 		if (battleResult1 == 0) {
-			curveRobotAnimator.Play ("Attack");
+			curveRobotDirector.Play ();
 			quadRobotAnimator.Play ("Attack");
 		}
 
@@ -597,7 +598,8 @@ public class RobotManager : MonoBehaviour {
 	}
 
 	public void SecondBattle () {
-		Animator curveRobotAnimator = null;
+        PlayableDirector curveRobotDirector = null;
+        Animator curveRobotAnimator = null;
 		Animator quadRobotAnimator = null;
 
 		int battleResult2 = 0;
@@ -607,7 +609,8 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 1 && robot.Y == 2) {
-				curveRobotAnimator = robot.GetComponentInChildren<Animator>();
+                curveRobotDirector = robot.GetComponent<PlayableDirector>();
+                curveRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina2p1 = robot.strength;
 			}
 		}
@@ -624,13 +627,13 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult2 > 0) {
 			secondBattleResult = 1;
             EnergyManager.Instance.AddQuadEnergy(1);
-            curveRobotAnimator.Play ("Attack");
-			quadRobotAnimator.Play ("Hitted");
+            curveRobotDirector.Play();
+            quadRobotAnimator.Play ("Hitted");
 		}
 
 		if (battleResult2 == 0) {
-			curveRobotAnimator.Play ("Attack");
-			quadRobotAnimator.Play ("Attack");
+            curveRobotDirector.Play();
+            quadRobotAnimator.Play ("Attack");
 		}
 
 		if (battleResult2 < 0) {
@@ -642,7 +645,8 @@ public class RobotManager : MonoBehaviour {
 	}
 
 	public void ThirdBattle () {
-		Animator curveRobotAnimator = null;
+        PlayableDirector curveRobotDirector = null;
+        Animator curveRobotAnimator = null;
 		Animator quadRobotAnimator = null;
 
 		int battleResult3 = 0;
@@ -652,7 +656,8 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 2 && robot.Y == 2) {
-				curveRobotAnimator = robot.GetComponentInChildren<Animator>();
+                curveRobotDirector = robot.GetComponent<PlayableDirector>();
+                curveRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina3p1 = robot.strength;
 			}
 		}
@@ -669,13 +674,13 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult3 > 0) {
 			thirdBattleResult = 1;
             EnergyManager.Instance.AddQuadEnergy(1);
-            curveRobotAnimator.Play ("Attack");
-			quadRobotAnimator.Play ("Hitted");
+            curveRobotDirector.Play();
+            quadRobotAnimator.Play ("Hitted");
 		}
 
 		if (battleResult3 == 0) {
-			curveRobotAnimator.Play ("Attack");
-			quadRobotAnimator.Play ("Attack");
+            curveRobotDirector.Play();
+            quadRobotAnimator.Play ("Attack");
 		}
 
 		if (battleResult3 < 0) {
