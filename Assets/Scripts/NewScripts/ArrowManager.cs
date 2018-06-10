@@ -8,7 +8,6 @@ public class ArrowManager : MonoBehaviour
     public static ArrowManager Instance;
 
     [Header("Contentitori Frecce")]
-    public GameObject Frecce;
     public GameObject Frecce_Curve;
     public GameObject Frecce_Quad;
 

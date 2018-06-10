@@ -289,9 +289,10 @@ public class RobotManager : MonoBehaviour {
                     robot.isUpgradable = false;
                     if (robotUpgraded == 2)
                     {
+                        TurnManager.Instance.CurrentTurnState = TurnManager.TurnState.rotation;
                         TurnManager.Instance.ChangeTurn();
                         robotUpgraded = 0;
-                        FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraStart");
+                        FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraReturn");
                         GameManager.isSomeAnimationGoing = true;
                     }
 

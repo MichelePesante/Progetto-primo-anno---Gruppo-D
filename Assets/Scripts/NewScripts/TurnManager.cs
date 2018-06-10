@@ -190,8 +190,9 @@ public class TurnManager : MonoBehaviour {
                 NewUIManager.Instance.ChangeText("Ruota obbligatoriamente la plancia avversaria e decidi se ruotare la tua");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
-                ArrowManager.Instance.Frecce.SetActive(false);
-				ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
+                ArrowManager.Instance.Frecce_Curve.SetActive(false);
+                ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (true);
@@ -219,7 +220,8 @@ public class TurnManager : MonoBehaviour {
                     ArrowManager.Instance.ActiveAllArrows();
                     isFirstUpgradeTurn = false;
                 }
-                ArrowManager.Instance.Frecce.SetActive(true);
+                ArrowManager.Instance.Frecce_Curve.SetActive(true);
+                ArrowManager.Instance.Frecce_Quad.SetActive(true);
                 NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Energies.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class JoystickManager : MonoBehaviour {
 
@@ -46,6 +45,9 @@ public class JoystickManager : MonoBehaviour {
         {
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {
+                if (Input.GetKeyDown(KeyCode.Joystick1Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy) {
+                    ButtonManager.Instance.EndRotationTurn();
+                }
 		        if (Input.GetAxis ("MyGridRotation_Curve") < 0 && !hasMyGridAlreadyBeenRotated)
                 {
 		        	bm.CurveGridClockwiseRotation ();
@@ -73,7 +75,11 @@ public class JoystickManager : MonoBehaviour {
 		    }
 		    else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
             {
-		    	if (Input.GetAxis ("MyGridRotation_Quad") < 0 && !hasMyGridAlreadyBeenRotated)
+                if (Input.GetKeyDown(KeyCode.Joystick2Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy)
+                {
+                    ButtonManager.Instance.EndRotationTurn();
+                }
+                if (Input.GetAxis ("MyGridRotation_Quad") < 0 && !hasMyGridAlreadyBeenRotated)
                 {
 		    		bm.QuadGridClockwiseRotation ();
 		    		bm.RotationCheck ();
@@ -99,7 +105,8 @@ public class JoystickManager : MonoBehaviour {
 		    	}
 		    }
 		}
-	}
+    }
+
 
     public void StickOrientation(string xAxis, string yAxis) {
         if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
@@ -129,7 +136,7 @@ public class JoystickManager : MonoBehaviour {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Nord_Est_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                    PlayRobotFromJoystick(CurrentStickPosition);
+                PlayRobotFromJoystick(CurrentStickPosition);
                 UpgradeRobotFromJoystick(CurrentStickPosition);
             }
             else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
@@ -250,7 +257,7 @@ public class JoystickManager : MonoBehaviour {
     private void PlayRobotFromJoystick(StickPosition _currentStickPosition) {
         if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
-            if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+            if (Input.GetKeyUp(KeyCode.Joystick1Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {
                 switch (_currentStickPosition)
                 {
@@ -290,7 +297,7 @@ public class JoystickManager : MonoBehaviour {
                         break;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Joystick2Button0))
+            if (Input.GetKeyUp(KeyCode.Joystick2Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
             {
                 switch (_currentStickPosition)
                 {
@@ -337,90 +344,84 @@ public class JoystickManager : MonoBehaviour {
     {
         if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
-            if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            if (Input.GetKeyUp(KeyCode.Joystick1Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {
-                if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+                switch (_currentStickPosition)
                 {
-                    switch (_currentStickPosition)
-                    {
-                        case StickPosition.N:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 2);
-                            //am.Freccia_Nord_Curve.SetActive(false);
-                            break;
-                        case StickPosition.NE:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 2);
-                            //am.Freccia_Nord_Est_Curve.SetActive(false);
-                            break;
-                        case StickPosition.E:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 1);
-                            //am.Freccia_Est_Curve.SetActive(false);
-                            break;
-                        case StickPosition.SE:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 0);
-                            //am.Freccia_Sud_Est_Curve.SetActive(false);
-                            break;
-                        case StickPosition.S:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 0);
-                            //am.Freccia_Sud_Curve.SetActive(false);
-                            break;
-                        case StickPosition.SW:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 0);
-                            //am.Freccia_Sud_Ovest_Curve.SetActive(false);
-                            break;
-                        case StickPosition.W:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 1);
-                            //am.Freccia_Ovest_Curve.SetActive(false);
-                            break;
-                        case StickPosition.NW:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 2);
-                            //am.Freccia_Nord_Ovest_Curve.SetActive(false);
-                            break;
-                        default:
-                            break;
-                    }
+                    case StickPosition.N:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 2);
+                        //am.Freccia_Nord_Curve.SetActive(false);
+                        break;
+                    case StickPosition.NE:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 2);
+                        //am.Freccia_Nord_Est_Curve.SetActive(false);
+                        break;
+                    case StickPosition.E:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 1);
+                        //am.Freccia_Est_Curve.SetActive(false);
+                        break;
+                    case StickPosition.SE:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 2, 0);
+                        //am.Freccia_Sud_Est_Curve.SetActive(false);
+                        break;
+                    case StickPosition.S:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 1, 0);
+                        //am.Freccia_Sud_Curve.SetActive(false);
+                        break;
+                    case StickPosition.SW:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 0);
+                        //am.Freccia_Sud_Ovest_Curve.SetActive(false);
+                        break;
+                    case StickPosition.W:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 1);
+                        //am.Freccia_Ovest_Curve.SetActive(false);
+                        break;
+                    case StickPosition.NW:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotCurviInHand, 0, 2);
+                        //am.Freccia_Nord_Ovest_Curve.SetActive(false);
+                        break;
+                    default:
+                        break;
                 }
             }
-            else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+            else if (Input.GetKeyUp(KeyCode.Joystick2Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
             {
-                if (Input.GetKeyUp(KeyCode.Joystick2Button0))
+                switch (_currentStickPosition)
                 {
-                    switch (_currentStickPosition)
-                    {
-                        case StickPosition.N:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 6);
-                            //am.Freccia_Nord_Quad.SetActive(false);
-                            break;
-                        case StickPosition.NE:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 6);
-                            //am.Freccia_Nord_Est_Quad.SetActive(false);
-                            break;
-                        case StickPosition.E:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 5);
-                            //am.Freccia_Est_Quad.SetActive(false);
-                            break;
-                        case StickPosition.SE:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 4);
-                            //am.Freccia_Sud_Est_Quad.SetActive(false);
-                            break;
-                        case StickPosition.S:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 4);
-                            //am.Freccia_Sud_Quad.SetActive(false);
-                            break;
-                        case StickPosition.SW:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 4);
-                            //am.Freccia_Sud_Ovest_Quad.SetActive(false);
-                            break;
-                        case StickPosition.W:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 5);
-                            //am.Freccia_Ovest_Quad.SetActive(false);
-                            break;
-                        case StickPosition.NW:
-                            RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 6);
-                            //am.Freccia_Nord_Ovest_Quad.SetActive(false);
-                            break;
-                        default:
-                            break;
-                    }
+                    case StickPosition.N:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 6);
+                        //am.Freccia_Nord_Quad.SetActive(false);
+                        break;
+                    case StickPosition.NE:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 6);
+                        //am.Freccia_Nord_Est_Quad.SetActive(false);
+                        break;
+                    case StickPosition.E:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 5);
+                        //am.Freccia_Est_Quad.SetActive(false);
+                        break;
+                    case StickPosition.SE:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 2, 4);
+                        //am.Freccia_Sud_Est_Quad.SetActive(false);
+                        break;
+                    case StickPosition.S:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 1, 4);
+                        //am.Freccia_Sud_Quad.SetActive(false);
+                        break;
+                    case StickPosition.SW:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 4);
+                        //am.Freccia_Sud_Ovest_Quad.SetActive(false);
+                        break;
+                    case StickPosition.W:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 5);
+                        //am.Freccia_Ovest_Quad.SetActive(false);
+                        break;
+                    case StickPosition.NW:
+                        RobotManager.Instance.JoystickRobotUpgrade(RobotManager.Instance.RobotQuadratiInHand, 0, 6);
+                        //am.Freccia_Nord_Ovest_Quad.SetActive(false);
+                        break;
+                    default:
+                        break;
                 }
             }
         }
