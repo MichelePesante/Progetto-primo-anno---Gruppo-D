@@ -31,7 +31,6 @@ public class RobotController : MonoBehaviour {
 		AttackText = GetComponentInChildren<TextMeshProUGUI> ();
 		myCanvas = GetComponentInChildren<Canvas> ();
 		myCanvas.gameObject.SetActive (false);
-        Abilities.ResetRotationStatus();
 	}
 
 	void Update () {
@@ -62,7 +61,7 @@ public class RobotController : MonoBehaviour {
 		strength = InstanceData.Strength;
 		upgrade = InstanceData.Upgrade;
 		for (int i = 0; i < Data.Ability_Array.Length; i++) {
-			Abilities [i / 3, i % 3] = InstanceData.Ability_Array [i];
+			Abilities [i % 3, i / 3] = InstanceData.Ability_Array [i];
 		}
 	}
 		
