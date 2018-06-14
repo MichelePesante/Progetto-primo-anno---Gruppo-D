@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ad5736c889016f345a577246c30f97cb
-timeCreated: 1524146273
+guid: 84a40cec19a15b04c98494295607ab4d
+timeCreated: 1528969287
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,12 +10,10 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Orbitron
+  fontName: Nasalization
   fontNames:
-  - Orbitron
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 508cd2a295708d44686841f2f016cb27, type: 3}
-  - {fileID: 12800000, guid: ab8385be2d2a8d24980cc1f24218d10f, type: 3}
+  - Nasalization
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

@@ -62,10 +62,26 @@ public class ButtonManager : MonoBehaviour {
         if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
             rotationToReach = FindObjectOfType<NewGridController>().CurveTilesContainer.transform.rotation.eulerAngles;
-            rotationToReach.y += 90f;
-            FindObjectOfType<NewGridController>().CurveTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
-            RotateRobotsCounterclockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
-            RobotManager.Instance.OnClockwiseRotationCurveGrid();
+            if (JoystickManager.Instance.IsDoubleRotationActive == false)
+            {
+                rotationSpeed = 1f;
+                rotationToReach.y += 90f;
+                FindObjectOfType<NewGridController>().CurveTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsCounterclockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
+                RobotManager.Instance.OnClockwiseRotationCurveGrid();
+            }
+            else
+            {
+                rotationSpeed = 2f;
+                rotationToReach.y += 180f;
+                FindObjectOfType<NewGridController>().CurveTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsCounterclockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
+                RotateRobotsCounterclockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
+                RobotManager.Instance.OnClockwiseRotationCurveGrid();
+                RobotManager.Instance.OnClockwiseRotationCurveGrid();
+                JoystickManager.Instance.IsDoubleRotationActive = false;
+                JoystickManager.Instance.DoubleRotationAlreadyActivated = true;
+            }
             DisableButton(CurveGridClockwiseButton);
             DisableButton(CurveGridCounterclockwiseButton);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true))
@@ -80,10 +96,26 @@ public class ButtonManager : MonoBehaviour {
         if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
             rotationToReach = FindObjectOfType<NewGridController>().CurveTilesContainer.transform.rotation.eulerAngles;
-            rotationToReach.y += -90f;
-            FindObjectOfType<NewGridController>().CurveTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
-            RotateRobotsClockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
-            RobotManager.Instance.OnCounterclockwiseRotationCurveGrid();
+            if (JoystickManager.Instance.IsDoubleRotationActive == false)
+            {
+                rotationSpeed = 1f;
+                rotationToReach.y += -90f;
+                FindObjectOfType<NewGridController>().CurveTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsClockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
+                RobotManager.Instance.OnCounterclockwiseRotationCurveGrid();
+            }
+            else
+            {
+                rotationSpeed = 2f;
+                rotationToReach.y += -180f;
+                FindObjectOfType<NewGridController>().CurveTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsClockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
+                RotateRobotsClockwise(RobotManager.Instance.RobotCurviGiocati, 360f);
+                RobotManager.Instance.OnCounterclockwiseRotationCurveGrid();
+                RobotManager.Instance.OnCounterclockwiseRotationCurveGrid();
+                JoystickManager.Instance.IsDoubleRotationActive = false;
+                JoystickManager.Instance.DoubleRotationAlreadyActivated = true;
+            }
             DisableButton(CurveGridCounterclockwiseButton);
             DisableButton(CurveGridClockwiseButton);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true))
@@ -98,10 +130,26 @@ public class ButtonManager : MonoBehaviour {
         if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
             rotationToReach = FindObjectOfType<NewGridController>().QuadTilesContainer.transform.rotation.eulerAngles;
-            rotationToReach.y += 90f;
-            FindObjectOfType<NewGridController>().QuadTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
-            RotateRobotsCounterclockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
-            RobotManager.Instance.OnClockwiseRotationQuadGrid();
+            if (JoystickManager.Instance.IsDoubleRotationActive == false)
+            {
+                rotationSpeed = 1f;
+                rotationToReach.y += 90f;
+                FindObjectOfType<NewGridController>().QuadTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsCounterclockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
+                RobotManager.Instance.OnClockwiseRotationQuadGrid();
+            }
+            else
+            {
+                rotationSpeed = 2f;
+                rotationToReach.y += 180f;
+                FindObjectOfType<NewGridController>().QuadTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsCounterclockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
+                RotateRobotsCounterclockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
+                RobotManager.Instance.OnClockwiseRotationQuadGrid();
+                RobotManager.Instance.OnClockwiseRotationQuadGrid();
+                JoystickManager.Instance.IsDoubleRotationActive = false;
+                JoystickManager.Instance.DoubleRotationAlreadyActivated = true;
+            }
             DisableButton(QuadGridClockwiseButton);
             DisableButton(QuadGridCounterclockwiseButton);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true))
@@ -116,10 +164,26 @@ public class ButtonManager : MonoBehaviour {
         if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
             rotationToReach = FindObjectOfType<NewGridController>().QuadTilesContainer.transform.rotation.eulerAngles;
-            rotationToReach.y += -90f;
-            FindObjectOfType<NewGridController>().QuadTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
-            RotateRobotsClockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
-            RobotManager.Instance.OnCounterclockwiseRotationQuadGrid();
+            if (JoystickManager.Instance.IsDoubleRotationActive == false)
+            {
+                rotationSpeed = 1f;
+                rotationToReach.y += -90f;
+                FindObjectOfType<NewGridController>().QuadTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsClockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
+                RobotManager.Instance.OnCounterclockwiseRotationQuadGrid();
+            }
+            else
+            {
+                rotationSpeed = 2f;
+                rotationToReach.y += -180f;
+                FindObjectOfType<NewGridController>().QuadTilesContainer.transform.DORotate(rotationToReach, rotationSpeed);
+                RotateRobotsClockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
+                RotateRobotsClockwise(RobotManager.Instance.RobotQuadratiGiocati, 360f);
+                RobotManager.Instance.OnCounterclockwiseRotationQuadGrid();
+                RobotManager.Instance.OnCounterclockwiseRotationQuadGrid();
+                JoystickManager.Instance.IsDoubleRotationActive = false;
+                JoystickManager.Instance.DoubleRotationAlreadyActivated = true;
+            }
             DisableButton(QuadGridCounterclockwiseButton);
             DisableButton(QuadGridClockwiseButton);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true))

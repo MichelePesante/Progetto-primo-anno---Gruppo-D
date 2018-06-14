@@ -8,8 +8,10 @@ public class EnergyManager : MonoBehaviour {
     public static EnergyManager Instance;
 
     private int maxEnergyValue = 5;
-    private int Curve_Energy = 2;
-    private int Quad_Energy = 2;
+    public int Curve_Energy;
+    public int Quad_Energy;
+    public int RotationCost;
+    public int UpgradeCost;
 
     [Header("Energy images")]
     public Sprite Curve_Energy_0;

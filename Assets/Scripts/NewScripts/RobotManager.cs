@@ -253,7 +253,16 @@ public class RobotManager : MonoBehaviour {
             {
                 if (robot.X == _x && robot.Y == _y && robot.isUpgradable)
                 {
-                    robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade;
+                    if (JoystickManager.Instance.IsDoubleUpgradeActive == false)
+                    {
+                        robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade;
+                    }
+                    else
+                    {
+                        robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade * 2;
+                        JoystickManager.Instance.IsDoubleUpgradeActive = false;
+                        JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
+                    }
                     robot.AttackText.color = Color.red;
                     RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
                     FindObjectOfType<CardManager>().PlaceCard(Player.Player_Curve, robotToPlay);
@@ -269,7 +278,6 @@ public class RobotManager : MonoBehaviour {
                         FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraStart");
                         GameManager.isSomeAnimationGoing = true;
                     }
-
                 }
             }
         }
@@ -279,7 +287,16 @@ public class RobotManager : MonoBehaviour {
             {
                 if (robot.X == _x && robot.Y == _y && robot.isUpgradable)
                 {
-                    robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade;
+                    if (JoystickManager.Instance.IsDoubleUpgradeActive == false)
+                    {
+                        robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade;
+                    }
+                    else
+                    {
+                        robot.UpgradedValue += _listToUpgradeFrom[robotToPlay].upgrade * 2;
+                        JoystickManager.Instance.IsDoubleUpgradeActive = false;
+                        JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
+                    }
                     robot.AttackText.color = Color.red;
                     RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
                     FindObjectOfType<CardManager>().PlaceCard(Player.Player_Quad, robotToPlay);
@@ -295,7 +312,6 @@ public class RobotManager : MonoBehaviour {
                         FindObjectOfType<Camera>().GetComponentInParent<Animator>().Play("PreparationCameraReturn");
                         GameManager.isSomeAnimationGoing = true;
                     }
-
                 }
             }
         }
@@ -614,7 +630,9 @@ public class RobotManager : MonoBehaviour {
             quadRobotAnimator.Play ("Attack");
 			curveRobotAnimator.Play ("Hitted");
 		}
-	}
+
+        EnergyManager.Instance.RefreshEnergy();
+    }
 
 	public void SecondBattle () {
         PlayableDirector curveRobotDirector = null;
@@ -661,7 +679,9 @@ public class RobotManager : MonoBehaviour {
             quadRobotAnimator.Play ("Attack");
 			curveRobotAnimator.Play ("Hitted");
 		}
-	}
+
+        EnergyManager.Instance.RefreshEnergy();
+    }
 
 	public void ThirdBattle () {
         PlayableDirector curveRobotDirector = null;
@@ -708,7 +728,9 @@ public class RobotManager : MonoBehaviour {
             quadRobotAnimator.Play ("Attack");
 			curveRobotAnimator.Play ("Hitted");
 		}
-	}
+
+        EnergyManager.Instance.RefreshEnergy();
+    }
 
 	#endregion
 

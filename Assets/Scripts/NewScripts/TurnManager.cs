@@ -190,8 +190,7 @@ public class TurnManager : MonoBehaviour {
                 NewUIManager.Instance.ChangeText("Ruota obbligatoriamente la plancia avversaria e decidi se ruotare la tua");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
-                ArrowManager.Instance.Frecce_Curve.SetActive(false);
-                ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                ArrowManager.Instance.Frecce.SetActive(false);
                 ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
@@ -200,7 +199,8 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.battle:
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
 				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
-				if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
+                JoystickManager.Instance.DoubleRotationAlreadyActivated = false;
+                if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play ("Punteggio_Curve_Start_Curve_Turn");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start_Curve_Turn");
@@ -220,8 +220,7 @@ public class TurnManager : MonoBehaviour {
                     ArrowManager.Instance.ActiveAllArrows();
                     isFirstUpgradeTurn = false;
                 }
-                ArrowManager.Instance.Frecce_Curve.SetActive(true);
-                ArrowManager.Instance.Frecce_Quad.SetActive(true);
+                ArrowManager.Instance.Frecce.SetActive(true);
                 NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Energies.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);

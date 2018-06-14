@@ -29,8 +29,8 @@ public class AnimationManager : MonoBehaviour {
 	}
 
 	public void ResetRotationFlags () {
-		JoystickManager.Instance.hasMyGridAlreadyBeenRotated = false;
-		JoystickManager.Instance.hasEnemyGridAlreadyBeenRotated = false;
+		JoystickManager.Instance.HasMyGridAlreadyBeenRotated = false;
+		JoystickManager.Instance.HasEnemyGridAlreadyBeenRotated = false;
 	}
 
     public void ShowEndImage() {

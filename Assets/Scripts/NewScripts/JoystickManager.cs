@@ -8,8 +8,14 @@ public class JoystickManager : MonoBehaviour {
 
     public StickPosition CurrentStickPosition;
 
-	public bool hasMyGridAlreadyBeenRotated;
-	public bool hasEnemyGridAlreadyBeenRotated;
+	public bool HasMyGridAlreadyBeenRotated;
+	public bool HasEnemyGridAlreadyBeenRotated;
+    private bool isDoubleRotationActive;
+    public bool IsDoubleRotationActive { get { return isDoubleRotationActive; } set { if (DoubleRotationAlreadyActivated == false) isDoubleRotationActive = value; } }
+    private bool isDoubleUpgradeActive;
+    public bool IsDoubleUpgradeActive { get { return isDoubleUpgradeActive; } set { if (DoubleUpgradeAlreadyActivated == false) isDoubleUpgradeActive = value; } }
+    public bool DoubleRotationAlreadyActivated;
+    public bool DoubleUpgradeAlreadyActivated;
 
     private ArrowManager am;
 	private ButtonManager bm;
@@ -45,66 +51,100 @@ public class JoystickManager : MonoBehaviour {
         {
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {
+                if (Input.GetKeyDown(KeyCode.Joystick1Button3) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
+                {
+                    IsDoubleRotationActive = true;
+                    EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.RotationCost);
+                    EnergyManager.Instance.RefreshEnergy();
+                }
                 if (Input.GetKeyDown(KeyCode.Joystick1Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy) {
                     ButtonManager.Instance.EndRotationTurn();
                 }
-		        if (Input.GetAxis ("MyGridRotation_Curve") < 0 && !hasMyGridAlreadyBeenRotated)
+		        if (Input.GetAxis ("MyGridRotation_Curve") < 0 && !HasMyGridAlreadyBeenRotated)
                 {
 		        	bm.CurveGridClockwiseRotation ();
 		        	bm.RotationCheck ();
-		        	hasMyGridAlreadyBeenRotated = true;
+		        	HasMyGridAlreadyBeenRotated = true;
 		        }
-		        else if (Input.GetAxis ("MyGridRotation_Curve") > 0 && !hasMyGridAlreadyBeenRotated)
+		        else if (Input.GetAxis ("MyGridRotation_Curve") > 0 && !HasMyGridAlreadyBeenRotated)
                 {
 		        	bm.CurveGridCounterclockwiseRotation ();
 		        	bm.RotationCheck ();
-		        	hasMyGridAlreadyBeenRotated = true;
+		        	HasMyGridAlreadyBeenRotated = true;
 		        }
-		        if (Input.GetAxis ("EnemyGridClockwiseRotation_Curve") > 0 && !hasEnemyGridAlreadyBeenRotated)
+		        if (Input.GetAxis ("EnemyGridClockwiseRotation_Curve") > 0 && !HasEnemyGridAlreadyBeenRotated)
                 {
 		        	bm.QuadGridClockwiseRotation ();
 		        	bm.RotationCheck ();
-		        	hasEnemyGridAlreadyBeenRotated = true;
+		        	HasEnemyGridAlreadyBeenRotated = true;
 		        }
-		        else if (Input.GetAxis ("EnemyGridCounterclockwiseRotation_Curve") > 0 && !hasEnemyGridAlreadyBeenRotated)
+		        else if (Input.GetAxis ("EnemyGridCounterclockwiseRotation_Curve") > 0 && !HasEnemyGridAlreadyBeenRotated)
                 {
 		        	bm.QuadGridCounterclockwiseRotation ();
 		        	bm.RotationCheck ();
-		        	hasEnemyGridAlreadyBeenRotated = true;
+		        	HasEnemyGridAlreadyBeenRotated = true;
 		        }
 		    }
 		    else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
             {
+                if (Input.GetKeyDown(KeyCode.Joystick2Button3) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
+                {
+                    IsDoubleRotationActive = true;
+                    EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.RotationCost);
+                    EnergyManager.Instance.RefreshEnergy();
+                }
                 if (Input.GetKeyDown(KeyCode.Joystick2Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy)
                 {
                     ButtonManager.Instance.EndRotationTurn();
                 }
-                if (Input.GetAxis ("MyGridRotation_Quad") < 0 && !hasMyGridAlreadyBeenRotated)
+                if (Input.GetAxis ("MyGridRotation_Quad") < 0 && !HasMyGridAlreadyBeenRotated)
                 {
 		    		bm.QuadGridClockwiseRotation ();
 		    		bm.RotationCheck ();
-		    		hasMyGridAlreadyBeenRotated = true;
+		    		HasMyGridAlreadyBeenRotated = true;
 		    	}
-		    	else if (Input.GetAxis ("MyGridRotation_Quad") > 0 && !hasMyGridAlreadyBeenRotated)
+		    	else if (Input.GetAxis ("MyGridRotation_Quad") > 0 && !HasMyGridAlreadyBeenRotated)
                 {
 		    		bm.QuadGridCounterclockwiseRotation ();
 		    		bm.RotationCheck ();
-		    		hasMyGridAlreadyBeenRotated = true;
+		    		HasMyGridAlreadyBeenRotated = true;
 		    	}
-		    	if (Input.GetAxis ("EnemyGridClockwiseRotation_Quad") > 0 && !hasEnemyGridAlreadyBeenRotated)
+		    	if (Input.GetAxis ("EnemyGridClockwiseRotation_Quad") > 0 && !HasEnemyGridAlreadyBeenRotated)
                 {
 		    		bm.CurveGridClockwiseRotation ();
 		    		bm.RotationCheck ();
-		    		hasEnemyGridAlreadyBeenRotated = true;
+		    		HasEnemyGridAlreadyBeenRotated = true;
 		    	} 
-		    	else if (Input.GetAxis ("EnemyGridCounterclockwiseRotation_Quad") > 0 && !hasEnemyGridAlreadyBeenRotated)
+		    	else if (Input.GetAxis ("EnemyGridCounterclockwiseRotation_Quad") > 0 && !HasEnemyGridAlreadyBeenRotated)
                 {
 		    		bm.CurveGridCounterclockwiseRotation ();
 		    		bm.RotationCheck ();
-		    		hasEnemyGridAlreadyBeenRotated = true;
+		    		HasEnemyGridAlreadyBeenRotated = true;
 		    	}
 		    }
 		}
+
+        if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+        {
+            if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            {
+                if (Input.GetKeyDown(KeyCode.Joystick1Button3) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
+                {
+                    isDoubleUpgradeActive = true;
+                    EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.UpgradeCost);
+                    EnergyManager.Instance.RefreshEnergy();
+                }
+            }
+            else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+            {
+                if (Input.GetKeyDown(KeyCode.Joystick2Button3) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
+                {
+                    isDoubleUpgradeActive = true;
+                    EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.UpgradeCost);
+                    EnergyManager.Instance.RefreshEnergy();
+                }
+            }
+        }
     }
 
 
