@@ -16,7 +16,8 @@ MonoBehaviour:
   Start_Normal_Card: {fileID: 21300000, guid: d10a2e354aea0374b95ea3af800cf7a6, type: 3}
   Upgrade_Normal_Card: {fileID: 21300000, guid: 467914a163a3288419186b77af2444f3,
     type: 3}
-  Start_Highlighted_Card: {fileID: 0}
+  Start_Highlighted_Card: {fileID: 21300000, guid: 57145abb6f0266d4ebce34e9f5a2ce6c,
+    type: 3}
   Upgrade_Highlighted_Card: {fileID: 21300000, guid: 5f6e4304c90cbda45894cb1c612f8517,
     type: 3}
   Strength: 1

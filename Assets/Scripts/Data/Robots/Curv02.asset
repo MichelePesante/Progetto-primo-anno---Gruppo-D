@@ -14,11 +14,11 @@ MonoBehaviour:
   Unique_ID: 2
   Robot_Prefab: {fileID: 0}
   Start_Normal_Card: {fileID: 21300000, guid: 6d4332a7363a3e14a9712456adfd7202, type: 3}
-  Upgrade_Normal_Card: {fileID: 21300000, guid: 0088ba4f141b3b246a73333653c8b200,
+  Upgrade_Normal_Card: {fileID: 21300000, guid: 5790128158dbe29488fadd03fe5d6657,
     type: 3}
-  Start_Highlighted_Card: {fileID: 21300000, guid: 5c00b6bd699d6c445a1d4a99219b5755,
+  Start_Highlighted_Card: {fileID: 21300000, guid: 4f35408a47fd9b24ba1fb206ae037675,
     type: 3}
-  Upgrade_Highlighted_Card: {fileID: 21300000, guid: a311b61edac2685478136ff028c6f7f6,
+  Upgrade_Highlighted_Card: {fileID: 21300000, guid: eae53d68bce2ec246b0c41b313b5bc91,
     type: 3}
   Strength: 3
   Upgrade: 4
