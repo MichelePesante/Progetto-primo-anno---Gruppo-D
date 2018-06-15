@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -24,12 +22,13 @@ public class NewUIManager : MonoBehaviour {
 		if (Instance == null)
 			Instance = this;
 		else
-			GameObject.Destroy(gameObject);
+			Destroy(gameObject);
 	}
 
 	void Start () {
 		TutorialBoxAnimator = TutorialBox.GetComponent<Animator> ();
-	}
+
+    }
 
 	// Update is called once per frame
 	void Update () {

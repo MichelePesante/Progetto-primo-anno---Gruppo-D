@@ -185,7 +185,6 @@ public class TurnManager : MonoBehaviour {
 				break;
 			case TurnState.rotation:
 				NewUIManager.Instance.Slots.SetActive (false);
-				NewUIManager.Instance.Energies.SetActive (false);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (true);
                 NewUIManager.Instance.ChangeText("Ruota obbligatoriamente la plancia avversaria e decidi se ruotare la tua");
                 NewUIManager.Instance.TutorialBoxSummon();
@@ -222,7 +221,6 @@ public class TurnManager : MonoBehaviour {
                 }
                 ArrowManager.Instance.Frecce.SetActive(true);
                 NewUIManager.Instance.Slots.SetActive (true);
-				NewUIManager.Instance.Energies.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
                 NewUIManager.Instance.ChangeText("Potenzia i tuoi Robot");
                 NewUIManager.Instance.TutorialBoxSummon();

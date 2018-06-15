@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimationManager : MonoBehaviour {
 
@@ -52,5 +51,26 @@ public class AnimationManager : MonoBehaviour {
     public void ShowQuadArrows()
     {
         ArrowManager.Instance.Frecce_Quad.SetActive(true);
+    }
+
+    public void ShowEnergy() {
+        NewUIManager.Instance.Energies.GetComponentsInChildren<Image>()[0].color = new Color(1f, 1f, 1f, 1f);
+        NewUIManager.Instance.Energies.GetComponentsInChildren<Image>()[1].color = new Color(1f, 1f, 1f, 1f);
+    }
+
+    public void HideEnergy()
+    {
+        NewUIManager.Instance.Energies.GetComponentsInChildren<Image>()[0].color = new Color(1f, 1f, 1f, 0f);
+        NewUIManager.Instance.Energies.GetComponentsInChildren<Image>()[1].color = new Color(1f, 1f, 1f, 0f);
+    }
+
+    public void Swap_Start_Energy()
+    {
+        NewUIManager.Instance.Energies.GetComponent<Animator>().Play("Swap_Start");
+    }
+
+    public void Swap_Return_Energy()
+    {
+        NewUIManager.Instance.Energies.GetComponent<Animator>().Play("Swap_Return");
     }
 }
