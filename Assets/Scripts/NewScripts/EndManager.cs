@@ -11,6 +11,7 @@ public class EndManager : MonoBehaviour
 
     public Image CurveEnd;
     public Image QuadEnd;
+    public Image TieEnd;
 
     void Awake()
     {
@@ -43,7 +44,7 @@ public class EndManager : MonoBehaviour
         }
         if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad)
         {
-            // INSERIRE QUI IMMAGINE DI PAREGGIO
+            TieEnd.gameObject.SetActive(true);
         }
     }
 

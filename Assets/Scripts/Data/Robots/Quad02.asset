@@ -13,8 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unique_ID: 6
   Robot_Prefab: {fileID: 0}
-  Normal_Card: {fileID: 21300000, guid: 1b56a59cbbcb9f64cb210cbfb13a0f1f, type: 3}
-  Highlighted_Card: {fileID: 21300000, guid: 1b9b4cf213c95ce4d81e65428eaafafd, type: 3}
-  Strength: 2
-  Upgrade: 2
+  Start_Normal_Card: {fileID: 21300000, guid: b99f9f8aa8ac8f248b3a83b6214911b8, type: 3}
+  Upgrade_Normal_Card: {fileID: 21300000, guid: 6db2f339e18e7ae4f88f434509376d18,
+    type: 3}
+  Start_Highlighted_Card: {fileID: 21300000, guid: 5790d31937fc83f42940d7afabc266d0,
+    type: 3}
+  Upgrade_Highlighted_Card: {fileID: 21300000, guid: 5d3cb72656d0eda48a3e92d75a0d3809,
+    type: 3}
+  Strength: 3
+  Upgrade: 4
   Ability_Array: 000000000000000002000000030000000000000003000000020000000000000000000000

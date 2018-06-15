@@ -12,8 +12,10 @@ public class CardController : MonoBehaviour {
 
 	private Image Card_Image;
 
-	private Sprite Normal_Sprite;
-	private Sprite Highlighted_Sprite;
+	private Sprite Start_Normal_Sprite;
+	private Sprite Start_Highlighted_Sprite;
+    private Sprite Upgrade_Normal_Sprite;
+	private Sprite Upgrade_Highlighted_Sprite;
 
 	public bool isHighlighted;
 
@@ -34,16 +36,30 @@ public class CardController : MonoBehaviour {
 		else {
 			Card_Image.color = new Color (1f, 1f, 1f, 1f);
 			if (isHighlighted) {
-				Card_Image.sprite = Highlighted_Sprite;
-				if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing)
+                {
+                    Card_Image.sprite = Start_Highlighted_Sprite;
+                }
+                else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade)
+                {
+                    Card_Image.sprite = Upgrade_Highlighted_Sprite;
+                }
+                    if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
 					transform.position = StartingPosition + CardManager.Instance.IncPosition;
 				else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
 					transform.position = StartingPosition - CardManager.Instance.IncPosition;
 				transform.localScale = StartingScale + CardManager.Instance.IncScale;
 			} 
 			else {
-				Card_Image.sprite = Normal_Sprite;
-				transform.position = StartingPosition;
+                if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing)
+                {
+                    Card_Image.sprite = Start_Normal_Sprite;
+                }
+                else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade)
+                {
+                    Card_Image.sprite = Upgrade_Normal_Sprite;
+                }
+                    transform.position = StartingPosition;
 				transform.localScale = StartingScale;
 			}
 		}
@@ -57,7 +73,9 @@ public class CardController : MonoBehaviour {
 		if (Data == null) {
 			return;
 		}
-		Normal_Sprite = Data.Normal_Card;
-		Highlighted_Sprite = Data.Highlighted_Card;
-	}
+		Start_Normal_Sprite = Data.Start_Normal_Card;
+		Start_Highlighted_Sprite = Data.Start_Highlighted_Card;
+        Upgrade_Normal_Sprite = Data.Upgrade_Normal_Card;
+        Upgrade_Highlighted_Sprite = Data.Upgrade_Highlighted_Card;
+    }
 }
