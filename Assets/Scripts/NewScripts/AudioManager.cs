@@ -22,7 +22,10 @@ public class AudioManager : MonoBehaviour {
     public AudioClip GameEnergy180;
     public AudioClip GameEnergyDoubleUpgrade;
     public AudioClip GameEnergyCollision;
+    public AudioClip GameScoreQuad;
+    public AudioClip GameScoreCurve;
     public AudioClip GameWinQuad;
     public AudioClip GameWinCurve;
+
 
 }
