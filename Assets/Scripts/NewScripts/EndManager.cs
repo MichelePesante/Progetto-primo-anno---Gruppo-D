@@ -42,7 +42,7 @@ public class EndManager : MonoBehaviour
         {
             QuadEnd.gameObject.SetActive(true);
         }
-        if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad)
+        if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad && (RobotManager.Instance.RobotsCurviInHand == 0 && RobotManager.Instance.RobotsQuadratiInHand == 0))
         {
             TieEnd.gameObject.SetActive(true);
         }
