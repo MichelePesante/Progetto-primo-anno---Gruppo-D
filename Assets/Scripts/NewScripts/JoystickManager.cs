@@ -349,7 +349,7 @@ public class JoystickManager : MonoBehaviour {
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 6);
                         am.Freccia_Nord_Est_Quad.SetActive(false);
                         break;
-                    case StickPosition.E:am.Freccia_Est_Curve.SetActive(false);
+                    case StickPosition.E:
                         RobotManager.Instance.JoystickRobotPlacement(RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadratiGiocati, 2, 5);
                         am.Freccia_Est_Quad.SetActive(false);
                         break;
