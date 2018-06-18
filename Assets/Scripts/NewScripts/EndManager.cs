@@ -25,26 +25,23 @@ public class EndManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (TurnManager.Instance.ScoreCurve >= 5 || TurnManager.Instance.ScoreQuad >= 5)
-            ReturnToMainMenu();
-    }
-
     public void OnEndScene()
     {
         if (TurnManager.Instance.ScoreCurve >= 5)
         {
             CurveEnd.gameObject.SetActive(true);
+            ReturnToMainMenu();
         }
 
         if (TurnManager.Instance.ScoreQuad >= 5)
         {
             QuadEnd.gameObject.SetActive(true);
+            ReturnToMainMenu();
         }
         if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad && (RobotManager.Instance.RobotsCurviInHand == 0 && RobotManager.Instance.RobotsQuadratiInHand == 0))
         {
             TieEnd.gameObject.SetActive(true);
+            ReturnToMainMenu();
         }
     }
 
