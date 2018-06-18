@@ -568,12 +568,12 @@ public class RobotManager : MonoBehaviour {
         if (RobotsCurviInHand == 0 && RobotsQuadratiInHand == 0) {
             if (TurnManager.Instance.ScoreCurve > TurnManager.Instance.ScoreQuad)
             {
-                TurnManager.Instance.ScoreCurve = 5;
+                TurnManager.Instance.ScoreCurve = TurnManager.Instance.ScoreToReach;
                 EndManager.Instance.OnEndScene();
             }
             else if (TurnManager.Instance.ScoreQuad > TurnManager.Instance.ScoreCurve)
             {
-                TurnManager.Instance.ScoreQuad = 5;
+                TurnManager.Instance.ScoreQuad = TurnManager.Instance.ScoreToReach;
                 EndManager.Instance.OnEndScene();
             }
             else

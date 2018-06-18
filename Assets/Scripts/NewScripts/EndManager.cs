@@ -27,13 +27,13 @@ public class EndManager : MonoBehaviour
 
     public void OnEndScene()
     {
-        if (TurnManager.Instance.ScoreCurve >= 5)
+        if (TurnManager.Instance.ScoreCurve >= TurnManager.Instance.ScoreToReach)
         {
             CurveEnd.gameObject.SetActive(true);
             ReturnToMainMenu();
         }
 
-        if (TurnManager.Instance.ScoreQuad >= 5)
+        if (TurnManager.Instance.ScoreQuad >= TurnManager.Instance.ScoreToReach)
         {
             QuadEnd.gameObject.SetActive(true);
             ReturnToMainMenu();
