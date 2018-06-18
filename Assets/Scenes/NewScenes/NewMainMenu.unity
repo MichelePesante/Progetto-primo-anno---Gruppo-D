@@ -2349,6 +2349,17 @@ MonoBehaviour:
   MenuSelect: {fileID: 8300000, guid: 9250d11daf72d1d4eb21e77fecb6ed5c, type: 3}
   MenuStartGame: {fileID: 8300000, guid: 8874a05905cb9004ea7298a1fae01331, type: 3}
   GameGridRotation: {fileID: 8300000, guid: eb38508d605e06949a4fcd417d15f519, type: 3}
+  GameQuadCardMovement: {fileID: 8300000, guid: 1dbf76ef55bae464e80c0c6eb710cf08,
+    type: 3}
+  GameCurveCardMovement: {fileID: 8300000, guid: 9126f66ec850850469172c4f841aae5b,
+    type: 3}
+  GameConfirm: {fileID: 8300000, guid: fca08c43327e0b04cab3ebcf267ca526, type: 3}
+  GameEnergy180: {fileID: 8300000, guid: 7e26a3a60ce5faa43b25e23d8f7cc238, type: 3}
+  GameEnergyDoubleUpgrade: {fileID: 8300000, guid: b341767fc8ee65947a72fbce5cd2884b,
+    type: 3}
+  GameEnergyCollision: {fileID: 8300000, guid: cd1b7c9d529e0cf4b81d6e022c083d16, type: 3}
+  GameWinQuad: {fileID: 0}
+  GameWinCurve: {fileID: 0}
 --- !u!1 &1338030599
 GameObject:
   m_ObjectHideFlags: 0
