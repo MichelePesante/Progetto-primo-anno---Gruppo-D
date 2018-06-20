@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour {
 
 	public GameObject MainMenu;
     public GameObject OptionsMenu;
+    public GameObject TutorialMenu;
 	public GameObject AudioMenu;
 	public GameObject VideoMenu;
 	public GameObject CommandMenu;
@@ -41,10 +42,17 @@ public class MenuController : MonoBehaviour {
         OptionsMenu.SetActive (true);
     }
 
+    public void AttivaTutorial()
+    {
+        MainMenu.SetActive(false);
+        TutorialMenu.SetActive(true);
+    }
+
     public void BackToMainMenu()
     {
         MainMenu.SetActive (true);
         OptionsMenu.SetActive (false);
+        TutorialMenu.SetActive(false);
 		AudioMenu.SetActive (false);
 		VideoMenu.SetActive (false);
 		CommandMenu.SetActive (false);
@@ -82,6 +90,7 @@ public class MenuController : MonoBehaviour {
 			OptionsMenu.SetActive (true);
 			CommandMenu.SetActive (false);
 		}
+
 	}
 
     public void RegolazioneAudio()
@@ -90,11 +99,6 @@ public class MenuController : MonoBehaviour {
     }
 
     public void InterfacciaComandi()
-    {
-
-    }
-
-    public void ScaleInterfaccia()
     {
 
     }
