@@ -53,13 +53,7 @@ public class RobotManager : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void Update () {
 		ChangeRobotToPlay ();
 		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && GameMenu.GameIsPaused == false) {
@@ -159,7 +153,8 @@ public class RobotManager : MonoBehaviour {
 				}
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 0 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 2 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
 					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
-					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController> ().WorldPosition + new Vector3 (0f, 0.3f, 0f);
+                    _listToPlayRobotFrom[robotToPlay].spawn.Play();
+                    _listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController> ().WorldPosition + new Vector3 (0f, 0.3f, 0f);
 					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
 					_listToPlayRobotFrom [robotToPlay].SetPosition ();
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
@@ -182,7 +177,8 @@ public class RobotManager : MonoBehaviour {
 				}
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 4 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 6 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
 					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
-					_listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 0.3f, 0f);
+                    _listToPlayRobotFrom[robotToPlay].spawn.Play();
+                    _listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 0.3f, 0f);
 					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
 					_listToPlayRobotFrom [robotToPlay].SetPosition ();
 					RemoveRobotFromList (_listToPlayRobotFrom, robotToPlay);
@@ -206,6 +202,7 @@ public class RobotManager : MonoBehaviour {
                 if (collider.X == _x && collider.Y == _y && collider.IsPlaceable)
                 {
                     _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
+                    _listToPlayRobotFrom[robotToPlay].spawn.Play();
                     _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3(0f, 0.3f, 0f);
                     _listToPlayRobotFrom[robotToPlay].transform.SetParent(collider.transform);
                     collider.IsPlaceable = false;
@@ -228,6 +225,7 @@ public class RobotManager : MonoBehaviour {
                 if (collider.X == _x && collider.Y == _y && collider.IsPlaceable)
                 {
                     _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
+                    _listToPlayRobotFrom[robotToPlay].spawn.Play();
                     _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3(0f, 0.3f, 0f);
                     _listToPlayRobotFrom[robotToPlay].transform.SetParent(collider.transform);
                     collider.IsPlaceable = false;
@@ -587,6 +585,7 @@ public class RobotManager : MonoBehaviour {
 
 	public void FirstBattle () {
 		PlayableDirector curveRobotDirector = null;
+        PlayableDirector quadRobotDirector = null;
         Animator curveRobotAnimator = null;
         Animator quadRobotAnimator = null;
 
@@ -605,7 +604,8 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 0 && robot.Y == 4) {
-				quadRobotAnimator = robot.GetComponentInChildren<Animator>();
+                quadRobotDirector = robot.GetComponent<PlayableDirector>();
+                quadRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina1p2 = robot.strength;
 			}
 		}
@@ -621,13 +621,13 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult1 == 0) {
 			curveRobotDirector.Play ();
-			quadRobotAnimator.Play ("Attack");
+            quadRobotDirector.Play ();
 		}
 
 		if (battleResult1 < 0) {
 			firstBattleResult = -1;
             EnergyManager.Instance.AddCurveEnergy(1);
-            quadRobotAnimator.Play ("Attack");
+            quadRobotDirector.Play ();
 			curveRobotAnimator.Play ("Hitted");
 		}
 
@@ -636,6 +636,7 @@ public class RobotManager : MonoBehaviour {
 
 	public void SecondBattle () {
         PlayableDirector curveRobotDirector = null;
+        PlayableDirector quadRobotDirector = null;
         Animator curveRobotAnimator = null;
 		Animator quadRobotAnimator = null;
 
@@ -654,7 +655,8 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 1 && robot.Y == 4) {
-				quadRobotAnimator = robot.GetComponentInChildren<Animator>();
+                quadRobotDirector = robot.GetComponent<PlayableDirector>();
+                quadRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina2p2 = robot.strength;
 			}
 		}
@@ -670,13 +672,13 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult2 == 0) {
             curveRobotDirector.Play();
-            quadRobotAnimator.Play ("Attack");
+            quadRobotDirector.Play ();
 		}
 
 		if (battleResult2 < 0) {
 			secondBattleResult = -1;
             EnergyManager.Instance.AddCurveEnergy(1);
-            quadRobotAnimator.Play ("Attack");
+            quadRobotDirector.Play ();
 			curveRobotAnimator.Play ("Hitted");
 		}
 
@@ -685,6 +687,7 @@ public class RobotManager : MonoBehaviour {
 
 	public void ThirdBattle () {
         PlayableDirector curveRobotDirector = null;
+        PlayableDirector quadRobotDirector = null;
         Animator curveRobotAnimator = null;
 		Animator quadRobotAnimator = null;
 
@@ -703,7 +706,8 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 2 && robot.Y == 4) {
-				quadRobotAnimator = robot.GetComponentInChildren<Animator>();
+                quadRobotDirector = robot.GetComponent<PlayableDirector>();
+                quadRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina3p2 = robot.strength;
 			}
 		}
@@ -719,13 +723,13 @@ public class RobotManager : MonoBehaviour {
 
 		if (battleResult3 == 0) {
             curveRobotDirector.Play();
-            quadRobotAnimator.Play ("Attack");
+            quadRobotDirector.Play ();
 		}
 
 		if (battleResult3 < 0) {
 			thirdBattleResult = -1;
             EnergyManager.Instance.AddCurveEnergy(1);
-            quadRobotAnimator.Play ("Attack");
+            quadRobotDirector.Play ();
 			curveRobotAnimator.Play ("Hitted");
 		}
 

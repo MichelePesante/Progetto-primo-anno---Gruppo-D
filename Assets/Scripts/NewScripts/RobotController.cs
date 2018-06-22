@@ -19,6 +19,7 @@ public class RobotController : MonoBehaviour {
 	public int upgrade;
 	public TurnableGrid3x3 <int> Abilities = new TurnableGrid3x3 <int>();
 	public bool [,] AbilityCheck = new bool [3, 3];
+    public ParticleSystem spawn;
 
 	private RobotData InstanceData;
 	private bool isCanvasActive;
