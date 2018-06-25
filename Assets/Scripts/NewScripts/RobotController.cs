@@ -20,8 +20,9 @@ public class RobotController : MonoBehaviour {
 	public TurnableGrid3x3 <int> Abilities = new TurnableGrid3x3 <int>();
 	public bool [,] AbilityCheck = new bool [3, 3];
     public ParticleSystem spawn;
+    public ParticleSystem PowerUp;
 
-	private RobotData InstanceData;
+    private RobotData InstanceData;
 	private bool isCanvasActive;
 
 	void Start () {
@@ -72,6 +73,7 @@ public class RobotController : MonoBehaviour {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3 && isUpgradable) {
 			UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			AttackText.color = Color.red;
+            PowerUp.Play();
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			FindObjectOfType<CardManager> ().PlaceCard (Player.Player_Curve, RobotManager.Instance.robotToPlay);
 			RobotManager.Instance.RobotsCurviInHand--;
@@ -91,7 +93,8 @@ public class RobotController : MonoBehaviour {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
 			UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
 			AttackText.color = Color.red;
-			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
+            PowerUp.Play();
+            RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			FindObjectOfType<CardManager> ().PlaceCard (Player.Player_Quad, RobotManager.Instance.robotToPlay);
 			RobotManager.Instance.RobotsQuadratiInHand--;
 			RobotManager.Instance.robotUpgraded++;
