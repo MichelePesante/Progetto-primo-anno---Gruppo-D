@@ -179,14 +179,14 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.placing:
 				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
-				NewUIManager.Instance.ChangeText ("Posiziona due Robot");
+				NewUIManager.Instance.ChangeText ("Fase di Preparazione: Posiziona due Robot!");
 				NewUIManager.Instance.TutorialBoxSummon ();
 			    RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);    
 				break;
 			case TurnState.rotation:
 				NewUIManager.Instance.Slots.SetActive (false);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (true);
-                NewUIManager.Instance.ChangeText("Ruota obbligatoriamente la plancia avversaria e decidi se ruotare la tua");
+                NewUIManager.Instance.ChangeText("Fase di Rotazione: Rutate le vostre plance!");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
                 ArrowManager.Instance.Frecce.SetActive(false);
@@ -222,7 +222,7 @@ public class TurnManager : MonoBehaviour {
                 ArrowManager.Instance.Frecce.SetActive(true);
                 NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
-                NewUIManager.Instance.ChangeText("Potenzia i tuoi Robot");
+                NewUIManager.Instance.ChangeText("Fase di Upgrade: Potenziate i vostri Robot!");
                 NewUIManager.Instance.TutorialBoxSummon();
                 if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 				RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
