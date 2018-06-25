@@ -31,6 +31,9 @@ public class RobotManager : MonoBehaviour {
 	private int currentTurn;
 	private int maxPreparationTurns = 16;
 	private float JoystickTimer = 0f;
+    private float robotSpawnTimer = 0f;
+    private float timeToSpawn = 1.50f;
+
 
 	private int firstBattleResult;
 	private int secondBattleResult;
