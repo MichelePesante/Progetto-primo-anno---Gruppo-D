@@ -73,4 +73,14 @@ public class AnimationManager : MonoBehaviour {
     {
         NewUIManager.Instance.Energies.GetComponent<Animator>().Play("Swap_Return");
     }
+
+    public void Disable_Tutorial_Help()
+    {
+        NewUIManager.Instance.TutorialActive = false;
+    }
+
+    public void Enable_Tutorial_Help()
+    {
+        NewUIManager.Instance.TutorialActive = true;
+    }
 }

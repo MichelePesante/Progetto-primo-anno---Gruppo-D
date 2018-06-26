@@ -5,7 +5,8 @@ using TMPro;
 public class NewUIManager : MonoBehaviour {
 
 	public static NewUIManager Instance;
-	public TextMeshProUGUI Punteggio_P1;
+    public bool TutorialActive;
+    public TextMeshProUGUI Punteggio_P1;
 	public TextMeshProUGUI Punteggio_P2;
 	public TextMeshProUGUI TutorialText;
 	public Animator TutorialBoxAnimator;
@@ -27,7 +28,6 @@ public class NewUIManager : MonoBehaviour {
 
 	void Start () {
 		TutorialBoxAnimator = TutorialBox.GetComponent<Animator> ();
-
     }
 
 	// Update is called once per frame
@@ -47,4 +47,20 @@ public class NewUIManager : MonoBehaviour {
 			TutorialBoxAnimator.Play ("TutorialBox");
 		TutorialBoxAnimator.SetBool ("IsTutorialActive", false);
 	}
+
+    public void TutorialHelp() {
+        if (TutorialActive)
+        {
+            if (GameManager.isTutorialOn)
+            {
+                TutorialBox.transform.position = Vector3.zero;
+                GameManager.isTutorialOn = false;
+            }
+            else
+            {
+                TutorialBox.transform.position = Vector3.one;
+                GameManager.isTutorialOn = true;
+            }
+        }
+    }
 }

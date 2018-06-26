@@ -186,7 +186,7 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.rotation:
 				NewUIManager.Instance.Slots.SetActive (false);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (true);
-                NewUIManager.Instance.ChangeText("Fase di Rotazione: Rutate le vostre plance!");
+                NewUIManager.Instance.ChangeText("Fase di Rotazione: Ruotate le vostre plance!");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
                 ArrowManager.Instance.Frecce.SetActive(false);
