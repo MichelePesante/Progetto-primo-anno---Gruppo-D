@@ -13,7 +13,9 @@ public class NewUIManager : MonoBehaviour {
     public Image Curve_Energy;
     public Image Quad_Energy;
 	public GameObject TutorialBox;
-	public GameObject Rotation_Buttons;
+    public GameObject DoubleRotation;
+    public GameObject DoubleUpgrade;
+    public GameObject Rotation_Buttons;
 	public GameObject Energies;
 	public GameObject Slots;
     public GameObject Segnapunti;

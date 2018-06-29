@@ -185,7 +185,9 @@ public class TurnManager : MonoBehaviour {
 				break;
 			case TurnState.rotation:
 				NewUIManager.Instance.Slots.SetActive (false);
-				NewUIManager.Instance.Rotation_Buttons.SetActive (true);
+                NewUIManager.Instance.DoubleRotation.SetActive (true);
+                NewUIManager.Instance.DoubleUpgrade.SetActive(false);
+                NewUIManager.Instance.Rotation_Buttons.SetActive (true);
                 NewUIManager.Instance.ChangeText("Fase di Rotazione: Ruotate le vostre plance!");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
@@ -197,7 +199,8 @@ public class TurnManager : MonoBehaviour {
                 break;
 			case TurnState.battle:
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
-				ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
+                NewUIManager.Instance.DoubleRotation.SetActive (false);
+                ButtonManager.Instance.Skip_Turn.gameObject.SetActive (false);
                 JoystickManager.Instance.DoubleRotationAlreadyActivated = false;
                 if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraFirstPlayer");
@@ -220,6 +223,7 @@ public class TurnManager : MonoBehaviour {
                     isFirstUpgradeTurn = false;
                 }
                 ArrowManager.Instance.Frecce.SetActive(true);
+                NewUIManager.Instance.DoubleUpgrade.SetActive(true);
                 NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
                 NewUIManager.Instance.ChangeText("Fase di Upgrade: Potenziate i vostri Robot!");
