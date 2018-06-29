@@ -1,8 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
+
+    public static AudioManager Instance;
+
+    public AudioSource Background;
+    public AudioSource SFX_1;
+    public AudioSource SFX_2;
 
     public AudioClip MenuMovement;
     public AudioClip MenuSelect;
@@ -11,21 +15,23 @@ public class AudioManager : MonoBehaviour {
     public AudioClip GameQuadCardMovement;
     public AudioClip GameCurveCardMovement;
     public AudioClip GameConfirm;
-    //public AudioClip GameCurve1Attack;
-    //public AudioClip GameCurve2Attack;
-    //public AudioClip GameCurve3Attack;
-    //public AudioClip GameCurve4Attack;
-    //public AudioClip GameQuad1Attack;
-    //public AudioClip GameQuad2Attack;
-    //public AudioClip GameQuad3Attack;
-    //public AudioClip GameQuad4Attack;
+    public AudioClip GameSpawn;
     public AudioClip GameEnergy180;
     public AudioClip GameEnergyDoubleUpgrade;
     public AudioClip GameEnergyCollision;
     public AudioClip GameScoreQuad;
     public AudioClip GameScoreCurve;
-    public AudioClip GameWinQuad;
-    public AudioClip GameWinCurve;
+    public AudioClip GameWin;
 
-
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

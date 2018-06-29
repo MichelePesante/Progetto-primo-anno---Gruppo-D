@@ -155,7 +155,9 @@ public class RobotManager : MonoBehaviour {
 					return;
 				}
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 0 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 2 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
-					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameSpawn;
+                    AudioManager.Instance.SFX_1.Play();
+                    _listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
                     _listToPlayRobotFrom[robotToPlay].spawn.Play();
                     _listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController> ().WorldPosition + new Vector3 (0f, 0.3f, 0f);
 					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
@@ -179,7 +181,9 @@ public class RobotManager : MonoBehaviour {
 					return;
 				}
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y >= 4 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().Y <= 6 && _hit.collider.gameObject.GetComponentInChildren<ColliderController>().IsPlaceable) {
-					_listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameSpawn;
+                    AudioManager.Instance.SFX_1.Play();
+                    _listToFill.Add (_listToPlayRobotFrom [robotToPlay]);
                     _listToPlayRobotFrom[robotToPlay].spawn.Play();
                     _listToPlayRobotFrom [robotToPlay].transform.position = _hit.collider.gameObject.GetComponentInChildren<ColliderController>().WorldPosition + new Vector3 (0f, 0.3f, 0f);
 					_listToPlayRobotFrom [robotToPlay].transform.SetParent (_hit.transform);
@@ -204,6 +208,8 @@ public class RobotManager : MonoBehaviour {
             {
                 if (collider.X == _x && collider.Y == _y && collider.IsPlaceable)
                 {
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameSpawn;
+                    AudioManager.Instance.SFX_1.Play();
                     _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
                     _listToPlayRobotFrom[robotToPlay].spawn.Play();
                     _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3(0f, 0.3f, 0f);
@@ -227,6 +233,8 @@ public class RobotManager : MonoBehaviour {
             {
                 if (collider.X == _x && collider.Y == _y && collider.IsPlaceable)
                 {
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameSpawn;
+                    AudioManager.Instance.SFX_1.Play();
                     _listToFill.Add(_listToPlayRobotFrom[robotToPlay]);
                     _listToPlayRobotFrom[robotToPlay].spawn.Play();
                     _listToPlayRobotFrom[robotToPlay].transform.position = FindObjectOfType<NewGridController>().GetWorldPosition(_x, _y) + new Vector3(0f, 0.3f, 0f);
@@ -379,7 +387,9 @@ public class RobotManager : MonoBehaviour {
 	#region RobotRotation
 
 	public void OnClockwiseRotationCurveGrid () {
-		foreach (RobotController robot in RobotCurviGiocati) {
+        AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameGridRotation;
+        AudioManager.Instance.SFX_1.Play();
+        foreach (RobotController robot in RobotCurviGiocati) {
 			robot.RotateRobotMatrix (1);
 			if (robot.X == 0 && robot.Y == 0) {
 				robot.X += 0;
@@ -417,7 +427,9 @@ public class RobotManager : MonoBehaviour {
 	}
 
 	public void OnCounterclockwiseRotationCurveGrid () {
-		foreach (RobotController robot in RobotCurviGiocati) {
+        AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameGridRotation;
+        AudioManager.Instance.SFX_1.Play();
+        foreach (RobotController robot in RobotCurviGiocati) {
 			robot.RotateRobotMatrix (-1);
 			if (robot.X == 0 && robot.Y == 0) {
 				robot.X += 2;
@@ -455,7 +467,9 @@ public class RobotManager : MonoBehaviour {
 	}
 
 	public void OnClockwiseRotationQuadGrid () {
-		foreach (RobotController robot in RobotQuadratiGiocati) {
+        AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameGridRotation;
+        AudioManager.Instance.SFX_1.Play();
+        foreach (RobotController robot in RobotQuadratiGiocati) {
 			robot.RotateRobotMatrix (1);
 			if (robot.X == 0 && robot.Y == 4) {
 				robot.X += 0;
@@ -487,7 +501,9 @@ public class RobotManager : MonoBehaviour {
 	}
 
 	public void OnCounterclockwiseRotationQuadGrid () {
-		foreach (RobotController robot in RobotQuadratiGiocati) {
+        AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameGridRotation;
+        AudioManager.Instance.SFX_1.Play();
+        foreach (RobotController robot in RobotQuadratiGiocati) {
 			robot.RotateRobotMatrix (-1);
 			if (robot.X == 0 && robot.Y == 4) {
 				robot.X += 2;
@@ -599,6 +615,7 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 0 && robot.Y == 2) {
+                AudioManager.Instance.SFX_1.clip = robot.AttackClip;
 				curveRobotDirector = robot.GetComponent<PlayableDirector>();
                 curveRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina1p1 = robot.strength;
@@ -607,6 +624,7 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 0 && robot.Y == 4) {
+                AudioManager.Instance.SFX_2.clip = robot.AttackClip;
                 quadRobotDirector = robot.GetComponent<PlayableDirector>();
                 quadRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina1p2 = robot.strength;
@@ -618,18 +636,22 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult1 > 0) {
 			firstBattleResult = 1;
             EnergyManager.Instance.AddQuadEnergy(1);
+            AudioManager.Instance.SFX_1.Play();
             curveRobotDirector.Play ();
 			quadRobotAnimator.Play ("Hitted");
 		}
 
 		if (battleResult1 == 0) {
-			curveRobotDirector.Play ();
+            AudioManager.Instance.SFX_1.Play();
+            AudioManager.Instance.SFX_2.Play();
+            curveRobotDirector.Play ();
             quadRobotDirector.Play ();
 		}
 
 		if (battleResult1 < 0) {
 			firstBattleResult = -1;
             EnergyManager.Instance.AddCurveEnergy(1);
+            AudioManager.Instance.SFX_2.Play();
             quadRobotDirector.Play ();
 			curveRobotAnimator.Play ("Hitted");
 		}
@@ -650,6 +672,7 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 1 && robot.Y == 2) {
+                AudioManager.Instance.SFX_1.clip = robot.AttackClip;
                 curveRobotDirector = robot.GetComponent<PlayableDirector>();
                 curveRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina2p1 = robot.strength;
@@ -658,6 +681,7 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 1 && robot.Y == 4) {
+                AudioManager.Instance.SFX_2.clip = robot.AttackClip;
                 quadRobotDirector = robot.GetComponent<PlayableDirector>();
                 quadRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina2p2 = robot.strength;
@@ -669,11 +693,14 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult2 > 0) {
 			secondBattleResult = 1;
             EnergyManager.Instance.AddQuadEnergy(1);
+            AudioManager.Instance.SFX_1.Play();
             curveRobotDirector.Play();
             quadRobotAnimator.Play ("Hitted");
 		}
 
 		if (battleResult2 == 0) {
+            AudioManager.Instance.SFX_1.Play();
+            AudioManager.Instance.SFX_2.Play();
             curveRobotDirector.Play();
             quadRobotDirector.Play ();
 		}
@@ -681,6 +708,7 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult2 < 0) {
 			secondBattleResult = -1;
             EnergyManager.Instance.AddCurveEnergy(1);
+            AudioManager.Instance.SFX_2.Play();
             quadRobotDirector.Play ();
 			curveRobotAnimator.Play ("Hitted");
 		}
@@ -701,6 +729,7 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotCurviGiocati) {
 			if (robot.X == 2 && robot.Y == 2) {
+                AudioManager.Instance.SFX_1.clip = robot.AttackClip;
                 curveRobotDirector = robot.GetComponent<PlayableDirector>();
                 curveRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina3p1 = robot.strength;
@@ -709,6 +738,7 @@ public class RobotManager : MonoBehaviour {
 
 		foreach (RobotController robot in RobotQuadratiGiocati) {
 			if (robot.X == 2 && robot.Y == 4) {
+                AudioManager.Instance.SFX_2.clip = robot.AttackClip;
                 quadRobotDirector = robot.GetComponent<PlayableDirector>();
                 quadRobotAnimator = robot.GetComponentInChildren<Animator>();
 				ForzaPedina3p2 = robot.strength;
@@ -720,11 +750,14 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult3 > 0) {
 			thirdBattleResult = 1;
             EnergyManager.Instance.AddQuadEnergy(1);
+            AudioManager.Instance.SFX_1.Play();
             curveRobotDirector.Play();
             quadRobotAnimator.Play ("Hitted");
 		}
 
 		if (battleResult3 == 0) {
+            AudioManager.Instance.SFX_1.Play();
+            AudioManager.Instance.SFX_2.Play();
             curveRobotDirector.Play();
             quadRobotDirector.Play ();
 		}
@@ -732,6 +765,7 @@ public class RobotManager : MonoBehaviour {
 		if (battleResult3 < 0) {
 			thirdBattleResult = -1;
             EnergyManager.Instance.AddCurveEnergy(1);
+            AudioManager.Instance.SFX_2.Play();
             quadRobotDirector.Play ();
 			curveRobotAnimator.Play ("Hitted");
 		}

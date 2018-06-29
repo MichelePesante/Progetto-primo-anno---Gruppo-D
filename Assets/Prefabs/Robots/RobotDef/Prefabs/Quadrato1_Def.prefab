@@ -1734,6 +1734,7 @@ MonoBehaviour:
   upgrade: 0
   spawn: {fileID: 198079527707308112}
   PowerUp: {fileID: 198307945456033098}
+  AttackClip: {fileID: 8300000, guid: 28c94eb89f3f8ea42b098ce912c9258d, type: 3}
 --- !u!137 &137242862269769694
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

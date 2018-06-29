@@ -21,6 +21,7 @@ public class RobotController : MonoBehaviour {
 	public bool [,] AbilityCheck = new bool [3, 3];
     public ParticleSystem spawn;
     public ParticleSystem PowerUp;
+    public AudioClip AttackClip;
 
     private RobotData InstanceData;
 	private bool isCanvasActive;

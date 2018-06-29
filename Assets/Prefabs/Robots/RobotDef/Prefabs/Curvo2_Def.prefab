@@ -2488,6 +2488,7 @@ MonoBehaviour:
   upgrade: 0
   spawn: {fileID: 198783126046044808}
   PowerUp: {fileID: 198548574051112416}
+  AttackClip: {fileID: 8300000, guid: 629c068126d33994ca4313b68105071f, type: 3}
 --- !u!114 &114610511816962402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76361,7 +76362,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1312809873352050}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 3a6bf517df8c8714b96997659bf3c8f5, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: f240bbd4b3a4422448bb2cf889ec6964, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1

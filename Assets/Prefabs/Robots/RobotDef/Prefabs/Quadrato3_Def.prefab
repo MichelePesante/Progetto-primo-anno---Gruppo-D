@@ -2906,6 +2906,7 @@ MonoBehaviour:
   upgrade: 0
   spawn: {fileID: 198073528951077778}
   PowerUp: {fileID: 198922270246706370}
+  AttackClip: {fileID: 8300000, guid: 17a13fd6cf33d4c4e95d60c1b0ed6fe5, type: 3}
 --- !u!114 &114607492388367208
 MonoBehaviour:
   m_ObjectHideFlags: 1

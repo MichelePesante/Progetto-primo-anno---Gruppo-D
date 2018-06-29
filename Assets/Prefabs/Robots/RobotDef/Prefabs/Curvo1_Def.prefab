@@ -1585,13 +1585,14 @@ MonoBehaviour:
   isUpgradable: 0
   X: 0
   Y: 0
-  ID: 14
+  ID: 11
   strength: 0
   OriginalStrength: 0
   UpgradedValue: 0
   upgrade: 0
   spawn: {fileID: 198217073170995288}
   PowerUp: {fileID: 198403718239163254}
+  AttackClip: {fileID: 8300000, guid: 28c94eb89f3f8ea42b098ce912c9258d, type: 3}
 --- !u!114 &114529459944378312
 MonoBehaviour:
   m_ObjectHideFlags: 1
