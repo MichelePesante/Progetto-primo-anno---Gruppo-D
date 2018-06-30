@@ -228,12 +228,16 @@ public class TurnManager : MonoBehaviour {
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
                 NewUIManager.Instance.ChangeText("Fase di Upgrade: Potenziate i vostri Robot!");
                 NewUIManager.Instance.TutorialBoxSummon();
-                if (_currentPlayerTurn == PlayerTurn.Curve_Turn) {
-				RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
-				} 
-				else {
-				RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
-				}
+                if (_currentPlayerTurn == PlayerTurn.Curve_Turn)
+                {
+                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
+                RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
+                } 
+				else
+                {
+                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
+                RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
+                }
                 break;
             case TurnState.useEnergy:
                 break;
@@ -264,7 +268,9 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
-            if (CurrentTurnState == TurnState.upgrade) {
+            if (CurrentTurnState == TurnState.upgrade)
+            {
+                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
                 ArrowManager.Instance.Frecce_Curve.SetActive(false);
                 ArrowManager.Instance.Frecce_Quad.SetActive(false);
             }
@@ -291,6 +297,7 @@ public class TurnManager : MonoBehaviour {
 			}
             if (CurrentTurnState == TurnState.upgrade)
             {
+                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
                 ArrowManager.Instance.Frecce_Curve.SetActive(false);
                 ArrowManager.Instance.Frecce_Quad.SetActive(false);
             }

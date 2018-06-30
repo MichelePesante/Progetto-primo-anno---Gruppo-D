@@ -72,8 +72,17 @@ public class RobotController : MonoBehaviour {
 
 	public void UpgradeRobot (List <RobotController> _listToUpgradeFrom) {
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotCurviInHand && Y < 3 && isUpgradable) {
-			UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
-			AttackText.color = Color.red;
+            if (JoystickManager.Instance.IsDoubleUpgradeActive == false)
+            {
+                UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+            }
+            else
+            {
+                UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade * 2;
+                JoystickManager.Instance.IsDoubleUpgradeActive = false;
+                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
+            }
+            AttackText.color = Color.red;
             PowerUp.Play();
 			RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			FindObjectOfType<CardManager> ().PlaceCard (Player.Player_Curve, RobotManager.Instance.robotToPlay);
@@ -92,8 +101,17 @@ public class RobotController : MonoBehaviour {
         }
 		
 		if (_listToUpgradeFrom == RobotManager.Instance.RobotQuadratiInHand && Y > 3 && isUpgradable) {
-			UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
-			AttackText.color = Color.red;
+            if (JoystickManager.Instance.IsDoubleUpgradeActive == false)
+            {
+                UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade;
+            }
+            else
+            {
+                UpgradedValue += _listToUpgradeFrom[RobotManager.Instance.robotToPlay].upgrade * 2;
+                JoystickManager.Instance.IsDoubleUpgradeActive = false;
+                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
+            }
+            AttackText.color = Color.red;
             PowerUp.Play();
             RobotManager.Instance.RemoveRobotFromList (_listToUpgradeFrom, RobotManager.Instance.robotToPlay);
 			FindObjectOfType<CardManager> ().PlaceCard (Player.Player_Quad, RobotManager.Instance.robotToPlay);

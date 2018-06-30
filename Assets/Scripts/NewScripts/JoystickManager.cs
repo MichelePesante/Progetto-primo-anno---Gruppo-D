@@ -55,7 +55,7 @@ public class JoystickManager : MonoBehaviour {
         {
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {
-                if (Input.GetKeyDown(KeyCode.Joystick1Button3) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
+                if ((Input.GetKeyDown(KeyCode.Joystick1Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
                 {
                     IsDoubleRotationActive = true;
                     EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.RotationCost);
@@ -91,7 +91,7 @@ public class JoystickManager : MonoBehaviour {
 		    }
 		    else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
             {
-                if (Input.GetKeyDown(KeyCode.Joystick2Button3) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
+                if ((Input.GetKeyDown(KeyCode.Joystick2Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
                 {
                     IsDoubleRotationActive = true;
                     EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.RotationCost);
@@ -132,18 +132,18 @@ public class JoystickManager : MonoBehaviour {
         {
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
             {
-                if (Input.GetKeyDown(KeyCode.Joystick1Button3) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
+                if ((Input.GetKeyDown(KeyCode.Joystick1Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
                 {
-                    isDoubleUpgradeActive = true;
+                    IsDoubleUpgradeActive = true;
                     EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.UpgradeCost);
                     EnergyManager.Instance.RefreshEnergy();
                 }
             }
             else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
             {
-                if (Input.GetKeyDown(KeyCode.Joystick2Button3) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
+                if ((Input.GetKeyDown(KeyCode.Joystick2Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
                 {
-                    isDoubleUpgradeActive = true;
+                    IsDoubleUpgradeActive = true;
                     EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.UpgradeCost);
                     EnergyManager.Instance.RefreshEnergy();
                 }
