@@ -2211,6 +2211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3830bbfe38d351b43a2066988f6bf402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Background: {fileID: 0}
+  SFX_1: {fileID: 0}
+  SFX_2: {fileID: 0}
   MenuMovement: {fileID: 8300000, guid: 61fbe208a433c8b48978f85d82332513, type: 3}
   MenuSelect: {fileID: 8300000, guid: 9250d11daf72d1d4eb21e77fecb6ed5c, type: 3}
   MenuStartGame: {fileID: 8300000, guid: 8874a05905cb9004ea7298a1fae01331, type: 3}
@@ -2220,14 +2223,14 @@ MonoBehaviour:
   GameCurveCardMovement: {fileID: 8300000, guid: 9126f66ec850850469172c4f841aae5b,
     type: 3}
   GameConfirm: {fileID: 8300000, guid: fca08c43327e0b04cab3ebcf267ca526, type: 3}
+  GameSpawn: {fileID: 0}
   GameEnergy180: {fileID: 8300000, guid: 7e26a3a60ce5faa43b25e23d8f7cc238, type: 3}
   GameEnergyDoubleUpgrade: {fileID: 8300000, guid: b341767fc8ee65947a72fbce5cd2884b,
     type: 3}
   GameEnergyCollision: {fileID: 8300000, guid: cd1b7c9d529e0cf4b81d6e022c083d16, type: 3}
   GameScoreQuad: {fileID: 0}
   GameScoreCurve: {fileID: 0}
-  GameWinQuad: {fileID: 0}
-  GameWinCurve: {fileID: 0}
+  GameWin: {fileID: 0}
 --- !u!1 &1299504975
 GameObject:
   m_ObjectHideFlags: 0
@@ -3540,7 +3543,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c30ce2a60de54384c93af947c2de284f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 970bc0f01c5edbc48822b655194439d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3565,9 +3568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9255cbeee88ae1546a560bf2fb82c6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tutorial_1: {fileID: 21300000, guid: c30ce2a60de54384c93af947c2de284f, type: 3}
-  Tutorial_2: {fileID: 21300000, guid: 71a0912e6b60d674d96f580bbd241fac, type: 3}
-  Tutorial_3: {fileID: 21300000, guid: f8d4f0e165d8e5549ac9e6176b1100db, type: 3}
+  Tutorial_1: {fileID: 21300000, guid: 970bc0f01c5edbc48822b655194439d1, type: 3}
+  Tutorial_2: {fileID: 21300000, guid: de750d862e7205d4e94d21ab08cb3a68, type: 3}
+  Tutorial_3: {fileID: 21300000, guid: 26563c3e8d052a043840ced2631726d2, type: 3}
 --- !u!1 &1798622559
 GameObject:
   m_ObjectHideFlags: 0
