@@ -25,23 +25,37 @@ public class EndManager : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if ((CurveEnd.gameObject.activeInHierarchy || QuadEnd.gameObject.activeInHierarchy || TieEnd.gameObject.activeInHierarchy) && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade)
+        {
+            ReturnToMainMenu();
+        }
+    }
+
     public void OnEndScene()
     {
         if (TurnManager.Instance.ScoreCurve >= TurnManager.Instance.ScoreToReach)
         {
             CurveEnd.gameObject.SetActive(true);
-            ReturnToMainMenu();
+            AudioManager.Instance.Background.Stop();
+            AudioManager.Instance.SFX_1.Stop();
+            AudioManager.Instance.SFX_2.Stop();
         }
 
         if (TurnManager.Instance.ScoreQuad >= TurnManager.Instance.ScoreToReach)
         {
             QuadEnd.gameObject.SetActive(true);
-            ReturnToMainMenu();
+            AudioManager.Instance.Background.Stop();
+            AudioManager.Instance.SFX_1.Stop();
+            AudioManager.Instance.SFX_2.Stop();
         }
-        if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad && (RobotManager.Instance.RobotsCurviInHand == 0 && RobotManager.Instance.RobotsQuadratiInHand == 0))
+        if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad && (RobotManager.Instance.RobotsCurviInHand == 2 && RobotManager.Instance.RobotsQuadratiInHand == 2))
         {
             TieEnd.gameObject.SetActive(true);
-            ReturnToMainMenu();
+            AudioManager.Instance.Background.Stop();
+            AudioManager.Instance.SFX_1.Stop();
+            AudioManager.Instance.SFX_2.Stop();
         }
     }
 

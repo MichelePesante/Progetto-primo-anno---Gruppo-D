@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class RobotController : MonoBehaviour {
@@ -8,6 +9,7 @@ public class RobotController : MonoBehaviour {
 	public RobotData Data;
 	public TextMeshProUGUI AttackText;
 	public Canvas myCanvas;
+    public Image Valori;
     public bool isUpgradable;
 
     public int X;
@@ -38,7 +40,9 @@ public class RobotController : MonoBehaviour {
 
 	void Update () {
 		AttackText.text = strength.ToString();
-		if ((Input.GetKeyDown (KeyCode.Tab) || Input.GetKeyDown (KeyCode.JoystickButton2)) && GameMenu.GameIsPaused == false) {
+        if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.rotation && Valori.gameObject.activeInHierarchy)
+            Valori.gameObject.SetActive(false);
+        if ((Input.GetKeyDown (KeyCode.Tab) || Input.GetKeyDown (KeyCode.JoystickButton2)) && GameMenu.GameIsPaused == false) {
 			SwitchCanvas ();
 		}
 	}

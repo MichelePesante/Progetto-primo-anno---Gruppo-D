@@ -1582,6 +1582,7 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 08a9952c3deeb15489fde9697a7d6793, type: 2}
   AttackText: {fileID: 0}
   myCanvas: {fileID: 0}
+  Valori: {fileID: 114881785731278106}
   isUpgradable: 0
   X: 0
   Y: 0

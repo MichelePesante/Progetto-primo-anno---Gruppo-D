@@ -582,7 +582,7 @@ public class RobotManager : MonoBehaviour {
             TurnManager.Instance.ScoreQuad += finalScore;
 		}
 
-        if (RobotsCurviInHand == 0 && RobotsQuadratiInHand == 0) {
+        if (RobotsCurviInHand == 2 && RobotsQuadratiInHand == 2 && RobotCurvi.Count == 0 && RobotQuadrati.Count == 0 && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn) {
             if (TurnManager.Instance.ScoreCurve > TurnManager.Instance.ScoreQuad)
             {
                 TurnManager.Instance.ScoreCurve = TurnManager.Instance.ScoreToReach;
