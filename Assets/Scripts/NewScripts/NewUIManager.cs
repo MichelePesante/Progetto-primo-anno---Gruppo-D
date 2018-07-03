@@ -20,8 +20,21 @@ public class NewUIManager : MonoBehaviour {
 	public GameObject Slots;
     public GameObject Segnapunti;
 
-	// Use this for initialization
-	void Awake () {
+    [Header("Buttons")]
+    public GameObject GridButtons;
+    public Image A_Button_Curve;
+    public Image A_Button_Quad;
+    public Image LB_Button_Curve_Turn;
+    public Image RB_Button_Curve_Turn;
+    public Image LT_Button_Curve_Turn;
+    public Image RT_Button_Curve_Turn;
+    public Image LB_Button_Quad_Turn;
+    public Image RB_Button_Quad_Turn;
+    public Image LT_Button_Quad_Turn;
+    public Image RT_Button_Quad_Turn;
+
+    // Use this for initialization
+    void Awake () {
 		if (Instance == null)
 			Instance = this;
 		else

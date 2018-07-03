@@ -60,6 +60,7 @@ public class JoystickManager : MonoBehaviour {
                     IsDoubleRotationActive = true;
                     EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.RotationCost);
                     EnergyManager.Instance.RefreshEnergy();
+                    NewUIManager.Instance.DoubleRotation.SetActive(false);
                 }
                 if (Input.GetKeyDown(KeyCode.Joystick1Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy) {
                     ButtonManager.Instance.EndRotationTurn();
@@ -96,6 +97,7 @@ public class JoystickManager : MonoBehaviour {
                     IsDoubleRotationActive = true;
                     EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.RotationCost);
                     EnergyManager.Instance.RefreshEnergy();
+                    NewUIManager.Instance.DoubleRotation.SetActive(false);
                 }
                 if (Input.GetKeyDown(KeyCode.Joystick2Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy)
                 {
@@ -137,6 +139,7 @@ public class JoystickManager : MonoBehaviour {
                     IsDoubleUpgradeActive = true;
                     EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.UpgradeCost);
                     EnergyManager.Instance.RefreshEnergy();
+                    NewUIManager.Instance.DoubleUpgrade.SetActive(false);
                 }
             }
             else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
@@ -146,6 +149,7 @@ public class JoystickManager : MonoBehaviour {
                     IsDoubleUpgradeActive = true;
                     EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.UpgradeCost);
                     EnergyManager.Instance.RefreshEnergy();
+                    NewUIManager.Instance.DoubleUpgrade.SetActive(false);
                 }
             }
         }

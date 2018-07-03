@@ -192,6 +192,7 @@ public class TurnManager : MonoBehaviour {
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
                 ArrowManager.Instance.Frecce.SetActive(false);
+                NewUIManager.Instance.GridButtons.SetActive(false);
                 ButtonManager.Instance.CurveGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
@@ -223,6 +224,7 @@ public class TurnManager : MonoBehaviour {
                     isFirstUpgradeTurn = false;
                 }
                 ArrowManager.Instance.Frecce.SetActive(true);
+                NewUIManager.Instance.GridButtons.SetActive(true);
                 NewUIManager.Instance.DoubleUpgrade.SetActive(true);
                 NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
@@ -258,6 +260,8 @@ public class TurnManager : MonoBehaviour {
 					RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
                     ArrowManager.Instance.Frecce_Curve.SetActive(false);
                     ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                    NewUIManager.Instance.A_Button_Curve.gameObject.SetActive(false);
+                    NewUIManager.Instance.A_Button_Quad.gameObject.SetActive(false);
                     ArrowManager.Instance.Frecce_Quad.transform.position = ArrowManager.Instance.Frecce_Quad_Starting_Position;
                     ArrowManager.Instance.Frecce_Quad.transform.localScale = ArrowManager.Instance.Frecce_Quad_Starting_Scale;
                     FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraReturn");
@@ -268,11 +272,23 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
+            if (CurrentTurnState == TurnState.rotation)
+            {
+                NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(false);
+                NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(false);
+                NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(false);
+                NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(false);
+            }
             if (CurrentTurnState == TurnState.upgrade)
             {
                 JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
                 ArrowManager.Instance.Frecce_Curve.SetActive(false);
                 ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                NewUIManager.Instance.DoubleUpgrade.SetActive(true);
             }
         }
 		if (newTurn == PlayerTurn.Quad_Turn) {
@@ -285,6 +301,8 @@ public class TurnManager : MonoBehaviour {
 					RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
                     ArrowManager.Instance.Frecce_Quad.SetActive(false);
                     ArrowManager.Instance.Frecce_Curve.SetActive(false);
+                    NewUIManager.Instance.A_Button_Curve.gameObject.SetActive(false);
+                    NewUIManager.Instance.A_Button_Quad.gameObject.SetActive(false);
                     ArrowManager.Instance.Frecce_Curve.transform.position = ArrowManager.Instance.Frecce_Curve_Starting_Position;
                     ArrowManager.Instance.Frecce_Curve.transform.localScale = ArrowManager.Instance.Frecce_Curve_Starting_Scale;
                     FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("PreparationCameraStart");
@@ -295,11 +313,23 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
+            if (CurrentTurnState == TurnState.rotation)
+            {
+                NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(true);
+                NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(false);
+                NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(false);
+                NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(false);
+                NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(false);
+            }
             if (CurrentTurnState == TurnState.upgrade)
             {
                 JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
                 ArrowManager.Instance.Frecce_Curve.SetActive(false);
                 ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                NewUIManager.Instance.DoubleUpgrade.SetActive(true);
             }
         }
     }

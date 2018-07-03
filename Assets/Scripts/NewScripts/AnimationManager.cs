@@ -46,11 +46,13 @@ public class AnimationManager : MonoBehaviour {
 
     public void ShowCurveArrows() {
         ArrowManager.Instance.Frecce_Curve.SetActive(true);
+        NewUIManager.Instance.A_Button_Curve.gameObject.SetActive(true);
     }
 
     public void ShowQuadArrows()
     {
         ArrowManager.Instance.Frecce_Quad.SetActive(true);
+        NewUIManager.Instance.A_Button_Quad.gameObject.SetActive(true);
     }
 
     public void ShowEnergy() {
