@@ -15,6 +15,7 @@ public class TurnManager : MonoBehaviour {
 	public Vector3 CameraPosition;
 
     private bool isFirstUpgradeTurn = true;
+    private bool isCurveRotationTurn = true;
 
 	/// <summary> ENUM per indicare la macro fase di gioco corrente </summary>
 	public enum MacroPhase { Preparation, Game };
@@ -197,6 +198,30 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.CurveGridCounterclockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridClockwiseButton.gameObject.SetActive (true);
 				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (true);
+                if (isCurveRotationTurn)
+                {
+                    NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(false);
+                    NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(false);
+                    NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(false);
+                    NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(false);
+                    isCurveRotationTurn = false;
+                }
+                else if (!isCurveRotationTurn)
+                {
+                    NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(true);
+                    NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(false);
+                    NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(false);
+                    NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(false);
+                    NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(false);
+                    isCurveRotationTurn = true;
+                }
                 break;
 			case TurnState.battle:
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
@@ -272,17 +297,6 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
-            if (CurrentTurnState == TurnState.rotation)
-            {
-                NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(false);
-                NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(false);
-                NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(false);
-                NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(false);
-            }
             if (CurrentTurnState == TurnState.upgrade)
             {
                 JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
@@ -313,17 +327,6 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
-            if (CurrentTurnState == TurnState.rotation)
-            {
-                NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(true);
-                NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(false);
-                NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(false);
-                NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(false);
-                NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(false);
-            }
             if (CurrentTurnState == TurnState.upgrade)
             {
                 JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
