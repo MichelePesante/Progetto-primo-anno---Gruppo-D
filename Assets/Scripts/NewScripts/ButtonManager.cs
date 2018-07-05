@@ -12,7 +12,8 @@ public class ButtonManager : MonoBehaviour {
 	public Button CurveGridCounterclockwiseButton;
 	public Button QuadGridClockwiseButton;
 	public Button QuadGridCounterclockwiseButton;
-	public Button Skip_Turn;
+
+    public Button Skip_Turn;
 
 	private float rotationSpeed;
 
@@ -26,8 +27,8 @@ public class ButtonManager : MonoBehaviour {
 	}
 		
 	void Start () {
-		rotationSpeed = 1f;
-	}
+        rotationSpeed = 1f;
+    }
 
 	private void EnableButton (Button _buttonToEnable) {
 		_buttonToEnable.gameObject.SetActive (true);
@@ -84,6 +85,10 @@ public class ButtonManager : MonoBehaviour {
             }
             DisableButton(CurveGridClockwiseButton);
             DisableButton(CurveGridCounterclockwiseButton);
+            NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(false);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true))
             {
                 EnableButton(Skip_Turn);
@@ -118,6 +123,10 @@ public class ButtonManager : MonoBehaviour {
             }
             DisableButton(CurveGridCounterclockwiseButton);
             DisableButton(CurveGridClockwiseButton);
+            NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(false);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && (QuadGridClockwiseButton.gameObject.activeInHierarchy == true))
             {
                 EnableButton(Skip_Turn);
@@ -152,6 +161,10 @@ public class ButtonManager : MonoBehaviour {
             }
             DisableButton(QuadGridClockwiseButton);
             DisableButton(QuadGridCounterclockwiseButton);
+            NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(false);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true))
             {
                 EnableButton(Skip_Turn);
@@ -186,6 +199,10 @@ public class ButtonManager : MonoBehaviour {
             }
             DisableButton(QuadGridCounterclockwiseButton);
             DisableButton(QuadGridClockwiseButton);
+            NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(false);
+            NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(false);
             if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && (CurveGridClockwiseButton.gameObject.activeInHierarchy == true))
             {
                 EnableButton(Skip_Turn);

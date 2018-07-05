@@ -14,6 +14,8 @@ public class TurnManager : MonoBehaviour {
 	public bool TextIsActive;
 	public Vector3 CameraPosition;
 
+    private int RemainingTurns = 3;
+    private string RemainingTurnsText;
     private bool isFirstUpgradeTurn = true;
     private bool isCurveRotationTurn = true;
 
@@ -180,7 +182,7 @@ public class TurnManager : MonoBehaviour {
 			case TurnState.placing:
 				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 				FindObjectOfType<Camera> ().transform.localPosition = CameraPosition;
-				NewUIManager.Instance.ChangeText ("Fase di Preparazione: Posiziona due Robot!");
+				NewUIManager.Instance.ChangeText ("Preparation phase: Place two robots!");
 				NewUIManager.Instance.TutorialBoxSummon ();
 			    RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);    
 				break;
@@ -189,7 +191,7 @@ public class TurnManager : MonoBehaviour {
                 NewUIManager.Instance.DoubleRotation.SetActive (true);
                 NewUIManager.Instance.DoubleUpgrade.SetActive(false);
                 NewUIManager.Instance.Rotation_Buttons.SetActive (true);
-                NewUIManager.Instance.ChangeText("Fase di Rotazione: Ruotate le vostre plance!");
+                NewUIManager.Instance.ChangeText("Rotation phase: Rotate your grids!");
                 NewUIManager.Instance.TutorialBoxSummon();
                 RobotManager.Instance.SetGraphicAsParent ();
                 ArrowManager.Instance.Frecce.SetActive(false);
@@ -200,6 +202,10 @@ public class TurnManager : MonoBehaviour {
 				ButtonManager.Instance.QuadGridCounterclockwiseButton.gameObject.SetActive (true);
                 if (isCurveRotationTurn)
                 {
+                    ButtonManager.Instance.CurveGridClockwiseButton.transform.Rotate(0f, 180f, 180f);
+                    ButtonManager.Instance.CurveGridCounterclockwiseButton.transform.Rotate(0f, 180f, 180f);
+                    ButtonManager.Instance.QuadGridClockwiseButton.transform.Rotate(0f, 180f, 0f);
+                    ButtonManager.Instance.QuadGridCounterclockwiseButton.transform.Rotate(0f, 180f, 0f);
                     NewUIManager.Instance.RB_Button_Curve_Turn.gameObject.SetActive(true);
                     NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(true);
                     NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(true);
@@ -208,10 +214,15 @@ public class TurnManager : MonoBehaviour {
                     NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(false);
                     NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(false);
                     NewUIManager.Instance.LB_Button_Quad_Turn.gameObject.SetActive(false);
+                    JoystickManager.Instance.IsDoubleRotationActive = false;
                     isCurveRotationTurn = false;
                 }
                 else if (!isCurveRotationTurn)
                 {
+                    ButtonManager.Instance.CurveGridClockwiseButton.transform.Rotate(0f, 180f, 180f);
+                    ButtonManager.Instance.CurveGridCounterclockwiseButton.transform.Rotate(0f, 180f, 180f);
+                    ButtonManager.Instance.QuadGridClockwiseButton.transform.Rotate(0f, 180f, 0f);
+                    ButtonManager.Instance.QuadGridCounterclockwiseButton.transform.Rotate(0f, 180f, 0f);
                     NewUIManager.Instance.RB_Button_Quad_Turn.gameObject.SetActive(true);
                     NewUIManager.Instance.LT_Button_Quad_Turn.gameObject.SetActive(true);
                     NewUIManager.Instance.RT_Button_Quad_Turn.gameObject.SetActive(true);
@@ -220,6 +231,7 @@ public class TurnManager : MonoBehaviour {
                     NewUIManager.Instance.LT_Button_Curve_Turn.gameObject.SetActive(false);
                     NewUIManager.Instance.RT_Button_Curve_Turn.gameObject.SetActive(false);
                     NewUIManager.Instance.LB_Button_Curve_Turn.gameObject.SetActive(false);
+                    JoystickManager.Instance.IsDoubleRotationActive = false;
                     isCurveRotationTurn = true;
                 }
                 break;
@@ -236,6 +248,10 @@ public class TurnManager : MonoBehaviour {
                     ChangeTurn ();
 				} 
 				else {
+                    if (RobotManager.Instance.RobotsCurviInHand == 2 && RobotManager.Instance.RobotsQuadratiInHand == 2 && RobotManager.Instance.RobotCurvi.Count == 0 && RobotManager.Instance.RobotQuadrati.Count == 0)
+                    {
+                        RobotManager.Instance.LastBattle = true;
+                    }
 					FindObjectOfType<Camera> ().GetComponentInParent<Animator> ().Play ("BattleCameraSecondPlayer");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Curve_Start_Quad_Turn");
                     NewUIManager.Instance.Segnapunti.GetComponent<Animator>().Play("Punteggio_Quad_Start_Quad_Turn");
@@ -248,22 +264,41 @@ public class TurnManager : MonoBehaviour {
                     ArrowManager.Instance.ActiveAllArrows();
                     isFirstUpgradeTurn = false;
                 }
+                switch (RemainingTurns)
+                {
+                    case 3:
+                        RemainingTurnsText = "Remaining turns: 3";
+                        break;
+                    case 2:
+                        RemainingTurnsText = "Remaining turns: 2";
+                        break;
+                    case 1:
+                        RemainingTurnsText = "Last turn!";
+                        break;
+                    default:
+                        break;
+                }
                 ArrowManager.Instance.Frecce.SetActive(true);
                 NewUIManager.Instance.GridButtons.SetActive(true);
                 NewUIManager.Instance.DoubleUpgrade.SetActive(true);
                 NewUIManager.Instance.Slots.SetActive (true);
 				NewUIManager.Instance.Rotation_Buttons.SetActive (false);
-                NewUIManager.Instance.ChangeText("Fase di Upgrade: Potenziate i vostri Robot!");
+                NewUIManager.Instance.ChangeText("Upgrade phase: Upgrade your robots! " + RemainingTurnsText);
                 NewUIManager.Instance.TutorialBoxSummon();
+                RemainingTurns--;
                 if (_currentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
-                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
-                RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
+                    JoystickManager.Instance.IsDoubleUpgradeActive = false;
+                    JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
+                    NewUIManager.Instance.A_Button_Quad.gameObject.SetActive(false);
+                    ArrowManager.Instance.Frecce_Quad.SetActive(false);
+                    NewUIManager.Instance.DoubleUpgrade.SetActive(true);
+                    RobotManager.Instance.RobotsCurviInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotCurviInHand, RobotManager.Instance.RobotCurvi, RobotManager.Instance.RobotsCurviInHand, Player.Player_Curve);
                 } 
 				else
                 {
-                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
-                RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
+                    JoystickManager.Instance.IsDoubleUpgradeActive = false;
+                    RobotManager.Instance.RobotsQuadratiInHand = RobotManager.Instance.Draw (RobotManager.Instance.RobotQuadratiInHand, RobotManager.Instance.RobotQuadrati, RobotManager.Instance.RobotsQuadratiInHand, Player.Player_Quad);
                 }
                 break;
             case TurnState.useEnergy:
@@ -297,13 +332,6 @@ public class TurnManager : MonoBehaviour {
 			default:
 				break;
 			}
-            if (CurrentTurnState == TurnState.upgrade)
-            {
-                JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
-                ArrowManager.Instance.Frecce_Curve.SetActive(false);
-                ArrowManager.Instance.Frecce_Quad.SetActive(false);
-                NewUIManager.Instance.DoubleUpgrade.SetActive(true);
-            }
         }
 		if (newTurn == PlayerTurn.Quad_Turn) {
 			switch (CurrentMacroPhase) {
@@ -330,6 +358,8 @@ public class TurnManager : MonoBehaviour {
             if (CurrentTurnState == TurnState.upgrade)
             {
                 JoystickManager.Instance.DoubleUpgradeAlreadyActivated = false;
+                NewUIManager.Instance.A_Button_Curve.gameObject.SetActive(false);
+                NewUIManager.Instance.A_Button_Quad.gameObject.SetActive(false);
                 ArrowManager.Instance.Frecce_Curve.SetActive(false);
                 ArrowManager.Instance.Frecce_Quad.SetActive(false);
                 NewUIManager.Instance.DoubleUpgrade.SetActive(true);

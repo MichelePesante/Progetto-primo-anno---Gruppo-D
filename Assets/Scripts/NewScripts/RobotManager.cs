@@ -16,6 +16,7 @@ public class RobotManager : MonoBehaviour {
 	public int robotToPlay;
 	public int robotUpgraded;
 	public float JoystickDelay;
+    public bool LastBattle;
 
 	[Header ("Liste Robot")]
 	public List<RobotController> RobotCurvi;
@@ -273,6 +274,7 @@ public class RobotManager : MonoBehaviour {
                         JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
                     }
                     robot.AttackText.color = Color.red;
+                    robot.PowerUp.Play();
                     RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
                     FindObjectOfType<CardManager>().PlaceCard(Player.Player_Curve, robotToPlay);
                     RobotsCurviInHand--;
@@ -307,6 +309,7 @@ public class RobotManager : MonoBehaviour {
                         JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
                     }
                     robot.AttackText.color = Color.red;
+                    robot.PowerUp.Play();
                     RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
                     FindObjectOfType<CardManager>().PlaceCard(Player.Player_Quad, robotToPlay);
                     RobotsQuadratiInHand--;
@@ -582,7 +585,7 @@ public class RobotManager : MonoBehaviour {
             TurnManager.Instance.ScoreQuad += finalScore;
 		}
 
-        if (RobotsCurviInHand == 2 && RobotsQuadratiInHand == 2 && RobotCurvi.Count == 0 && RobotQuadrati.Count == 0 && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn) {
+        if (RobotsCurviInHand == 2 && RobotsQuadratiInHand == 2 && RobotCurvi.Count == 0 && RobotQuadrati.Count == 0 && LastBattle) {
             if (TurnManager.Instance.ScoreCurve > TurnManager.Instance.ScoreQuad)
             {
                 TurnManager.Instance.ScoreCurve = TurnManager.Instance.ScoreToReach;
