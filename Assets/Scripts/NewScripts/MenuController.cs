@@ -7,38 +7,28 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour {
 
 	public GameObject MainMenu;
-    public GameObject OptionsMenu;
     public GameObject TutorialMenu;
-	public GameObject AudioMenu;
+    public GameObject HowToPlayMenu;
+    public GameObject CreditsMenu;
 	public GameObject CommandMenu;
-
-    private void Start()
-    {
-        OptionsMenu.SetActive (false);
-    }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
-            BackToMainMenu();
+            PreviousMenu();
         }
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        AudioManager.Instance.Background.Stop();
     }
 
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void AttivaImpostazioni()
-    {
-        MainMenu.SetActive (false);
-        OptionsMenu.SetActive (true);
     }
 
     public void AttivaTutorial()
@@ -47,52 +37,40 @@ public class MenuController : MonoBehaviour {
         TutorialMenu.SetActive(true);
     }
 
-    public void BackToMainMenu()
+    public void AttivaCredits()
     {
-        MainMenu.SetActive (true);
-        OptionsMenu.SetActive (false);
-        TutorialMenu.SetActive(false);
-		AudioMenu.SetActive (false);
-		CommandMenu.SetActive (false);
+        MainMenu.SetActive(false);
+        CreditsMenu.SetActive(true);
     }
 
-	public void AttivaAudioMenu () {
-		OptionsMenu.SetActive (false);
-		AudioMenu.SetActive (true);
-	}
+    public void AttivaHowToPlayMenu ()
+    {
+        TutorialMenu.SetActive(false);
+        HowToPlayMenu.SetActive(true);
+    }
 
-	public void AttivaCommandMenu () {
-		OptionsMenu.SetActive (false);
+    public void AttivaCommandMenu () {
+		TutorialMenu.SetActive (false);
 		CommandMenu.SetActive (true);
 	}
 
 	public void PreviousMenu () {
-		if (OptionsMenu.activeInHierarchy) {
+		if (TutorialMenu.activeInHierarchy) {
 			MainMenu.SetActive (true);
-			OptionsMenu.SetActive (false);
-		} 
-		else if (TutorialMenu.activeInHierarchy) {
-            MainMenu.SetActive (true);
-			TutorialMenu.SetActive (false);
-		} 
-		else if (AudioMenu.activeInHierarchy) {
-			OptionsMenu.SetActive (true);
-			AudioMenu.SetActive (false);
+            TutorialMenu.SetActive (false);
+		}
+        else if (CreditsMenu.activeInHierarchy)
+        {
+            MainMenu.SetActive(true);
+            CreditsMenu.SetActive(false);
+        }
+        else if (HowToPlayMenu.activeInHierarchy) {
+            TutorialMenu.SetActive (true);
+            HowToPlayMenu.SetActive (false);
 		} 
 		else if (CommandMenu.activeInHierarchy) {
-			OptionsMenu.SetActive (true);
+			TutorialMenu.SetActive (true);
 			CommandMenu.SetActive (false);
 		}
-
 	}
-
-    public void RegolazioneAudio()
-    {
-        
-    }
-
-    public void InterfacciaComandi()
-    {
-
-    }
 }
