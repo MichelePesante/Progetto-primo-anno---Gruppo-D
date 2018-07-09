@@ -30,16 +30,16 @@ public class GameMenu : MonoBehaviour {
 			PreviousMenu ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			if (!GameIsPaused) {
-				Time.timeScale = 0f;
-				GameIsPaused = true;
-			} 
-			else {
-				Time.timeScale = 1f;
-				GameIsPaused = false;
-			}
-		}
+		//if (Input.GetKeyDown (KeyCode.Space)) {
+		//	if (!GameIsPaused) {
+		//		Time.timeScale = 0f;
+		//		GameIsPaused = true;
+		//	} 
+		//	else {
+		//		Time.timeScale = 1f;
+		//		GameIsPaused = false;
+		//	}
+		//}
     }
 
     public void OpenMenu()

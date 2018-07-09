@@ -45,10 +45,10 @@ public class JoystickManager : MonoBehaviour {
             {
                 StickOrientation("X_Quad", "Y_Quad");
             }
-            if (Input.GetKeyDown(KeyCode.JoystickButton6))
-            {
-                NewUIManager.Instance.TutorialHelp();
-            }
+            //if (Input.GetKeyDown(KeyCode.JoystickButton6))
+            //{
+            //    NewUIManager.Instance.TutorialHelp();
+            //}
         }
 
         if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
