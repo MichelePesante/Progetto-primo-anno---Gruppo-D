@@ -273,6 +273,8 @@ public class RobotManager : MonoBehaviour {
                         JoystickManager.Instance.IsDoubleUpgradeActive = false;
                         JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
                     }
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameSpawn;
+                    AudioManager.Instance.SFX_1.Play();
                     robot.AttackText.color = Color.red;
                     robot.PowerUp.Play();
                     RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
@@ -308,6 +310,8 @@ public class RobotManager : MonoBehaviour {
                         JoystickManager.Instance.IsDoubleUpgradeActive = false;
                         JoystickManager.Instance.DoubleUpgradeAlreadyActivated = true;
                     }
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameSpawn;
+                    AudioManager.Instance.SFX_1.Play();
                     robot.AttackText.color = Color.red;
                     robot.PowerUp.Play();
                     RemoveRobotFromList(_listToUpgradeFrom, robotToPlay);
@@ -358,14 +362,18 @@ public class RobotManager : MonoBehaviour {
 				if (Time.time >= JoystickTimer + JoystickDelay) {
 					JoystickTimer = Time.time;
 					robotToPlay--;
-				}
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameCurveCardMovement;
+                    AudioManager.Instance.SFX_1.Play();
+                }
 			} 
 			else if (Input.GetAxis ("CardSelector_Curve") < 0f) {
 				if (robotToPlay < RobotsCurviInHand - 1) {
 					if (Time.time >= JoystickTimer + JoystickDelay) {
 						JoystickTimer = Time.time;
 						robotToPlay++;
-					}
+                        AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameCurveCardMovement;
+                        AudioManager.Instance.SFX_1.Play();
+                    }
 				}
 			}
 		}
@@ -374,14 +382,18 @@ public class RobotManager : MonoBehaviour {
 				if (Time.time >= JoystickTimer + JoystickDelay) {
 					JoystickTimer = Time.time;
 					robotToPlay--;
-				}
+                    AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameQuadCardMovement;
+                    AudioManager.Instance.SFX_1.Play();
+                }
 			} 
 			else if (Input.GetAxis ("CardSelector_Quad") < 0f) {
 				if (robotToPlay < RobotsQuadratiInHand - 1) {
 					if (Time.time >= JoystickTimer + JoystickDelay) {
 						JoystickTimer = Time.time;
 						robotToPlay++;
-					}
+                        AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameQuadCardMovement;
+                        AudioManager.Instance.SFX_1.Play();
+                    }
 				}
 			}
 		}

@@ -39,7 +39,8 @@ public class EndManager : MonoBehaviour
         {
             CurveEnd.gameObject.SetActive(true);
             AudioManager.Instance.Background.Stop();
-            AudioManager.Instance.SFX_1.Stop();
+            AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameWin;
+            AudioManager.Instance.SFX_1.Play();
             AudioManager.Instance.SFX_2.Stop();
         }
 
@@ -47,14 +48,16 @@ public class EndManager : MonoBehaviour
         {
             QuadEnd.gameObject.SetActive(true);
             AudioManager.Instance.Background.Stop();
-            AudioManager.Instance.SFX_1.Stop();
+            AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameWin;
+            AudioManager.Instance.SFX_1.Play();
             AudioManager.Instance.SFX_2.Stop();
         }
         if (TurnManager.Instance.ScoreCurve == TurnManager.Instance.ScoreQuad && (RobotManager.Instance.RobotsCurviInHand == 2 && RobotManager.Instance.RobotsQuadratiInHand == 2))
         {
             TieEnd.gameObject.SetActive(true);
             AudioManager.Instance.Background.Stop();
-            AudioManager.Instance.SFX_1.Stop();
+            AudioManager.Instance.SFX_1.clip = AudioManager.Instance.GameWin;
+            AudioManager.Instance.SFX_1.Play();
             AudioManager.Instance.SFX_2.Stop();
         }
     }

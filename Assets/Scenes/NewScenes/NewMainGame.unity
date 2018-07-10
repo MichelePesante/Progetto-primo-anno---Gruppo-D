@@ -28867,7 +28867,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 96adab0ebb5f7a84e932a742ea07181b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -41290,7 +41290,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -41491,7 +41491,7 @@ MonoBehaviour:
   GameEnergyCollision: {fileID: 8300000, guid: cd1b7c9d529e0cf4b81d6e022c083d16, type: 3}
   GameScoreQuad: {fileID: 0}
   GameScoreCurve: {fileID: 0}
-  GameWin: {fileID: 0}
+  GameWin: {fileID: 8300000, guid: bea6333cd2f3ff046ba37259d7c1c29d, type: 3}
 --- !u!1 &1538426246
 GameObject:
   m_ObjectHideFlags: 0
@@ -50933,7 +50933,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

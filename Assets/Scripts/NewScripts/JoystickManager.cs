@@ -61,6 +61,8 @@ public class JoystickManager : MonoBehaviour {
                     EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.RotationCost);
                     EnergyManager.Instance.RefreshEnergy();
                     NewUIManager.Instance.DoubleRotation.SetActive(false);
+                    AudioManager.Instance.SFX_2.clip = AudioManager.Instance.GameEnergy180;
+                    AudioManager.Instance.SFX_2.Play();
                 }
                 if (Input.GetKeyDown(KeyCode.Joystick1Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy) {
                     ButtonManager.Instance.EndRotationTurn();
@@ -98,6 +100,8 @@ public class JoystickManager : MonoBehaviour {
                     EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.RotationCost);
                     EnergyManager.Instance.RefreshEnergy();
                     NewUIManager.Instance.DoubleRotation.SetActive(false);
+                    AudioManager.Instance.SFX_2.clip = AudioManager.Instance.GameEnergy180;
+                    AudioManager.Instance.SFX_2.Play();
                 }
                 if (Input.GetKeyDown(KeyCode.Joystick2Button0) && ButtonManager.Instance.Skip_Turn.gameObject.activeInHierarchy)
                 {
@@ -140,6 +144,8 @@ public class JoystickManager : MonoBehaviour {
                     EnergyManager.Instance.SubCurveEnergy(EnergyManager.Instance.UpgradeCost);
                     EnergyManager.Instance.RefreshEnergy();
                     NewUIManager.Instance.DoubleUpgrade.SetActive(false);
+                    AudioManager.Instance.SFX_2.clip = AudioManager.Instance.GameEnergyDoubleUpgrade;
+                    AudioManager.Instance.SFX_2.Play();
                 }
             }
             else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
@@ -150,6 +156,8 @@ public class JoystickManager : MonoBehaviour {
                     EnergyManager.Instance.SubQuadEnergy(EnergyManager.Instance.UpgradeCost);
                     EnergyManager.Instance.RefreshEnergy();
                     NewUIManager.Instance.DoubleUpgrade.SetActive(false);
+                    AudioManager.Instance.SFX_2.clip = AudioManager.Instance.GameEnergyDoubleUpgrade;
+                    AudioManager.Instance.SFX_2.Play();
                 }
             }
         }
