@@ -8,10 +8,9 @@ public class GameMenu : MonoBehaviour {
     public static bool GameIsPaused;
 
     public GameObject PauseMenu;
-	public GameObject OptionsMenu;
-	public GameObject AudioMenu;
-	public GameObject VideoMenu;
-	public GameObject CommandMenu;
+    public GameObject TutorialMenu;
+    public GameObject HowToPlayMenu;
+    public GameObject CommandMenu;
 
     private void Start()
     {
@@ -61,9 +60,8 @@ public class GameMenu : MonoBehaviour {
     public void Resume()
     {
         PauseMenu.SetActive(false);
-		OptionsMenu.SetActive(false);
-		AudioMenu.SetActive(false);
-		VideoMenu.SetActive(false);
+		TutorialMenu.SetActive(false);
+		HowToPlayMenu.SetActive(false);
 		CommandMenu.SetActive (false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -94,45 +92,38 @@ public class GameMenu : MonoBehaviour {
         Resume();
     }
 
-	public void OpenOptionsMenu () {
+	public void OpenTutorialMenu () {
 		PauseMenu.SetActive (false);
-		OptionsMenu.SetActive (true);
+		TutorialMenu.SetActive (true);
 	}
 
-	public void OpenAudioMenu () {
-		OptionsMenu.SetActive (false);
-		AudioMenu.SetActive (true);
-	}
+    public void OpenHowToPlayMenu()
+    {
+        TutorialMenu.SetActive(false);
+        HowToPlayMenu.SetActive(true);
+    }
 
-	public void OpenVideoMenu () {
-		OptionsMenu.SetActive (false);
-		VideoMenu.SetActive (true);
-	}
+    public void OpenCommandMenu()
+    {
+        TutorialMenu.SetActive(false);
+        CommandMenu.SetActive(true);
+    }
 
-	public void OpenCommandMenu () {
-		OptionsMenu.SetActive (false);
-		CommandMenu.SetActive (true);
-	}
-
-	public void PreviousMenu () {
+    public void PreviousMenu () {
 		if (PauseMenu.activeInHierarchy) {
 			Resume ();
 		} 
-		if (OptionsMenu.activeInHierarchy) {
+		else if (TutorialMenu.activeInHierarchy) {
 			PauseMenu.SetActive (true);
-			OptionsMenu.SetActive (false);
+			TutorialMenu.SetActive (false);
 		} 
-		else if (AudioMenu.activeInHierarchy) {
-			OptionsMenu.SetActive (true);
-			AudioMenu.SetActive (false);
-		} 
-		else if (VideoMenu.activeInHierarchy) {
-			OptionsMenu.SetActive (true);
-			VideoMenu.SetActive (false);
+		else if (HowToPlayMenu.activeInHierarchy) {
+            TutorialMenu.SetActive (true);
+            HowToPlayMenu.SetActive (false);
 		} 
 		else if (CommandMenu.activeInHierarchy) {
-			OptionsMenu.SetActive (true);
+            TutorialMenu.SetActive (true);
 			CommandMenu.SetActive (false);
-		}
+		} 
 	}
 }
