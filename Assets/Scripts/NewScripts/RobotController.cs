@@ -48,12 +48,12 @@ public class RobotController : MonoBehaviour {
 	}
 
 	void OnMouseDown () {
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
+		if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
             if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
 			    UpgradeRobot (RobotManager.Instance.RobotCurviInHand);
 		}
 
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
+		if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn && TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false) {
             if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
                 UpgradeRobot (RobotManager.Instance.RobotQuadratiInHand);
 		}

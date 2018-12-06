@@ -58,7 +58,7 @@ public class TurnManager : MonoBehaviour {
 	}
 
 	/// <summary> ENUM per indicare di chi è il turno </summary>
-	public enum PlayerTurn { Curve_Turn, Quad_Turn };
+	
 	private PlayerTurn _currentPlayerTurn;
 	public PlayerTurn CurrentPlayerTurn
 	{
@@ -112,11 +112,11 @@ public class TurnManager : MonoBehaviour {
         switch (newMacroPhase)
         {
 			case MacroPhase.Preparation:
-				FindObjectOfType<NewGridController> ().CreateGrid (FindObjectOfType<NewGridController> ().X, FindObjectOfType<NewGridController> ().Y, FindObjectOfType<NewGridController> ().Offset);
-				RobotManager.Instance.Shuffle (RobotManager.Instance.RobotCurvi);
-				RobotManager.Instance.Shuffle (RobotManager.Instance.RobotQuadrati);
-				CurrentTurnState = TurnState.choosePlayer;	
-				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
+				//FindObjectOfType<NewGridController> ().CreateGrid (FindObjectOfType<NewGridController> ().X, FindObjectOfType<NewGridController> ().Y, FindObjectOfType<NewGridController> ().Offset);
+				//RobotManager.Instance.Shuffle (RobotManager.Instance.RobotCurvi);
+				//RobotManager.Instance.Shuffle (RobotManager.Instance.RobotQuadrati);
+				//CurrentTurnState = TurnState.choosePlayer;
+				//CurrentPlayerTurn = PlayerTurn.Curve_Turn;
 	            break;
 			case MacroPhase.Game:
 				CurrentPlayerTurn = PlayerTurn.Curve_Turn;
@@ -387,3 +387,5 @@ public class TurnManager : MonoBehaviour {
         }
     }
 }
+
+public enum PlayerTurn { Curve_Turn, Quad_Turn };

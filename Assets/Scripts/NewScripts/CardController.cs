@@ -44,9 +44,9 @@ public class CardController : MonoBehaviour {
                 {
                     Card_Image.sprite = Upgrade_Highlighted_Sprite;
                 }
-                    if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                    if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
 					transform.position = StartingPosition + CardManager.Instance.IncPosition;
-				else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+				else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
 					transform.position = StartingPosition - CardManager.Instance.IncPosition;
 				transform.localScale = StartingScale + CardManager.Instance.IncScale;
 			} 

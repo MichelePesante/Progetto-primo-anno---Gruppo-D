@@ -29,8 +29,8 @@ public class RobotManager : MonoBehaviour {
 	public int[,] AbilityCurveValues = new int[3, 3];
 	public int[,] AbilityQuadValues = new int[3, 3];
 
-	private int currentTurn;
-	private int maxPreparationTurns = 16;
+	public int currentTurn;
+	public int maxPreparationTurns = 16;
 	private float JoystickTimer = 0f;
     private float robotSpawnTimer = 0f;
     private float timeToSpawn = 1.50f;
@@ -59,32 +59,35 @@ public class RobotManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		ChangeRobotToPlay ();
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && GameMenu.GameIsPaused == false) {
-			if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
-                if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
-				    PlayRobot (RobotCurviInHand, RobotCurviGiocati);
-				CardManager.Instance.HighlightCard (Player.Player_Curve, robotToPlay);
-			}
-			else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
-				CardManager.Instance.HighlightCard (Player.Player_Curve, robotToPlay);
-			}
-		}
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && GameMenu.GameIsPaused == false) {
-			if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
-                if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
-                    PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
-				CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
-			}
-			else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
-				CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
-			}
-		}
-		SetAbilityValues (Player.Player_Curve);
-		SetAbilityValues (Player.Player_Quad);
-		CalculateStrength ();
-		SwitchPlacingTurn ();
-		EndPreparationPhase ();
+        //ChangeRobotToPlay();
+        //if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn && GameMenu.GameIsPaused == false)
+        //{
+        //    if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing)
+        //    {
+        //        if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+        //            PlayRobot(RobotCurviInHand, RobotCurviGiocati);
+        //        CardManager.Instance.HighlightCard(Player.Player_Curve, robotToPlay);
+        //    }
+        //    else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade)
+        //    {
+        //        CardManager.Instance.HighlightCard(Player.Player_Curve, robotToPlay);
+        //    }
+        //}
+        //  if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn && GameMenu.GameIsPaused == false) {
+		    //	if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing) {
+                //  if (GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
+                    //  PlayRobot (RobotQuadratiInHand, RobotQuadratiGiocati);
+		    //  CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
+		//	}
+		//	else if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade) {
+		//		CardManager.Instance.HighlightCard (Player.Player_Quad, robotToPlay);
+		//	}
+		//}
+		//SetAbilityValues (Player.Player_Curve);
+		//SetAbilityValues (Player.Player_Quad);
+		//CalculateStrength ();
+		//SwitchPlacingTurn ();
+		//EndPreparationPhase ();
 	}
 
 
@@ -150,7 +153,7 @@ public class RobotManager : MonoBehaviour {
 		Ray _ray = _camera.ScreenPointToRay(Input.mousePosition);
 		RaycastHit _hit;
 
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn) {
+		if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn) {
 			if (Physics.Raycast (_ray, out _hit) && Input.GetMouseButtonDown (0)) {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>() == null) {
 					return;
@@ -176,7 +179,7 @@ public class RobotManager : MonoBehaviour {
 			}
 		}
 
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn) {
+		if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn) {
 			if (Physics.Raycast (_ray, out _hit) && Input.GetMouseButtonDown (0)) {
 				if (_hit.collider.gameObject.GetComponentInChildren<ColliderController>() == null) {
 					return;
@@ -203,7 +206,7 @@ public class RobotManager : MonoBehaviour {
 
    public void JoystickRobotPlacement(List<RobotController> _listToPlayRobotFrom, List<RobotController> _listToFill, int _x, int _y)
    {
-        if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+        if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
         {
             foreach (ColliderController collider in FindObjectOfType<NewGridController>().Colliders)
             {
@@ -228,7 +231,7 @@ public class RobotManager : MonoBehaviour {
                 }
             }
         }
-        else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+        else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
         {
             foreach (ColliderController collider in FindObjectOfType<NewGridController>().Colliders)
             {
@@ -257,7 +260,7 @@ public class RobotManager : MonoBehaviour {
 
     public void JoystickRobotUpgrade(List<RobotController> _listToUpgradeFrom, int _x, int _y)
     {
-        if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+        if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
         {
             foreach (RobotController robot in RobotCurviGiocati)
             {
@@ -294,7 +297,7 @@ public class RobotManager : MonoBehaviour {
                 }
             }
         }
-        else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+        else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
         {
             foreach (RobotController robot in RobotQuadratiGiocati)
             {
@@ -349,15 +352,15 @@ public class RobotManager : MonoBehaviour {
 			robotToPlay--;
 		}
 		else if (Input.GetAxis ("Mouse ScrollWheel") < 0f) {
-			if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn && robotToPlay < RobotsCurviInHand - 1) {
+			if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn && robotToPlay < RobotsCurviInHand - 1) {
 				robotToPlay++;
 			} 
-			else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn && robotToPlay < RobotsQuadratiInHand - 1) {
+			else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn && robotToPlay < RobotsQuadratiInHand - 1) {
 				robotToPlay++;
 			}
 		}
 
-		if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn) {
+		if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn) {
 			if (Input.GetAxis ("CardSelector_Curve") > 0f && robotToPlay > 0) {
 				if (Time.time >= JoystickTimer + JoystickDelay) {
 					JoystickTimer = Time.time;
@@ -377,7 +380,7 @@ public class RobotManager : MonoBehaviour {
 				}
 			}
 		}
-		else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn) {
+		else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn) {
 			if (Input.GetAxis ("CardSelector_Quad") > 0f && robotToPlay > 0) {
 				if (Time.time >= JoystickTimer + JoystickDelay) {
 					JoystickTimer = Time.time;
@@ -922,7 +925,7 @@ public class RobotManager : MonoBehaviour {
 		return row >= 0 && row < AbilityCurveValues.GetLength (0) && column >= 0 && column < AbilityCurveValues.GetLength (1);
 	}
 
-	private void SwitchPlacingTurn () {
+	public void SwitchPlacingTurn () {
 		if (RobotPlayed == MaxRobotToPlay) {
 			TurnManager.Instance.ChangeTurn ();
 			RobotPlayed = 0;

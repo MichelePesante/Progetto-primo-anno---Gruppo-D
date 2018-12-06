@@ -37,11 +37,11 @@ public class JoystickManager : MonoBehaviour {
 	void Update () {
         if (GameMenu.GameIsPaused == false)
         {
-            if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
             {
                 StickOrientation("X_Curve", "Y_Curve");
             }
-            else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+            else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
             {
                 StickOrientation("X_Quad", "Y_Quad");
             }
@@ -53,7 +53,7 @@ public class JoystickManager : MonoBehaviour {
 
         if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.rotation && GameMenu.GameIsPaused == false && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
-            if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
             {
                 if ((Input.GetKeyDown(KeyCode.Joystick1Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
                 {
@@ -92,7 +92,7 @@ public class JoystickManager : MonoBehaviour {
 		        	HasEnemyGridAlreadyBeenRotated = true;
 		        }
 		    }
-		    else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+		    else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
             {
                 if ((Input.GetKeyDown(KeyCode.Joystick2Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.RotationCost && !DoubleRotationAlreadyActivated && !IsDoubleRotationActive)
                 {
@@ -136,7 +136,7 @@ public class JoystickManager : MonoBehaviour {
 
         if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameMenu.GameIsPaused == false && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
-            if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
             {
                 if ((Input.GetKeyDown(KeyCode.Joystick1Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Curve_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
                 {
@@ -148,7 +148,7 @@ public class JoystickManager : MonoBehaviour {
                     AudioManager.Instance.SFX_2.Play();
                 }
             }
-            else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+            else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
             {
                 if ((Input.GetKeyDown(KeyCode.Joystick2Button3) || Input.GetKeyDown(KeyCode.Q)) && EnergyManager.Instance.Quad_Energy >= EnergyManager.Instance.UpgradeCost && !DoubleUpgradeAlreadyActivated && !IsDoubleUpgradeActive)
                 {
@@ -170,11 +170,11 @@ public class JoystickManager : MonoBehaviour {
             if ((Input.GetAxis(xAxis) > -0.2f && Input.GetAxis(xAxis) < 0.2f) && (Input.GetAxis(yAxis) > -0.2f && Input.GetAxis(yAxis) < 0.2f))
             {
                 CurrentStickPosition = StickPosition.C;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                 }
@@ -182,12 +182,12 @@ public class JoystickManager : MonoBehaviour {
             else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) > 0.3f && Input.GetAxis(yAxis) < 1f))
             {
                 CurrentStickPosition = StickPosition.NE;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Nord_Est_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Nord_Est_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -198,12 +198,12 @@ public class JoystickManager : MonoBehaviour {
             else if ((Input.GetAxis(xAxis) > 0.3f && Input.GetAxis(xAxis) < 1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
             {
                 CurrentStickPosition = StickPosition.SE;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Sud_Est_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Sud_Est_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -214,12 +214,12 @@ public class JoystickManager : MonoBehaviour {
             else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) > 0.3f && Input.GetAxis(yAxis) < 1f))
             {
                 CurrentStickPosition = StickPosition.NW;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Nord_Ovest_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Nord_Ovest_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -230,12 +230,12 @@ public class JoystickManager : MonoBehaviour {
             else if ((Input.GetAxis(xAxis) < -0.3f && Input.GetAxis(xAxis) > -1f) && (Input.GetAxis(yAxis) < -0.3f && Input.GetAxis(yAxis) > -1f))
             {
                 CurrentStickPosition = StickPosition.SW;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Sud_Ovest_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Sud_Ovest_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -246,12 +246,12 @@ public class JoystickManager : MonoBehaviour {
             else if (Input.GetAxis(xAxis) < -0.5f)
             {
                 CurrentStickPosition = StickPosition.W;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Ovest_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Ovest_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -262,12 +262,12 @@ public class JoystickManager : MonoBehaviour {
             else if (Input.GetAxis(xAxis) > 0.5f)
             {
                 CurrentStickPosition = StickPosition.E;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Est_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Est_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -278,12 +278,12 @@ public class JoystickManager : MonoBehaviour {
             else if (Input.GetAxis(yAxis) < -0.5f)
             {
                 CurrentStickPosition = StickPosition.S;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Sud_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Sud_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -294,12 +294,12 @@ public class JoystickManager : MonoBehaviour {
             else if (Input.GetAxis(yAxis) > 0.5f)
             {
                 CurrentStickPosition = StickPosition.N;
-                if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+                if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
                 {
                     am.ResetAllCurveMaterials();
                     am.Freccia_Nord_Curve.GetComponent<Renderer>().material = am.HighlightMaterial;
                 }
-                else if (TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+                else if (TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
                 {
                     am.ResetAllQuadMaterials();
                     am.Freccia_Nord_Quad.GetComponent<Renderer>().material = am.HighlightMaterial;
@@ -313,7 +313,7 @@ public class JoystickManager : MonoBehaviour {
     private void PlayRobotFromJoystick(StickPosition _currentStickPosition) {
         if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.placing && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
-            if (Input.GetKeyUp(KeyCode.Joystick1Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            if (Input.GetKeyUp(KeyCode.Joystick1Button0) && TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
             {
                 switch (_currentStickPosition)
                 {
@@ -353,7 +353,7 @@ public class JoystickManager : MonoBehaviour {
                         break;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Joystick2Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+            if (Input.GetKeyUp(KeyCode.Joystick2Button0) && TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
             {
                 switch (_currentStickPosition)
                 {
@@ -400,7 +400,7 @@ public class JoystickManager : MonoBehaviour {
     {
         if (TurnManager.Instance.CurrentTurnState == TurnManager.TurnState.upgrade && GameManager.isSomeAnimationGoing == false && GameManager.isTutorialOn == false)
         {
-            if (Input.GetKeyUp(KeyCode.Joystick1Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Curve_Turn)
+            if (Input.GetKeyUp(KeyCode.Joystick1Button0) && TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Curve_Turn)
             {
                 switch (_currentStickPosition)
                 {
@@ -440,7 +440,7 @@ public class JoystickManager : MonoBehaviour {
                         break;
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.Joystick2Button0) && TurnManager.Instance.CurrentPlayerTurn == TurnManager.PlayerTurn.Quad_Turn)
+            else if (Input.GetKeyUp(KeyCode.Joystick2Button0) && TurnManager.Instance.CurrentPlayerTurn == PlayerTurn.Quad_Turn)
             {
                 switch (_currentStickPosition)
                 {
